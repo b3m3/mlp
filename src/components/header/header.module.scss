@@ -1,0 +1,7 @@
+.body {
+  min-height: 5.3125rem;
+  display: grid;
+  align-items: center;
+  grid-template: auto / 200px 1fr auto;
+  gap: 1.875rem;
+}
