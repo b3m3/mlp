@@ -1,0 +1,17 @@
+.search {
+  display: flex;
+  align-items: center;
+  gap: .625rem;
+  padding: .625rem .9375rem;
+  max-width: 25rem;
+  border: 1px solid var(--white-01);
+  border-radius: 1.5625rem;
+}
+
+.search svg {
+  color: var(--gray-400);
+}
+
+.search input::placeholder {
+  color: var(--gray-400);
+}
