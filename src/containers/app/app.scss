@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;900&display=swap');
+@import url('../../styles/scrollbar.css');
+
+* {padding: 0;margin: 0;box-sizing: border-box;font-family:inherit;font-weight: inherit;list-style: none;text-decoration: none;color: inherit;}
+html {display: block;font-size: 100%;scroll-behavior: smooth;height: 100%;}
+body {height: 100%;margin: 0;background-repeat: no-repeat;background-attachment: fixed;}
+button {cursor: pointer;border: none;background: none;}
+
+:root {
+  --blue-400: #217ff4;
+  --blue-200: #6780c0;
+  --orange-400: #e9ae19;
+  --gray-400: #76737a;
+  --gray-50: #efefef;
+}
+
+body {
+  background: linear-gradient(48deg, rgba(47,27,50,1) 0%, rgba(27,39,58,1) 100%);
+  font-family: 'Nunito', -apple-system, 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 1330px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
