@@ -1,0 +1,9 @@
+.logo {
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+
+  & img {
+    width: 1.875rem;
+  }
+}
