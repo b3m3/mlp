@@ -1,9 +1,12 @@
 .logo {
   font-size: 1.25rem;
+  font-weight: 800;
   display: flex;
   align-items: center;
+  color: var(--blue-200);
 
   & img {
     width: 1.875rem;
+    transform: translateX(.3125rem);
   }
 }

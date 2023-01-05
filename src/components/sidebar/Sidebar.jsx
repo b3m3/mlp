@@ -8,26 +8,25 @@ import { MdFavorite } from 'react-icons/md';
 import style from './sidebar.module.scss';
 
 const Sidebar = () => {
+  const links = [
+    {name: 'Home', icon: <AiFillHome />, path: '/'},
+    {name: 'Movies', icon: <MdLocalMovies />, path: '/movies'},
+    {name: 'Serials', icon: <RiMovie2Fill />, path: '/serials'},
+    {name: 'Favorites', icon: <MdFavorite />, path: '/favorites'},
+  ];
+
   return (
     <aside className={style.sidebar}>
       <nav>
         <ul>
-          <li className={style.active}>
-            <AiFillHome />
-            <NavLink to={'/'}>Home</NavLink>
-          </li>
-          <li>
-            <MdLocalMovies />
-            <NavLink to={'/Movies'}>Movies</NavLink>
-          </li>
-          <li>
-            <RiMovie2Fill />
-            <NavLink to={'/Serials'}>Serials</NavLink>
-          </li>
-          <li>
-            <MdFavorite />
-            <NavLink to={'/Favorites'}>Favorites</NavLink>
-          </li>
+          {links.map(({ name, icon, path}) => (
+            <li key={name}>
+              <NavLink to={path}>
+                {icon}
+                {name}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </nav>
     </aside>
