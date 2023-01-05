@@ -12,3 +12,12 @@ export const getApiResources = async url => {
     console.error(error);
   }
 };
+
+export const getApiResults = async (url, setResults, setErrorApi) => {
+  const res = await getApiResources(url);
+  if (res) {
+    setResults(res.results);
+  } else {
+    setErrorApi(true);
+  }
+};
