@@ -1,36 +1,39 @@
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Header from '../../components/header/Header';
 import Sidebar from '../../components/sidebar/Sidebar';
-import Home from '../../containers/home/Home';
-import Movies from '../../containers/movies/Movies';
-import Serials from '../../containers/serials/Serials';
-import Favorites from '../../containers/favorites/Favorites';
-import NotFound from '../../containers/notFound/NotFound';
+import routes from '../../routes/routes';
 
 import './app.scss';
 
 const App = () => {
+  const [menuActive, setMenuActive] = useState(false);
+
   return (
-    <HashRouter>
+    <BrowserRouter>
     <div className="app">
-      <Header />
+      <Header 
+        onClick={() => setMenuActive(a => !a)}
+        menuActive={menuActive}
+      />
       <div className="container">
         <div className='app-wrapp'>
-          <Sidebar />
+          <Sidebar 
+            menuActive={menuActive}
+          />
           <main>
             <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/movies' element={<Movies />} />
-              <Route path='/serials' element={<Serials />} />
-              <Route path='/favorites' element={<Favorites />} />
-              <Route path='*' element={<NotFound />} />
+              {routes && routes.map(({ path, element }, i) => (
+                <Route key={i} path={path} element={element} />
+              ))}
             </Routes>
           </main>
         </div>
       </div>
     </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
