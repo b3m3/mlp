@@ -1,4 +1,5 @@
 import { API_POSTER } from '../../constans/api';
+import { textOverflow } from '../../utils/functions';
 
 import { AiFillStar } from 'react-icons/ai';
 
@@ -11,7 +12,7 @@ const Card = ({poster_path, title, vote_average}) => {
         <img src={API_POSTER+poster_path} alt="Poster" />
       </div>
 
-      <p>{title}</p>
+      <h5>{title && textOverflow(title, 22)}</h5>
       <div className={style.rating}>
         <AiFillStar />
         <span>{vote_average}</span>

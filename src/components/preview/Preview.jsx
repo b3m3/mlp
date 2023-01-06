@@ -31,15 +31,6 @@ const Preview = ({ title, url }) => {
             className={style.swiper}
             spaceBetween={15}
             slidesPerView={'auto'}
-            // breakpoints={{
-            //   320: {slidesPerView: 1.2},
-            //   400: {slidesPerView: 2},
-            //   650: {slidesPerView: 3},
-            //   900: {slidesPerView: 4},
-            //   1025: {slidesPerView: 3},
-            //   1100: {slidesPerView: 4},
-            //   1300: {slidesPerView: 5}
-            // }}
           >
             {results && results.map(props => (
               <SwiperSlide 
