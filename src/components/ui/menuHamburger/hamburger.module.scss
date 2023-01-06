@@ -1,0 +1,39 @@
+.hamburger {
+  position: relative;
+  z-index: 10;
+  width: 30px;
+  height: 15px;
+  display: none;
+  justify-self: end;
+
+  @media screen and (max-width: 1024px) {
+    display: block;
+  }
+
+  &.active {
+    & i:first-child {
+      width: 90%;
+    }
+    & i:last-child {
+      width: 40%;
+    }
+  }
+
+  & i {
+    position: absolute;
+    content: '';
+    left: 0;
+    width: 100%;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--blue-200);
+    transition: .3s ease;
+
+    &:first-child {
+      top: 0;
+    }
+    &:last-child {
+      bottom: 0;
+    }
+  }
+}
