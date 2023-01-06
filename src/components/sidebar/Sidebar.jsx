@@ -7,7 +7,7 @@ import { MdFavorite } from 'react-icons/md';
 
 import style from './sidebar.module.scss';
 
-const Sidebar = () => {
+const Sidebar = ({menuActive}) => {
   const links = [
     {name: 'Home', icon: <AiFillHome />, path: '/'},
     {name: 'Movies', icon: <MdLocalMovies />, path: '/movies'},
@@ -16,14 +16,16 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className={style.sidebar}>
+    <aside 
+      className={menuActive ? `${style.active} ${style.sidebar}` : style.sidebar}
+    >
       <nav>
         <ul>
           {links.map(({ name, icon, path}) => (
             <li key={name}>
               <NavLink to={path}>
                 {icon}
-                {name}
+                <span>{name}</span>
               </NavLink>
             </li>
           ))}

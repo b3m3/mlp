@@ -6,6 +6,7 @@
 
 .poster {
   cursor: pointer;
+  user-select: none;
   position: relative;
   border-radius: .75rem;
   overflow: hidden;

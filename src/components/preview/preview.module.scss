@@ -2,13 +2,16 @@
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  min-width: 0;
+}
 
-  & ul {
-    display: grid;
-    grid-column-gap: .9375rem;
-    grid-row-gap: 1.25rem;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  }
+.swiper {
+  width: 100%;
+}
+
+.slide {
+  width: 100%;
+  max-width: 12.375rem;
 }
 
 .top {

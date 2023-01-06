@@ -1,26 +1,19 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { getApiResources } from '../../service/getApiResources';
+import { getApiResults } from '../../service/getApiResources';
 import Card from '../card/Card';
 
 import style from './preview.module.scss';
+import 'swiper/css';
 
 const Preview = ({ title, url }) => {
   const [results, setResults] = useState(null);
   const [errorApi, setErrorApi] = useState(false);
 
-  const getResults = async url => {
-    const res = await getApiResources(url);
-    if (res) {
-      setResults(res.results);
-    } else {
-      setErrorApi(true);
-    }
-  };
-
   useEffect(() => {
-    getResults(url);
+    getApiResults(url, setResults, setErrorApi);
   }, [url]);
 
   return (
@@ -34,14 +27,30 @@ const Preview = ({ title, url }) => {
       
       {errorApi
         ? <h2>Error</h2>
-        : <ul>
+        : <Swiper
+            className={style.swiper}
+            spaceBetween={15}
+            slidesPerView={'auto'}
+            // breakpoints={{
+            //   320: {slidesPerView: 1.2},
+            //   400: {slidesPerView: 2},
+            //   650: {slidesPerView: 3},
+            //   900: {slidesPerView: 4},
+            //   1025: {slidesPerView: 3},
+            //   1100: {slidesPerView: 4},
+            //   1300: {slidesPerView: 5}
+            // }}
+          >
             {results && results.map(props => (
-              <Card 
-                key={props.id}
-                {...props}
-              />
+              <SwiperSlide 
+                key={props.id} 
+                className={style.slide}
+              >
+                <Card {...props} />
+              </SwiperSlide>
             ))}
-          </ul>}
+          </Swiper>
+      }
     </div>
   );
 }

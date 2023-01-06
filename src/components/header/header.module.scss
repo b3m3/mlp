@@ -4,4 +4,13 @@
   align-items: center;
   grid-template: auto / 12.5rem 1fr auto;
   gap: 3.125rem;
+
+  @media screen and (max-width: 768px) {
+    grid-template: auto / auto 1fr auto;
+    gap: 1.25rem;
+  }
+  @media screen and (max-width: 475px) {
+    grid-template: auto auto / auto auto;
+    padding: .9375rem 0;
+  }
 }
