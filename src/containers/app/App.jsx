@@ -1,19 +1,25 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Header from '../../components/header/Header';
 import Sidebar from '../../components/sidebar/Sidebar';
-import routes from '../../routes/routes';
 
+import routes from '../../routes/routes';
+import { API_EN, API_RU } from '../../constans/api';
 import { Context } from '../../context/context';
 
 import './app.scss';
 
 const App = () => {
   const [menuActive, setMenuActive] = useState(false);
-  const [currentLang, setCurrentLang] = useState('EN');
+  const [currentLang, setCurrentLang] = useState({lang: 'EN', langCode: API_EN});
 
-  const languages = ['EN', 'RU'];
+  const { langCode } = currentLang;
+
+  const languages = [
+    {lang: 'EN', langCode: API_EN}, 
+    {lang: 'RU', langCode: API_RU}
+  ];
 
   return (
     <Context.Provider value={{
@@ -36,6 +42,8 @@ const App = () => {
                 <Routes>
                   {routes && routes.map(({ path, element }, i) => (
                     <Route key={i} path={path} element={element} /> ))}
+                  
+                  <Route path='/' element={<Navigate to={'/lang='+langCode} replace />} />
                 </Routes>
               </main>
             </div>
