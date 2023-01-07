@@ -5,15 +5,12 @@ import Favorites from '../containers/favorites/Favorites';
 import Category from "../containers/category/Category";
 import NotFound from '../containers/notFound/NotFound';
 
-import { API_LANGUAGE, API_PAGE } from "../constans/api";
-
 const routes = [
-  { path: '/', element: <Home /> },
-  { path: '/movie', element: <Movies /> },
-  { path: '/tv', element: <Serials /> },
-  { path: '/favorites', element: <Favorites /> },
-  { path: '/:video'+'/:category'+API_LANGUAGE+':lang'+API_PAGE+':pageid', element: <Category /> },
-  { path: '*', element: <NotFound /> }
+  { path: '/movie'+'/:lang:langCode', element: <Movies /> },
+  { path: '/tv'+'/:lang:langCode', element: <Serials /> },
+  { path: '/favorites'+'/:lang:langCode', element: <Favorites /> },
+  { path: '*', element: <NotFound /> },
+  { path: '/:lang:langCode', element: <Home /> }
 ];
 
 export default routes;
