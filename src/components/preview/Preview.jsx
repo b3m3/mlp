@@ -1,27 +1,31 @@
-import { useState, useEffect } from 'react';
-
+import { useState, useEffect, useContext } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Card from '../card/Card';
 import SeeAll from '../ui/seeAll/SeeAll';
 import { getApiResults } from '../../service/getApiResources';
 
+import { Context } from '../../context/context';
+
 import style from './preview.module.scss';
 import 'swiper/css';
 
-const Preview = ({ title, url }) => {
+const Preview = ({ item }) => {
   const [results, setResults] = useState(null);
   const [errorApi, setErrorApi] = useState(false);
 
+  const { currentLang } = useContext(Context);
+  const { lang } = currentLang;
+
   useEffect(() => {
-    getApiResults(url, setResults, setErrorApi);
-  }, [url]);
+    getApiResults(item.url, setResults, setErrorApi);
+  }, [item.url]);
 
   return (
     <div className={style.preview}>
       <div className={style.top}>
-        <h2>{title}</h2>
-        <SeeAll title={title}/>
+        <h2>{item[lang]}</h2>
+        <SeeAll title={item[lang]}/>
       </div>
       
       {errorApi

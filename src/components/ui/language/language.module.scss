@@ -1,16 +1,20 @@
 .language {
+  cursor: pointer;
   position: relative;
   z-index: 3;
   width: 2.0625rem;
   height: 2.0625rem;
   border-radius: 7px;
   background: var(--blue-gradient);
-  color: var(--gray-50);
 
   font-size: .875rem;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  & p {
+    color: var(--gray-50);
+  }
 
   & ul {
     overflow: hidden;
@@ -26,13 +30,12 @@
     justify-content: center;
     align-items: center;
     gap: .3125rem;
-    background: var(--blue-gradient);
+    border: 2px solid transparent;
     border-radius: 7px;
     transition: .3s;
   }
 
-  & li {
+  & a {
     color: var(--gray-50);
-    cursor: pointer;
   }
 }

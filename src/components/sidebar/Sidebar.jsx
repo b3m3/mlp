@@ -1,20 +1,24 @@
 import { NavLink } from 'react-router-dom';
-
-import { API_LANGUAGE, API_EN, API_RU } from '../../constans/api';
+import { useContext } from 'react';
 
 import { AiFillHome } from 'react-icons/ai';
 import { MdLocalMovies } from 'react-icons/md';
 import { RiMovie2Fill } from 'react-icons/ri';
 import { MdFavorite } from 'react-icons/md';
 
+import { Context } from '../../context/context';
+
 import style from './sidebar.module.scss';
 
 const Sidebar = ({menuActive}) => {
+  const { currentLang } = useContext(Context);
+  const { lang, langCode } = currentLang;
+
   const links = [
-    {name: 'Home', icon: <AiFillHome />, path: '/'},
-    {name: 'Movies', icon: <MdLocalMovies />, path: '/movie'},
-    {name: 'Serials', icon: <RiMovie2Fill />, path: '/tv'},
-    {name: 'Favorites', icon: <MdFavorite />, path: '/favorites'},
+    {EN: 'Home', RU: 'Домашняя', icon: <AiFillHome />, path: '/lang='+langCode},
+    {EN: 'Movies', RU: 'Фильмы', icon: <MdLocalMovies />, path: '/movie'+'/lang='+langCode},
+    {EN: 'Serials', RU: 'Сериалы', icon: <RiMovie2Fill />, path: '/tv'+'/lang='+langCode},
+    {EN: 'Favorites', RU: 'Избранное', icon: <MdFavorite />, path: '/favorites'+'/lang='+langCode},
   ];
 
   return (
@@ -23,11 +27,11 @@ const Sidebar = ({menuActive}) => {
     >
       <nav>
         <ul>
-          {links.map(({ name, icon, path}) => (
-            <li key={name}>
-              <NavLink to={path}>
-                {icon}
-                <span>{name}</span>
+          {links.map(link => (
+            <li key={link.EN}>
+              <NavLink to={link.path}>
+                {link.icon}
+                <span>{link[lang]}</span>
               </NavLink>
             </li>
           ))}

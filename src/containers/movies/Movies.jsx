@@ -1,20 +1,27 @@
+import { useState, useContext } from 'react';
+
 import Preview from '../../components/preview/Preview';
-import { MOVIES_POPULAR, MOVIES_TOP_RATED, MOVIES_NOW_PLAYING, MOVIES_UPCOMING } from '../../constans/api';
+import { MOVIES_POPULAR, MOVIES_TOP_RATED, MOVIES_NOW_PLAYING, MOVIES_UPCOMING, API_LANGUAGE } from '../../constans/api';
+
+import { Context } from '../../context/context';
 
 import style from './movies.module.scss';
 
-const Movies = () => {
+const Movies = () => { 
+  const { currentLang } = useContext(Context);
+  const { langCode } = currentLang;
+
   const items = [
-    {title: 'Popular', url: MOVIES_POPULAR},
-    {title: 'Now playing', url: MOVIES_NOW_PLAYING},
-    {title: 'Upcoming', url: MOVIES_UPCOMING},
-    {title: 'Top rated', url: MOVIES_TOP_RATED}
+    {EN: 'Popular', RU: 'Популярные', url: MOVIES_POPULAR+API_LANGUAGE+langCode},
+    {EN: 'Now playing', RU: 'Сейчас в прокате', url: MOVIES_NOW_PLAYING+API_LANGUAGE+langCode},
+    {EN: 'Upcoming', RU: 'Предстоящие', url: MOVIES_UPCOMING+API_LANGUAGE+langCode},
+    {EN: 'Top rated', RU: 'Лучший рейтинг', url: MOVIES_TOP_RATED+API_LANGUAGE+langCode}
   ];
 
   return (
     <section className={style.movies}>
-      {items.map((props, i) => (
-        <Preview key={i} {...props}/>
+      {items.map((item, i) => (
+        <Preview key={i} item={item}/>
       ))}
     </section>
   );

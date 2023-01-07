@@ -1,18 +1,20 @@
 import { Link, useLocation } from 'react-router-dom';
+import { useContext } from 'react';
 
-import { titleToLocation } from '../../../utils/functions';
-import { API_LANGUAGE, API_PAGE, API_EN } from '../../../constans/api';
+import { API_LANGUAGE, API_PAGE } from '../../../constans/api';
+
+import { Context } from '../../../context/context';
 
 import style from './see-all.module.scss';
 
 const SeeAll = ({ title }) => {
   const { pathname } = useLocation();
-
-  const path = `${pathname}${titleToLocation(title)}${API_LANGUAGE}${API_EN}${API_PAGE}1`;
+  const { currentLang } = useContext(Context);
+  const { lang, langCode } = currentLang;
   
   return (
     <Link
-      to={path}
+      to={''}
       className={style.link}
     >
       <span>See all</span>
