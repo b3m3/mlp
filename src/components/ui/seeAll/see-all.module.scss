@@ -1,0 +1,12 @@
+.link {
+  position: relative;
+  padding: 3px 8px;
+  border-radius: 8px;
+  overflow: hidden;
+
+  & span {
+    position: relative;
+    z-index: 1;
+    color: var(--gray-50);
+  }
+}
