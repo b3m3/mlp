@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { getApiResults } from '../../service/getApiResources';
 import Card from '../card/Card';
+import SeeAll from '../ui/seeAll/SeeAll';
+import { getApiResults } from '../../service/getApiResources';
 
 import style from './preview.module.scss';
 import 'swiper/css';
@@ -20,9 +21,7 @@ const Preview = ({ title, url }) => {
     <div className={style.preview}>
       <div className={style.top}>
         <h2>{title}</h2>
-        <Link to={''}>
-          See all
-        </Link>
+        <SeeAll title={title}/>
       </div>
       
       {errorApi
@@ -32,7 +31,7 @@ const Preview = ({ title, url }) => {
             spaceBetween={15}
             slidesPerView={'auto'}
           >
-            {results && results.map(props => (
+            {results && results.results.map(props => (
               <SwiperSlide 
                 key={props.id} 
                 className={style.slide}

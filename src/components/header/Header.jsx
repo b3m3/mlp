@@ -1,6 +1,6 @@
 import Search from '../ui/search/Search';
-// import User from '../ui/user/User';
 import Logo from '../ui/logo/Logo';
+import Language from '../ui/language/Language';
 import MenuHamburger from '../ui/menuHamburger/MenuHamburger';
 
 import style from './header.module.scss';
@@ -12,11 +12,14 @@ const Header = ({onClick, menuActive}) => {
         <div className={style.body}>
           <Logo />
           <Search />
-          {/* <User /> */}
-          <MenuHamburger 
-            onClick={onClick}
-            menuActive={menuActive}
-          />
+
+          <div className={style.box}>
+            <Language />
+            <MenuHamburger 
+              onClick={onClick}
+              menuActive={menuActive}
+            />
+          </div>
         </div>
       </div>
     </header>

@@ -6,9 +6,9 @@ import style from './movies.module.scss';
 const Movies = () => {
   const items = [
     {title: 'Popular', url: MOVIES_POPULAR},
-    {title: 'Top rated', url: MOVIES_TOP_RATED},
     {title: 'Now playing', url: MOVIES_NOW_PLAYING},
-    {title: 'Upcoming', url: MOVIES_UPCOMING}
+    {title: 'Upcoming', url: MOVIES_UPCOMING},
+    {title: 'Top rated', url: MOVIES_TOP_RATED}
   ];
 
   return (

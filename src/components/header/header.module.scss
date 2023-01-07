@@ -14,3 +14,10 @@
     padding: .9375rem 0;
   }
 }
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: .9375rem;
+}

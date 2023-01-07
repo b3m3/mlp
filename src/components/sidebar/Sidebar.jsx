@@ -1,5 +1,7 @@
 import { NavLink } from 'react-router-dom';
 
+import { API_LANGUAGE, API_EN, API_RU } from '../../constans/api';
+
 import { AiFillHome } from 'react-icons/ai';
 import { MdLocalMovies } from 'react-icons/md';
 import { RiMovie2Fill } from 'react-icons/ri';
@@ -10,8 +12,8 @@ import style from './sidebar.module.scss';
 const Sidebar = ({menuActive}) => {
   const links = [
     {name: 'Home', icon: <AiFillHome />, path: '/'},
-    {name: 'Movies', icon: <MdLocalMovies />, path: '/movies'},
-    {name: 'Serials', icon: <RiMovie2Fill />, path: '/serials'},
+    {name: 'Movies', icon: <MdLocalMovies />, path: '/movie'},
+    {name: 'Serials', icon: <RiMovie2Fill />, path: '/tv'},
     {name: 'Favorites', icon: <MdFavorite />, path: '/favorites'},
   ];
 

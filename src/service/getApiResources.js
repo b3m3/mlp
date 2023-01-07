@@ -16,7 +16,7 @@ export const getApiResources = async url => {
 export const getApiResults = async (url, setResults, setErrorApi) => {
   const res = await getApiResources(url);
   if (res) {
-    setResults(res.results);
+    setResults(res);
   } else {
     setErrorApi(true);
   }

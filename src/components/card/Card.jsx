@@ -14,7 +14,6 @@ const Card = ({poster_path, title, original_name, vote_average}) => {
         <img src={poster_path ? API_POSTER+poster_path : NoPoster} alt="Poster" />
       </div>
 
-      {/* NAME */}
       {title && <h5>{title && textOverflow(title, 22)}</h5>}
       {original_name && <h5>{original_name && textOverflow(original_name, 22)}</h5>}
       
