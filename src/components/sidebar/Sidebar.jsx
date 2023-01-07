@@ -8,17 +8,19 @@ import { MdFavorite } from 'react-icons/md';
 
 import { Context } from '../../context/context';
 
+import { LANG, PAGE } from '../../constans/api';
+
 import style from './sidebar.module.scss';
 
 const Sidebar = ({menuActive}) => {
   const { currentLang } = useContext(Context);
-  const { lang, langCode } = currentLang;
+  const { lang } = currentLang;
 
   const links = [
-    {EN: 'Home', RU: 'Домашняя', icon: <AiFillHome />, path: '/lang='+langCode},
-    {EN: 'Movies', RU: 'Фильмы', icon: <MdLocalMovies />, path: '/movie'+'/lang='+langCode},
-    {EN: 'Serials', RU: 'Сериалы', icon: <RiMovie2Fill />, path: '/tv'+'/lang='+langCode},
-    {EN: 'Favorites', RU: 'Избранное', icon: <MdFavorite />, path: '/favorites'+'/lang='+langCode},
+    {en: 'Home', ru: 'Домашняя', icon: <AiFillHome />, path: LANG+lang},
+    {en: 'Movies', ru: 'Фильмы', icon: <MdLocalMovies />, path: '/movie'+LANG+lang},
+    {en: 'Serials', ru: 'Сериалы', icon: <RiMovie2Fill />, path: '/tv'+LANG+lang},
+    {en: 'Favorites', ru: 'Избранное', icon: <MdFavorite />, path: '/favorites'+LANG+lang},
   ];
 
   return (
@@ -28,7 +30,7 @@ const Sidebar = ({menuActive}) => {
       <nav>
         <ul>
           {links.map(link => (
-            <li key={link.EN}>
+            <li key={link.en}>
               <NavLink to={link.path}>
                 {link.icon}
                 <span>{link[lang]}</span>

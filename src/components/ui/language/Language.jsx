@@ -18,7 +18,7 @@ const Language = () => {
       className={style.language}
       onClick={() => setIsActive(a => !a)}
     >
-      <p>{lang}</p>
+      <p>{lang.toUpperCase()}</p>
 
       <ul 
         style={isActive 
@@ -27,11 +27,11 @@ const Language = () => {
       >
         {languages.map(({lang, langCode}) => (
           <Link
-            to={setLanguagePathname(pathname, langCode)}
+            to={setLanguagePathname(pathname, lang)}
             key={lang} 
             onClick={() => setCurrentLang({lang, langCode})}
           >
-            {lang}
+            {lang.toUpperCase()}
           </Link>
         ))}
       </ul>

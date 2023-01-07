@@ -25,7 +25,7 @@ const Preview = ({ item }) => {
     <div className={style.preview}>
       <div className={style.top}>
         <h2>{item[lang]}</h2>
-        <SeeAll title={item[lang]}/>
+        <SeeAll category={item.en}/>
       </div>
       
       {errorApi

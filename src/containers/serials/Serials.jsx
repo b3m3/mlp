@@ -12,10 +12,10 @@ const Serials = () => {
   const { langCode } = currentLang;
 
   const items = [
-    {EN: 'Popular', RU: 'Популярные', url: SERIALS_POPULAR+API_LANGUAGE+langCode},
-    {EN: 'On the air', RU: 'В эфире', url: SERIALS_ON_THE_AIR+API_LANGUAGE+langCode},
-    {EN: 'Airing today', RU: 'Сегодня в эфире', url: SERIALS_AIRING_TODAY+API_LANGUAGE+langCode},
-    {EN: 'Top rated', RU: 'Лучший рейтинг', url: SERIALS_TOP_RATED+API_LANGUAGE+langCode}
+    {en: 'Popular', ru: 'Популярные', url: SERIALS_POPULAR+API_LANGUAGE+langCode},
+    {en: 'On the air', ru: 'В эфире', url: SERIALS_ON_THE_AIR+API_LANGUAGE+langCode},
+    {en: 'Airing today', ru: 'Сегодня в эфире', url: SERIALS_AIRING_TODAY+API_LANGUAGE+langCode},
+    {en: 'Top rated', ru: 'Лучший рейтинг', url: SERIALS_TOP_RATED+API_LANGUAGE+langCode}
   ];
 
   return (

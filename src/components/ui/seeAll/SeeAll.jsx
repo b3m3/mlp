@@ -1,23 +1,29 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useContext } from 'react';
 
-import { API_LANGUAGE, API_PAGE } from '../../../constans/api';
+import { LANG, PAGE } from '../../../constans/api';
 
 import { Context } from '../../../context/context';
+import { titleToPathname, getVideoPathname } from '../../../utils/functions';
 
 import style from './see-all.module.scss';
 
-const SeeAll = ({ title }) => {
+const SeeAll = ({ category }) => {
   const { pathname } = useLocation();
   const { currentLang } = useContext(Context);
-  const { lang, langCode } = currentLang;
-  
+  const { lang } = currentLang;
+
+  const buttonNames = [{en: 'See all'}, {ru: 'Смотреть все'}];
+
+  const link = getVideoPathname(pathname)+LANG+lang+titleToPathname(category)+PAGE+1
+
   return (
     <Link
-      to={''}
+      to={link}
       className={style.link}
     >
-      <span>See all</span>
+      {buttonNames.map((name, i) => (
+        <span key={i}>{name[lang]}</span> ))}
     </Link>
   );
 }
