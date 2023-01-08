@@ -3,6 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 
 import { Context } from '../../../context/context';
 import { setLanguagePathname } from '../../../utils/functions';
+import { addToLocalStorage } from '../../../utils/localStorage';
+import { LANG_KEY } from '../../../constans/localStorage';
 
 import style from './language.module.scss';
 
@@ -29,7 +31,10 @@ const Language = () => {
           <Link
             to={setLanguagePathname(pathname, lang)}
             key={lang} 
-            onClick={() => setCurrentLang({lang, langCode})}
+            onClick={() => {
+              setCurrentLang({lang, langCode})
+              addToLocalStorage(LANG_KEY, {lang, langCode})
+            }}
           >
             {lang.toUpperCase()}
           </Link>
