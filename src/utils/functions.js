@@ -20,20 +20,6 @@ export const changePageLocation = (id, location, operator) => {
     ? location.slice(0, location.indexOf(id)) + res[operator] : null;
 };
 
-// export const changeLangLocation = (pathname, lang) => {
-//   const find = 'lang=';
-//   const index = pathname.indexOf(find);
-
-//   // return index !== -1 
-//   //   ? pathname.slice(0, index + find.length) + lang + pathname.slice(index + find.length + lang.length)
-//   //   : null
-//   if (index === -1) {
-//     return;
-//   } else {
-//     return pathname.slice(0, index + find.length) + lang + pathname.slice(index + find.length + lang.length);
-//   }
-// };
-
 export const changeLangLocation = (location, lang) => {
   const id = 'lang=';
   return location.indexOf(id) !== -1 
