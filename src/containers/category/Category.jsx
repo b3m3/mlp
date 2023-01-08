@@ -6,6 +6,7 @@ import { translateTitles } from '../../utils/functions';
 import { API_ROOT, API_KEY, API_PAGE, API_LANGUAGE } from '../../constans/api';
 
 import PageNavigation from '../../components/ui/pageNavigation/PageNavigation';
+import Shimmer from '../../components/ui/shimmer/Shimmer';
 
 import { Context } from '../../context/context';
 
@@ -48,12 +49,19 @@ const Category = () => {
       {errorApi
         ? <h2>Error</h2>
         : <div className={style.body}>
-            {results && results.results.map(props => (
-              <Card
-                key={props.id}
-                {...props}
-              />
-            ))}
+            {results 
+              ? results.results.map(props => (
+                <Card
+                  key={props.id}
+                  {...props}
+                />
+              ))
+              : <>
+                  {[...Array(20)].map((v, i) => (
+                    <Shimmer key={i} />
+                  ))}
+                </>
+            }
           </div>}
 
       <PageNavigation 

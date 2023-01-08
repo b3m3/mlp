@@ -61,6 +61,5 @@ const Preview = ({ item }) => {
     </div>
   );
 }
-{/* <SwiperSlide className={style.slide}><Shimmer /></SwiperSlide> */}
 
 export default Preview;
