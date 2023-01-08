@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import { Context } from '../../../context/context';
-import { setLanguagePathname } from '../../../utils/functions';
+import { changeLangLocation } from '../../../utils/functions';
 import { addToLocalStorage } from '../../../utils/localStorage';
 import { LANG_KEY } from '../../../constans/localStorage';
 
@@ -20,16 +20,16 @@ const Language = () => {
       className={style.language}
       onClick={() => setIsActive(a => !a)}
     >
-      <p>{lang.toUpperCase()}</p>
+      <p>{lang && lang.toUpperCase()}</p>
 
       <ul 
         style={isActive 
           ? {height: '5rem', border: '2px solid var(--blue-400)'} 
           : null}
       >
-        {languages.map(({lang, langCode}) => (
+        {languages && languages.map(({lang, langCode}) => (
           <Link
-            to={setLanguagePathname(pathname, lang)}
+            to={changeLangLocation(pathname, lang)}
             key={lang} 
             onClick={() => {
               setCurrentLang({lang, langCode})

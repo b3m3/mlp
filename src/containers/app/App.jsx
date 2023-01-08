@@ -14,8 +14,7 @@ import './app.scss';
 
 const App = () => {
   const [menuActive, setMenuActive] = useState(false);
-  const [currentLang, setCurrentLang] = useState({lang: 'en', langCode: API_EN}); // get from localStorage
-
+  const [currentLang, setCurrentLang] = useState({}); // get from localStorage
   const { lang } = currentLang;
 
   const languages = [
@@ -27,6 +26,8 @@ const App = () => {
   useEffect(() => {
     if (localStorage.getItem(LANG_KEY)) {
       setCurrentLang(getFromLocalStorage(LANG_KEY));
+    } else {
+      setCurrentLang({lang: 'en', langCode: API_EN});
     }
   }, []);
 
@@ -52,7 +53,7 @@ const App = () => {
                   {routes && routes.map(({ path, element, exact }, i) => (
                     <Route key={i} path={path} element={element} exact={exact && exact} /> 
                   ))}
-                  <Route path='/' element={<Navigate to={LANG+lang} replace />} />
+                  <Route path='/' element={lang && <Navigate to={LANG+lang} replace />} />
                 </Routes>
               </main>
             </div>
