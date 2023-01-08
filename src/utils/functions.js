@@ -20,6 +20,12 @@ export const changePageLocation = (id, location, operator) => {
     ? location.slice(0, location.indexOf(id)) + res[operator] : null;
 };
 
+export const goToPage = (location, page) => {
+  const id = 'page=';
+  return location.indexOf(id) !== -1 
+    && location.slice(0, location.indexOf(id)) + id + page;
+};
+
 export const changeLangLocation = (location, lang) => {
   const id = 'lang=';
   return location.indexOf(id) !== -1 
