@@ -28,3 +28,7 @@ export const setLanguagePathname = (pathname, lang) => {
 export const translateTitles = (arr, title, lang) => {
   return arr.map(el => el[title] && el[title][0][lang]);
 };
+
+export const notFoundError = (arr, lang) => {
+  return arr.map(el => el[lang]);
+};
