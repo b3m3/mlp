@@ -7,6 +7,10 @@ export const API_LANGUAGE = '&language=';
 export const API_PAGE = '&page=';
 export const API_POSTER = 'https://image.tmdb.org/t/p/w500/';
 
+// CUSTOM
+export const LANG = '/lang=';
+export const PAGE = '/page=';
+
 // LANGUAGES
 export const API_EN = 'en-US';
 export const API_RU = 'ru-RU';
