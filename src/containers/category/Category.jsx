@@ -45,14 +45,16 @@ const Category = () => {
         {translateTitles(titles, category, lang)}
       </h2>
 
-      <div className={style.body}>
-        {results && results.results.map(props => (
-          <Card
-            key={props.id}
-            {...props}
-          />
-        ))}
-      </div>
+      {errorApi
+        ? <h2>Error</h2>
+        : <div className={style.body}>
+            {results && results.results.map(props => (
+              <Card
+                key={props.id}
+                {...props}
+              />
+            ))}
+          </div>}
 
       <PageNavigation 
         totalPages={totalPages}
