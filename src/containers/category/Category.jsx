@@ -1,9 +1,11 @@
 import { useEffect, useState, useContext } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
-import { getApiResults } from '../../service/getApiResources';
+import { getApiResults, getApiTotalPages } from '../../service/getApiResources';
 import { translateTitles } from '../../utils/functions';
 import { API_ROOT, API_KEY, API_PAGE, API_LANGUAGE } from '../../constans/api';
+
+import PageNavigation from '../../components/ui/pageNavigation/PageNavigation';
 
 import { Context } from '../../context/context';
 
@@ -11,14 +13,14 @@ import Card from '../../components/card/Card';
 
 import style from './category.module.scss';
 
-
 const Category = () => {
   const [results, setResults] = useState(null);
   const [errorApi, setErrorApi] = useState(false);
+  const [totalPages, setTotalPages] = useState(null);
 
   const { currentLang } = useContext(Context);
   const { lang, langCode } = currentLang;
-  const { video, category } = useParams();
+  const { video, category, pageId } = useParams();
   const { pathname } = useLocation();
 
   const titles = [
@@ -30,10 +32,11 @@ const Category = () => {
     {airing_today: [{en: 'Airing today', ua: 'Сьогодні в ефірі', ru: 'Сегодня в эфире'}]}
   ];
 
-  const url = API_ROOT+'/'+video+'/'+category+API_KEY+API_LANGUAGE+langCode;
+  const url = API_ROOT+'/'+video+'/'+category+API_KEY+API_LANGUAGE+langCode+API_PAGE+pageId;
 
   useEffect(() => {
-    getApiResults(url, setResults, setErrorApi)
+    getApiResults(url, setResults, setErrorApi);
+    getApiTotalPages(url, setTotalPages);
   }, [currentLang, pathname, url]);
 
   return (
@@ -50,6 +53,10 @@ const Category = () => {
           />
         ))}
       </div>
+
+      <PageNavigation 
+        totalPages={totalPages}
+      />
     </section>
   );
 }
