@@ -14,15 +14,32 @@ export const getVideoPathname = pathname => {
   return '/' + pathname.split('/')[1];
 };
 
-export const setLanguagePathname = (pathname, lang) => {
-  const find = 'lang=';
-  const index = pathname.indexOf(find);
+export const changePageLocation = (id, location, operator) => {
+  const res = {'+': (+id + 1), '-': (+id - 1)};
+  return location.indexOf(id) !== -1 
+    ? location.slice(0, location.indexOf(id)) + res[operator] : null;
+};
 
-  if (index === -1) {
-    return;
-  } else {
-    return pathname.slice(0, index + find.length) + lang + pathname.slice(index + find.length + lang.length);
-  }
+// export const changeLangLocation = (pathname, lang) => {
+//   const find = 'lang=';
+//   const index = pathname.indexOf(find);
+
+//   // return index !== -1 
+//   //   ? pathname.slice(0, index + find.length) + lang + pathname.slice(index + find.length + lang.length)
+//   //   : null
+//   if (index === -1) {
+//     return;
+//   } else {
+//     return pathname.slice(0, index + find.length) + lang + pathname.slice(index + find.length + lang.length);
+//   }
+// };
+
+export const changeLangLocation = (location, lang) => {
+  const id = 'lang=';
+  return location.indexOf(id) !== -1 
+    && location.slice(0, location.indexOf(id) + id.length) 
+      + lang 
+      + location.slice(location.indexOf(id) + id.length + lang.length)
 };
 
 export const translateTitles = (arr, title, lang) => {
