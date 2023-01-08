@@ -8,7 +8,7 @@ import { MdFavorite } from 'react-icons/md';
 
 import { Context } from '../../context/context';
 
-import { LANG, PAGE } from '../../constans/api';
+import { LANG } from '../../constans/api';
 
 import style from './sidebar.module.scss';
 
@@ -17,10 +17,10 @@ const Sidebar = ({menuActive}) => {
   const { lang } = currentLang;
 
   const links = [
-    {en: 'Home', ru: 'Домашняя', icon: <AiFillHome />, path: LANG+lang},
-    {en: 'Movies', ru: 'Фильмы', icon: <MdLocalMovies />, path: '/movie'+LANG+lang},
-    {en: 'Serials', ru: 'Сериалы', icon: <RiMovie2Fill />, path: '/tv'+LANG+lang},
-    {en: 'Favorites', ru: 'Избранное', icon: <MdFavorite />, path: '/favorites'+LANG+lang},
+    {en: 'Home', ua: 'Домашня', ru: 'Домашняя', icon: <AiFillHome />, path: LANG+lang},
+    {en: 'Movies', ua: 'Фільми', ru: 'Фильмы', icon: <MdLocalMovies />, path: '/movie'+LANG+lang},
+    {en: 'Serials', ua: 'Серіали', ru: 'Сериалы', icon: <RiMovie2Fill />, path: '/tv'+LANG+lang},
+    {en: 'Favorites', ua: 'Вибране', ru: 'Избранное', icon: <MdFavorite />, path: '/favorites'+LANG+lang},
   ];
 
   return (

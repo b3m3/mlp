@@ -13,7 +13,7 @@ const SeeAll = ({ category }) => {
   const { currentLang } = useContext(Context);
   const { lang } = currentLang;
 
-  const buttonNames = [{en: 'See all'}, {ru: 'Смотреть все'}];
+  const buttonNames = [{en: 'See all'}, {ru: 'Смотреть все'}, {ua: 'Переглянути всі'}];
 
   const link = getVideoPathname(pathname)+LANG+lang+titleToPathname(category)+PAGE+1
 

@@ -22,7 +22,7 @@ const Language = () => {
 
       <ul 
         style={isActive 
-          ? {height: '3.4375rem', border: '2px solid var(--blue-400)'} 
+          ? {height: '5rem', border: '2px solid var(--blue-400)'} 
           : null}
       >
         {languages.map(({lang, langCode}) => (
