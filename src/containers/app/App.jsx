@@ -30,8 +30,6 @@ const App = () => {
     }
   }, []);
 
-  console.log(currentLang);
-
   return (
     <Context.Provider value={{
       currentLang,
@@ -52,8 +50,8 @@ const App = () => {
               <main>
                 <Routes>
                   {routes && routes.map(({ path, element, exact }, i) => (
-                    <Route key={i} path={path} element={element} exact={exact && exact} /> ))}
-                  
+                    <Route key={i} path={path} element={element} exact={exact && exact} /> 
+                  ))}
                   <Route path='/' element={<Navigate to={LANG+lang} replace />} />
                 </Routes>
               </main>
