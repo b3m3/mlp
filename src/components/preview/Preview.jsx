@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Card from '../card/Card';
 import SeeAll from '../ui/seeAll/SeeAll';
 import { getApiResults } from '../../service/getApiResources';
+import Shimmer from '../ui/shimmer/Shimmer';
 
 import { Context } from '../../context/context';
 
@@ -35,18 +36,31 @@ const Preview = ({ item }) => {
             spaceBetween={15}
             slidesPerView={'auto'}
           >
-            {results && results.results.map(props => (
-              <SwiperSlide 
-                key={props.id} 
-                className={style.slide}
-              >
-                <Card {...props} />
-              </SwiperSlide>
-            ))}
+            {results 
+              ? results.results.map(props => (
+                <SwiperSlide 
+                  key={props.id} 
+                  className={style.slide}
+                >
+                  <Card {...props} />
+                </SwiperSlide>
+              ))
+              : <>
+                  {[...Array(5)].map((v, i) => (
+                    <SwiperSlide 
+                      className={style.slide}
+                      key={i}
+                    >
+                      <Shimmer />
+                    </SwiperSlide>
+                  ))}
+                </>
+            }
           </Swiper>
       }
     </div>
   );
 }
+{/* <SwiperSlide className={style.slide}><Shimmer /></SwiperSlide> */}
 
 export default Preview;
