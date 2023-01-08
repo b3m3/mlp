@@ -1,0 +1,1 @@
+export const LANG_KEY = 'b3m3-mlp-lang';
