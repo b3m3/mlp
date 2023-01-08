@@ -5,20 +5,21 @@ import Header from '../../components/header/Header';
 import Sidebar from '../../components/sidebar/Sidebar';
 
 import routes from '../../routes/routes';
-import { API_EN, API_RU } from '../../constans/api';
+import { LANG, API_EN, API_RU, API_UK } from '../../constans/api';
 import { Context } from '../../context/context';
 
 import './app.scss';
 
 const App = () => {
   const [menuActive, setMenuActive] = useState(false);
-  const [currentLang, setCurrentLang] = useState({lang: 'EN', langCode: API_EN});
+  const [currentLang, setCurrentLang] = useState({lang: 'en', langCode: API_EN}); // get from localStorage
 
-  const { langCode } = currentLang;
+  const { lang } = currentLang;
 
   const languages = [
-    {lang: 'EN', langCode: API_EN}, 
-    {lang: 'RU', langCode: API_RU}
+    {lang: 'en', langCode: API_EN},
+    {lang: 'ua', langCode: API_UK},
+    {lang: 'ru', langCode: API_RU}
   ];
 
   return (
@@ -40,10 +41,10 @@ const App = () => {
               />
               <main>
                 <Routes>
-                  {routes && routes.map(({ path, element }, i) => (
-                    <Route key={i} path={path} element={element} /> ))}
+                  {routes && routes.map(({ path, element, exact }, i) => (
+                    <Route key={i} path={path} element={element} exact={exact && exact} /> ))}
                   
-                  <Route path='/' element={<Navigate to={'/lang='+langCode} replace />} />
+                  <Route path='/' element={<Navigate to={LANG+lang} replace />} />
                 </Routes>
               </main>
             </div>

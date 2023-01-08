@@ -1,0 +1,12 @@
+.category {
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+}
+
+.body {
+  display: grid;
+  grid-row-gap: 1.25rem;
+  grid-column-gap: .9375rem;
+  grid-template-columns: repeat(auto-fit, minmax(198px, 1fr));
+}
