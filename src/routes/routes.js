@@ -6,12 +6,12 @@ import Category from "../containers/category/Category";
 import NotFound from '../containers/notFound/NotFound';
 
 const routes = [
-  { path: `/movie/:langPath:langCode`, element: <Movies /> },
-  { path: `/tv/:langPath:langCode`, element: <Serials /> },
-  { path: `/favorites/:langPath:langCode`, element: <Favorites /> },
-  { path: `/:video/:langPath:langCode/:category/:page:pageId`, element: <Category /> },
+  { path: `/movie/lang=:langCode`, element: <Movies /> },
+  { path: `/tv/lang=:langCode`, element: <Serials /> },
+  { path: `/favorites/lang=:langCode`, element: <Favorites /> },
+  { path: `/:video/lang=:langCode/:category/page=:pageId`, element: <Category /> },
   { path: `*`, element: <NotFound /> },
-  { path: `/:langPath:langCode`, element: <Home /> }
+  { path: `/lang=:langCode`, element: <Home /> }
 ];
 
 export default routes;
