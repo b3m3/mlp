@@ -66,7 +66,7 @@ const Category = () => {
           </div>}
 
       <PageNavigation 
-        totalPages={totalPages}
+        totalPages={totalPages && totalPages > 500 ? 500 : totalPages}
       />
     </section>
   );

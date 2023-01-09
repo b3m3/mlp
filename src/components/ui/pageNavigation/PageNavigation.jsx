@@ -11,7 +11,7 @@ const PageNavigation = ({ totalPages }) => {
   const { pathname } = useLocation();
 
   const link_prev = pageId > 3 ? +pageId - 2 : null;
-  const link_next = totalPages && pageId < totalPages - 2 ? +pageId + 2 : null
+  const link_next = totalPages && pageId < totalPages - 2 ? +pageId + 2 : null;
 
   return (
     <div className={style.wrapp}>
