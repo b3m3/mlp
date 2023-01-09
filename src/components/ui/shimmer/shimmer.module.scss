@@ -26,11 +26,12 @@
 
     &:nth-child(2) {
       height: 2.5rem;
+      width: 90%;
     }
 
     &:nth-child(3) {
       height: 2.5rem;
-      width: 2.5rem;
+      width: 20%;
     }
 
     &::before {

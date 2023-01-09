@@ -14,7 +14,7 @@ import './app.scss';
 
 const App = () => {
   const [menuActive, setMenuActive] = useState(false);
-  const [currentLang, setCurrentLang] = useState({}); // get from localStorage
+  const [currentLang, setCurrentLang] = useState({});
   const { lang } = currentLang;
 
   const languages = [
@@ -31,12 +31,10 @@ const App = () => {
     }
   }, []);
 
+  const provider = {currentLang, setCurrentLang, languages}
+
   return (
-    <Context.Provider value={{
-      currentLang,
-      setCurrentLang,
-      languages
-    }}>
+    <Context.Provider value={provider}>
       <BrowserRouter>
         <div className="app">
           <Header 
