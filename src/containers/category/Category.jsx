@@ -36,6 +36,7 @@ const Category = () => {
   const url = API_ROOT+'/'+video+'/'+category+API_KEY+API_LANGUAGE+langCode+API_PAGE+pageId;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getApiResults(url, setResults, setErrorApi);
     getApiTotalPages(url, setTotalPages);
   }, [currentLang, pathname, url]);
