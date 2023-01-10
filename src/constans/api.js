@@ -6,6 +6,7 @@ export const API_KEY = '?api_key='+process.env.REACT_APP_API_KEY;
 export const API_LANGUAGE = '&language=';
 export const API_PAGE = '&page=';
 export const API_POSTER = 'https://image.tmdb.org/t/p/w500/';
+export const API_BACKGROUND = 'https://image.tmdb.org/t/p/original';
 
 // CUSTOM
 export const LANG = '/lang=';
