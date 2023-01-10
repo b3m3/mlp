@@ -16,7 +16,7 @@ const Card = ({id, poster_path, title, name, vote_average}) => {
   const { currentLang } = useContext(Context);
   const { lang } = currentLang;
 
-  const link = getVideoPathname(pathname)+'/'+'lang='+lang+'/'+id;
+  const link = `${getVideoPathname(pathname)}/lang=${lang}/${id}`;
 
   return (
     <div className={style.card}>

@@ -12,10 +12,6 @@
   align-items: center;
   justify-content: center;
 
-  & p {
-    color: var(--gray-50);
-  }
-
   & ul {
     overflow: hidden;
     position: absolute;
@@ -33,9 +29,5 @@
     border: 2px solid transparent;
     border-radius: 7px;
     transition: .3s;
-  }
-
-  & a {
-    color: var(--gray-50);
   }
 }
