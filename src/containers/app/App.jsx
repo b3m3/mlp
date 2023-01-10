@@ -15,6 +15,7 @@ import './app.scss';
 const App = () => {
   const [menuActive, setMenuActive] = useState(false);
   const [currentLang, setCurrentLang] = useState({});
+  
   const { lang } = currentLang;
 
   const languages = [
@@ -22,6 +23,8 @@ const App = () => {
     {lang: 'ua', langCode: API_UK},
     {lang: 'ru', langCode: API_RU}
   ];
+  
+  const provider = {languages, currentLang, menuActive, setCurrentLang, setMenuActive };
 
   useEffect(() => {
     if (localStorage.getItem(LANG_KEY)) {
@@ -31,26 +34,20 @@ const App = () => {
     }
   }, []);
 
-  const provider = {currentLang, setCurrentLang, languages}
-
   return (
     <Context.Provider value={provider}>
       <BrowserRouter>
         <div className="app">
-          <Header 
-            onClick={() => setMenuActive(a => !a)}
-            menuActive={menuActive}
-          />
+          <Header />
           <div className="container">
             <div className='app-wrapp'>
-              <Sidebar 
-                menuActive={menuActive}
-              />
+              <Sidebar />
               <main>
                 <Routes>
                   {routes && routes.map(({ path, element, exact }, i) => (
                     <Route key={i} path={path} element={element} exact={exact && exact} /> 
                   ))}
+
                   <Route path='/' element={lang && <Navigate to={LANG+lang} replace />} />
                 </Routes>
               </main>

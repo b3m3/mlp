@@ -26,7 +26,7 @@ body {
   font-family: 'Nunito', -apple-system, 'Roboto', sans-serif;
   font-weight: 600;
   font-size: 1rem;
-  color: var(--gray-400);
+  color: var(--gray-50);
   background: var(--blue-wiolet-gradient);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -35,19 +35,17 @@ body {
 .app-wrapp {
   overflow: hidden;
   padding: 2.5rem 0;
-  display: grid;
+  display: flex;
   gap: 3.125rem;
-  grid-template: 1fr / 12.5rem 1fr;
-  min-width: 0;
 
   @media screen and (max-width: 1024px) {
-    grid-template: 1fr / auto 1fr;
     gap: 0;
-    padding-top: 20px;
+    padding-top: 1.25rem;
   }
 }
 
 main {
+  width: 100%;
   min-width: 0;
 }
 
@@ -57,14 +55,18 @@ main {
   padding: 0 15px;
 }
 
+h1 {
+  font-weight: 800;
+  font-size: calc(26px + calc(68 - 26) * ((100vw - 320px) / (2560 - 320)));
+}
+
 h2 {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--gray-50);
 }
 
 h5 {
-  font-weight: 700;
+  font-weight: 500;
   font-size: .9375rem;
   color: var(--gray-50);
 }
