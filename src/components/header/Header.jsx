@@ -5,7 +5,8 @@ import MenuHamburger from '../ui/menuHamburger/MenuHamburger';
 
 import style from './header.module.scss';
 
-const Header = ({onClick, menuActive}) => {
+const Header = () => {
+
   return (
     <header className={style.header}>
       <div className="container">
@@ -15,10 +16,7 @@ const Header = ({onClick, menuActive}) => {
 
           <div className={style.box}>
             <Language />
-            <MenuHamburger 
-              onClick={onClick}
-              menuActive={menuActive}
-            />
+            <MenuHamburger />
           </div>
         </div>
       </div>

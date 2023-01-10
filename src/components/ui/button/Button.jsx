@@ -5,7 +5,9 @@ import {IoIosArrowDroprightCircle} from 'react-icons/io';
 
 const Button = ({ left }) => {
   return (
-    <button className={style.button}>
+    <button 
+      className={style.button}
+    >
       {left ? <IoIosArrowDropleftCircle /> : <IoIosArrowDroprightCircle />}
     </button>
   );

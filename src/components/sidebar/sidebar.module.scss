@@ -1,6 +1,7 @@
 .sidebar {
   position: relative;
   transition: .3s;
+  min-width: 200px;
 
   &::before {
     position: absolute;
@@ -16,8 +17,8 @@
     }
   }
 
-  @media screen and (max-width: 64rem) {
-    width: 50px;
+  @media screen and (max-width: 1024px) {
+    min-width: 50px;
     margin-right: 1.875rem;
 
     & li {
@@ -32,7 +33,7 @@
     }
 
     &.active {
-      width: 12.5rem;
+      min-width: 200px;
 
       & li {
         & span {
@@ -46,14 +47,15 @@
     }
   }
 
-  @media screen and (max-width: 29.6875rem) {
+  @media screen and (max-width: 475px) {
     width: 0;
+    min-width: unset;
     margin: 0;
     opacity: 0;
     pointer-events: none;
 
     &.active {
-      width: 3.125rem;
+      min-width: 50px;
       margin-right: 1.875rem;
       opacity: 1;
       pointer-events: all;
@@ -111,7 +113,7 @@
 
     &::before {
       width: 100%;
-      border-left: .3125rem solid var(--blue-400);
+      border-left: 4px solid var(--blue-400);
     }
   
     & svg {

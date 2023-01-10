@@ -12,8 +12,8 @@ import { LANG } from '../../constans/api';
 
 import style from './sidebar.module.scss';
 
-const Sidebar = ({menuActive}) => {
-  const { currentLang } = useContext(Context);
+const Sidebar = () => {
+  const { currentLang, menuActive } = useContext(Context);
   const { lang } = currentLang;
 
   const links = [
