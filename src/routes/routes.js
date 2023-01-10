@@ -9,13 +9,13 @@ import NotFound from '../containers/notFound/NotFound';
 import { LANG } from "../constans/api";
 
 const routes = [
-  { path: `/movie${LANG}:langCode`, element: <Movies /> },
-  { path: `/tv${LANG}:langCode`, element: <Serials /> },
-  { path: `/favorites${LANG}:langCode`, element: <Favorites /> },
-  { path: `/:video${LANG}:langCode/:category/page=:pageId`, element: <Category /> },
-  { path: `/:video${LANG}:langCode/:id`, element: <Details /> },
+  { path: `/movie${LANG}:langId`, element: <Movies /> },
+  { path: `/tv${LANG}:langId`, element: <Serials /> },
+  { path: `/favorites${LANG}:langId`, element: <Favorites /> },
+  { path: `/:video${LANG}:langId/:category/page=:pageId`, element: <Category /> },
+  { path: `/:video${LANG}:langId/:id`, element: <Details /> },
   { path: `*`, element: <NotFound /> },
-  { path: `${LANG}:langCode`, element: <Home /> }
+  { path: `${LANG}:langId`, element: <Home /> }
 ];
 
 export default routes;
