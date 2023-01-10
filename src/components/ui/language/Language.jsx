@@ -1,11 +1,11 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import { Context } from '../../../context/context';
 import { changeLangLocation } from '../../../utils/functions';
-import { addToLocalStorage } from '../../../utils/localStorage';
+import { addToLocalStorage, getFromLocalStorage } from '../../../utils/localStorage';
 import { LANG_KEY } from '../../../constans/localStorage';
-import { LANG } from '../../../constans/api';
+import { LANG, API_EN, API_UK, API_RU } from '../../../constans/api';
 
 import style from './language.module.scss';
 
@@ -13,8 +13,22 @@ const Language = () => {
   const [isActive, setIsActive] = useState(false);
 
   const { pathname } = useLocation();
-  const { currentLang, setCurrentLang, languages } = useContext(Context);
+  const { currentLang, setCurrentLang } = useContext(Context);
   const { lang } = currentLang;
+
+  const languages = [
+    {lang: 'en', langCode: API_EN},
+    {lang: 'ua', langCode: API_UK},
+    {lang: 'ru', langCode: API_RU}
+  ];
+
+  useEffect(() => {
+    setCurrentLang({lang: 'en', langCode: API_EN});
+
+    if (localStorage.getItem(LANG_KEY)) {
+      setCurrentLang(getFromLocalStorage(LANG_KEY));
+    }
+  }, [setCurrentLang]);
 
   return (
     <div 
@@ -28,7 +42,7 @@ const Language = () => {
           ? {height: '5rem', border: '2px solid var(--blue-400)', background: 'rgba(27,39,58,1)'}
           : null}
       >
-        {languages && languages.map(({lang, langCode}) => (
+        {languages.map(({lang, langCode}) => (
           <Link
             to={changeLangLocation(pathname, LANG, lang)}
             key={lang} 

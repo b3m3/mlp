@@ -1,14 +1,12 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import Header from '../../components/header/Header';
 import Sidebar from '../../components/sidebar/Sidebar';
 
 import routes from '../../routes/routes';
 import { Context } from '../../context/context';
-import { LANG, API_EN, API_RU, API_UK } from '../../constans/api';
-import { LANG_KEY } from '../../constans/localStorage';
-import { getFromLocalStorage } from '../../utils/localStorage';
+import { LANG } from '../../constans/api';
 
 import './app.scss';
 
@@ -18,21 +16,7 @@ const App = () => {
   
   const { lang } = currentLang;
 
-  const languages = [
-    {lang: 'en', langCode: API_EN},
-    {lang: 'ua', langCode: API_UK},
-    {lang: 'ru', langCode: API_RU}
-  ];
-  
-  const provider = {languages, currentLang, menuActive, setCurrentLang, setMenuActive };
-
-  useEffect(() => {
-    if (localStorage.getItem(LANG_KEY)) {
-      setCurrentLang(getFromLocalStorage(LANG_KEY));
-    } else {
-      setCurrentLang({lang: 'en', langCode: API_EN});
-    }
-  }, []);
+  const provider = {currentLang, menuActive, setCurrentLang, setMenuActive };
 
   return (
     <Context.Provider value={provider}>
@@ -48,7 +32,7 @@ const App = () => {
                     <Route key={i} path={path} element={element} exact={exact && exact} /> 
                   ))}
 
-                  <Route path='/' element={lang && <Navigate to={LANG+lang} replace />} />
+                  <Route path='/' element={<Navigate to={lang && LANG+lang} replace />} />
                 </Routes>
               </main>
             </div>
