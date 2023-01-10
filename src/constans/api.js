@@ -9,7 +9,7 @@ export const API_POSTER = 'https://image.tmdb.org/t/p/w500/';
 export const API_BACKGROUND = 'https://image.tmdb.org/t/p/original';
 
 // CUSTOM
-export const LANG = '/lang=';
+export const LANG = '/language=';
 export const PAGE = '/page=';
 
 // LANGUAGES
