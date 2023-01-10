@@ -3,6 +3,7 @@ import { Link, useParams, useLocation } from 'react-router-dom';
 import Button from '../button/Button';
 
 import { changePageLocation, goToPage } from '../../../utils/functions';
+import { PAGE } from '../../../constans/api';
 
 import style from './page-navigation.module.scss';
 
@@ -21,23 +22,23 @@ const PageNavigation = ({ totalPages }) => {
 
       <ul>
         <li>
-          <Link to={goToPage(pathname, 1)}>1</Link>
+          <Link to={goToPage(pathname, PAGE, 1)}>1</Link>
         </li>
         <li>...</li>
         <li>
-          <Link to={goToPage(pathname, link_prev)}>
+          <Link to={goToPage(pathname, PAGE, link_prev)}>
             {link_prev}
           </Link>
         </li>
         <li>{pageId}</li>
         <li>
-          <Link to={goToPage(pathname, link_next)}>
+          <Link to={goToPage(pathname, PAGE, link_next)}>
             {link_next}
           </Link>
         </li>
         <li>...</li>
         <li>
-          <Link to={goToPage(pathname, totalPages)}>
+          <Link to={goToPage(pathname, PAGE, totalPages)}>
             {totalPages && totalPages}
           </Link>
         </li>

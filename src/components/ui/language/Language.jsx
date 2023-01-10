@@ -5,6 +5,7 @@ import { Context } from '../../../context/context';
 import { changeLangLocation } from '../../../utils/functions';
 import { addToLocalStorage } from '../../../utils/localStorage';
 import { LANG_KEY } from '../../../constans/localStorage';
+import { LANG } from '../../../constans/api';
 
 import style from './language.module.scss';
 
@@ -29,7 +30,7 @@ const Language = () => {
       >
         {languages && languages.map(({lang, langCode}) => (
           <Link
-            to={changeLangLocation(pathname, lang)}
+            to={changeLangLocation(pathname, LANG, lang)}
             key={lang} 
             onClick={() => {
               setCurrentLang({lang, langCode})

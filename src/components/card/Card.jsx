@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useContext } from 'react';
 
-import { API_POSTER } from '../../constans/api';
+import { API_POSTER, LANG } from '../../constans/api';
 import { textOverflow, getVideoPathname } from '../../utils/functions';
 import { Context } from "../../context/context";
 
@@ -16,7 +16,7 @@ const Card = ({id, poster_path, title, name, vote_average}) => {
   const { currentLang } = useContext(Context);
   const { lang } = currentLang;
 
-  const link = `${getVideoPathname(pathname)}/lang=${lang}/${id}`;
+  const link = `${getVideoPathname(pathname)}${LANG}${lang}/${id}`;
 
   return (
     <div className={style.card}>

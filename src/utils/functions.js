@@ -20,18 +20,16 @@ export const changePageLocation = (id, location, operator) => {
     ? location.slice(0, location.indexOf(id)) + res[operator] : null;
 };
 
-export const goToPage = (location, page) => {
-  const id = 'page=';
-  return location.indexOf(id) !== -1 
-    && location.slice(0, location.indexOf(id)) + id + page;
+export const goToPage = (location, page, pageId) => {
+  return location.indexOf(page) !== -1 
+    && location.slice(0, location.indexOf(page)) + page + pageId;
 };
 
-export const changeLangLocation = (location, lang) => {
-  const id = 'lang=';
-  return location.indexOf(id) !== -1 
-    && location.slice(0, location.indexOf(id) + id.length) 
-      + lang 
-      + location.slice(location.indexOf(id) + id.length + lang.length)
+export const changeLangLocation = (location, lang, langId) => {
+  return location.indexOf(lang) !== -1 
+    && location.slice(0, location.indexOf(lang) + lang.length) 
+      + langId 
+      + location.slice(location.indexOf(lang) + lang.length + langId.length)
 };
 
 export const translateTitles = (arr, title, lang) => {
