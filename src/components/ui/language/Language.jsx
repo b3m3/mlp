@@ -24,7 +24,7 @@ const Language = () => {
 
       <ul 
         style={isActive 
-          ? {height: '5rem', border: '2px solid var(--blue-400)'} 
+          ? {height: '5rem', border: '2px solid var(--blue-400)', background: 'rgba(27,39,58,1)'}
           : null}
       >
         {languages && languages.map(({lang, langCode}) => (
