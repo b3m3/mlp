@@ -23,7 +23,6 @@ const Card = ({id, poster_path, title, name, vote_average}) => {
       <div className={style.poster}>
         <Link 
           to={link}
-          onClick={() => console.log(id)}
         >
           <img src={poster_path ? API_POSTER+poster_path : NoPoster} alt="Poster" />
         </Link>
