@@ -1,9 +1,9 @@
 import { useState, useContext, useEffect } from 'react';
-import { Link, useLocation, useParams, Route, Navigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { Context } from '../../../context/context';
-import { changeLangLocation } from '../../../utils/functions';
-import { addToLocalStorage, getFromLocalStorage } from '../../../utils/localStorage';
+import { changeLangLocation, getLangIdFromLocation } from '../../../utils/functions';
+import { addToLocalStorage } from '../../../utils/localStorage';
 import { LANG_KEY } from '../../../constans/localStorage';
 import { API_EN, API_UK, API_RU } from '../../../constans/api';
 
@@ -18,18 +18,14 @@ const Language = () => {
   const languages = [API_EN, API_UK, API_RU];
 
   useEffect(() => {
-    addLS(pathname.split('/')[1]);
-
+    addToLocalStorage(LANG_KEY, getLangIdFromLocation(pathname));
+    
     if (localStorage.getItem(LANG_KEY)) {
       setCurrentLang(localStorage.getItem(LANG_KEY));
     } else {
       setCurrentLang('en');
     }
   }, [setCurrentLang, pathname]);
-
-  const cg = lang => '/'+lang + pathname.slice(3);
-  const addLS = lang => localStorage.setItem(LANG_KEY, lang);
-
 
   return (
     <div 
@@ -45,11 +41,11 @@ const Language = () => {
       >
         {languages.map(lang => (
           <Link
-            to={cg(lang)}
+            to={changeLangLocation(pathname, lang)}
             key={lang} 
             onClick={() => {
               setCurrentLang(lang);
-              addLS(lang);
+              addToLocalStorage(LANG_KEY, lang);
             }}
           >
             {lang.toUpperCase()}
