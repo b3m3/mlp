@@ -6,15 +6,12 @@ import Sidebar from '../../components/sidebar/Sidebar';
 
 import routes from '../../routes/routes';
 import { Context } from '../../context/context';
-import { LANG } from '../../constans/api';
 
 import './app.scss';
 
 const App = () => {
   const [menuActive, setMenuActive] = useState(false);
-  const [currentLang, setCurrentLang] = useState({});
-  
-  const { lang } = currentLang;
+  const [currentLang, setCurrentLang] = useState('');
 
   const provider = {currentLang, menuActive, setCurrentLang, setMenuActive };
 
@@ -32,7 +29,7 @@ const App = () => {
                     <Route key={i} path={path} element={element} exact={exact && exact} /> 
                   ))}
 
-                  <Route path='/' element={<Navigate to={lang && LANG+lang} replace />} />
+                  <Route path={'/'} element={<Navigate to={'/'+currentLang} replace />} />
                 </Routes>
               </main>
             </div>

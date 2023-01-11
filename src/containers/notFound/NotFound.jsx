@@ -15,7 +15,7 @@ const NotFound = () => {
 
   const errors = [
     {en: `No results found for "${pathname}"`},
-    {ua: `За запитом "${pathname}" нічого не знайдено`},
+    {uk: `За запитом "${pathname}" нічого не знайдено`},
     {ru: `По запросу "${pathname}" ничего не найдено`}
   ]
 

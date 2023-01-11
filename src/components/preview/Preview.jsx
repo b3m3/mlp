@@ -19,7 +19,7 @@ const Preview = ({ item }) => {
   const { lang } = currentLang;
 
   useEffect(() => {
-    getApiResults(item.url, setResults, setErrorApi);
+    // getApiResults(item.url, setResults, setErrorApi);
   }, [item.url]);
 
   return (

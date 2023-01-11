@@ -3,7 +3,6 @@ import { Link, useParams, useLocation } from 'react-router-dom';
 import Button from '../button/Button';
 
 import { changePageLocation, goToPage } from '../../../utils/functions';
-import { PAGE } from '../../../constans/api';
 
 import style from './page-navigation.module.scss';
 
@@ -16,36 +15,35 @@ const PageNavigation = ({ totalPages }) => {
 
   return (
     <div className={style.wrapp}>
-      <Link to={pageId > 1 && changePageLocation(pageId, pathname, '-')}>
+      <Link to={''}>
         <Button left />
       </Link>
 
       <ul>
         <li>
-          <Link to={goToPage(pathname, PAGE, 1)}>1</Link>
+          <Link to={''}>1</Link>
         </li>
         <li>...</li>
         <li>
-          <Link to={goToPage(pathname, PAGE, link_prev)}>
+          <Link to={''}>
             {link_prev}
           </Link>
         </li>
         <li>{pageId}</li>
         <li>
-          <Link to={goToPage(pathname, PAGE, link_next)}>
+          <Link to={''}>
             {link_next}
           </Link>
         </li>
         <li>...</li>
         <li>
-          <Link to={goToPage(pathname, PAGE, totalPages)}>
+          <Link to={''}>
             {totalPages && totalPages}
           </Link>
         </li>
       </ul>
 
-      <Link to={totalPages && pageId < totalPages
-        && changePageLocation(pageId, pathname, '+')}
+      <Link to={''}
       >
         <Button />
       </Link>

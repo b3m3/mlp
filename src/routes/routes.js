@@ -6,16 +6,15 @@ import Category from "../containers/category/Category";
 import Details from "../containers/details/Details";
 import NotFound from '../containers/notFound/NotFound';
 
-import { LANG, PAGE } from "../constans/api";
-
 const routes = [
-  { path: `/movie${LANG}:langId`, element: <Movies /> },
-  { path: `/tv${LANG}:langId`, element: <Serials /> },
-  { path: `/favorites${LANG}:langId`, element: <Favorites /> },
-  { path: `/:video${LANG}:langId/:category${PAGE}:pageId`, element: <Category /> },
-  { path: `/:video${LANG}:langId/:id`, element: <Details /> },
-  { path: `*`, element: <NotFound /> },
-  { path: `${LANG}:langId`, element: <Home /> }
+  { path: '/:langId', element: <Home /> },
+  { path: '/:langId/movie', element: <Movies /> },
+  { path: '/:langId/tv', element: <Serials /> },
+  { path: '/:langId/favorites', element: <Favorites /> },
+  { path: '*', element: <NotFound /> }
 ];
+
+  // { path: '/:langId/:video/:category/:pageId', element: <Category /> },
+  // { path: '/:langId/:video/:videoId', element: <Details /> },
 
 export default routes;
