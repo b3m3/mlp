@@ -10,7 +10,9 @@ export const pathnameToTitle = pathname => {
   return pathname.split('_').join(' ')[0].toUpperCase() + pathname.split('_').join(' ').slice(1);
 };
 
-
+export const getVideoFromLocation = pathname => {
+  return '/' + pathname.split('/')[2];
+};
 
 export const getLangIdFromLocation = location => {
   return location.split('/')[1];
