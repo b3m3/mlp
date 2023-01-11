@@ -10,9 +10,11 @@ export const pathnameToTitle = pathname => {
   return pathname.split('_').join(' ')[0].toUpperCase() + pathname.split('_').join(' ').slice(1);
 };
 
-export const getVideoPathname = pathname => {
-  return '/' + pathname.split('/')[1];
-};
+
+
+export const getLangIdFromLocation = location => {
+  return location.split('/')[1];
+}
 
 export const changePageLocation = (id, location, operator) => {
   const res = {'+': (+id + 1), '-': (+id - 1)};
@@ -25,11 +27,8 @@ export const goToPage = (location, page, pageId) => {
     && location.slice(0, location.indexOf(page)) + page + pageId;
 };
 
-export const changeLangLocation = (location, lang, langId) => {
-  return location.indexOf(lang) !== -1 
-    && location.slice(0, location.indexOf(lang) + lang.length) 
-      + langId 
-      + location.slice(location.indexOf(lang) + lang.length + langId.length)
+export const changeLangLocation = (location, lang) => {
+  return '/'+lang + location.slice(3);
 };
 
 export const translateTitles = (arr, title, lang) => {
