@@ -18,13 +18,17 @@ const Language = () => {
   const languages = [API_EN, API_UK, API_RU];
 
   useEffect(() => {
-    addToLocalStorage(LANG_KEY, getLangIdFromLocation(pathname));
+    if (pathname === '/') {
+      setCurrentLang('en');
+    }
+
+    if (pathname !== '/') {
+      addToLocalStorage(LANG_KEY, getLangIdFromLocation(pathname));
+    }
     
     if (localStorage.getItem(LANG_KEY)) {
       setCurrentLang(localStorage.getItem(LANG_KEY));
-    } else {
-      setCurrentLang('en');
-    }
+    } 
   }, [setCurrentLang, pathname]);
 
   return (
