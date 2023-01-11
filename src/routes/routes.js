@@ -11,10 +11,9 @@ const routes = [
   { path: '/:langId/movie', element: <Movies /> },
   { path: '/:langId/tv', element: <Serials /> },
   { path: '/:langId/favorites', element: <Favorites /> },
+  { path: '/:langId/:video/:category/:pageId', element: <Category /> },
+  { path: '/:langId/:video/:videoId', element: <Details /> },
   { path: '*', element: <NotFound /> }
 ];
-
-  // { path: '/:langId/:video/:category/:pageId', element: <Category /> },
-  // { path: '/:langId/:video/:videoId', element: <Details /> },
 
 export default routes;
