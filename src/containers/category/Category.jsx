@@ -20,20 +20,19 @@ const Category = () => {
   const [totalPages, setTotalPages] = useState(null);
 
   const { currentLang } = useContext(Context);
-  const { lang, langCode } = currentLang;
   const { video, category, pageId } = useParams();
   const { pathname } = useLocation();
 
   const titles = [
-    {popular: [{en: 'Popular', ua: 'Популярні', ru: 'Популярные'}]},
-    {now_playing: [{en: 'Now playing', ua: 'Зараз у прокаті', ru: 'Сейчас в прокате'}]},
-    {upcoming: [{en: 'Upcoming', ua: 'Майбутні', ru: 'Предстоящие'}]},
-    {top_rated: [{en: 'Top rated', ua: 'Найкращий рейтинг', ru: 'Лучший рейтинг'}]},
-    {on_the_air: [{en: 'On the air', ua: 'В ефірі', ru: 'В эфире'}]},
-    {airing_today: [{en: 'Airing today', ua: 'Сьогодні в ефірі', ru: 'Сегодня в эфире'}]}
+    {popular: [{en: 'Popular', uk: 'Популярні', ru: 'Популярные'}]},
+    {now_playing: [{en: 'Now playing', uk: 'Зараз у прокаті', ru: 'Сейчас в прокате'}]},
+    {upcoming: [{en: 'Upcoming', uk: 'Майбутні', ru: 'Предстоящие'}]},
+    {top_rated: [{en: 'Top rated', uk: 'Найкращий рейтинг', ru: 'Лучший рейтинг'}]},
+    {on_the_air: [{en: 'On the air', uk: 'В ефірі', ru: 'В эфире'}]},
+    {airing_today: [{en: 'Airing today', uk: 'Сьогодні в ефірі', ru: 'Сегодня в эфире'}]}
   ];
 
-  const url = API_ROOT+'/'+video+'/'+category+API_KEY+API_LANGUAGE+langCode+API_PAGE+pageId;
+  const url = API_ROOT+'/'+video+'/'+category+API_KEY+API_LANGUAGE+currentLang+API_PAGE+pageId;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -44,7 +43,7 @@ const Category = () => {
   return (
     <section className={style.category}>
       <h2>
-        {translateTitles(titles, category, lang)}
+        {translateTitles(titles, category, currentLang)}
       </h2>
 
       {errorApi
