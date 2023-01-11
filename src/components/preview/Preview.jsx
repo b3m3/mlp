@@ -3,9 +3,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Card from '../card/Card';
 import SeeAll from '../ui/seeAll/SeeAll';
-import { getApiResults } from '../../service/getApiResources';
 import Shimmer from '../ui/shimmer/Shimmer';
 
+import { getApiResults } from '../../service/getApiResources';
 import { Context } from '../../context/context';
 
 import style from './preview.module.scss';
@@ -16,7 +16,6 @@ const Preview = ({ item }) => {
   const [errorApi, setErrorApi] = useState(false);
 
   const { currentLang } = useContext(Context);
-  const { lang } = currentLang;
 
   useEffect(() => {
     getApiResults(item.url, setResults, setErrorApi);
@@ -25,7 +24,7 @@ const Preview = ({ item }) => {
   return (
     <div className={style.preview}>
       <div className={style.top}>
-        <h2>{item[lang]}</h2>
+        <h2>{item[currentLang]}</h2>
         <SeeAll category={item.en}/>
       </div>
       

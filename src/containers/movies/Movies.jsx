@@ -9,13 +9,12 @@ import style from './movies.module.scss';
 
 const Movies = () => { 
   const { currentLang } = useContext(Context);
-  const { langCode } = currentLang;
 
   const items = [
-    {en: 'Popular', ua: 'Популярні', ru: 'Популярные', url: MOVIES_POPULAR+API_LANGUAGE+langCode},
-    {en: 'Now playing', ua: 'Зараз у прокаті', ru: 'Сейчас в прокате', url: MOVIES_NOW_PLAYING+API_LANGUAGE+langCode},
-    {en: 'Upcoming', ua: 'Майбутні', ru: 'Предстоящие', url: MOVIES_UPCOMING+API_LANGUAGE+langCode},
-    {en: 'Top rated', ua: 'Найкращий рейтинг', ru: 'Лучший рейтинг', url: MOVIES_TOP_RATED+API_LANGUAGE+langCode}
+    {en: 'Popular', uk: 'Популярні', ru: 'Популярные', url: MOVIES_POPULAR+API_LANGUAGE+currentLang},
+    {en: 'Now playing', uk: 'Зараз у прокаті', ru: 'Сейчас в прокате', url: MOVIES_NOW_PLAYING+API_LANGUAGE+currentLang},
+    {en: 'Upcoming', uk: 'Майбутні', ru: 'Предстоящие', url: MOVIES_UPCOMING+API_LANGUAGE+currentLang},
+    {en: 'Top rated', uk: 'Найкращий рейтинг', ru: 'Лучший рейтинг', url: MOVIES_TOP_RATED+API_LANGUAGE+currentLang}
   ];
 
   return (

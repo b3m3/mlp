@@ -8,19 +8,16 @@ import { MdFavorite } from 'react-icons/md';
 
 import { Context } from '../../context/context';
 
-import { LANG } from '../../constans/api';
-
 import style from './sidebar.module.scss';
 
 const Sidebar = () => {
   const { currentLang, menuActive } = useContext(Context);
-  const { lang } = currentLang;
 
   const links = [
-    {en: 'Home', ua: 'Домашня', ru: 'Домашняя', icon: <AiFillHome />, path: LANG+lang},
-    {en: 'Movies', ua: 'Фільми', ru: 'Фильмы', icon: <MdLocalMovies />, path: '/movie'+LANG+lang},
-    {en: 'Serials', ua: 'Серіали', ru: 'Сериалы', icon: <RiMovie2Fill />, path: '/tv'+LANG+lang},
-    {en: 'Favorites', ua: 'Вибране', ru: 'Избранное', icon: <MdFavorite />, path: '/favorites'+LANG+lang},
+    {en: 'Home', uk: 'Домашня', ru: 'Домашняя', icon: <AiFillHome />, end: true, path: '/'+currentLang},
+    {en: 'Movies', uk: 'Фільми', ru: 'Фильмы', icon: <MdLocalMovies />, path: '/'+currentLang+'/movie'},
+    {en: 'Serials', uk: 'Серіали', ru: 'Сериалы', icon: <RiMovie2Fill />, path: '/'+currentLang+'/tv'},
+    {en: 'Favorites', uk: 'Вибране', ru: 'Избранное', icon: <MdFavorite />, path: '/'+currentLang+'/favorites'},
   ];
 
   return (
@@ -31,9 +28,9 @@ const Sidebar = () => {
         <ul>
           {links.map(link => (
             <li key={link.en}>
-              <NavLink to={link.path}>
+              <NavLink to={link.path} end={link.end && link.end}>
                 {link.icon}
-                <span>{link[lang]}</span>
+                <span>{link[currentLang]}</span>
               </NavLink>
             </li>
           ))}

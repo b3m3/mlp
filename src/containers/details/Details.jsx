@@ -5,7 +5,6 @@ import Button from '../../components/ui/button/Button';
 
 import { API_ROOT, API_KEY, API_LANGUAGE, API_BACKGROUND } from '../../constans/api';
 import { getApiResults } from '../../service/getApiResources';
-import { getVideoPathname } from '../../utils/functions';
 
 import { Context } from '../../context/context';
 
@@ -18,37 +17,25 @@ const Details = () => {
   const [errorApi, setErrorApi] = useState(false);
 
   const { currentLang } = useContext(Context);
-  const { langCode } = currentLang;
   const { pathname } = useLocation();
   const { id } = useParams();
   
-  const url = API_ROOT+getVideoPathname(pathname)+'/'+id+API_KEY+API_LANGUAGE+langCode;
-  
   useEffect(() => {
-    getApiResults(url, setResults, setErrorApi);
-  }, [url]);
+  }, []);
 
   return (
     <section className={style.wrapp}>
-      {errorApi
+      {/* {errorApi
         ? <h2>Error</h2>
         : <>
             {results &&
               <div className={style.body}>
-                <div className={style.backdrop_poster}>
-                  <img src={results.backdrop_path ? API_BACKGROUND+results.backdrop_path : Bd} alt="bg" />
-                  <span></span>
-                </div>
-
-                <Link>
-                  <Button left />
-                </Link>
-
-                <h1>{results.title}</h1>
+                <h2>details</h2>
               </div>
             }
           </>
-      }
+      } */}
+      <h2>details</h2>
     </section>
   );
 }

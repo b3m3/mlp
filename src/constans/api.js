@@ -8,13 +8,9 @@ export const API_PAGE = '&page=';
 export const API_POSTER = 'https://image.tmdb.org/t/p/w500/';
 export const API_BACKGROUND = 'https://image.tmdb.org/t/p/original';
 
-// CUSTOM
-export const LANG = '/language=';
-export const PAGE = '/page=';
-
 // LANGUAGES
-export const API_EN = 'en-US';
-export const API_RU = 'ru-RU';
+export const API_EN = 'en';
+export const API_RU = 'ru';
 export const API_UK = 'uk';
 
 // MAIN CATEGORY
