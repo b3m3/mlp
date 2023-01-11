@@ -18,15 +18,18 @@ export const getLangIdFromLocation = location => {
   return location.split('/')[1];
 }
 
-export const changePageLocation = (id, location, operator) => {
-  const res = {'+': (+id + 1), '-': (+id - 1)};
+export const nextPage = (id, location) => {
   return location.indexOf(id) !== -1 
-    ? location.slice(0, location.indexOf(id)) + res[operator] : null;
+    ? location.slice(0, location.indexOf(id)) + (+id + 1) : null;
 };
 
-export const goToPage = (location, page, pageId) => {
-  return location.indexOf(page) !== -1 
-    && location.slice(0, location.indexOf(page)) + page + pageId;
+export const prevPage = (id, location) => {
+  return location.indexOf(id) !== -1 
+    ? location.slice(0, location.indexOf(id)) + (+id - 1) : null;
+};
+
+export const goToPage = (id, location, page) => {
+  return location.slice(0, location.indexOf(id)) + page
 };
 
 export const changeLangLocation = (location, lang) => {
