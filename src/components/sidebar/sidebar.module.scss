@@ -58,6 +58,9 @@
   }
 
   & ul {
+    position: sticky;
+    top: 0;
+    padding-top: .625rem;
     display: flex;
     flex-direction: column;
     gap: 5px;
