@@ -5,8 +5,7 @@ import MenuHamburger from '../ui/menuHamburger/MenuHamburger';
 
 import style from './header.module.scss';
 
-const Header = () => {
-
+const Header = ({ refDetails }) => {
   return (
     <header className={style.header}>
       <div className="container">
@@ -16,7 +15,7 @@ const Header = () => {
 
           <div className={style.box}>
             <Language />
-            <MenuHamburger />
+            <MenuHamburger refDetails={refDetails} />
           </div>
         </div>
       </div>

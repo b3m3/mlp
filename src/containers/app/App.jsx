@@ -27,7 +27,7 @@ const App = () => {
     <Context.Provider value={provider}>
       <BrowserRouter>
         <div className="app">
-          <Header />
+          <Header refDetails={refDetails} />
           <div className="container">
             <div className='app-wrapp'>
               <Sidebar refDetails={refDetails} />
