@@ -29,9 +29,9 @@ const Sidebar = ({refDetails}) => {
 
   return (
     <aside 
-      className={`${style.sidebar} ${menuActive && style.active} ${isActive && style.hidden}`}
+      className={`${style.wrapp} ${isActive && style.hidden}`}
     >
-      <nav>
+      <nav className={`${style.navbar} ${menuActive && style.active}`}>
         <ul>
           {links.map(link => (
             <li key={link.en}>

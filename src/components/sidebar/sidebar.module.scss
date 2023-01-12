@@ -1,122 +1,105 @@
-.sidebar {
+.wrapp {
   position: relative;
+  margin-right: 3.125rem;
   transition: .3s;
-  min-width: 200px;
 
   &::before {
     position: absolute;
     content: '';
     top: 0;
     right: -1.5625rem;
-    width: 1.6px;
+    width: 2px;
     height: 100%;
-    background: radial-gradient(circle, rgba(186, 186, 186, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
+    background: radial-gradient(circle, var(--white-01) 50%, rgba(255, 255, 255, 0) 100%);
+  }
 
-    @media screen and (max-width: 64rem) {
-      right: -0.9375rem;
+  &.hidden {
+    margin-right: 0;
+    pointer-events: none;
+    opacity: 0;
+
+    &::before {
+      display: none;
+    }
+
+    .navbar {
+      width: 0;
     }
   }
+}
+
+.navbar {
+  position: relative;
+  width: 12.5rem;
+  transition: .3s;
 
   @media screen and (max-width: 1024px) {
-    min-width: 50px;
-    margin-right: 1.875rem;
-
-    & li {
-      & span {
-        display: none;
-      }
-    }
-
-    & a {
-      justify-content: center;
-      padding: .625rem !important;
-    }
+    width: 3.125rem;
 
     &.active {
-      min-width: 200px;
-
-      & li {
-        & span {
-          display: block;
-        }
-      }
-
-      & a {
-        justify-content: start;
-      }
-    }
-  }
-
-  @media screen and (max-width: 475px) {
-    width: 0;
-    min-width: unset;
-    margin: 0;
-    opacity: 0;
-    pointer-events: none;
-
-    &.active {
-      min-width: 50px;
-      margin-right: 1.875rem;
-      opacity: 1;
-      pointer-events: all;
-
-      & li {
-        & span {
-          display: none;
-        }
-      }
-
-      & a {
-        justify-content: center;
-      }
+      width: 12.5rem;
     }
   }
 
   & ul {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    transition: .3s ease;
-    color: var(--gray-400);
+    gap: 5px;
   }
 
-  & a {
+  & li {
     position: relative;
-    font-size: 18px;
+    height: 2.8125rem;
+  }
+  
+  & a {
+    overflow: hidden;
+    position: absolute;
+    height: 100%;
+    width: 100%;
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 20px;
-    transition: .3s ease;
+    gap: 12px;
+    padding: 0 .625rem;
+    color: var(--gray-400);
+    border-left: 3px solid transparent;
+    border-radius: 12px;
+    transition: .3s;
 
     &::before {
-      overflow: hidden;
       position: absolute;
+      z-index: -1;
       content: '';
       top: 0;
       left: 0;
-      width: 0;
+      width: 0%;
       height: 100%;
-      background: var(--blue-400-01);
-      border-radius: 10px;
-      transition: .5s ease;
+      background: var(--blue-400);
+      opacity: 0.2;
+      transition: .5s;
     }
   }
-
+  
   & svg {
-    min-width: 1.375rem;
-    font-size: 22px;
-    transition: .3s ease;
+    position: relative;
+    z-index: 2;
+    font-size: 26px;
+    min-width: 26px;
   }
 
+  & span {
+    font-weight: 700;
+    font-size: 1.125rem;
+  }
+  
   :global(a.active) {
     color: var(--gray-50);
+    border-left: 3px solid var(--blue-400);
 
     &::before {
       width: 100%;
-      border-left: 4px solid var(--blue-400);
     }
-  
+
     & svg {
       color: var(--blue-400);
     }
