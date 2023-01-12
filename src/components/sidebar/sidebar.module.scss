@@ -1,5 +1,7 @@
-.wrapp {
+.navbar {
   position: relative;
+  height: 100%;
+  width: 12.5rem;
   margin-right: 3.125rem;
   transition: .3s;
 
@@ -14,30 +16,44 @@
   }
 
   &.hidden {
+    width: 0;
     margin-right: 0;
-    pointer-events: none;
     opacity: 0;
+    pointer-events: none;
 
     &::before {
-      display: none;
-    }
-
-    .navbar {
-      width: 0;
+      opacity: 0;
     }
   }
-}
-
-.navbar {
-  position: relative;
-  width: 12.5rem;
-  transition: .3s;
 
   @media screen and (max-width: 1024px) {
     width: 3.125rem;
 
     &.active {
       width: 12.5rem;
+    }
+  }
+
+  @media screen and (max-width: 475px) {
+    width: 0;
+    margin-right: 0;
+    opacity: 0;
+    pointer-events: none;
+
+    &::before {
+      opacity: 0;
+    }
+
+    &.active {
+      width: 3.125rem;
+      margin-right: 1.875rem;
+      opacity: 1;
+      pointer-events: all;
+
+      &::before {
+        opacity: 1;
+        right: -0.9375rem;
+      }
     }
   }
 
