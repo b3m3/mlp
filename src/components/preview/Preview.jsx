@@ -37,19 +37,13 @@ const Preview = ({ item }) => {
           >
             {results 
               ? results.results.map(props => (
-                <SwiperSlide 
-                  key={props.id} 
-                  className={style.slide}
-                >
+                <SwiperSlide  key={props.id} className={style.slide} >
                   <Card {...props} />
                 </SwiperSlide>
               ))
               : <>
                   {[...Array(5)].map((v, i) => (
-                    <SwiperSlide 
-                      className={style.slide}
-                      key={i}
-                    >
+                    <SwiperSlide className={style.slide} key={i} >
                       <Shimmer />
                     </SwiperSlide>
                   ))}

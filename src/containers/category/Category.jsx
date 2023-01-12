@@ -49,13 +49,10 @@ const Category = () => {
       {errorApi
         ? <h2>Error</h2>
         : <div className={style.body}>
-            {results 
+            {results
               ? results.results.map(props => (
-                <Card
-                  key={props.id}
-                  {...props}
-                />
-              ))
+                  <Card key={props.id} {...props} />
+                ))
               : <>
                   {[...Array(20)].map((v, i) => (
                     <Shimmer key={i} />
