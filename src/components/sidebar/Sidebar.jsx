@@ -1,5 +1,5 @@
-import { NavLink } from 'react-router-dom';
-import { useContext } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
 
 import { AiFillHome } from 'react-icons/ai';
 import { MdLocalMovies } from 'react-icons/md';
@@ -10,8 +10,11 @@ import { Context } from '../../context/context';
 
 import style from './sidebar.module.scss';
 
-const Sidebar = () => {
+const Sidebar = ({refDetails}) => {
+  const [isActive, setIsActive] = useState(false);
+
   const { currentLang, menuActive } = useContext(Context);
+  const { pathname } = useLocation();
 
   const links = [
     {en: 'Home', uk: 'Домашня', ru: 'Домашняя', icon: <AiFillHome />, end: true, path: '/'+currentLang},
@@ -20,9 +23,13 @@ const Sidebar = () => {
     {en: 'Favorites', uk: 'Вибране', ru: 'Избранное', icon: <MdFavorite />, path: '/'+currentLang+'/favorites'},
   ];
 
+  useEffect(() => {
+    return refDetails.current ? setIsActive(true) : setIsActive(false);
+  }, [pathname]);
+
   return (
     <aside 
-      className={menuActive ? `${style.active} ${style.sidebar}` : style.sidebar}
+      className={`${style.sidebar} ${menuActive && style.active} ${isActive && style.hidden}`}
     >
       <nav>
         <ul>
