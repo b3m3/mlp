@@ -2,6 +2,12 @@
 export const API_ROOT = 'https://api.themoviedb.org/3';
 export const API_KEY = '?api_key='+process.env.REACT_APP_API_KEY;
 
+export const IMDB_ROOT = 'https://www.imdb.com/title/';
+export const YOUTUBE_TRAILER_ROOT = 'https://www.youtube.com/embed/';
+export const YOUTUBE_TRAILER_AUTOPLAY = '?autoplay=1';
+export const YOUTUBE_POSTER_ROOT = 'https://img.youtube.com/vi/';
+export const YOUTUBE_POSTER_END = '/mqdefault.jpg';
+
 // GENERAL
 export const API_LANGUAGE = '&language=';
 export const API_PAGE = '&page=';
@@ -16,6 +22,7 @@ export const API_UK = 'uk';
 // MAIN CATEGORY
 export const API_MOVIE = '/movie';
 export const API_SERIALS = '/tv';
+export const API_VIDEOS = '/videos'
 
 // CATEGORY GENERAL
 export const API_POPULAR = '/popular';
