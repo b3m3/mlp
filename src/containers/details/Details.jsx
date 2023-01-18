@@ -3,6 +3,7 @@ import { Link, useLocation, useParams, useNavigate } from 'react-router-dom';
 
 import Button from '../../components/ui/button/Button';
 import Rating from '../../components/ui/rating/Rating';
+import Poster from '../../components/ui/poster/Poster';
 import Backdrop from '../../components/details/backdrop/Backdrop';
 import Runtime from '../../components/details/runtime/Runtime';
 import Dates from '../../components/details/dates/Dates';
@@ -11,7 +12,7 @@ import LinkPage from '../../components/details/linkPage/LinkPage';
 import Genres from '../../components/details/genres/Genres';
 import Countries from '../../components/details/countries/Countries';
 
-import { API_ROOT, API_KEY, API_LANGUAGE, API_VIDEOS, API_POSTER } from '../../constans/api';
+import { API_ROOT, API_KEY, API_LANGUAGE, API_VIDEOS } from '../../constans/api';
 import { LAST_LOCATION } from '../../constans/localStorage';
 import { getApiResults, getApiResources } from '../../service/getApiResources';
 import { getVideoFromLocation } from '../../utils/functions';
@@ -97,7 +98,6 @@ const Details = forwardRef((props, ref) => {
               className={style.body}
               style={activeTrailer && trailers.length > 0 ? {borderRadius: bodyBorderRadius} : null}
             >
-
               <div className={style.col}>
                 <h1>{results.title ? results.title : results.name}</h1>
 
@@ -121,11 +121,13 @@ const Details = forwardRef((props, ref) => {
                 </div>
               </div>
 
-              {results.poster_path &&
-                <img className={style.poster} src={API_POSTER+results.poster_path} alt="poster" />
-              }
+              <div className={style.col}>
+                <Poster path={results.poster_path}/>
+              </div>
             </div>
           </div>
+
+          
         </>
       }
     </section>
