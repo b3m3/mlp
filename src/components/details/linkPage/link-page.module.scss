@@ -1,0 +1,14 @@
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & svg {
+    font-size: 1.875rem;
+    transition: .3s;
+
+    &:hover {
+      color: var(--orange-400);
+    }
+  }
+}
