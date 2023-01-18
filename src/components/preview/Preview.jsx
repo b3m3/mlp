@@ -34,6 +34,7 @@ const Preview = ({ item }) => {
             className={style.swiper}
             spaceBetween={15}
             slidesPerView={'auto'}
+            speed={800}
           >
             {results 
               ? results.results.map(props => (

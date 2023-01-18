@@ -1,11 +1,16 @@
 import style from './shimmer.module.scss';
 
-const Shimmer = () => {
+const Shimmer = ({ one }) => {
   return (
     <div className={style.wrapp}>
-      <span />
-      <span />
-      <span />
+      {one 
+        ? <span />
+        : <>
+            <span />
+            <span />
+            <span />
+          </>
+      }
     </div>
   );
 }

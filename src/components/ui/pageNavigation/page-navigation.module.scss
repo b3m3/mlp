@@ -18,4 +18,10 @@
       color: var(--gray-400);
     }
   }
+
+  & a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

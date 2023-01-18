@@ -12,10 +12,14 @@ const MenuHamburger = ({ refDetails }) => {
   const { menuActive, setMenuActive } = useContext(Context);
 
   useEffect(() => {
-    return refDetails.current ? setIsActive(false) : setIsActive(true);
+    if (refDetails.current) {
+      setIsActive(false);
+      setMenuActive(false);
+    } else {
+      setIsActive(true)
+    }
   }, [pathname]);
-  
-  console.log(isActive);
+
   return (
     <>
       {isActive &&      

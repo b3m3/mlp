@@ -38,11 +38,7 @@ const Language = () => {
     >
       <p>{currentLang && currentLang.toUpperCase()}</p>
 
-      <ul 
-        style={isActive 
-          ? {height: '5rem', border: '2px solid var(--blue-400)', background: 'rgba(27,39,58,1)'}
-          : null}
-      >
+      <ul className={isActive ? style.active : null}>
         {languages.map(lang => (
           <Link
             to={changeLangLocation(pathname, lang)}

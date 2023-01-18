@@ -1,8 +1,12 @@
 .hamburger {
   position: relative;
   z-index: 10;
-  width: 30px;
-  height: 15px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--white-005);
+  -webkit-backdrop-filter: blur(var(--blur));
+  backdrop-filter: blur(var(--blur));
   display: none;
 
   @media screen and (max-width: 1024px) {
@@ -11,28 +15,29 @@
 
   &.active {
     & i:first-child {
-      width: 90%;
+      width: 1.25rem;
     }
     & i:last-child {
-      width: 40%;
+      width: .75rem;
     }
   }
 
   & i {
+    pointer-events: none;
     position: absolute;
     content: '';
-    left: 0;
-    width: 100%;
-    height: 3px;
-    border-radius: 3px;
-    background: var(--blue-200);
+    left: 7px;
+    width: 24px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--gray-50);
     transition: .3s ease;
 
     &:first-child {
-      top: 0;
+      top: 13px;
     }
     &:last-child {
-      bottom: 0;
+      bottom: 13px;
     }
   }
 }

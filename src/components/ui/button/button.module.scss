@@ -1,8 +1,7 @@
 .button {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  & svg {
-    font-size: 35px;
-  }
+  width: 2.1875rem;
+  font-size: 2.1875rem;
 }

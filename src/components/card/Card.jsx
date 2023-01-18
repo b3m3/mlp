@@ -1,13 +1,16 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useContext } from 'react';
 
+import Rating from '../ui/rating/Rating';
+import Poster from '../ui/poster/Poster';
+
 import { API_POSTER } from '../../constans/api';
+import { LAST_LOCATION } from '../../constans/localStorage';
 import { textOverflow, getVideoFromLocation } from '../../utils/functions';
 import { Context } from "../../context/context";
+import { addToLocalStorage } from '../../utils/localStorage';
 
-import NoPoster from './img/no-poster.webp';
 
-import { AiFillStar } from 'react-icons/ai';
 
 import style from './card.module.scss';
 
@@ -19,21 +22,22 @@ const Card = ({id, poster_path, title, name, vote_average}) => {
 
   return (
     <div className={style.card}>
-      <div className={style.poster}>
+      <div 
+        className={style.poster}
+        onClick={() => addToLocalStorage(LAST_LOCATION, pathname)}
+      >
         <Link 
           to={link}
         >
-          <img src={poster_path ? API_POSTER+poster_path : NoPoster} alt="Poster" />
+          <Poster path={poster_path} />
         </Link>
       </div>
 
-      {title && <h5>{textOverflow(title, 22)}</h5>}
-      {name && <h5>{textOverflow(name, 22)}</h5>}
+      <h5>
+        {title ? textOverflow(title, 22) : textOverflow(name, 22)}
+      </h5>
       
-      <div className={style.rating}>
-        <AiFillStar />
-        <span>{vote_average}</span>
-      </div>
+      <Rating rating={vote_average} />
     </div>
   );
 }
