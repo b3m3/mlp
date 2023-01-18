@@ -56,8 +56,6 @@ const Details = forwardRef((props, ref) => {
     })();
   }, [urlTrailers, currentLang]);
 
-  console.log(results);
-
   return (
     <section className={style.details} ref={ref}>
       {results &&
