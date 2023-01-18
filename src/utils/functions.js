@@ -43,3 +43,23 @@ export const translateTitles = (arr, title, lang) => {
 export const notFoundError = (arr, lang) => {
   return arr.map(el => el[lang]);
 };
+
+export const convertTime = time => {
+  if (typeof time === 'object' && time.length) {
+    if (Math.floor(time[0] / 60) > 0) {
+      return `${Math.floor(time[0] / 60)}h ${time[0] % 60}m`;
+    }
+
+    return `${time[0] % 60}m`;
+  }
+
+  if (Math.floor(time / 60) > 0) {
+    return `${Math.floor(time / 60)}h ${time % 60}m`;
+  }
+
+  return `${time % 60}m`;
+};
+
+export const getYearFromDate = date => {
+  return date.split('-')[0];
+};
