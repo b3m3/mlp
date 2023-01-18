@@ -5,7 +5,7 @@ import Header from '../../components/header/Header';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Home from '../../containers/home/Home';
 import Movies from '../../containers/movies/Movies';
-import Serials from '../../containers/serials/Serials';
+import TV_SHOWS from '../tvShows/TvShows';
 import Favorites from '../../containers/favorites/Favorites';
 import Category from '../../containers/category/Category';
 import Details from '../../containers/details/Details';
@@ -34,7 +34,7 @@ const App = () => {
                 <Routes>
                   <Route path={'/:langId'} element={<Home />} />
                   <Route path={'/:langId/movie'} element={<Movies />} />
-                  <Route path={'/:langId/tv'} element={<Serials />} />
+                  <Route path={'/:langId/tv'} element={<TV_SHOWS />} />
                   <Route path={'/:langId/favorites'} element={<Favorites />} />
                   <Route path={'/:langId/:video/:category/:pageId'} element={<Category />} />
                   <Route path={'/:langId/:video/:videoId'} element={<Details ref={refDetails} />} />
