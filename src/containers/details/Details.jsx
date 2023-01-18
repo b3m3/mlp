@@ -32,13 +32,13 @@ const Details = forwardRef((props, ref) => {
 
   const { currentLang } = useContext(Context);
   const { pathname } = useLocation();
-  const { video, videoId } = useParams();
+  const { mediaType, videoId } = useParams();
   const navigate = useNavigate();
 
   const bodyBorderRadius = '0 0 .75rem .75rem';
 
   const urlResults = `${API_ROOT}${getVideoFromLocation(pathname)}/${videoId}${API_KEY}${API_LANGUAGE}${currentLang}`;
-  const urlTrailers = `${API_ROOT}/${video}/${videoId}${API_VIDEOS}${API_KEY}${API_LANGUAGE}${currentLang}`;
+  const urlTrailers = `${API_ROOT}/${mediaType}/${videoId}${API_VIDEOS}${API_KEY}${API_LANGUAGE}${currentLang}`;
 
   useEffect(() => {
     getApiResults(urlResults, setResults, setErrorApi);

@@ -20,7 +20,7 @@ const Category = () => {
   const [totalPages, setTotalPages] = useState(null);
 
   const { currentLang } = useContext(Context);
-  const { video, category, pageId } = useParams();
+  const { mediaType, category, pageId } = useParams();
   const { pathname } = useLocation();
 
   const titles = [
@@ -32,7 +32,7 @@ const Category = () => {
     {airing_today: [{en: 'Airing today', uk: 'Сьогодні в ефірі', ru: 'Сегодня в эфире'}]}
   ];
 
-  const url = API_ROOT+'/'+video+'/'+category+API_KEY+API_LANGUAGE+currentLang+API_PAGE+pageId;
+  const url = API_ROOT+'/'+mediaType+'/'+category+API_KEY+API_LANGUAGE+currentLang+API_PAGE+pageId;
 
   useEffect(() => {
     window.scrollTo(0, 0);
