@@ -1,0 +1,10 @@
+.wrapp {
+  display: flex;
+  align-items: center;
+  gap: .3125rem;
+  
+  & svg {
+    color: var(--orange-400);
+    font-size: 1.125rem;
+  }
+}
