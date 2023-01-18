@@ -2,20 +2,24 @@
 @import url('../../styles/scrollbar.css');
 
 * {padding: 0;margin: 0;box-sizing: border-box;font-family:inherit;font-weight: inherit;list-style: none;text-decoration: none;color: inherit;}
-html {display: block;font-size: 100%;scroll-behavior: smooth;min-height: 100%;}
+html {display: block;font-size: 100%;scroll-behavior: smooth;min-height: 100%;position: relative;}
 body {height: 100%;margin: 0;background-repeat: no-repeat;background-attachment: fixed;}
 button, input {cursor: pointer;border: none;background: none;outline: none;width: 100%;}
 
 :root {
   --blue-400: #217ff4;
-  --blue-400-01: rgba(33, 128, 244, 0.118);
+  --blue-400-01: rgba(33, 128, 244, 0.1);
   --blue-200: #6780c0;
   --orange-400: #e9ae19;
+  --red-400: #ff0000;
   --gray-400: #76737a;
   --gray-50: #efefef;
   --white-01: rgba(255, 255, 255, 0.1);
+  --white-005: rgba(255, 255, 255, 0.05);
   --blue-wiolet-gradient: linear-gradient(48deg, rgba(46,27,49,1) 0%, rgba(27,39,58,1) 100%);
   --blue-gradient: linear-gradient(323deg, rgba(37,147,250,1) 0%, rgba(23,89,233,1) 100%);
+  --b-radius: .75rem;
+  --blur: 3px;
 }
 
 #root, .app {
@@ -55,16 +59,32 @@ main {
 
 h1 {
   font-weight: 800;
-  font-size: calc(26px + calc(68 - 26) * ((100vw - 320px) / (2560 - 320)));
+  line-height: 1.075;
+  font-size: calc(26px + calc(44 - 26) * ((100vw - 320px) / (2560 - 320)));
 }
 
 h2 {
   font-size: 1.5rem;
+  font-weight: 900;
+}
+
+h3 {
+  color: var(--gray-400);
+  font-size: 22px;
+  font-weight: 900;
+}
+
+h4 {
   font-weight: 700;
 }
 
 h5 {
-  font-weight: 500;
+  font-weight: 700;
   font-size: .9375rem;
-  color: var(--gray-50);
+}
+
+p {
+  font-weight: 500;
+  font-size: .875rem;
+  line-height: 1.5;
 }

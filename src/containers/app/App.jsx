@@ -28,7 +28,6 @@ const App = () => {
       <BrowserRouter>
         <div className="app">
           <Header refDetails={refDetails} />
-          <div className="container">
             <div className='app-wrapp'>
               <Sidebar refDetails={refDetails} />
               <main>
@@ -45,7 +44,6 @@ const App = () => {
                 </Routes>
               </main>
             </div>
-          </div>
         </div>
       </BrowserRouter>
     </Context.Provider>
