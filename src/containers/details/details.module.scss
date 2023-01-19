@@ -2,32 +2,7 @@
   overflow: hidden;
 }
 
-.trailer_wrapp {
-  position: relative;
-  max-width: 50rem;
-  height: 9.375rem;
-  margin: .625rem auto 0 auto;
-  border-radius: var(--b-radius) var(--b-radius) 0 0;
-  transition: .3s;
-
-  & span {
-    position: absolute;
-    top: .5625rem;
-    right: .5625rem;
-  }
-
-  &.active {
-    height: 69vmin;
-    max-height: 28.125rem;
-    background: var(--white-005);
-    -webkit-backdrop-filter: blur(var(--blur));
-    backdrop-filter: blur(var(--blur));
-  }
-}
-
 .body {
-  max-width: 800px;
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   gap: 1.25rem;

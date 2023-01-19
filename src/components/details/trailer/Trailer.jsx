@@ -1,5 +1,4 @@
 import Button from '../../ui/button/Button';
-import Shimmer from '../../ui/shimmer/Shimmer';
 
 import { YOUTUBE_TRAILER_ROOT, YOUTUBE_TRAILER_AUTOPLAY } from '../../../constans/api';
 
@@ -8,15 +7,19 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 
 import style from './trailer.module.scss';
 
-const Trailer = ({ 
-  onActive, isActive, videoKey, trailerNumber, totalTrailers, prevTrailer, nextTrailer, onClose 
-}) => {
+const Trailer = ({ trailers, onActive, activeTrailer, videoKey, 
+  trailerNumber, totalTrailers, prevTrailer, nextTrailer, onClose }) => {
 
   const lock = {opacity: '.1', pointerEvents: 'none'};
 
   return (
-    <div className={style.wrapp}>
-      {isActive      
+    <div 
+      className={`
+        ${style.wrapp}
+        ${activeTrailer && trailers.length > 0 && style.active}
+      `}
+    >
+      {activeTrailer
         ? <>
             {videoKey &&
               <iframe

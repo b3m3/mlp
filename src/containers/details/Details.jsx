@@ -71,16 +71,12 @@ const Details = forwardRef((props, ref) => {
               <Button left />
             </Link> 
             
-            <div 
-              className={`
-                ${style.trailer_wrapp}
-                ${activeTrailer && trailers.length > 0 && style.active}
-              `}
-            >
+            <div className='container-800'>
               {trailers && trailers.length > 0 &&
                 <Trailer 
                   videoKey={trailers[trailerNumber].key}
-                  isActive={activeTrailer}
+                  trailers={trailers}
+                  activeTrailer={activeTrailer}
                   totalTrailers={totalTrailers}
                   trailerNumber={trailerNumber}
                   onActive={() => setActiveTrailer(true)}
@@ -92,42 +88,40 @@ const Details = forwardRef((props, ref) => {
                   onClose={() => setActiveTrailer(false)}
                 />
               }
-            </div>
 
-            <div 
-              className={style.body}
-              style={activeTrailer && trailers.length > 0 ? {borderRadius: bodyBorderRadius} : null}
-            >
-              <div className={style.col}>
-                <h1>{results.title ? results.title : results.name}</h1>
+              <div 
+                className={style.body}
+                style={activeTrailer && trailers.length > 0 ? {borderRadius: bodyBorderRadius} : null}
+              >
+                <div className={style.col}>
+                  <h1>{results.title ? results.title : results.name}</h1>
 
-                <div className={style.row}>
-                  <Rating rating={results.vote_average} />
-                  <Runtime runtime={results.runtime} episodeRuntime={results.episode_run_time} />
-                  <Dates 
-                    release={results.release_date} 
-                    first={results.first_air_date} 
-                    last={results.last_air_date} 
-                    status={results.status}
-                  />
+                  <div className={style.row}>
+                    <Rating rating={results.vote_average} />
+                    <Runtime runtime={results.runtime} episodeRuntime={results.episode_run_time} />
+                    <Dates 
+                      release={results.release_date} 
+                      first={results.first_air_date} 
+                      last={results.last_air_date} 
+                      status={results.status}
+                    />
+                  </div>
+
+                  <Genres genres={results.genres} />
+                  <Countries countries={results.production_countries} />
+                  <p>{results.overview && results.overview}</p>
+
+                  <div className={style.row}>
+                    <LinkPage imdb={results.imdb_id} homepage={results.homepage} />
+                  </div>
                 </div>
 
-                <Genres genres={results.genres} />
-                <Countries countries={results.production_countries} />
-                <p>{results.overview && results.overview}</p>
-
-                <div className={style.row}>
-                  <LinkPage imdb={results.imdb_id} homepage={results.homepage} />
+                <div className={style.col}>
+                  <Poster path={results.poster_path}/>
                 </div>
-              </div>
-
-              <div className={style.col}>
-                <Poster path={results.poster_path}/>
               </div>
             </div>
           </div>
-
-          
         </>
       }
     </section>
