@@ -7,14 +7,14 @@ import Poster from '../../components/ui/poster/Poster';
 import Backdrop from '../../components/details/backdrop/Backdrop';
 import Runtime from '../../components/details/runtime/Runtime';
 import Dates from '../../components/details/dates/Dates';
-import Trailer from '../../components/details/trailer/Trailer';
+import Trailers from '../../components/details/trailers/Trailers';
 import LinkPage from '../../components/details/linkPage/LinkPage';
 import Genres from '../../components/details/genres/Genres';
 import Countries from '../../components/details/countries/Countries';
 
-import { API_ROOT, API_KEY, API_LANGUAGE, API_VIDEOS } from '../../constans/api';
+import { API_ROOT, API_KEY, API_LANGUAGE } from '../../constans/api';
 import { LAST_LOCATION } from '../../constans/localStorage';
-import { getApiResults, getApiResources } from '../../service/getApiResources';
+import { getApiResults } from '../../service/getApiResources';
 import { getVideoFromLocation } from '../../utils/functions';
 import { getFromLocalStorage } from '../../utils/localStorage';
 
@@ -25,37 +25,21 @@ import style from './details.module.scss';
 const Details = forwardRef((props, ref) => {
   const [results, setResults] = useState(null);
   const [errorApi, setErrorApi] = useState(false);
-  
-  const [trailers, setTrailers] = useState(null);
-  const [totalTrailers, setTotalTrailers] = useState(null);
-  const [trailerNumber, setTrailerNumber] = useState(0);
+
   const [activeTrailer, setActiveTrailer] = useState(false);
 
   const { currentLang } = useContext(Context);
   const { pathname } = useLocation();
-  const { mediaType, videoId } = useParams();
+  const { videoId } = useParams();
   const navigate = useNavigate();
 
   const bodyBorderRadius = '0 0 .75rem .75rem';
 
-  const urlResults = `${API_ROOT}${getVideoFromLocation(pathname)}/${videoId}${API_KEY}${API_LANGUAGE}${currentLang}`;
-  const urlTrailers = `${API_ROOT}/${mediaType}/${videoId}${API_VIDEOS}${API_KEY}${API_LANGUAGE}${currentLang}`;
+  const url = `${API_ROOT}${getVideoFromLocation(pathname)}/${videoId}${API_KEY}${API_LANGUAGE}${currentLang}`;
 
   useEffect(() => {
-    getApiResults(urlResults, setResults, setErrorApi);
-  }, [urlResults]);
-  
-  useEffect(() => {
-    (async() => {
-      const res = await getApiResources(urlTrailers);
-
-      if (res) {
-        setTotalTrailers(res.results.length);
-        setTrailerNumber(0);
-        setTrailers(res.results);
-      }
-    })();
-  }, [urlTrailers, currentLang]);
+    getApiResults(url, setResults, setErrorApi);
+  }, [url]);
 
   return (
     <section className={style.details} ref={ref}>
@@ -72,26 +56,14 @@ const Details = forwardRef((props, ref) => {
             </Link> 
             
             <div className='container-800'>
-              {trailers && trailers.length > 0 &&
-                <Trailer 
-                  videoKey={trailers[trailerNumber].key}
-                  trailers={trailers}
-                  activeTrailer={activeTrailer}
-                  totalTrailers={totalTrailers}
-                  trailerNumber={trailerNumber}
-                  onActive={() => setActiveTrailer(true)}
-                  prevTrailer={() => {trailerNumber > 0 && setTrailerNumber(trailerNumber -1)}}
-                  nextTrailer={() =>
-                    totalTrailers && trailerNumber < (totalTrailers -1) && 
-                    setTrailerNumber(trailerNumber +1)
-                  }
-                  onClose={() => setActiveTrailer(false)}
-                />
-              }
+              <Trailers
+                activeTrailer={activeTrailer}
+                setActiveTrailer={setActiveTrailer}
+              />
 
               <div 
                 className={style.body}
-                style={activeTrailer && trailers.length > 0 ? {borderRadius: bodyBorderRadius} : null}
+                style={activeTrailer ? {borderRadius: bodyBorderRadius} : null}
               >
                 <div className={style.col}>
                   <h1>{results.title ? results.title : results.name}</h1>
