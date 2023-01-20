@@ -1,0 +1,78 @@
+.wrapp {
+  margin-top: 3.125rem;
+  display: flex;
+  flex-direction: column;
+  gap: .625rem;
+
+  & h2 {
+    line-height: 2;
+  }
+}
+
+.body {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  gap: 1.25rem;
+  padding: 10px;
+  border-radius: var(--b-radius);
+  background: var(--white-005);
+  -webkit-backdrop-filter: blur(var(--blur));
+  backdrop-filter: blur(var(--blur));
+  max-height: 5.625rem;
+
+  &.open {
+    max-height: 62.5rem;
+    transition: 2s ease-out;
+  }
+
+  & p {
+    font-weight: 300;
+  }
+}
+
+.avatar {
+  position: relative;
+  min-width: 2.1875rem;
+  height: 2.1875rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: .625rem;
+}
+
+.icon {
+  cursor: pointer;
+  position: absolute;
+  right: .625rem;
+  top: .625rem;
+}
+
+.more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white-005);
+  border-radius: 6.25rem;
+  height: 1.75rem;
+  transition: .3s;
+
+  &:hover {
+    background: var(--white-01);
+  }
+
+  & svg {
+    color: var(--gray-50);
+    font-size: 1.25rem;
+  }
+}
