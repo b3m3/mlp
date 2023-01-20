@@ -6,15 +6,11 @@ import style from './poster.module.scss';
 
 const Poster = ({ path }) => {
   return (
-    <>
-      {path &&
-        <img 
-          src={path ? API_POSTER+path : NoPoster}
-          alt="poster"
-          className={style.img}
-        />
-      }
-    </>
+    <img 
+      src={path ? API_POSTER+path : NoPoster}
+      alt="poster"
+      className={style.img}
+    />
   );
 }
 

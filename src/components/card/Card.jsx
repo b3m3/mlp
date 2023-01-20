@@ -4,13 +4,10 @@ import { useContext } from 'react';
 import Rating from '../ui/rating/Rating';
 import Poster from '../ui/poster/Poster';
 
-import { API_POSTER } from '../../constans/api';
 import { LAST_LOCATION } from '../../constans/localStorage';
 import { textOverflow, getVideoFromLocation } from '../../utils/functions';
 import { Context } from "../../context/context";
 import { addToLocalStorage } from '../../utils/localStorage';
-
-
 
 import style from './card.module.scss';
 
