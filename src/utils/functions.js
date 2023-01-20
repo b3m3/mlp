@@ -36,7 +36,7 @@ export const changeLangLocation = (location, lang) => {
   return '/'+lang + location.slice(3);
 };
 
-export const translateTitles = (arr, title, lang) => {
+export const translateCategoryTitle = (arr, title, lang) => {
   return arr.map(el => el[title] && el[title][0][lang]);
 };
 

@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
 import { getApiResults, getApiTotalPages } from '../../service/getApiResources';
-import { translateTitles } from '../../utils/functions';
+import { translateCategoryTitle } from '../../utils/functions';
 import { API_ROOT, API_KEY, API_PAGE, API_LANGUAGE } from '../../constans/api';
 
 import PageNavigation from '../../components/ui/pageNavigation/PageNavigation';
@@ -43,7 +43,7 @@ const Category = () => {
   return (
     <section className={style.category}>
       <h2>
-        {translateTitles(titles, category, currentLang)}
+        {translateCategoryTitle(titles, category, currentLang)}
       </h2>
 
       {errorApi
