@@ -26,24 +26,25 @@ const App = () => {
   return (
     <Context.Provider value={provider}>
       <BrowserRouter>
-        <div className="app">
-          <Header refDetails={refDetails} />
-            <div className='app-wrapp'>
-              <Sidebar refDetails={refDetails} />
-              <main>
-                <Routes>
-                  <Route path={'/:langId'} element={<Home />} />
-                  <Route path={'/:langId/movie'} element={<Movies />} />
-                  <Route path={'/:langId/tv'} element={<TvShows />} />
-                  <Route path={'/:langId/favorites'} element={<Favorites />} />
-                  <Route path={'/:langId/:mediaType/:category/:pageId'} element={<Category />} />
-                  <Route path={'/:langId/:mediaType/:videoId'} element={<Details ref={refDetails} />} />
-                  <Route path={'*'} element={<NotFound />} />
-
-                  <Route path={'/'} element={<Navigate to={'/'+currentLang} replace />} />
-                </Routes>
-              </main>
-            </div>
+        <div className="container">
+          <div className="app">
+            <Header refDetails={refDetails} />
+              <div className='app-wrapp'>
+                <Sidebar refDetails={refDetails} />
+                <main>
+                  <Routes>
+                    <Route path={'/:langId'} element={<Home />} />
+                    <Route path={'/:langId/movie'} element={<Movies />} />
+                    <Route path={'/:langId/tv'} element={<TvShows />} />
+                    <Route path={'/:langId/favorites'} element={<Favorites />} />
+                    <Route path={'/:langId/:mediaType/:category/:pageId'} element={<Category />} />
+                    <Route path={'/:langId/:mediaType/:videoId'} element={<Details ref={refDetails} />} />
+                    <Route path={'*'} element={<NotFound />} />
+                    <Route path={'/'} element={<Navigate to={'/'+currentLang} replace />} />
+                  </Routes>
+                </main>
+              </div>
+          </div>
         </div>
       </BrowserRouter>
     </Context.Provider>
