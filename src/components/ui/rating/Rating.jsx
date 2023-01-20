@@ -4,10 +4,19 @@ import style from './rating.module.scss';
 
 const Rating = ({ rating }) => {
   return (
-  <div className={style.wrapp}>
-    <AiFillStar />
-    <h4>{rating && rating.toFixed(1)}</h4>
-  </div>
+    <>
+      {rating && 
+        <div className={style.wrapp}>
+          <AiFillStar />
+          <h4>
+            {rating.toString().split('.')[1] 
+              ? `${rating.toString().split('.')[0]}.${rating.toString().split('.')[1][0]}` 
+              : rating
+            }
+          </h4>
+        </div>
+      }
+    </>
   );
 }
 

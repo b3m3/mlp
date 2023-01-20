@@ -11,12 +11,14 @@ import Trailers from '../../components/details/trailers/Trailers';
 import LinkPage from '../../components/details/linkPage/LinkPage';
 import Genres from '../../components/details/genres/Genres';
 import Countries from '../../components/details/countries/Countries';
+import Recommendations from '../../components/details/recommendations/Recommendations';
+import Reviews from '../../components/details/reviews/Reviews';
 
 import { API_ROOT, API_KEY, API_LANGUAGE } from '../../constans/api';
 import { LAST_LOCATION } from '../../constans/localStorage';
 import { getApiResults } from '../../service/getApiResources';
 import { getVideoFromLocation } from '../../utils/functions';
-import { getFromLocalStorage } from '../../utils/localStorage';
+import { getFromLocalStorage, removeItemFromLocalStorage } from '../../utils/localStorage';
 
 import { Context } from '../../context/context';
 
@@ -50,7 +52,10 @@ const Details = forwardRef((props, ref) => {
           <div className="container">
             <Link 
               to={getFromLocalStorage(LAST_LOCATION) && getFromLocalStorage(LAST_LOCATION)}
-              onClick={() => {!getFromLocalStorage(LAST_LOCATION) && navigate(-1)}}
+              onClick={() => {
+                !getFromLocalStorage(LAST_LOCATION) && navigate(-1);
+                getFromLocalStorage(LAST_LOCATION) && removeItemFromLocalStorage(LAST_LOCATION);
+              }}
             >
               <Button left />
             </Link> 
@@ -92,6 +97,9 @@ const Details = forwardRef((props, ref) => {
                   <Poster path={results.poster_path}/>
                 </div>
               </div>
+
+              <Recommendations />
+              <Reviews />
             </div>
           </div>
         </>

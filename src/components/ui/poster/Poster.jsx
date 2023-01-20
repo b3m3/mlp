@@ -7,7 +7,11 @@ import style from './poster.module.scss';
 const Poster = ({ path }) => {
   return (
     <img 
-      src={path ? API_POSTER+path : NoPoster}
+      src={
+        path
+          ? path.indexOf('http') === 1 ? path.slice(1) : API_POSTER+path
+          : NoPoster
+      }
       alt="poster"
       className={style.img}
     />

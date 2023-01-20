@@ -7,7 +7,7 @@ import { AiFillCalendar } from 'react-icons/ai';
 
 import style from './dates.module.scss';
 
-const Dates = ({ release, first, last, status }) => {
+const Dates = ({ release, first, last, status, fullDate }) => {
   const { currentLang } = useContext(Context);
 
   const endeds = [{ru: 'Серии выпускаются'}, {uk: 'Серії випускаються'}, {en: 'Returning series'}];
@@ -20,13 +20,16 @@ const Dates = ({ release, first, last, status }) => {
   return (    
     <div className={style.wrapp}>
       <AiFillCalendar />
-      <h4>
-        {release && getYearFromDate(release)}
-        {first && getYearFromDate(first)}
-        {last && status === "Ended" && ` - ${getYearFromDate(last)}`}
-        {last && status === "Returning Series" && ` - ${translate(endeds, currentLang)}`}
-        {last && status === "Canceled" && ` - ${translate(canceleds, currentLang)}`}
-      </h4>
+      {fullDate
+        ? <h4>{fullDate && fullDate.split('T').shift().split('-').join('/')}</h4>
+        : <h4>
+          {release && getYearFromDate(release)}
+          {first && getYearFromDate(first)}
+          {last && status === "Ended" && ` - ${getYearFromDate(last)}`}
+          {last && status === "Returning Series" && ` - ${translate(endeds, currentLang)}`}
+          {last && status === "Canceled" && ` - ${translate(canceleds, currentLang)}`}
+        </h4>
+      }
     </div>
   );
 }

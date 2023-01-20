@@ -11,7 +11,7 @@ import { addToLocalStorage } from '../../utils/localStorage';
 
 import style from './card.module.scss';
 
-const Card = ({id, poster_path, title, name, vote_average}) => {
+const Card = ({id, poster_path, title, name, vote_average, small}) => {
   const { pathname } = useLocation();
   const { currentLang } = useContext(Context);
 
@@ -20,7 +20,7 @@ const Card = ({id, poster_path, title, name, vote_average}) => {
   return (
     <div className={style.card}>
       <div 
-        className={style.poster}
+        className={`${style.poster} ${small && style.small}`}
         onClick={() => addToLocalStorage(LAST_LOCATION, pathname)}
       >
         <Link 
@@ -30,11 +30,15 @@ const Card = ({id, poster_path, title, name, vote_average}) => {
         </Link>
       </div>
 
-      <h5>
-        {title ? textOverflow(title, 22) : textOverflow(name, 22)}
-      </h5>
-      
-      <Rating rating={vote_average} />
+      {!small &&
+        <>
+          <h5>
+            {title ? textOverflow(title, 22) : textOverflow(name, 22)}
+          </h5>
+          
+          <Rating rating={vote_average} />
+        </>      
+      }
     </div>
   );
 }
