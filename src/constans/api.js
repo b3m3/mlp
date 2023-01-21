@@ -29,6 +29,7 @@ export const API_TV_SHOWS = '/tv';
 export const API_VIDEOS = '/videos';
 export const API_RECOMMEND = '/recommendations';
 export const API_REVIEWS = '/reviews';
+export const API_CREDITS = '/credits';
 
 // CATEGORY GENERAL
 export const API_POPULAR = '/popular';
