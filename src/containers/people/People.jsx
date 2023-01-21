@@ -1,10 +1,25 @@
+import { useContext } from 'react';
+
+import Preview from '../../components/preview/Preview';
+import { PEOPLE_POPULAR, API_LANGUAGE } from '../../constans/api';
+
+import { Context } from '../../context/context';
+
 import style from './people.module.scss';
 
 const People = () => {
+  const { currentLang } = useContext(Context);
+
+  const items = [
+    {en: 'Popular', uk: 'Популярні', ru: 'Популярные', url: PEOPLE_POPULAR+API_LANGUAGE+currentLang},
+  ];
+
   return (
-    <div className={style.wrapp}>
-      <h2>People</h2>
-    </div>
+    <section className={style.movies}>
+      {items.map((item, i) => (
+        <Preview key={i} item={item}/>
+      ))}
+    </section>
   );
 }
 
