@@ -41,6 +41,7 @@ const Details = forwardRef((props, ref) => {
 
   useEffect(() => {
     getApiResults(url, setResults, setErrorApi);
+    setActiveTrailer(false);
   }, [url]);
 
   return (
