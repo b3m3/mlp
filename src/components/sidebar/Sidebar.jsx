@@ -5,6 +5,7 @@ import { AiFillHome } from 'react-icons/ai';
 import { MdLocalMovies } from 'react-icons/md';
 import { RiMovie2Fill } from 'react-icons/ri';
 import { MdFavorite } from 'react-icons/md';
+import { BsFillPeopleFill } from 'react-icons/bs';
 
 import { Context } from '../../context/context';
 
@@ -20,6 +21,7 @@ const Sidebar = ({refVideoInfo}) => {
     {en: 'Home', uk: 'Домашня', ru: 'Домашняя', icon: <AiFillHome />, end: true, path: '/'+currentLang},
     {en: 'Movies', uk: 'Фільми', ru: 'Фильмы', icon: <MdLocalMovies />, path: '/'+currentLang+'/movie'},
     {en: 'TV Shows', uk: 'Серіали', ru: 'Сериалы', icon: <RiMovie2Fill />, path: '/'+currentLang+'/tv'},
+    {en: 'People', uk: 'Люди', ru: 'Люди', icon: <BsFillPeopleFill />, path: '/'+currentLang+'/people'},
     {en: 'Favorites', uk: 'Вибране', ru: 'Избранное', icon: <MdFavorite />, path: '/'+currentLang+'/favorites'},
   ];
 

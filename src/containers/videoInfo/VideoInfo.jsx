@@ -39,6 +39,7 @@ const VideoInfo = forwardRef((props, ref) => {
 
   const url = `${API_ROOT}${getVideoFromLocation(pathname)}/${videoId}${API_KEY}${API_LANGUAGE}${currentLang}`;
 
+
   useEffect(() => {
     getApiResults(url, setResults, setErrorApi);
     setActiveTrailer(false);

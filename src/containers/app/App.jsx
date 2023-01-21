@@ -6,6 +6,7 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import Home from '../../containers/home/Home';
 import Movies from '../../containers/movies/Movies';
 import TvShows from '../tvShows/TvShows';
+import People from '../people/People';
 import Favorites from '../../containers/favorites/Favorites';
 import Category from '../../containers/category/Category';
 import VideoInfo from '../videoInfo/VideoInfo';
@@ -36,6 +37,7 @@ const App = () => {
                   <Route path={'/:langId'} element={<Home />} />
                   <Route path={'/:langId/movie'} element={<Movies />} />
                   <Route path={'/:langId/tv'} element={<TvShows />} />
+                  <Route path={'/:langId/people'} element={<People />} />
                   <Route path={'/:langId/favorites'} element={<Favorites />} />
                   <Route path={'/:langId/:mediaType/:category/:pageId'} element={<Category />} />
                   <Route path={'/:langId/:mediaType/:videoId'} element={<VideoInfo ref={refVideoInfo} />} />
