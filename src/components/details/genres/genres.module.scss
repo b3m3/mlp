@@ -3,6 +3,10 @@
   flex-wrap: wrap;
   gap: .4375rem;
 
+  @media screen and (max-width: 768px) {
+    justify-content: center;
+  }
+
   & li {
     font-weight: 600;
     font-size: 1rem;

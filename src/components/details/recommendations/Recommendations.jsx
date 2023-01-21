@@ -47,8 +47,14 @@ const Recommendations = () => {
           <Swiper
             modules={[Navigation]}
             spaceBetween={10}
-            slidesPerView={5}
             loop={true}
+            speed={800}
+            breakpoints={{
+              320: {slidesPerView: 2},
+              420: {slidesPerView: 3},
+              550: {slidesPerView: 4},
+              700: {slidesPerView: 5}
+            }}
             navigation={{
               prevEl: ".rec-prev",
               nextEl: ".rec-next"
