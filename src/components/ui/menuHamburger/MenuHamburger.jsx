@@ -5,14 +5,14 @@ import { Context } from '../../../context/context';
 
 import style from './hamburger.module.scss';
 
-const MenuHamburger = ({ refDetails }) => {
+const MenuHamburger = ({ refVideoInfo }) => {
   const [isActive, setIsActive] = useState(true);
 
   const { pathname } = useLocation();
   const { menuActive, setMenuActive } = useContext(Context);
 
   useEffect(() => {
-    if (refDetails.current) {
+    if (refVideoInfo.current) {
       setIsActive(false);
       setMenuActive(false);
     } else {
