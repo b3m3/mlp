@@ -10,7 +10,7 @@ import { Context } from '../../context/context';
 
 import style from './sidebar.module.scss';
 
-const Sidebar = ({refDetails}) => {
+const Sidebar = ({refVideoInfo}) => {
   const [isActive, setIsActive] = useState(false);
 
   const { currentLang, menuActive } = useContext(Context);
@@ -24,7 +24,7 @@ const Sidebar = ({refDetails}) => {
   ];
 
   useEffect(() => {
-    return refDetails.current ? setIsActive(true) : setIsActive(false);
+    return refVideoInfo.current ? setIsActive(true) : setIsActive(false);
   }, [pathname]);
 
   return (

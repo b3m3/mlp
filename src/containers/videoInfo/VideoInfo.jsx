@@ -4,15 +4,15 @@ import { Link, useLocation, useParams, useNavigate } from 'react-router-dom';
 import Button from '../../components/ui/button/Button';
 import Rating from '../../components/ui/rating/Rating';
 import Poster from '../../components/ui/poster/Poster';
-import Backdrop from '../../components/details/backdrop/Backdrop';
-import Runtime from '../../components/details/runtime/Runtime';
-import Dates from '../../components/details/dates/Dates';
-import Trailers from '../../components/details/trailers/Trailers';
-import LinkPage from '../../components/details/linkPage/LinkPage';
-import Genres from '../../components/details/genres/Genres';
-import Countries from '../../components/details/countries/Countries';
-import Recommendations from '../../components/details/recommendations/Recommendations';
-import Reviews from '../../components/details/reviews/Reviews';
+import Backdrop from '../../components/videoInfo/backdrop/Backdrop';
+import Runtime from '../../components/videoInfo/runtime/Runtime';
+import Dates from '../../components/videoInfo/dates/Dates';
+import Trailers from '../../components/videoInfo/trailers/Trailers';
+import LinkPage from '../../components/videoInfo/linkPage/LinkPage';
+import Genres from '../../components/videoInfo/genres/Genres';
+import Countries from '../../components/videoInfo/countries/Countries';
+import Recommendations from '../../components/videoInfo/recommendations/Recommendations';
+import Reviews from '../../components/videoInfo/reviews/Reviews';
 
 import { API_ROOT, API_KEY, API_LANGUAGE } from '../../constans/api';
 import { LAST_LOCATION } from '../../constans/localStorage';
@@ -22,9 +22,9 @@ import { getFromLocalStorage, removeItemFromLocalStorage } from '../../utils/loc
 
 import { Context } from '../../context/context';
 
-import style from './details.module.scss';
+import style from './video-info.module.scss';
 
-const Details = forwardRef((props, ref) => {
+const VideoInfo = forwardRef((props, ref) => {
   const [results, setResults] = useState(null);
   const [errorApi, setErrorApi] = useState(false);
 
@@ -44,7 +44,7 @@ const Details = forwardRef((props, ref) => {
   }, [url]);
 
   return (
-    <section className={style.details} ref={ref}>
+    <section ref={ref}>
       {results &&
         <>
           <Backdrop backdrop={results.backdrop_path}/>
@@ -106,4 +106,4 @@ const Details = forwardRef((props, ref) => {
   );
 })
 
-export default Details;
+export default VideoInfo;

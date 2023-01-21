@@ -8,7 +8,7 @@ import Movies from '../../containers/movies/Movies';
 import TvShows from '../tvShows/TvShows';
 import Favorites from '../../containers/favorites/Favorites';
 import Category from '../../containers/category/Category';
-import Details from '../../containers/details/Details';
+import VideoInfo from '../videoInfo/VideoInfo';
 import NotFound from '../../containers/notFound/NotFound';
 
 import { Context } from '../../context/context';
@@ -19,7 +19,7 @@ const App = () => {
   const [menuActive, setMenuActive] = useState(false);
   const [currentLang, setCurrentLang] = useState('');
 
-  const refDetails = useRef(null);
+  const refVideoInfo = useRef(null);
 
   const provider = {currentLang, menuActive, setCurrentLang, setMenuActive};
 
@@ -28,9 +28,9 @@ const App = () => {
       <BrowserRouter>
         <div className="app">
           <div className="container">
-            <Header refDetails={refDetails} />
+            <Header refVideoInfo={refVideoInfo} />
             <div className='app-wrapp'>
-              <Sidebar refDetails={refDetails} />
+              <Sidebar refVideoInfo={refVideoInfo} />
               <main>
                 <Routes>
                   <Route path={'/:langId'} element={<Home />} />
@@ -38,7 +38,7 @@ const App = () => {
                   <Route path={'/:langId/tv'} element={<TvShows />} />
                   <Route path={'/:langId/favorites'} element={<Favorites />} />
                   <Route path={'/:langId/:mediaType/:category/:pageId'} element={<Category />} />
-                  <Route path={'/:langId/:mediaType/:videoId'} element={<Details ref={refDetails} />} />
+                  <Route path={'/:langId/:mediaType/:videoId'} element={<VideoInfo ref={refVideoInfo} />} />
                   <Route path={'*'} element={<NotFound />} />
                   <Route path={'/'} element={<Navigate to={'/'+currentLang} replace />} />
                 </Routes>
