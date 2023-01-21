@@ -44,9 +44,9 @@ const Details = forwardRef((props, ref) => {
   }, [url]);
 
   return (
-    <>
+    <section className={style.details} ref={ref}>
       {results &&
-        <section className={style.details} ref={ref}>
+        <>
           <Backdrop backdrop={results.backdrop_path}/>
           
           <Link 
@@ -100,9 +100,9 @@ const Details = forwardRef((props, ref) => {
             <Recommendations />
             <Reviews />
           </div>
-        </section>
+        </>
       }
-    </>
+    </section>
   );
 })
 
