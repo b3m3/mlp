@@ -1,17 +1,26 @@
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
 
 import Poster from '../ui/poster/Poster';
+import { Context } from '../../context/context';
 
 import style from './people-item.module.scss';
 
-const PeopleItem = ({ id, name, profile_path }) => {
+const PeopleItem = ({ id, name, character, profile_path }) => {
+  const { currentLang } = useContext(Context);
+
+  const link = `/${currentLang}/people/${id}`;
+
   return (
     <div className={style.wrapp}>
-      <Link >
+      <Link to={link}>
         <Poster path={profile_path} />
       </Link>
 
-      <h4>{name}</h4>
+      <div>
+        <h4>{name && name}</h4>
+        <span>{character && character}</span>
+      </div>
     </div>
   );
 }
