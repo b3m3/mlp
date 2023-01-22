@@ -19,12 +19,12 @@ const Reviews = () => {
   const [numberResults, setNumberResults] = useState(3);
   const [isOpen, setIsOpen] = useState(null);
 
-  const { mediaType, videoId } = useParams();
+  const { type, videoId } = useParams();
   const { currentLang } = useContext(Context);
 
   const titles = [{en: 'Reviews'},{ru: 'Отзывы'},{uk: 'Відгуки'}];
 
-  const url = `${API_ROOT}/${mediaType}/${videoId}${API_REVIEWS}${API_KEY}`;
+  const url = `${API_ROOT}/${type}/${videoId}${API_REVIEWS}${API_KEY}`;
 
   useEffect(() => {
     (async() => {
@@ -34,7 +34,7 @@ const Reviews = () => {
 
     setNumberResults(3);
     setIsOpen(false);
-  }, [mediaType, url]);
+  }, [type, url]);
 
   return (
     <>

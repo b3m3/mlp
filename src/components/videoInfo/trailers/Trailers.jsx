@@ -19,11 +19,11 @@ const Trailers = ({activeTrailer, setActiveTrailer}) => {
   const [trailerNumber, setTrailerNumber] = useState(0);
 
   const { currentLang } = useContext(Context);
-  const { videoId, mediaType } = useParams();
+  const { videoId, type } = useParams();
 
   const lock = {opacity: '.1', pointerEvents: 'none'};
 
-  const url = `${API_ROOT}/${mediaType}/${videoId}${API_VIDEOS}${API_KEY}${API_LANGUAGE}${currentLang}`;
+  const url = `${API_ROOT}/${type}/${videoId}${API_VIDEOS}${API_KEY}${API_LANGUAGE}${currentLang}`;
 
   useEffect(() => {
     (async() => {

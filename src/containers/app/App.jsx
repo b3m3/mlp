@@ -47,8 +47,8 @@ const App = () => {
                   <Route path={'/:langId/tv'} element={<TvShows />} />
                   <Route path={'/:langId/people'} element={<People />} />
                   <Route path={'/:langId/favorites'} element={<Favorites />} />
-                  <Route path={'/:langId/:mediaType/:category/:pageId'} element={<Category />} />
-                  <Route path={'/:langId/:mediaType/:videoId'} element={<VideoInfo ref={refVideoInfo} />} />
+                  <Route path={'/:langId/:type/:category/:pageId'} element={<Category />} />
+                  <Route path={'/:langId/:type/:videoId'} element={<VideoInfo ref={refVideoInfo} />} />
                   <Route path={'/:langId/people/:peopleId'} element={<PeopleInfo ref={refPeopleInfo} />} />
                   <Route path={'*'} element={<NotFound />} />
                   <Route path={'/'} element={<Navigate to={'/'+currentLang} replace />} />
