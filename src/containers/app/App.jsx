@@ -7,6 +7,7 @@ import Home from '../../containers/home/Home';
 import Movies from '../../containers/movies/Movies';
 import TvShows from '../tvShows/TvShows';
 import People from '../people/People';
+import PeopleInfo from '../peopleInfo/PeopleInfo';
 import Favorites from '../../containers/favorites/Favorites';
 import Category from '../../containers/category/Category';
 import VideoInfo from '../videoInfo/VideoInfo';
@@ -21,6 +22,7 @@ const App = () => {
   const [currentLang, setCurrentLang] = useState('');
 
   const refVideoInfo = useRef(null);
+  const refPeopleInfo = useRef(null);
 
   const provider = {currentLang, menuActive, setCurrentLang, setMenuActive};
 
@@ -29,9 +31,15 @@ const App = () => {
       <BrowserRouter>
         <div className="app">
           <div className="container">
-            <Header refVideoInfo={refVideoInfo} />
+            <Header 
+              refVideoInfo={refVideoInfo}
+              refPeopleInfo={refPeopleInfo}
+            />
             <div className='app-wrapp'>
-              <Sidebar refVideoInfo={refVideoInfo} />
+              <Sidebar 
+                refVideoInfo={refVideoInfo}
+                refPeopleInfo={refPeopleInfo}
+              />
               <main>
                 <Routes>
                   <Route path={'/:langId'} element={<Home />} />
@@ -41,6 +49,7 @@ const App = () => {
                   <Route path={'/:langId/favorites'} element={<Favorites />} />
                   <Route path={'/:langId/:mediaType/:category/:pageId'} element={<Category />} />
                   <Route path={'/:langId/:mediaType/:videoId'} element={<VideoInfo ref={refVideoInfo} />} />
+                  <Route path={'/:langId/people/:peopleId'} element={<PeopleInfo ref={refPeopleInfo} />} />
                   <Route path={'*'} element={<NotFound />} />
                   <Route path={'/'} element={<Navigate to={'/'+currentLang} replace />} />
                 </Routes>
