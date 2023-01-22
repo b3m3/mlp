@@ -9,11 +9,7 @@
   position: relative;
   border-radius: .9375rem;
   overflow: hidden;
-  height: 18.75rem;
-
-  &.small {
-    height: 14.0625rem;
-  }
+  padding: 75.76% 0;
 
   @media (any-hover: hover) {
     &:hover {

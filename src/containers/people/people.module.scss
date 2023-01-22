@@ -1,0 +1,11 @@
+.wrapp {
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+}
+
+.people {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+}
