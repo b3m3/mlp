@@ -48,7 +48,7 @@ const Recommendations = () => {
             modules={[Navigation]}
             spaceBetween={10}
             loop={true}
-            speed={800}
+            speed={400}
             breakpoints={{
               320: {slidesPerView: 2},
               420: {slidesPerView: 3},

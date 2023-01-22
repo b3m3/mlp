@@ -13,6 +13,7 @@ import Genres from '../../components/videoInfo/genres/Genres';
 import Countries from '../../components/videoInfo/countries/Countries';
 import Recommendations from '../../components/videoInfo/recommendations/Recommendations';
 import Reviews from '../../components/videoInfo/reviews/Reviews';
+import Cast from '../../components/videoInfo/cast/Cast';
 
 import { API_ROOT, API_KEY, API_LANGUAGE } from '../../constans/api';
 import { LAST_LOCATION } from '../../constans/localStorage';
@@ -38,7 +39,6 @@ const VideoInfo = forwardRef((props, ref) => {
   const bodyBorderRadius = '0 0 .75rem .75rem';
 
   const url = `${API_ROOT}${getVideoFromLocation(pathname)}/${videoId}${API_KEY}${API_LANGUAGE}${currentLang}`;
-
 
   useEffect(() => {
     getApiResults(url, setResults, setErrorApi);
@@ -99,6 +99,7 @@ const VideoInfo = forwardRef((props, ref) => {
               </div>
             </div>
 
+            <Cast />
             <Recommendations />
             <Reviews />
           </div>

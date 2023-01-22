@@ -50,7 +50,7 @@ const Cast = () => {
           <Swiper
             modules={[Navigation]}
             spaceBetween={10}
-            loop={true}
+            loop={results.cast.length > 5 ? true : false}
             speed={400}
             breakpoints={{
               320: {slidesPerView: 2},
