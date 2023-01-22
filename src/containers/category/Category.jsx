@@ -11,6 +11,7 @@ import Shimmer from '../../components/ui/shimmer/Shimmer';
 import { Context } from '../../context/context';
 
 import Card from '../../components/card/Card';
+import PeopleItem from '../../components/peopleItem/PeopleItem';
 
 import style from './category.module.scss';
 
@@ -51,7 +52,12 @@ const Category = () => {
         : <div className={style.body}>
             {results
               ? results.results.map(props => (
-                  <Card key={props.id} {...props} />
+                  <>
+                    {type === 'person' 
+                      ? <PeopleItem key={props.id} {...props} />
+                      : <Card key={props.id} {...props} />
+                    }
+                  </>
                 ))
               : <>
                   {[...Array(20)].map((v, i) => (

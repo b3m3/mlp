@@ -45,11 +45,11 @@ const App = () => {
                   <Route path={'/:langId'} element={<Home />} />
                   <Route path={'/:langId/movie'} element={<Movies />} />
                   <Route path={'/:langId/tv'} element={<TvShows />} />
-                  <Route path={'/:langId/people'} element={<People />} />
+                  <Route path={'/:langId/person'} element={<People />} />
                   <Route path={'/:langId/favorites'} element={<Favorites />} />
                   <Route path={'/:langId/:type/:category/:pageId'} element={<Category />} />
                   <Route path={'/:langId/:type/:videoId'} element={<VideoInfo ref={refVideoInfo} />} />
-                  <Route path={'/:langId/people/:peopleId'} element={<PeopleInfo ref={refPeopleInfo} />} />
+                  <Route path={'/:langId/person/:personId'} element={<PeopleInfo ref={refPeopleInfo} />} />
                   <Route path={'*'} element={<NotFound />} />
                   <Route path={'/'} element={<Navigate to={'/'+currentLang} replace />} />
                 </Routes>

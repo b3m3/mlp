@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Card from '../card/Card';
+import PeopleItem from '../peopleItem/PeopleItem';
 import SeeAll from '../ui/seeAll/SeeAll';
 import Shimmer from '../ui/shimmer/Shimmer';
 
@@ -11,7 +12,7 @@ import { Context } from '../../context/context';
 import style from './preview.module.scss';
 import 'swiper/css';
 
-const Preview = ({ item }) => {
+const Preview = ({ item, actors }) => {
   const [results, setResults] = useState(null);
   const [errorApi, setErrorApi] = useState(false);
 
@@ -39,7 +40,7 @@ const Preview = ({ item }) => {
             {results 
               ? results.results.map(props => (
                 <SwiperSlide  key={props.id} className={style.slide} >
-                  <Card {...props} />
+                  {actors ? <PeopleItem {...props} /> : <Card {...props} />}
                 </SwiperSlide>
               ))
               : <>

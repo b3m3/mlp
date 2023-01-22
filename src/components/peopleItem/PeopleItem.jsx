@@ -9,7 +9,7 @@ import style from './people-item.module.scss';
 const PeopleItem = ({ id, name, character, profile_path }) => {
   const { currentLang } = useContext(Context);
 
-  const link = `/${currentLang}/people/${id}`;
+  const link = `/${currentLang}/person/${id}`;
 
   return (
     <div className={style.wrapp}>

@@ -21,7 +21,7 @@ const Sidebar = ({refVideoInfo, refPeopleInfo}) => {
     {en: 'Home', uk: 'Домашня', ru: 'Домашняя', icon: <AiFillHome />, end: true, path: '/'+currentLang},
     {en: 'Movies', uk: 'Фільми', ru: 'Фильмы', icon: <MdLocalMovies />, path: '/'+currentLang+'/movie'},
     {en: 'TV Shows', uk: 'Серіали', ru: 'Сериалы', icon: <RiMovie2Fill />, path: '/'+currentLang+'/tv'},
-    {en: 'People', uk: 'Люди', ru: 'Люди', icon: <BsFillPeopleFill />, path: '/'+currentLang+'/people'},
+    {en: 'Actors', uk: 'Актори', ru: 'Актеры', icon: <BsFillPeopleFill />, path: '/'+currentLang+'/person'},
     {en: 'Favorites', uk: 'Вибране', ru: 'Избранное', icon: <MdFavorite />, path: '/'+currentLang+'/favorites'},
   ];
 
