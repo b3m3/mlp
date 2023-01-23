@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import Card from '../card/Card';
+import VideoCard from '../videoCard/VideoCard';
 import ActorCard from '../actorCard/ActorCard';
 import SeeAll from '../ui/seeAll/SeeAll';
 import Shimmer from '../ui/shimmer/Shimmer';
@@ -40,7 +40,7 @@ const Preview = ({ item, actors }) => {
             {results &&
               results.results.map(props => (
                 <SwiperSlide key={props.id} className={style.slide} >
-                  {actors ? <ActorCard {...props} /> : <Card {...props}  />}
+                  {actors ? <ActorCard {...props} /> : <VideoCard {...props}  />}
                 </SwiperSlide>
               ))
             }

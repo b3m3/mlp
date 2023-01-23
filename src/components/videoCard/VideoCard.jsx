@@ -7,9 +7,9 @@ import Poster from '../ui/poster/Poster';
 import { textOverflow, getTypeFromLocation } from '../../utils/functions';
 import { Context } from "../../context/context";
 
-import style from './card.module.scss';
+import style from './video-card.module.scss';
 
-const Card = ({id, poster_path, title, name, vote_average, small}) => {
+const VideoCard = ({id, poster_path, title, name, vote_average, small}) => {
   const { pathname } = useLocation();
   const { currentLang } = useContext(Context);
 
@@ -40,4 +40,4 @@ const Card = ({id, poster_path, title, name, vote_average, small}) => {
   );
 }
 
-export default Card;
+export default VideoCard;

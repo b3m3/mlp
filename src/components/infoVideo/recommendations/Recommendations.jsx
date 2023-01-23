@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 
-import Card from '../../card/Card';
+import VideoCard from '../../videoCard/VideoCard';
 import SliderNavigation from '../../ui/sliderNavigation/SliderNavigation';
 
 import { API_ROOT, API_KEY, API_RECOMMEND, API_LANGUAGE } from '../../../constans/api';
@@ -63,7 +63,7 @@ const Recommendations = () => {
           >
             {results && results.results.map(props => (
               <SwiperSlide key={props.id} style={{width: '12.375rem'}}>
-                <Card {...props} small />
+                <VideoCard {...props} small />
               </SwiperSlide>
             ))}
           </Swiper>

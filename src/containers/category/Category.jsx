@@ -6,11 +6,10 @@ import { translateCategoryTitle } from '../../utils/functions';
 import { API_ROOT, API_KEY, API_PAGE, API_LANGUAGE } from '../../constans/api';
 
 import PageNavigation from '../../components/ui/pageNavigation/PageNavigation';
-import Shimmer from '../../components/ui/shimmer/Shimmer';
 
 import { Context } from '../../context/context';
 
-import Card from '../../components/card/Card';
+import VideoCard from '../../components/videoCard/VideoCard';
 import ActorCard from '../../components/actorCard/ActorCard';
 
 import style from './category.module.scss';
@@ -55,7 +54,7 @@ const Category = () => {
                 <div key={props.id}>
                   {type === 'person' 
                     ? <ActorCard {...props} />
-                    : <Card {...props} />
+                    : <VideoCard {...props} />
                   }
                 </div>
               ))
