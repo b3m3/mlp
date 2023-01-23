@@ -11,7 +11,6 @@ import style from './not-found.module.scss';
 const NotFound = () => {
   const { pathname } = useLocation();
   const { currentLang } = useContext(Context);
-  const { lang } = currentLang;
 
   const errors = [
     {en: `No results found for "${pathname}"`},
@@ -24,7 +23,7 @@ const NotFound = () => {
       <div className={style.image}>
         <img src={Img} alt="not-found" />
       </div>
-      <p>{notFoundError(errors, lang)}</p>
+      <p>{notFoundError(errors, currentLang)}</p>
     </div>
   );
 }

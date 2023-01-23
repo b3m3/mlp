@@ -41,13 +41,13 @@ const App = () => {
               />
               <main>
                 <Routes>
-                  <Route path={'/:langId'} element={<Home />} />
-                  <Route path={'/:langId/movie'} element={<Movies />} />
-                  <Route path={'/:langId/tv'} element={<TvShows />} />
-                  <Route path={'/:langId/person'} element={<People />} />
-                  <Route path={'/:langId/favorites'} element={<Favorites />} />
-                  <Route path={'/:langId/:type/:category/:pageId'} element={<Category />} />
-                  <Route path={'/:langId/:type/:videoId'} element={<VideoInfo ref={refVideoInfo} />} />
+                  <Route path={'/:lang'} element={<Home />} />
+                  <Route path={'/:lang/movie'} element={<Movies />} />
+                  <Route path={'/:lang/tv'} element={<TvShows />} />
+                  <Route path={'/:lang/person'} element={<People />} />
+                  <Route path={'/:lang/favorites'} element={<Favorites />} />
+                  <Route path={'/:lang/:type/:category/:pageId'} element={<Category />} />
+                  <Route path={'/:lang/:type/:videoId'} element={<VideoInfo ref={refVideoInfo} />} />
                   <Route path={'*'} element={<NotFound />} />
                   <Route path={'/'} element={<Navigate to={'/'+currentLang} replace />} />
                 </Routes>
