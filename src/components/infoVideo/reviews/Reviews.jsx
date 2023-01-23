@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import Poster from '../../ui/poster/Poster';
 import Rating from '../../ui/rating/Rating';
-import Dates from '../dates/Dates';
+import Dates from '../../ui/dates/Dates';
 
 import { API_ROOT, API_KEY, API_REVIEWS } from '../../../constans/api';
 import { getApiResources } from '../../../service/getApiResources';
