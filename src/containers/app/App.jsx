@@ -9,7 +9,7 @@ import TvShows from '../tvShows/TvShows';
 import Actors from '../actors/Actors';
 import Favorites from '../../containers/favorites/Favorites';
 import Category from '../../containers/category/Category';
-import Info from '../info/Info';
+import InfoVideo from '../infoVideo/InfoVideo';
 import NotFound from '../../containers/notFound/NotFound';
 
 import { Context } from '../../context/context';
@@ -40,7 +40,7 @@ const App = () => {
                   <Route path={'/:lang/person'} element={<Actors />} />
                   <Route path={'/:lang/favorites'} element={<Favorites />} />
                   <Route path={'/:lang/:type/:category/:page'} element={<Category />} />
-                  <Route path={'/:lang/:type/:id'} element={<Info ref={refInfo} />} />
+                  <Route path={'/:lang/:type/:id'} element={<InfoVideo ref={refInfo} />} />
                   <Route path={'*'} element={<NotFound />} />
                   <Route path={'/'} element={<Navigate to={'/'+currentLang} replace />} />
                 </Routes>

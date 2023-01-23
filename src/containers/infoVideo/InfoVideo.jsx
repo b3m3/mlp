@@ -4,16 +4,16 @@ import { Link, useLocation, useParams, useNavigate } from 'react-router-dom';
 import Button from '../../components/ui/button/Button';
 import Rating from '../../components/ui/rating/Rating';
 import Poster from '../../components/ui/poster/Poster';
-import Backdrop from '../../components/info/backdrop/Backdrop';
-import Runtime from '../../components/info/runtime/Runtime';
-import Dates from '../../components/info/dates/Dates';
-import Trailers from '../../components/info/trailers/Trailers';
-import LinkPage from '../../components/info/linkPage/LinkPage';
-import Genres from '../../components/info/genres/Genres';
-import Countries from '../../components/info/countries/Countries';
-import Recommendations from '../../components/info/recommendations/Recommendations';
-import Reviews from '../../components/info/reviews/Reviews';
-import Cast from '../../components/info/cast/Cast';
+import Backdrop from '../../components/infoVideo/backdrop/Backdrop';
+import Runtime from '../../components/infoVideo/runtime/Runtime';
+import Dates from '../../components/infoVideo/dates/Dates';
+import Trailers from '../../components/infoVideo/trailers/Trailers';
+import LinkPage from '../../components/infoVideo/linkPage/LinkPage';
+import Genres from '../../components/infoVideo/genres/Genres';
+import Countries from '../../components/infoVideo/countries/Countries';
+import Recommendations from '../../components/infoVideo/recommendations/Recommendations';
+import Reviews from '../../components/infoVideo/reviews/Reviews';
+import Cast from '../../components/infoVideo/cast/Cast';
 
 import { API_ROOT, API_KEY, API_LANGUAGE } from '../../constans/api';
 import { getApiResults } from '../../service/getApiResources';
@@ -21,9 +21,9 @@ import { getTypeFromLocation } from '../../utils/functions';
 
 import { Context } from '../../context/context';
 
-import style from './info.module.scss';
+import style from './info-video.module.scss';
 
-const Info = forwardRef((props, ref) => {
+const InfoVideo = forwardRef((props, ref) => {
   const [results, setResults] = useState(null);
   const [errorApi, setErrorApi] = useState(false);
 
@@ -101,4 +101,4 @@ const Info = forwardRef((props, ref) => {
   );
 })
 
-export default Info;
+export default InfoVideo;
