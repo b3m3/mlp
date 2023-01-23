@@ -46,7 +46,7 @@ const App = () => {
                   <Route path={'/:lang/tv'} element={<TvShows />} />
                   <Route path={'/:lang/person'} element={<People />} />
                   <Route path={'/:lang/favorites'} element={<Favorites />} />
-                  <Route path={'/:lang/:type/:category/:pageId'} element={<Category />} />
+                  <Route path={'/:lang/:type/:category/:page'} element={<Category />} />
                   <Route path={'/:lang/:type/:videoId'} element={<VideoInfo ref={refVideoInfo} />} />
                   <Route path={'*'} element={<NotFound />} />
                   <Route path={'/'} element={<Navigate to={'/'+currentLang} replace />} />

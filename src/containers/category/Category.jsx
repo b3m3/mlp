@@ -21,7 +21,7 @@ const Category = () => {
   const [totalPages, setTotalPages] = useState(null);
 
   const { currentLang } = useContext(Context);
-  const { type, category, pageId } = useParams();
+  const { type, category, page } = useParams();
   const { pathname } = useLocation();
 
   const titles = [
@@ -33,7 +33,7 @@ const Category = () => {
     {airing_today: [{en: 'Airing today', uk: 'Сьогодні в ефірі', ru: 'Сегодня в эфире'}]}
   ];
 
-  const url = API_ROOT+'/'+type+'/'+category+API_KEY+API_LANGUAGE+currentLang+API_PAGE+pageId;
+  const url = API_ROOT+'/'+type+'/'+category+API_KEY+API_LANGUAGE+currentLang+API_PAGE+page;
 
   useEffect(() => {
     window.scrollTo(0, 0);
