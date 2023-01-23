@@ -21,7 +21,6 @@ const App = () => {
   const [currentLang, setCurrentLang] = useState('');
 
   const refVideoInfo = useRef(null);
-  const refPeopleInfo = useRef(null);
 
   const provider = {currentLang, menuActive, setCurrentLang, setMenuActive};
 
@@ -30,15 +29,9 @@ const App = () => {
       <BrowserRouter>
         <div className="app">
           <div className="container">
-            <Header 
-              refVideoInfo={refVideoInfo}
-              refPeopleInfo={refPeopleInfo}
-            />
+            <Header refVideoInfo={refVideoInfo}/>
             <div className='app-wrapp'>
-              <Sidebar 
-                refVideoInfo={refVideoInfo}
-                refPeopleInfo={refPeopleInfo}
-              />
+              <Sidebar refVideoInfo={refVideoInfo}/>
               <main>
                 <Routes>
                   <Route path={'/:lang'} element={<Home />} />
