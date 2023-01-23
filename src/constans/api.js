@@ -4,6 +4,7 @@ export const API_KEY = '?api_key='+process.env.REACT_APP_API_KEY;
 
 // IMDB
 export const IMDB_ROOT = 'https://www.imdb.com/title/';
+export const IMDB_ACTOR_ROOT = 'https://www.imdb.com/name/';
 
 // YOUTUBE
 export const YOUTUBE_TRAILER_ROOT = 'https://www.youtube.com/embed/';
