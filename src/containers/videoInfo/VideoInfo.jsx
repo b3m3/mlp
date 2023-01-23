@@ -50,9 +50,7 @@ const VideoInfo = forwardRef((props, ref) => {
         <>
           <Backdrop backdrop={results.backdrop_path}/>
           
-          <Link 
-            onClick={() => navigate(-1)}
-          >
+          <Link onClick={() => navigate(-1)}>
             <Button left />
           </Link> 
           

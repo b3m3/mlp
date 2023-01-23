@@ -20,7 +20,7 @@ const App = () => {
   const [menuActive, setMenuActive] = useState(false);
   const [currentLang, setCurrentLang] = useState('');
 
-  const refVideoInfo = useRef(null);
+  const refInfo = useRef(null);
 
   const provider = {currentLang, menuActive, setCurrentLang, setMenuActive};
 
@@ -29,9 +29,9 @@ const App = () => {
       <BrowserRouter>
         <div className="app">
           <div className="container">
-            <Header refVideoInfo={refVideoInfo}/>
+            <Header refInfo={refInfo}/>
             <div className='app-wrapp'>
-              <Sidebar refVideoInfo={refVideoInfo}/>
+              <Sidebar refInfo={refInfo}/>
               <main>
                 <Routes>
                   <Route path={'/:lang'} element={<Home />} />
@@ -40,7 +40,7 @@ const App = () => {
                   <Route path={'/:lang/person'} element={<People />} />
                   <Route path={'/:lang/favorites'} element={<Favorites />} />
                   <Route path={'/:lang/:type/:category/:page'} element={<Category />} />
-                  <Route path={'/:lang/:type/:id'} element={<VideoInfo ref={refVideoInfo} />} />
+                  <Route path={'/:lang/:type/:id'} element={<VideoInfo ref={refInfo} />} />
                   <Route path={'*'} element={<NotFound />} />
                   <Route path={'/'} element={<Navigate to={'/'+currentLang} replace />} />
                 </Routes>
