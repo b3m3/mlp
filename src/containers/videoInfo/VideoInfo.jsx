@@ -16,7 +16,6 @@ import Reviews from '../../components/videoInfo/reviews/Reviews';
 import Cast from '../../components/videoInfo/cast/Cast';
 
 import { API_ROOT, API_KEY, API_LANGUAGE } from '../../constans/api';
-import { LAST_LOCATION } from '../../constans/localStorage';
 import { getApiResults } from '../../service/getApiResources';
 import { getTypeFromLocation } from '../../utils/functions';
 import { getFromLocalStorage, removeItemFromLocalStorage } from '../../utils/localStorage';
@@ -52,11 +51,7 @@ const VideoInfo = forwardRef((props, ref) => {
           <Backdrop backdrop={results.backdrop_path}/>
           
           <Link 
-            to={getFromLocalStorage(LAST_LOCATION) && getFromLocalStorage(LAST_LOCATION)}
-            onClick={() => {
-              !getFromLocalStorage(LAST_LOCATION) && navigate(-1);
-              getFromLocalStorage(LAST_LOCATION) && removeItemFromLocalStorage(LAST_LOCATION);
-            }}
+            onClick={() => navigate(-1)}
           >
             <Button left />
           </Link> 

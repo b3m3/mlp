@@ -4,10 +4,8 @@ import { useContext } from 'react';
 import Rating from '../ui/rating/Rating';
 import Poster from '../ui/poster/Poster';
 
-import { LAST_LOCATION } from '../../constans/localStorage';
 import { textOverflow, getTypeFromLocation } from '../../utils/functions';
 import { Context } from "../../context/context";
-import { addToLocalStorage } from '../../utils/localStorage';
 
 import style from './card.module.scss';
 
@@ -21,7 +19,6 @@ const Card = ({id, poster_path, title, name, vote_average, small}) => {
     <div className={style.card}>
       <div 
         className={`${style.poster} ${small && style.small}`}
-        onClick={() => addToLocalStorage(LAST_LOCATION, pathname)}
       >
         <Link 
           to={link}
