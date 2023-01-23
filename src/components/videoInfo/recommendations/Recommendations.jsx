@@ -17,12 +17,12 @@ import 'swiper/css/navigation';
 const Recommendations = () => {
   const [results, setResults] = useState(null);
 
-  const { type, videoId } = useParams();
+  const { type, id } = useParams();
   const { currentLang } = useContext(Context);
 
   const titles = [{en: 'Recommendations'},{ru: 'Рекомендации'},{uk: 'Рекомендації'}];
 
-  const url = `${API_ROOT}/${type}/${videoId}${API_RECOMMEND}${API_KEY}${API_LANGUAGE}${currentLang}`;
+  const url = `${API_ROOT}/${type}/${id}${API_RECOMMEND}${API_KEY}${API_LANGUAGE}${currentLang}`;
 
   useEffect(() => {
     (async() => {

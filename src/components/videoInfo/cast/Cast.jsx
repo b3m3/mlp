@@ -21,12 +21,12 @@ const Cast = () => {
 
   const { currentLang } = useContext(Context);
   const { pathname } = useLocation();
-  const { videoId } = useParams();
+  const { id } = useParams();
 
   const titles = [{en: 'Cast'},{ru: 'В ролях'},{uk: 'Акторський склад'}];
 
   const url = 
-    `${API_ROOT}${getTypeFromLocation(pathname)}/${videoId}${API_CREDITS}${API_KEY}${API_LANGUAGE}${currentLang}`;
+    `${API_ROOT}${getTypeFromLocation(pathname)}/${id}${API_CREDITS}${API_KEY}${API_LANGUAGE}${currentLang}`;
 
   useEffect(() => {
     (async() => {
