@@ -1,0 +1,19 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  grid-column-gap: .9375rem;
+  grid-row-gap: .3125rem;
+
+  & li {
+    position: relative;
+    font-size: .875rem;
+    font-weight: 700;
+
+    &:not(:last-child):before {
+      position: absolute;
+      content: '/';
+      top: 0;
+      right: -10px;
+    }
+  }
+}
