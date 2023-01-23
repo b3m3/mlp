@@ -50,20 +50,15 @@ const Category = () => {
       {errorApi
         ? <h2>Error</h2>
         : <div className={style.body}>
-            {results
-              ? results.results.map(props => (
-                  <>
-                    {type === 'person' 
-                      ? <PeopleItem key={props.id} {...props} />
-                      : <Card key={props.id} {...props} />
-                    }
-                  </>
-                ))
-              : <>
-                  {[...Array(20)].map((v, i) => (
-                    <Shimmer key={i} />
-                  ))}
-                </>
+            {results &&
+              results.results.map(props => (
+                <div key={props.id}>
+                  {type === 'person' 
+                    ? <PeopleItem {...props} />
+                    : <Card {...props} />
+                  }
+                </div>
+              ))
             }
           </div>}
 

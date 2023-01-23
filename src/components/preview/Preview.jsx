@@ -37,19 +37,12 @@ const Preview = ({ item, actors }) => {
             slidesPerView={'auto'}
             speed={800}
           >
-            {results 
-              ? results.results.map(props => (
-                <SwiperSlide  key={props.id} className={style.slide} >
-                  {actors ? <PeopleItem {...props} /> : <Card {...props} />}
+            {results &&
+              results.results.map(props => (
+                <SwiperSlide key={props.id} className={style.slide} >
+                  {actors ? <PeopleItem {...props} /> : <Card {...props}  />}
                 </SwiperSlide>
               ))
-              : <>
-                  {[...Array(5)].map((v, i) => (
-                    <SwiperSlide className={style.slide} key={i} >
-                      <Shimmer />
-                    </SwiperSlide>
-                  ))}
-                </>
             }
           </Swiper>
       }
