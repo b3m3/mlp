@@ -7,7 +7,6 @@ import Home from '../../containers/home/Home';
 import Movies from '../../containers/movies/Movies';
 import TvShows from '../tvShows/TvShows';
 import People from '../people/People';
-import PeopleInfo from '../peopleInfo/PeopleInfo';
 import Favorites from '../../containers/favorites/Favorites';
 import Category from '../../containers/category/Category';
 import VideoInfo from '../videoInfo/VideoInfo';
@@ -49,7 +48,6 @@ const App = () => {
                   <Route path={'/:langId/favorites'} element={<Favorites />} />
                   <Route path={'/:langId/:type/:category/:pageId'} element={<Category />} />
                   <Route path={'/:langId/:type/:videoId'} element={<VideoInfo ref={refVideoInfo} />} />
-                  <Route path={'/:langId/person/:personId'} element={<PeopleInfo ref={refPeopleInfo} />} />
                   <Route path={'*'} element={<NotFound />} />
                   <Route path={'/'} element={<Navigate to={'/'+currentLang} replace />} />
                 </Routes>

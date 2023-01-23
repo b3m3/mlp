@@ -18,7 +18,7 @@ import Cast from '../../components/videoInfo/cast/Cast';
 import { API_ROOT, API_KEY, API_LANGUAGE } from '../../constans/api';
 import { LAST_LOCATION } from '../../constans/localStorage';
 import { getApiResults } from '../../service/getApiResources';
-import { getVideoFromLocation } from '../../utils/functions';
+import { getTypeFromLocation } from '../../utils/functions';
 import { getFromLocalStorage, removeItemFromLocalStorage } from '../../utils/localStorage';
 
 import { Context } from '../../context/context';
@@ -38,7 +38,7 @@ const VideoInfo = forwardRef((props, ref) => {
 
   const bodyBorderRadius = '0 0 .75rem .75rem';
 
-  const url = `${API_ROOT}${getVideoFromLocation(pathname)}/${videoId}${API_KEY}${API_LANGUAGE}${currentLang}`;
+  const url = `${API_ROOT}${getTypeFromLocation(pathname)}/${videoId}${API_KEY}${API_LANGUAGE}${currentLang}`;
 
   useEffect(() => {
     getApiResults(url, setResults, setErrorApi);

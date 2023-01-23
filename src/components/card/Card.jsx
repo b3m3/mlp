@@ -5,7 +5,7 @@ import Rating from '../ui/rating/Rating';
 import Poster from '../ui/poster/Poster';
 
 import { LAST_LOCATION } from '../../constans/localStorage';
-import { textOverflow, getVideoFromLocation } from '../../utils/functions';
+import { textOverflow, getTypeFromLocation } from '../../utils/functions';
 import { Context } from "../../context/context";
 import { addToLocalStorage } from '../../utils/localStorage';
 
@@ -15,7 +15,7 @@ const Card = ({id, poster_path, title, name, vote_average, small}) => {
   const { pathname } = useLocation();
   const { currentLang } = useContext(Context);
 
-  const link = `/${currentLang}${getVideoFromLocation(pathname)}/${id}`;
+  const link = `/${currentLang}${getTypeFromLocation(pathname)}/${id}`;
 
   return (
     <div className={style.card}>

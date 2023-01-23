@@ -9,7 +9,7 @@ import SliderNavigation from '../../ui/sliderNavigation/SliderNavigation';
 import { API_ROOT, API_KEY, API_LANGUAGE, API_CREDITS } from '../../../constans/api';
 
 import { getApiResources } from '../../../service/getApiResources';
-import { getVideoFromLocation } from '../../../utils/functions';
+import { getTypeFromLocation } from '../../../utils/functions';
 import { Context } from '../../../context/context';
 
 import style from './cast.module.scss';
@@ -26,7 +26,7 @@ const Cast = () => {
   const titles = [{en: 'Cast'},{ru: 'В ролях'},{uk: 'Акторський склад'}];
 
   const url = 
-    `${API_ROOT}${getVideoFromLocation(pathname)}/${videoId}${API_CREDITS}${API_KEY}${API_LANGUAGE}${currentLang}`;
+    `${API_ROOT}${getTypeFromLocation(pathname)}/${videoId}${API_CREDITS}${API_KEY}${API_LANGUAGE}${currentLang}`;
 
   useEffect(() => {
     (async() => {
