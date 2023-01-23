@@ -6,7 +6,7 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import Home from '../../containers/home/Home';
 import Movies from '../../containers/movies/Movies';
 import TvShows from '../tvShows/TvShows';
-import People from '../people/People';
+import Actors from '../actors/Actors';
 import Favorites from '../../containers/favorites/Favorites';
 import Category from '../../containers/category/Category';
 import Info from '../info/Info';
@@ -37,7 +37,7 @@ const App = () => {
                   <Route path={'/:lang'} element={<Home />} />
                   <Route path={'/:lang/movie'} element={<Movies />} />
                   <Route path={'/:lang/tv'} element={<TvShows />} />
-                  <Route path={'/:lang/person'} element={<People />} />
+                  <Route path={'/:lang/person'} element={<Actors />} />
                   <Route path={'/:lang/favorites'} element={<Favorites />} />
                   <Route path={'/:lang/:type/:category/:page'} element={<Category />} />
                   <Route path={'/:lang/:type/:id'} element={<Info ref={refInfo} />} />

@@ -3,7 +3,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 
-import PeopleItem from '../../peopleItem/PeopleItem';
+import ActorCard from '../../actorCard/ActorCard';
 import SliderNavigation from '../../ui/sliderNavigation/SliderNavigation';
 
 import { API_ROOT, API_KEY, API_LANGUAGE, API_CREDITS } from '../../../constans/api';
@@ -66,7 +66,7 @@ const Cast = () => {
           >
             {results.cast.map(props => (
               <SwiperSlide key={props.id} style={{width: '12.375rem'}}>
-                <PeopleItem
+                <ActorCard
                   key={props.id}
                   {...props}
                 />

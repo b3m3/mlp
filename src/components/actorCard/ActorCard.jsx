@@ -4,9 +4,9 @@ import { useContext } from 'react';
 import Poster from '../ui/poster/Poster';
 import { Context } from '../../context/context';
 
-import style from './people-item.module.scss';
+import style from './actor-card.module.scss';
 
-const PeopleItem = ({ id, name, character, profile_path }) => {
+const ActorCard = ({ id, name, character, profile_path }) => {
   const { currentLang } = useContext(Context);
 
   const link = `/${currentLang}/person/${id}`;
@@ -25,4 +25,4 @@ const PeopleItem = ({ id, name, character, profile_path }) => {
   );
 }
 
-export default PeopleItem;
+export default ActorCard;

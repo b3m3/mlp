@@ -25,7 +25,7 @@ export const API_UK = 'uk';
 // MAIN CATEGORY
 export const API_MOVIE = '/movie';
 export const API_TV_SHOWS = '/tv';
-export const API_PEOPLE = '/person';
+export const API_ACTORS = '/person';
 
 export const API_VIDEOS = '/videos';
 export const API_RECOMMEND = '/recommendations';
@@ -57,5 +57,5 @@ export const TV_SHOWS_TOP_RATED = API_ROOT+API_TV_SHOWS+API_TOP_RATED+API_KEY;
 export const TV_SHOWS_AIRING_TODAY = API_ROOT+API_TV_SHOWS+API_AIRING_TODAY+API_KEY;
 export const TV_SHOWS_ON_THE_AIR = API_ROOT+API_TV_SHOWS+API_ON_THE_AIR+API_KEY;
 
-// PEOPLE
-export const PEOPLE_POPULAR = API_ROOT+API_PEOPLE+API_POPULAR+API_KEY;
+// ACTORS
+export const ACTORS_POPULAR = API_ROOT+API_ACTORS+API_POPULAR+API_KEY;
