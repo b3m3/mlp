@@ -5,7 +5,7 @@ import MenuHamburger from '../ui/menuHamburger/MenuHamburger';
 
 import style from './header.module.scss';
 
-const Header = ({ refInfo }) => {
+const Header = ({ refInfoVideo }) => {
   return (
     <header className={style.header}>
       <Logo />
@@ -13,7 +13,7 @@ const Header = ({ refInfo }) => {
 
       <div className={style.box}>
         <Language />
-        <MenuHamburger refInfo={refInfo}/>
+        <MenuHamburger refInfoVideo={refInfoVideo}/>
       </div>
     </header>
   );
