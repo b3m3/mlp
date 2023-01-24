@@ -32,6 +32,8 @@ export const API_VIDEOS = '/videos';
 export const API_RECOMMEND = '/recommendations';
 export const API_REVIEWS = '/reviews';
 export const API_CREDITS = '/credits';
+export const API_ACTORS_TV_MOVIE = '/movie_credits';
+export const API_ACTORS_TV_CREDITS = '/tv_credits';
 
 // CATEGORY GENERAL
 export const API_POPULAR = '/popular';
