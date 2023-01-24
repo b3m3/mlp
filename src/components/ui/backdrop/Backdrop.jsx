@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 
-import { API_BACKGROUND } from '../../../constans/api';
+import { API_IMAGE_ORIGINAL } from '../../../constans/api';
 import { getTypeFromLocation } from '../../../utils/functions';
 
 import BackdropImg from './img/backdrop.webp';
@@ -15,7 +15,7 @@ const Backdrop = ({ backdrop }) => {
   return (
     <div className={style.wrapp}>
       <img 
-        src={backdrop ? API_BACKGROUND+backdrop : BackdropImg}
+        src={backdrop ? API_IMAGE_ORIGINAL+backdrop : BackdropImg}
         alt={'backdrop'} 
       />
       <span className={isPerson ? style.blur : style.gradient} />

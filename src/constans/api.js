@@ -16,7 +16,7 @@ export const YOUTUBE_POSTER_END = '/mqdefault.jpg';
 export const API_LANGUAGE = '&language=';
 export const API_PAGE = '&page=';
 export const API_POSTER = 'https://image.tmdb.org/t/p/w500/';
-export const API_BACKGROUND = 'https://image.tmdb.org/t/p/original';
+export const API_IMAGE_ORIGINAL = 'https://image.tmdb.org/t/p/original';
 
 // LANGUAGES
 export const API_EN = 'en';
@@ -34,6 +34,7 @@ export const API_REVIEWS = '/reviews';
 export const API_CREDITS = '/credits';
 export const API_ACTORS_MOVIE_CREDITS = '/movie_credits';
 export const API_ACTORS_TV_CREDITS = '/tv_credits';
+export const API_ACTORS_IMAGES = '/images'
 
 // CATEGORY GENERAL
 export const API_POPULAR = '/popular';

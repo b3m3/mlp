@@ -8,6 +8,7 @@ import Dates from '../../components/ui/dates/Dates';
 import LinkPage from '../../components/ui/linkPage/LinkPage';
 import Countries from '../../components/ui/countries/Countries';
 import Credits from '../../components/credits/Credits';
+import Photos from '../../components/infoActor/photos/Photos';
 
 import { API_ROOT, API_KEY, API_ACTORS, API_LANGUAGE, API_ACTORS_MOVIE_CREDITS, API_ACTORS_TV_CREDITS } from '../../constans/api';
 import { getApiResults } from '../../service/getApiResources';
@@ -61,6 +62,8 @@ const InfoActor = forwardRef((props, ref) => {
               <LinkPage imdb={results.imdb_id} />
             </div>
           </div>
+
+          <Photos />
 
           <Credits 
             url={moviesUrl}
