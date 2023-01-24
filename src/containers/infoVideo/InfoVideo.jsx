@@ -11,13 +11,11 @@ import Trailers from '../../components/infoVideo/trailers/Trailers';
 import LinkPage from '../../components/ui/linkPage/LinkPage';
 import Genres from '../../components/infoVideo/genres/Genres';
 import Countries from '../../components/ui/countries/Countries';
-import Recommendations from '../../components/infoVideo/recommendations/Recommendations';
 import Reviews from '../../components/infoVideo/reviews/Reviews';
-import Cast from '../../components/infoVideo/cast/Cast';
+import Credits from '../../components/credits/Credits';
 
-import { API_ROOT, API_KEY, API_LANGUAGE } from '../../constans/api';
+import { API_ROOT, API_KEY, API_LANGUAGE, API_CREDITS, API_RECOMMEND } from '../../constans/api';
 import { getApiResults } from '../../service/getApiResources';
-import { getTypeFromLocation } from '../../utils/functions';
 
 import { Context } from '../../context/context';
 
@@ -26,17 +24,20 @@ import style from './info-video.module.scss';
 const InfoVideo = forwardRef((props, ref) => {
   const [results, setResults] = useState(null);
   const [errorApi, setErrorApi] = useState(false);
-
   const [activeTrailer, setActiveTrailer] = useState(false);
 
   const { currentLang } = useContext(Context);
-  const { pathname } = useLocation();
-  const { id } = useParams();
+  const { type, id } = useParams();
   const navigate = useNavigate();
 
   const bodyBorderRadius = '0 0 .75rem .75rem';
 
-  const url = `${API_ROOT}${getTypeFromLocation(pathname)}/${id}${API_KEY}${API_LANGUAGE}${currentLang}`;
+  const actorsTitles = [{en: 'Cast'},{ru: 'В ролях'},{uk: 'Акторський склад'}];
+  const recomendationsTitles = [{en: 'Recommendations'},{ru: 'Рекомендации'},{uk: 'Рекомендації'}];
+
+  const url = `${API_ROOT}/${type}/${id}${API_KEY}${API_LANGUAGE}${currentLang}`;
+  const actorsUrl = `${API_ROOT}/${type}/${id}${API_CREDITS}${API_KEY}${API_LANGUAGE}${currentLang}`;
+  const recomendationsUrl = `${API_ROOT}/${type}/${id}${API_RECOMMEND}${API_KEY}${API_LANGUAGE}${currentLang}`;
 
   useEffect(() => {
     getApiResults(url, setResults, setErrorApi);
@@ -91,8 +92,22 @@ const InfoVideo = forwardRef((props, ref) => {
               </div>
             </div>
 
-            <Cast />
-            <Recommendations />
+
+            <Credits 
+              url={actorsUrl}
+              titles={actorsTitles}
+              prevClass={'act-cre-prev'}
+              nextClass={'act-cre-next'}
+              resultName={'cast'}
+              actors
+            />
+            <Credits 
+              url={recomendationsUrl}
+              titles={recomendationsTitles}
+              prevClass={'rec-cre-prev'}
+              nextClass={'rec-cre-next'}
+              resultName={'results'}
+            />
             <Reviews />
           </div>
         </>

@@ -5,6 +5,12 @@
   background: var(--white-005);
   display: flex;
   gap: 1.875rem;
+
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 }
 
 .col {
@@ -21,6 +27,10 @@
     flex-direction: column;
     align-items: flex-start;
     gap: .9375rem;
+
+    @media screen and (max-width: 1024px) {
+      align-items: center;
+    }
 
     & p {
       flex: 1 0 auto;
