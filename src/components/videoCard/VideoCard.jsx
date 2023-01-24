@@ -9,11 +9,13 @@ import { Context } from "../../context/context";
 
 import style from './video-card.module.scss';
 
-const VideoCard = ({id, poster_path, title, name, vote_average, small}) => {
+const VideoCard = ({id, poster_path, title, category, name, vote_average, small}) => {
   const { pathname } = useLocation();
   const { currentLang } = useContext(Context);
 
-  const link = `/${currentLang}${getTypeFromLocation(pathname)}/${id}`;
+  const isPerson = getTypeFromLocation(pathname) === '/person';
+
+  const link = `/${currentLang}${isPerson ? category : getTypeFromLocation(pathname)}/${id}`;
 
   return (
     <div className={style.card}>
