@@ -18,6 +18,8 @@ const Credits = ({ url, titles, prevClass, nextClass, resultName, actors, fullCo
 
   const { currentLang } = useContext(Context);
 
+  const category = titles[0].en === 'Movies' ? '/movie' : '/tv';
+
   useEffect(() => {
     (async() => {
       const res = await getApiResources(url);
@@ -65,7 +67,10 @@ const Credits = ({ url, titles, prevClass, nextClass, resultName, actors, fullCo
           >
             {results && results[resultName].map(props => (
               <SwiperSlide key={props.credit_id ? props.credit_id : props.id}>
-                {actors ? <ActorCard {...props} /> : <VideoCard {...props} small />}
+                {actors 
+                  ? <ActorCard {...props} /> 
+                  : <VideoCard {...props} category={category} small />
+                }
               </SwiperSlide>
             ))}
           </Swiper>
@@ -74,7 +79,5 @@ const Credits = ({ url, titles, prevClass, nextClass, resultName, actors, fullCo
     </>
   );
 }
-
-// console.log(props.credit_id)
 
 export default Credits;
