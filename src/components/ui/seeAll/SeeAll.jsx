@@ -4,6 +4,8 @@ import { useContext } from 'react';
 import { Context } from '../../../context/context';
 import { titleToPathname, getTypeFromLocation } from '../../../utils/functions';
 
+import { MdCallMade } from 'react-icons/md'
+
 import style from './see-all.module.scss';
 
 const SeeAll = ({ category }) => {
@@ -17,7 +19,7 @@ const SeeAll = ({ category }) => {
       to={link}
       className={style.link}
     >
-      <span >{'see all'}</span>
+      <MdCallMade />
     </Link>
   );
 }
