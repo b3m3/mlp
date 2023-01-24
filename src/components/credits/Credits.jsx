@@ -64,7 +64,7 @@ const Credits = ({ url, titles, prevClass, nextClass, resultName, actors, fullCo
             style={{width: '100%'}}
           >
             {results && results[resultName].map(props => (
-              <SwiperSlide key={props.id}>
+              <SwiperSlide key={props.credit_id ? props.credit_id : props.id}>
                 {actors ? <ActorCard {...props} /> : <VideoCard {...props} small />}
               </SwiperSlide>
             ))}
@@ -74,5 +74,7 @@ const Credits = ({ url, titles, prevClass, nextClass, resultName, actors, fullCo
     </>
   );
 }
+
+// console.log(props.credit_id)
 
 export default Credits;
