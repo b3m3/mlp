@@ -31,22 +31,13 @@ const ActorsPreview = ({ item }) => {
       
       {errorApi
         ? <h2>Error</h2>
-        : <div className={style.body}>
-            <ul className={style.big_list}>
-              {results && results.results.slice(0, 3).map(props => (
-                <li key={props.id}>
-                  <ActorCard {...props} />
-                </li>
-              ))}
-            </ul>
-            <ul className={style.list}>
-              {results && results.results.slice(3, 9).map(props => (
-                <li key={props.id}>
-                  <ActorCard {...props} />
-                </li>
-              ))}
-            </ul>
-          </div>
+        : <ul className={style.list}>
+            {results && results.results.slice(0, 18).map(props => (
+              <li key={props.id}>
+                <ActorCard {...props} />
+              </li>
+            ))}
+          </ul>
       }
     </div>
   );

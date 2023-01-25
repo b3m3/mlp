@@ -10,22 +10,20 @@
   justify-content: space-between;
 }
 
-.big_list {
-  display: flex;
-  justify-content: center;
-  gap: 7px;
-
-  & li {
-    width: 100%;
-  }
-}
-
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(9.375rem, 1fr));
   margin-left: 15px;
+
+  @media screen and (max-width: 475px) {
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  }
 
   & li {
     margin-left: -15px;
+  }
+
+  & h4 {
+    display: none;
   }
 }
