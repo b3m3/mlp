@@ -34,7 +34,7 @@ const ActorsPreview = ({ item }) => {
         : <ul className={style.list}>
             {results && results.results.slice(0, 18).map(props => (
               <li key={props.id}>
-                <ActorCard {...props} />
+                <ActorCard {...props} onHover />
               </li>
             ))}
           </ul>

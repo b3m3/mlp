@@ -53,7 +53,7 @@ const Category = () => {
               results.results.map(props => (
                 <div key={props.id}>
                   {type === 'person' 
-                    ? <ActorCard {...props} />
+                    ? <ActorCard {...props} onHover />
                     : <VideoCard {...props} />
                   }
                 </div>

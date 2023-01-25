@@ -6,14 +6,17 @@ import { Context } from '../../context/context';
 
 import style from './actor-card.module.scss';
 
-const ActorCard = ({ id, name, character, profile_path }) => {
+const ActorCard = ({ id, name, character, profile_path, onHover }) => {
   const { currentLang } = useContext(Context);
 
   const link = `/${currentLang}/person/${id}`;
 
   return (
     <div className={style.wrapp}>
-      <Link to={link}>
+      <Link 
+        to={link}
+        className={onHover && style.onhover}
+      >
         <Poster path={profile_path} />
       </Link>
 
