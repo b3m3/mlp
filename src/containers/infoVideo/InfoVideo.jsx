@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext, forwardRef } from 'react';
-import { Link, useLocation, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 
 import Button from '../../components/ui/button/Button';
 import Rating from '../../components/ui/rating/Rating';
 import Poster from '../../components/ui/poster/Poster';
-import Backdrop from '../../components/ui/backdrop/Backdrop';
+import Background from '../../components/ui/background/Background';
 import Runtime from '../../components/infoVideo/runtime/Runtime';
 import Dates from '../../components/ui/dates/Dates';
 import Trailers from '../../components/infoVideo/trailers/Trailers';
@@ -48,7 +48,7 @@ const InfoVideo = forwardRef((props, ref) => {
     <section ref={ref}>
       {results &&
         <>
-          <Backdrop backdrop={results.backdrop_path}/>
+          <Background path={results.backdrop_path}/>
           
           <Link onClick={() => navigate(-1)}>
             <Button left />

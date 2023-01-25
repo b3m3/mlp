@@ -3,7 +3,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 
 import Button from '../../components/ui/button/Button';
 import Poster from '../../components/ui/poster/Poster';
-import Backdrop from '../../components/ui/backdrop/Backdrop';
+import Background from '../../components/ui/background/Background';
 import Dates from '../../components/ui/dates/Dates';
 import LinkPage from '../../components/ui/linkPage/LinkPage';
 import Countries from '../../components/ui/countries/Countries';
@@ -40,7 +40,7 @@ const InfoActor = forwardRef((props, ref) => {
     <div ref={ref}>
       {results &&
         <>
-          <Backdrop backdrop={results.profile_path} />
+          <Background path={results.profile_path} />
           
           <Link onClick={() => navigate(-1)}>
             <Button left />
