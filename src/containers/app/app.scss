@@ -93,3 +93,16 @@ p {
   font-size: .875rem;
   line-height: 1.5;
 }
+
+/* SWIPER */ 
+
+.swiper-scrollbar {
+  bottom: 15px !important;
+  background: transparent;
+}
+
+.swiper-scrollbar-drag {
+  cursor: grab;
+  height: 4px;
+  background: var(--white-005);
+}

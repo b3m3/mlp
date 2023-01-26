@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 
 import Preview from '../../components/preview/Preview';
-import ActorsPreview from '../../components/actorsPreview/ActorsPreview';
 import { ACTORS_POPULAR, API_LANGUAGE } from '../../constans/api';
 import { Context } from '../../context/context';
 
@@ -17,7 +16,7 @@ const Actors = () => {
   return (
     <section className={style.wrapp}>
       {items.map((item, i) => (
-        <ActorsPreview key={i} item={item} />
+        <Preview key={i} item={item} actors />
       ))}
     </section>
   );

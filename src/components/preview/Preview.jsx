@@ -1,16 +1,17 @@
 import { useState, useEffect, useContext } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Scrollbar } from 'swiper';
 
 import VideoCard from '../videoCard/VideoCard';
 import ActorCard from '../actorCard/ActorCard';
 import SeeAll from '../ui/seeAll/SeeAll';
-import Shimmer from '../ui/shimmer/Shimmer';
 
 import { getApiResults } from '../../service/getApiResources';
 import { Context } from '../../context/context';
 
 import style from './preview.module.scss';
 import 'swiper/css';
+import 'swiper/css/scrollbar';
 
 const Preview = ({ item, actors }) => {
   const [results, setResults] = useState(null);
@@ -33,13 +34,20 @@ const Preview = ({ item, actors }) => {
         ? <h2>Error</h2>
         : <Swiper
             className={style.swiper}
-            spaceBetween={15}
-            slidesPerView={'auto'}
+            modules={[Scrollbar]}
+            spaceBetween={10}
+            scrollbar={{draggable: true}}
             speed={800}
+            breakpoints={{
+              320: {slidesPerView: 2, slidesPerGroup: 2, spaceBetween: 5},
+              475: {slidesPerView: 3, slidesPerGroup: 3},
+              768: {slidesPerView: 4, slidesPerGroup: 4, spaceBetween: 8},
+              1024: {slidesPerView: 6, slidesPerGroup: 6, spaceBetween: 10}
+            }}
           >
             {results &&
-              results.results.map(props => (
-                <SwiperSlide key={props.id} className={style.slide} >
+              results.results.slice(0, 12).map(props => (
+                <SwiperSlide key={props.id}>
                   {actors ? <ActorCard {...props} /> : <VideoCard {...props}  />}
                 </SwiperSlide>
               ))

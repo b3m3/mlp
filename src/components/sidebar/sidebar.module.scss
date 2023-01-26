@@ -113,6 +113,7 @@
   & span {
     font-weight: 700;
     font-size: 1.125rem;
+    white-space: nowrap;
   }
   
   :global(a.active) {

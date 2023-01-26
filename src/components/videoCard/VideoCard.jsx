@@ -4,12 +4,12 @@ import { useContext } from 'react';
 import Rating from '../ui/rating/Rating';
 import Poster from '../ui/poster/Poster';
 
-import { textOverflow, getTypeFromLocation } from '../../utils/functions';
+import { getTypeFromLocation } from '../../utils/functions';
 import { Context } from "../../context/context";
 
 import style from './video-card.module.scss';
 
-const VideoCard = ({id, poster_path, title, category, name, vote_average, small}) => {
+const VideoCard = ({id, poster_path, title, name, category, vote_average, small}) => {
   const { pathname } = useLocation();
   const { currentLang } = useContext(Context);
 
@@ -32,7 +32,7 @@ const VideoCard = ({id, poster_path, title, category, name, vote_average, small}
       {!small &&
         <>
           <h5>
-            {title ? textOverflow(title, 22) : textOverflow(name, 22)}
+            {title ? title : name}
           </h5>
           
           <Rating rating={vote_average} />
