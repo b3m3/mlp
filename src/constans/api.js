@@ -39,6 +39,7 @@ export const API_ACTORS_IMAGES = '/images'
 // CATEGORY GENERAL
 export const API_POPULAR = '/popular';
 export const API_TOP_RATED = '/top_rated';
+export const API_TRENDING = '/trending';
 export const API_LATEST = '/latest';
 
 // CATEGORY MOVIES
