@@ -9,10 +9,10 @@ import Runtime from '../../components/infoVideo/runtime/Runtime';
 import Dates from '../../components/ui/dates/Dates';
 import Trailers from '../../components/infoVideo/trailers/Trailers';
 import LinkPage from '../../components/ui/linkPage/LinkPage';
-import Genres from '../../components/infoVideo/genres/Genres';
 import Countries from '../../components/ui/countries/Countries';
 import Reviews from '../../components/infoVideo/reviews/Reviews';
 import Credits from '../../components/credits/Credits';
+import Genres from '../../components/genres/Genres';
 
 import { API_ROOT, API_KEY, API_LANGUAGE, API_CREDITS, API_RECOMMEND } from '../../constans/api';
 import { getApiResults } from '../../service/getApiResources';
@@ -78,7 +78,7 @@ const InfoVideo = forwardRef((props, ref) => {
                   />
                 </div>
 
-                <Genres genres={results.genres} />
+                <Genres ids={results.genres} type={type} />
                 <Countries countries={results.production_countries} />
                 <p>{results.overview && results.overview}</p>
 

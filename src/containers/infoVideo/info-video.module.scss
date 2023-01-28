@@ -52,4 +52,8 @@
   flex-wrap: wrap;
   grid-column-gap: .75rem;
   grid-row-gap: .3125rem;
+
+  @media screen and (max-width: 768px) {
+    justify-content: center;
+  }
 }

@@ -1,0 +1,19 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3125rem;
+
+  @media screen and (max-width: 768px) {
+    justify-content: center;
+  }
+
+  & li {
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 1.5625rem;
+    padding: 5px 12px;
+    background: var(--white-005);
+    -webkit-backdrop-filter: var(--blur);
+    backdrop-filter: var(--blur);
+  }
+}
