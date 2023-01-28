@@ -19,24 +19,17 @@ const VideoCard = ({id, poster_path, title, name, category, vote_average, small}
 
   return (
     <div className={style.card}>
-      <div 
-        className={`${style.poster} ${small && style.small}`}
-      >
-        <Link 
-          to={link}
-        >
+      <div className={style.img}>
+        <Link to={link}>
           <Poster path={poster_path} />
         </Link>
       </div>
 
       {!small &&
         <>
-          <h5>
-            {title ? title : name}
-          </h5>
-          
+          <h5>{title ? title : name}</h5>
           <Rating rating={vote_average} />
-        </>      
+        </>
       }
     </div>
   );
