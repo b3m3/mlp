@@ -63,3 +63,21 @@ export const convertTime = time => {
 export const getYearFromDate = date => {
   return date.split('-')[0];
 };
+
+export const getRatingNum = num => {
+  const arr = num.toString().split('.')[1];
+
+  if (arr) {
+    return `${num.toString().split('.')[0]}.${num.toString().split('.')[1][0]}`;
+  }
+
+  return num;
+};
+
+export const getGenresFromId = (list, ids) => {
+  if (typeof ids[0] === 'object') {
+    return list.filter(el1 => ids.some(el2 => el1.id === el2.id));
+  }
+
+  return list.filter(el1 => ids.some(el2 => el1.id === el2));
+};
