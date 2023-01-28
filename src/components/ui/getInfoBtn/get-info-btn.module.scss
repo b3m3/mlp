@@ -1,0 +1,9 @@
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 14px;
+  background: rgba(33, 127, 244, .6);
+  border-radius: var(--b-radius);
+  font-size: 1.1rem;
+}
