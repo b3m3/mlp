@@ -5,6 +5,7 @@ import { Scrollbar } from 'swiper';
 import VideoCard from '../videoCard/VideoCard';
 import ActorCard from '../actorCard/ActorCard';
 import SeeAll from '../ui/seeAll/SeeAll';
+import Error from '../error/Error';
 
 import { getApiResults } from '../../service/getApiResources';
 import { Context } from '../../context/context';
@@ -31,7 +32,7 @@ const Preview = ({ item, actors }) => {
       </div>
       
       {errorApi
-        ? <h2>Error</h2>
+        ? <Error />
         : <Swiper
             className={style.swiper}
             modules={[Scrollbar]}

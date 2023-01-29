@@ -5,6 +5,7 @@ import { Pagination, Navigation, EffectCards, EffectCoverflow } from 'swiper';
 import TrendingVideoCard from '../trendingVideoCard/TrendingVideoCard';
 import TrendingActorCard from '../trendingActorCard/TrendingActorCard';
 import SliderNavigation from '../ui/sliderNavigation/SliderNavigation';
+import Error from '../error/Error';
 
 import { getApiResults } from '../../service/getApiResources';
 import { Context } from '../../context/context';
@@ -29,8 +30,6 @@ const Trending = ({ item, actors }) => {
     getApiResults(item.url, setResults, setErrorApi);
   }, [item.url, currentLang]);
 
-  console.log(results);
-
   return (
     <div className={style.wrapp}>
       <div className={style.top}>
@@ -38,22 +37,22 @@ const Trending = ({ item, actors }) => {
       </div>
       
       {errorApi
-        ? <h2>Error</h2>
+        ? <Error />
         : <Swiper
             className={style.swiper}
             style={actors ? swiperWidthActors : swiperWidthCards}
             modules={[Navigation, Pagination, EffectCards, EffectCoverflow]}
             effect={actors ? "coverflow" : "cards"}
             passiveListeners={actors && true}
+            slidesPerView={actors ? 2 : 1}
+            initialSlide={5}
+            loop={true}
+            pagination={{ clickable: true }}
             breakpoints={actors && {
               320: {slidesPerView: 1},
               475: {slidesPerView: 2},
               768: {slidesPerView: 3}
             }}
-            slidesPerView={actors ? 2 : 1}
-            initialSlide={5}
-            loop={true}
-            pagination={{ clickable: true }}
             navigation={{
               prevEl: '.tre-prev',
               nextEl: '.tre-next'

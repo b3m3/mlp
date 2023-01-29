@@ -9,6 +9,7 @@ import LinkPage from '../../components/ui/linkPage/LinkPage';
 import Countries from '../../components/ui/countries/Countries';
 import Credits from '../../components/credits/Credits';
 import Photos from '../../components/infoActor/photos/Photos';
+import Error from '../../components/error/Error';
 
 import { API_ROOT, API_KEY, API_ACTORS, API_LANGUAGE, API_ACTORS_MOVIE_CREDITS, API_ACTORS_TV_CREDITS } from '../../constans/api';
 import { getApiResults } from '../../service/getApiResources';
@@ -38,50 +39,55 @@ const InfoActor = forwardRef((props, ref) => {
 
   return (
     <div ref={ref}>
-      {results &&
-        <>
-          <Background path={results.profile_path} />
-          
-          <Link onClick={() => navigate(-1)}>
-            <Button left />
-          </Link>
+      {errorApi
+        ? <Error navigation />
+        : <>
+            {results &&
+              <>
+                <Background path={results.profile_path} />
+                
+                <Link onClick={() => navigate(-1)}>
+                  <Button left />
+                </Link>
 
-          <div className={style.body}>
-            <div className={style.col}>
-              <Poster path={results.profile_path}/>
-            </div>
+                <div className={style.body}>
+                  <div className={style.col}>
+                    <Poster path={results.profile_path}/>
+                  </div>
 
-            <div className={style.col}>
-              <h1>{results.name && results.name}</h1>
-              <Dates
-                birthday={results.birthday}
-                deathday={results.deathday}
-              />
-              <Countries countries={results.place_of_birth} />
-              <p>{results.biography && results.biography}</p>
-              <LinkPage imdb={results.imdb_id} />
-            </div>
-          </div>
+                  <div className={style.col}>
+                    <h1>{results.name && results.name}</h1>
+                    <Dates
+                      birthday={results.birthday}
+                      deathday={results.deathday}
+                    />
+                    <Countries countries={results.place_of_birth} />
+                    <p>{results.biography && results.biography}</p>
+                    <LinkPage imdb={results.imdb_id} />
+                  </div>
+                </div>
 
-          <Photos />
+                <Photos />
 
-          <Credits 
-            url={moviesUrl}
-            titles={moviesTitles}
-            prevClass={'mov-cre-prev'}
-            nextClass={'mov-cre-next'}
-            resultName={'cast'}
-            fullContainer
-          />
-          <Credits 
-            url={tvShowsUrl}
-            titles={tvShowsTitles}
-            prevClass={'tv-cre-prev'}
-            nextClass={'tv-cre-next'}
-            resultName={'cast'}
-            fullContainer
-          />
-        </>
+                <Credits 
+                  url={moviesUrl}
+                  titles={moviesTitles}
+                  prevClass={'mov-cre-prev'}
+                  nextClass={'mov-cre-next'}
+                  resultName={'cast'}
+                  fullContainer
+                />
+                <Credits 
+                  url={tvShowsUrl}
+                  titles={tvShowsTitles}
+                  prevClass={'tv-cre-prev'}
+                  nextClass={'tv-cre-next'}
+                  resultName={'cast'}
+                  fullContainer
+                />
+              </>
+            }
+          </>
       }
     </div>
   );

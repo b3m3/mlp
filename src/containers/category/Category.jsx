@@ -6,6 +6,7 @@ import { translateCategoryTitle } from '../../utils/functions';
 import { API_ROOT, API_KEY, API_PAGE, API_LANGUAGE } from '../../constans/api';
 
 import PageNavigation from '../../components/ui/pageNavigation/PageNavigation';
+import Error from '../../components/error/Error';
 
 import { Context } from '../../context/context';
 
@@ -47,7 +48,7 @@ const Category = () => {
       </h2>
 
       {errorApi
-        ? <h2>Error</h2>
+        ? <Error />
         : <div className={style.body}>
             {results &&
               results.results.map(props => (

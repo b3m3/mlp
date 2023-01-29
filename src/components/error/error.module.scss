@@ -1,0 +1,28 @@
+.wrapp {
+  gap: .625rem;
+  margin-bottom: 1.875rem;
+  text-align: center;
+
+  & span {
+    display: block;
+    text-align: left;
+  }
+
+  & p {
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 1.125rem;
+    text-align: center;
+    padding: .3125rem .625rem;
+    margin-top: .625rem;
+    background: #e84d78;
+  }
+}
+
+.img {
+  width: 100%;
+  max-height: 16.875rem;
+  margin: 0 auto;
+  object-fit: contain;
+}
