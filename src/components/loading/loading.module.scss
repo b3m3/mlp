@@ -1,0 +1,8 @@
+.wrapp {
+  display: flex;
+  justify-content: center;
+
+  & img {
+    height: 35vmin;
+  }
+}
