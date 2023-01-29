@@ -38,10 +38,14 @@ const Category = () => {
   const url = API_ROOT+'/'+type+'/'+category+API_KEY+API_LANGUAGE+currentLang+API_PAGE+page;
 
   useEffect(() => {
+    setResults(null);
+  }, [pathname]);
+
+  useEffect(() => {
     window.scrollTo(0, 0);
     getApiResults(url, setResults, setErrorApi);
     getApiTotalPages(url, setTotalPages);
-  }, [currentLang, pathname, url]);
+  }, [currentLang, url]);
 
   return (
     <section className={style.category}>
