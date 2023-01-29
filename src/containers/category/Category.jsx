@@ -12,6 +12,8 @@ import { Context } from '../../context/context';
 
 import VideoCard from '../../components/videoCard/VideoCard';
 import ActorCard from '../../components/actorCard/ActorCard';
+import ShimmerActorCard from '../../components/ui/shimmers/shimmerActorCard/ShimmerActorCard';
+import ShimmerVideoCard from '../../components/ui/shimmers/shimmerVideoCard/ShimmerVideoCard';
 
 import style from './category.module.scss';
 
@@ -50,15 +52,25 @@ const Category = () => {
       {errorApi
         ? <Error />
         : <div className={style.body}>
-            {results &&
-              results.results.map(props => (
-                <div key={props.id}>
-                  {type === 'person' 
-                    ? <ActorCard {...props} onHover />
-                    : <VideoCard {...props} />
-                  }
-                </div>
-              ))
+            {results
+              ? results.results.map(props => (
+                  <div key={props.id}>
+                    {type === 'person' 
+                      ? <ActorCard {...props} onHover />
+                      : <VideoCard {...props} />
+                    }
+                  </div>
+                ))
+              : <>
+                  {[...Array(20)].map((v, i)=>
+                    <div key={i}>
+                      {type === 'person'
+                        ? <ShimmerActorCard />
+                        : <ShimmerVideoCard />
+                      }
+                    </div>
+                  )}
+                </>
             }
           </div>}
 
