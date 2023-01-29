@@ -6,6 +6,8 @@ import VideoCard from '../videoCard/VideoCard';
 import ActorCard from '../actorCard/ActorCard';
 import SeeAll from '../ui/seeAll/SeeAll';
 import Error from '../error/Error';
+import ShimmerVideoCard from '../ui/shimmers/shimmerVideoCard/ShimmerVideoCard';
+import ShimmerActorCard from '../ui/shimmers/shimmerActorCard/ShimmerActorCard';
 
 import { getApiResults } from '../../service/getApiResources';
 import { Context } from '../../context/context';
@@ -46,12 +48,19 @@ const Preview = ({ item, actors }) => {
               1024: {slidesPerView: 6, slidesPerGroup: 6, spaceBetween: 10}
             }}
           >
-            {results &&
-              results.results.slice(0, 12).map(props => (
-                <SwiperSlide key={props.id}>
-                  {actors ? <ActorCard {...props} /> : <VideoCard {...props}  />}
-                </SwiperSlide>
-              ))
+            {results
+              ? results.results.slice(0, 12).map(props => (
+                  <SwiperSlide key={props.id}>
+                    {actors ? <ActorCard {...props}/> : <VideoCard {...props}/>}
+                  </SwiperSlide>
+                ))
+              : <>
+                  {[...Array(7)].map((v, i) =>
+                    <SwiperSlide key={i}>
+                      {actors ? <ShimmerActorCard /> : <ShimmerVideoCard />}
+                    </SwiperSlide>
+                  )}
+                </>
             }
           </Swiper>
       }

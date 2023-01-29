@@ -19,6 +19,7 @@ button, input {cursor: pointer;border: none;background: none;outline: none;width
   --white-005: rgba(255, 255, 255, 0.05);
   --blue-wiolet-gradient: linear-gradient(48deg, rgba(46,27,49,1) 0%, rgba(27,39,58,1) 100%);
   --blue-gradient: linear-gradient(323deg, rgba(37,147,250,1) 0%, rgba(23,89,233,1) 100%);
+  --gray-gradient: linear-gradient(90deg,rgba(255, 255, 255, 0) 0%,rgba(255, 255, 255, 0.4) 50%,rgba(255, 255, 255, 0) 100%);
   --b-radius: .75rem;
   --blur: 3px;
 }
@@ -95,7 +96,7 @@ p {
   line-height: 1.5;
 }
 
-/* SWIPER */ 
+/* swiper */ 
 
 .swiper-scrollbar {
   bottom: 15px !important;

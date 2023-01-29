@@ -6,6 +6,7 @@ import TrendingVideoCard from '../trendingVideoCard/TrendingVideoCard';
 import TrendingActorCard from '../trendingActorCard/TrendingActorCard';
 import SliderNavigation from '../ui/sliderNavigation/SliderNavigation';
 import Error from '../error/Error';
+import ShimmerSolidBlock from '../ui/shimmers/shimmerSolidBlock/ShimmerSolidBlock';
 
 import { getApiResults } from '../../service/getApiResources';
 import { Context } from '../../context/context';
@@ -43,7 +44,6 @@ const Trending = ({ item, actors }) => {
             style={actors ? swiperWidthActors : swiperWidthCards}
             modules={[Navigation, Pagination, EffectCards, EffectCoverflow]}
             effect={actors ? "coverflow" : "cards"}
-            passiveListeners={actors && true}
             slidesPerView={actors ? 2 : 1}
             initialSlide={5}
             loop={true}
@@ -58,20 +58,23 @@ const Trending = ({ item, actors }) => {
               nextEl: '.tre-next'
             }}
           >
-            {results && results.results.slice(0, 9).map(props => (
-              <SwiperSlide key={props.id}>
-                {actors
-                  ? <TrendingActorCard 
-                      type={item.type}
-                      {...props}
-                    />
-                  : <TrendingVideoCard 
-                      type={item.type}
-                      {...props} 
-                    />
-                }
-              </SwiperSlide>
-            ))}
+            {results
+              ? results.results.slice(0, 9).map(props => (
+                  <SwiperSlide key={props.id}>
+                    {actors
+                      ? <TrendingActorCard type={item.type} {...props}/>
+                      : <TrendingVideoCard type={item.type} {...props} />
+                    }
+                  </SwiperSlide>
+                ))
+              : <>
+                  {[...Array(3)].map((v, i) =>
+                    <SwiperSlide key={i}>
+                      <ShimmerSolidBlock />
+                    </SwiperSlide>
+                  )}
+                </>
+            }
 
             <div className={style.navigation}>
               <SliderNavigation 
