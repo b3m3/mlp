@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation, EffectCards } from 'swiper';
+import { Pagination, Navigation, EffectCards, EffectCoverflow } from 'swiper';
 
 import TrendingVideoCard from '../trendingVideoCard/TrendingVideoCard';
-import SeeAll from '../ui/seeAll/SeeAll';
+import TrendingActorCard from '../trendingActorCard/TrendingActorCard';
 import SliderNavigation from '../ui/sliderNavigation/SliderNavigation';
 
 import { getApiResults } from '../../service/getApiResources';
@@ -12,8 +12,9 @@ import { Context } from '../../context/context';
 import style from './trending.module.scss';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import "swiper/css/effect-cards";
 import 'swiper/css/navigation';
+import 'swiper/css/effect-cards';
+import 'swiper/css/effect-coverflow';
 
 const Trending = ({ item, actors }) => {
   const [results, setResults] = useState(null);
@@ -21,9 +22,14 @@ const Trending = ({ item, actors }) => {
 
   const { currentLang } = useContext(Context);
 
+  const swiperWidthCards = {width: '85%'};
+  const swiperWidthActors = {width: '100%'};
+
   useEffect(() => {
     getApiResults(item.url, setResults, setErrorApi);
   }, [item.url, currentLang]);
+
+  console.log(results);
 
   return (
     <div className={style.wrapp}>
@@ -35,9 +41,16 @@ const Trending = ({ item, actors }) => {
         ? <h2>Error</h2>
         : <Swiper
             className={style.swiper}
-            modules={[Navigation, Pagination, EffectCards]}
-            effect={"cards"}
-            
+            style={actors ? swiperWidthActors : swiperWidthCards}
+            modules={[Navigation, Pagination, EffectCards, EffectCoverflow]}
+            effect={actors ? "coverflow" : "cards"}
+            passiveListeners={actors && true}
+            breakpoints={actors && {
+              320: {slidesPerView: 1},
+              475: {slidesPerView: 2},
+              768: {slidesPerView: 3}
+            }}
+            slidesPerView={actors ? 2 : 1}
             initialSlide={5}
             loop={true}
             pagination={{ clickable: true }}
@@ -46,16 +59,20 @@ const Trending = ({ item, actors }) => {
               nextEl: '.tre-next'
             }}
           >
-            {results && 
-              results.results.slice(0, 9).map(props => (
-                <SwiperSlide key={props.id}>
-                  <TrendingVideoCard 
-                    type={item.type}
-                    {...props} 
-                  />
-                </SwiperSlide>
-              ))
-            }
+            {results && results.results.slice(0, 9).map(props => (
+              <SwiperSlide key={props.id}>
+                {actors
+                  ? <TrendingActorCard 
+                      type={item.type}
+                      {...props}
+                    />
+                  : <TrendingVideoCard 
+                      type={item.type}
+                      {...props} 
+                    />
+                }
+              </SwiperSlide>
+            ))}
 
             <div className={style.navigation}>
               <SliderNavigation 
