@@ -47,9 +47,6 @@ const Trending = ({ item, actors }) => {
             slidesPerView={actors ? 2 : 1}
             initialSlide={5}
             loop={true}
-            lazy={true}
-            preloadImages={false}
-            watchSlidesVisibility={true}
             pagination={{ clickable: true }}
             breakpoints={actors && {
               320: {slidesPerView: 1},
@@ -71,13 +68,17 @@ const Trending = ({ item, actors }) => {
                   </SwiperSlide>
                 ))
               : <>
-                  {[...Array(3)].map((v, i) =>
-                    <SwiperSlide key={i}>
-                      <ShimmerSolidBlock />
-                    </SwiperSlide>
-                  )}
+                  {actors && 
+                    [...Array(3)].map((v, i) =>
+                      <SwiperSlide key={i}>
+                        <ShimmerSolidBlock />
+                      </SwiperSlide>
+                    )
+                  }
                 </>
             }
+
+            {!results && !actors && <ShimmerSolidBlock />}
 
             <div className={style.navigation}>
               <SliderNavigation 
