@@ -42,16 +42,17 @@ const App = () => {
               />
               <main>
                 <Routes>
-                  <Route path={'/:lang'} element={<Home />} />
-                  <Route path={'/:lang/movie'} element={<Movies />} />
-                  <Route path={'/:lang/tv'} element={<TvShows />} />
-                  <Route path={'/:lang/person'} element={<Actors />} />
-                  <Route path={'/:lang/favorites'} element={<Favorites />} />
-                  <Route path={'/:lang/:type/:category/:page'} element={<Category />} />
-                  <Route path={'/:lang/:type/:id'} element={<InfoVideo ref={refInfoVideo} />} />
-                  <Route path={'/:lang/person/:id'} element={<InfoActor ref={refInfoActor} />} />
-                  <Route path={'*'} element={<NotFound />} />
-                  <Route path={'/'} element={<Navigate to={'/'+currentLang} replace />} />
+                  <Route path={'/:lang'} element={<Home/>}/>
+                  <Route path={'/:lang/movie'} element={<Movies/>}/>
+                  <Route path={'/:lang/tv'} element={<TvShows/>}/>
+                  <Route path={'/:lang/person'} element={<Actors/>}/>
+                  <Route path={'/:lang/favorites'} element={<Favorites/>}/>
+                  <Route path={'/:lang/:type/:category/:page'} element={<Category/>}/>
+                  <Route path={'/:lang/:type/:id'} element={<InfoVideo ref={refInfoVideo}/>}/>
+                  <Route path={'/:lang/person/:id'} element={<InfoActor ref={refInfoActor}/>}/>
+                  <Route path={'/:lang/:type/:category/:id/:page'} element={<Category/>}/>
+                  <Route path={'*'} element={<NotFound/>}/>
+                  <Route path={'/'} element={<Navigate to={'/'+currentLang} replace/>}/>
                 </Routes>
               </main>
             </div>
