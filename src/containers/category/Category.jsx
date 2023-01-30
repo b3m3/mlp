@@ -39,13 +39,10 @@ const Category = () => {
 
   useEffect(() => {
     setResults(null);
-  }, [pathname]);
-
-  useEffect(() => {
     window.scrollTo(0, 0);
     getApiResults(url, setResults, setErrorApi);
     getApiTotalPages(url, setTotalPages);
-  }, [currentLang, url]);
+  }, [currentLang, pathname, url]);
 
   return (
     <section className={style.category}>

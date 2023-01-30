@@ -42,6 +42,7 @@ const InfoVideo = forwardRef((props, ref) => {
   const recomendationsUrl = `${API_ROOT}/${type}/${id}${API_RECOMMEND}${API_KEY}${API_LANGUAGE}${currentLang}`;
 
   useEffect(() => {
+    setResults(null);
     getApiResults(url, setResults, setErrorApi);
     setActiveTrailer(false);
   }, [url, id]);
