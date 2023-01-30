@@ -12,11 +12,14 @@ export const YOUTUBE_TRAILER_AUTOPLAY = '?autoplay=1';
 export const YOUTUBE_POSTER_ROOT = 'https://img.youtube.com/vi/';
 export const YOUTUBE_POSTER_END = '/mqdefault.jpg';
 
+// IMG
+export const API_POSTER = 'https://image.tmdb.org/t/p/w500/';
+export const API_IMAGE_ORIGINAL = 'https://image.tmdb.org/t/p/original';
+
 // GENERAL
 export const API_LANGUAGE = '&language=';
 export const API_PAGE = '&page=';
-export const API_POSTER = 'https://image.tmdb.org/t/p/w500/';
-export const API_IMAGE_ORIGINAL = 'https://image.tmdb.org/t/p/original';
+export const API_QUERY = '&query=';
 
 // LANGUAGES
 export const API_EN = 'en';
@@ -27,6 +30,7 @@ export const API_UK = 'uk';
 export const API_MOVIE = '/movie';
 export const API_TV_SHOWS = '/tv';
 export const API_ACTORS = '/person';
+export const API_SEARCH = '/search'
 
 export const API_VIDEOS = '/videos';
 export const API_RECOMMEND = '/recommendations';
