@@ -1,0 +1,12 @@
+.wrapp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: .9375rem;
+
+  & img {
+    height: 35vmin;
+    max-height: 18.75rem;
+  }
+}
