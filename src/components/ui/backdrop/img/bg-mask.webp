@@ -1,0 +1,5 @@
+Unstaged changes after reset:
+M	src/components/infoActor/photos/Photos.jsx
+M	src/components/ui/backdrop/Backdrop.jsx
+M	src/components/ui/backdrop/img/bg-mask.webp
+D	src/components/ui/backdrop/img/bg.webp

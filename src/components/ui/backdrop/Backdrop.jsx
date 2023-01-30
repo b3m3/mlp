@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 
 import { API_IMAGE_ORIGINAL } from '../../../constans/api';
 
-import bg from './img/bg.webp';
+import bgMask from './img/bg-mask.webp';
+import whiteMask  from './img/white-mask.svg';
 
 import style from './backdrop.module.scss';
 
-const Backdrop = ({ path }) => {
+const Backdrop = ({ path, actor }) => {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -18,7 +19,7 @@ const Backdrop = ({ path }) => {
       {!loaded && 
         <img 
           className={style.img} 
-          src={bg} 
+          src={actor ? whiteMask : bgMask}
           alt={'backdrop'}
         />
       }
@@ -26,7 +27,7 @@ const Backdrop = ({ path }) => {
       <img
         onLoad={() => setLoaded(true)}
         className={style.img}
-        src={path ? API_IMAGE_ORIGINAL+path : bg}
+        src={path ? API_IMAGE_ORIGINAL+path : bgMask}
         alt={'backdrop'}
       />
     </div>
