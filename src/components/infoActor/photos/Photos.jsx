@@ -4,6 +4,8 @@ import { useParams, useLocation } from 'react-router-dom';
 import { getApiResources } from '../../../service/getApiResources';
 import { getTypeFromLocation } from '../../../utils/functions';
 import { API_ROOT, API_KEY, API_ACTORS_IMAGES, API_IMAGE_ORIGINAL } from '../../../constans/api';
+import ShimmerPhotos from '../../ui/shimmers/shimmerPhotos/ShimmerPhotos';
+import Backdrop from '../../ui/backdrop/Backdrop';
 
 import style from './photos.module.scss';
 
@@ -24,16 +26,17 @@ const Photos = () => {
 
   return (
     <>
-      {results &&
-        <ul className={style.list}>
-          {results.profiles.map(({file_path}, i) => (
-            <li key={file_path}>
-              <a href={API_IMAGE_ORIGINAL+file_path} target={'_blank'} rel="noreferrer">
-                <img src={API_IMAGE_ORIGINAL+file_path} alt="photo" />
-              </a>
-            </li>
-          ))}
-        </ul>
+      {results
+        ? <ul className={style.list}>
+            {results.profiles.map(({file_path}, i) => (
+              <li key={file_path}>
+                <a href={API_IMAGE_ORIGINAL+file_path} target={'_blank'} rel="noreferrer">
+                  <Backdrop path={file_path} actor />
+                </a>
+              </li>
+            ))}
+          </ul>
+        : <ShimmerPhotos />
       }
     </>
   );
