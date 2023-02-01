@@ -21,6 +21,19 @@ export const API_LANGUAGE = '&language=';
 export const API_PAGE = '&page=';
 export const API_QUERY = '&query=';
 
+// FOR DISCOVER
+export const API_WITH_GENRES = '&with_genres=';
+export const API_SORT = '&sort_by=';
+
+export const API_DESC = '.desc'; // <=
+export const API_ASC = '.asc'; // >=
+export const API_LTE = '.lte'; // <=
+export const API_GTE = '.gte'; // >=
+
+export const API_POPULARITY = '&popularity';
+export const API_RELEASE_DATE = '&release_date';
+export const API_VOTE_AVERAGE = '&vote_average';
+
 // LANGUAGES
 export const API_EN = 'en';
 export const API_RU = 'ru';
@@ -30,7 +43,8 @@ export const API_UK = 'uk';
 export const API_MOVIE = '/movie';
 export const API_TV_SHOWS = '/tv';
 export const API_ACTORS = '/person';
-export const API_SEARCH = '/search'
+export const API_SEARCH = '/search';
+export const API_DISCOVER = '/discover';
 
 export const API_VIDEOS = '/videos';
 export const API_RECOMMEND = '/recommendations';
