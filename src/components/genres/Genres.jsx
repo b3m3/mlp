@@ -9,7 +9,7 @@ import style from './genres.module.scss';
 
 const Genres = ({ type, ids }) => {
   const [results, setResults] = useState(null);
-  const [genresList, setGenresList] = useState(null);
+  const [currentGenres, setCurrentGenres] = useState(null);
 
   const { currentLang } = useContext(Context);
 
@@ -26,13 +26,13 @@ const Genres = ({ type, ids }) => {
   
   useEffect(() => {
     if (results) {
-      setGenresList(getGenresFromId(results, ids))
+      setCurrentGenres(getGenresFromId(results, ids))
     }
   }, [results, currentLang]);
 
   return (
     <ul className={style.list} style={{display: 'flex'}}>
-      {genresList && genresList.map(({id, name}) => (
+      {currentGenres && currentGenres.map(({id, name}) => (
         <li key={id} style={isObj ? null : {fontSize: '13px'}}>
           {name[0].toUpperCase()+name.slice(1)}
         </li>

@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
-import { getApiResources, getApiResults, getApiTotalPages } from '../../service/getApiResources';
+import { getApiResources, getApiTotalPages } from '../../service/getApiResources';
 import { translateCategoryTitle } from '../../utils/functions';
 import { API_ROOT, API_KEY, API_PAGE, API_LANGUAGE, API_QUERY } from '../../constans/api';
 
