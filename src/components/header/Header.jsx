@@ -1,4 +1,4 @@
-import Search from '../ui/search/Search';
+import Search from '../search/search/Search';
 import Logo from '../ui/logo/Logo';
 import Language from '../ui/language/Language';
 import MenuHamburger from '../ui/menuHamburger/MenuHamburger';
