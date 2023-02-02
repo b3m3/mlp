@@ -1,0 +1,60 @@
+.wrapp {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 5px;
+
+  & p {
+    padding: 3px 0 0 0;
+    color: var(--gray-50);
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.title {
+  cursor: pointer;
+  padding: 3px .75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--white-01);
+  border-radius: 8px;
+  width: 100%;
+
+  & span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+  }
+
+  & svg {
+    font-size: 20px;
+  }
+}
+
+.list {
+  overflow: hidden;
+  background: var(--white-01);
+  border-radius: var(--b-radius);
+  text-align: center;
+  height: 0;
+  width: 100%;
+  transition: .3s;
+
+  & li {
+    cursor: pointer;
+    font-weight: 300;
+    line-height: 1.5;
+    transition: .3s;
+    
+    &:hover {
+      color: var(--gray-400);
+    }
+  }
+}
