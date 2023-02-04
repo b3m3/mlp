@@ -3,7 +3,7 @@ import { useLocation, useParams } from 'react-router-dom';
 
 import { getApiResources, getApiTotalPages } from '../../service/getApiResources';
 import { translateCategoryTitle } from '../../utils/functions';
-import { API_ROOT, API_KEY, API_PAGE, API_LANGUAGE, API_QUERY } from '../../constans/api';
+import { API_ROOT, API_KEY, API_PAGE, API_LANGUAGE, API_QUERY, API_DISCOVER, API_SEARCH } from '../../constans/api';
 
 import PageNavigation from '../../components/ui/pageNavigation/PageNavigation';
 import Error from '../../components/error/Error';
@@ -38,10 +38,13 @@ const Category = () => {
   ];
 
   const isSearch = category === 'search';
+  const isDiscover = category === 'discover';
 
-  const url = isSearch
-    ? API_ROOT+'/'+category+'/'+type+API_KEY+API_LANGUAGE+currentLang+API_QUERY+id+API_PAGE+page
-    : API_ROOT+'/'+type+'/'+category+API_KEY+API_LANGUAGE+currentLang+API_PAGE+page;
+  const categoryUrl = API_ROOT+'/'+type+'/'+category+API_KEY+API_LANGUAGE+currentLang+API_PAGE+page;
+  const searchUrl = API_ROOT+API_SEARCH+'/'+type+API_KEY+API_LANGUAGE+currentLang+API_QUERY+id+API_PAGE+page;
+  const discoverUrl = API_ROOT+API_DISCOVER+'/'+type+API_KEY+API_LANGUAGE+currentLang+id+API_PAGE+page;
+
+  const url = isSearch ? searchUrl : isDiscover ? discoverUrl : categoryUrl;
 
   useEffect(() => {
     setResults(null);
@@ -95,7 +98,7 @@ const Category = () => {
             }
           </div>}
 
-      {noSearchResults && <SearchError value={id} />}
+      {noSearchResults && <SearchError value={id}/>}
 
       <PageNavigation 
         totalPages={totalPages && totalPages > 500 ? 500 : totalPages}
