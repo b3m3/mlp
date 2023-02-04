@@ -9,7 +9,7 @@
     grid-template: auto / auto 1fr auto;
     gap: 1.25rem;
   }
-  @media screen and (max-width: 475px) {
+  @media screen and (max-width: 620px) {
     grid-template: auto auto / auto auto;
     padding: .9375rem 0;
   }
