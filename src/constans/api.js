@@ -22,17 +22,17 @@ export const API_PAGE = '&page=';
 export const API_QUERY = '&query=';
 
 // FOR DISCOVER
+export const API_POPULARITY = '&popularity';
 export const API_WITH_GENRES = '&with_genres=';
 export const API_SORT = '&sort_by=';
+export const API_RELEASE_DATE = '&release_date';
+export const API_VOTE_AVERAGE = '&vote_average';
+export const API_FIRST_AIR_DATE = '&first_air_date';
 
 export const API_DESC = '.desc'; // <=
 export const API_ASC = '.asc'; // >=
-export const API_LTE = '.lte'; // <=
-export const API_GTE = '.gte'; // >=
-
-export const API_POPULARITY = '&popularity';
-export const API_RELEASE_DATE = '&release_date';
-export const API_VOTE_AVERAGE = '&vote_average';
+export const API_LTE = '.lte='; // <=
+export const API_GTE = '.gte='; // >=
 
 // LANGUAGES
 export const API_EN = 'en';
