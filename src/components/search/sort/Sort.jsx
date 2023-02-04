@@ -7,7 +7,7 @@ import { MdKeyboardArrowDown } from 'react-icons/md';
 
 import style from './sort.module.scss';
 
-const Sort = ({ setSortBy }) => {
+const Sort = ({ indexSectionBtn, setSortBy }) => {
   const [currentTitle, setCurrentTitle] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
@@ -16,11 +16,11 @@ const Sort = ({ setSortBy }) => {
   const listActive = {padding: '.375rem .75rem', height: '11.25rem'};
 
   const sortTitles = [{en: 'Sort by:'}, {uk: 'Сортувати за:'}, {ru: 'Сортировать по:'}];
-  const defaultTitle = [{en: 'Relevance', uk: 'Релевантністю', ru: 'Релевантностью'}];
+  const defaultTitle = [{en: 'Relevance', uk: 'Релевантністю', ru: 'Релевантности'}];
   const options = [
     {
-      path: '',
-      name: [{en: 'Relevance', uk: 'Релевантністю', ru: 'Релевантностью'}]
+      path: [],
+      name: [{en: 'Relevance', uk: 'Релевантністю', ru: 'Релевантности'}]
     },
     {
       path: API_POPULARITY+API_DESC,
@@ -50,7 +50,8 @@ const Sort = ({ setSortBy }) => {
 
   useEffect(() => {
     defaultTitle.map(el => setCurrentTitle(el[currentLang]));
-  }, [currentLang]);
+    setSortBy([]);
+  }, [currentLang, indexSectionBtn]);
 
   return (
     <div className={style.wrapp}>

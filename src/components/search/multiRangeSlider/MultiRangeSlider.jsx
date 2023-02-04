@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 
 import style from './multi-range-slider.module.scss';
 
-const MultiRangeSlider = ({ min, max, step, onChange, setState }) => {
+const MultiRangeSlider = ({ min, max, step, onChange, setState, indexSectionBtn }) => {
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef(null);
@@ -40,6 +40,12 @@ const MultiRangeSlider = ({ min, max, step, onChange, setState }) => {
     onChange({ min: minVal, max: maxVal });
   }, [minVal, maxVal, onChange]);
 
+  useEffect(() => {
+    setMaxVal(max);
+    setMinVal(min);
+    setState([])
+  }, [indexSectionBtn]);
+
   return (
     <div className={style.wrapp}>
       <input
@@ -49,11 +55,11 @@ const MultiRangeSlider = ({ min, max, step, onChange, setState }) => {
         step={step}
         value={minVal}
         ref={minValRef}
-        className={style.thumb + ' ' + style.thumb_zindex_3 + ' ' + style.thumb_zindex_5}
+        className={style.thumb + ' ' + style.thumb_z3 + ' ' + style.thumb_z5}
         onChange={e => {
           const value = Math.min(+e.target.value, maxVal - step);
           setMinVal(value);
-          setState([{min: value}, {max: maxVal}]);
+          setState([value, maxVal]);
         }}
       />
       <input
@@ -63,19 +69,19 @@ const MultiRangeSlider = ({ min, max, step, onChange, setState }) => {
         step={step}
         value={maxVal}
         ref={maxValRef}
-        className={style.thumb + ' ' + style.thumb_zindex_4}
+        className={style.thumb + ' ' + style.thumb_z4}
         onChange={e => {
           const value = Math.max(+e.target.value, minVal + step);
           setMaxVal(value);
-          setState([{min: minVal}, {max: value}]);
+          setState([minVal, value]);
         }}
       />
 
       <div className={style.slider}>
-        <div className={style.slider__track}/>
-        <div ref={range} className={style.slider__range} />
-        <div className={style.slider__left_value}>{minVal}</div>
-        <div className={style.slider__right_value}>{maxVal}</div>
+        <div className={style.track}/>
+        <div className={style.range} ref={range}/>
+        <div className={style.left}>{minVal}</div>
+        <div className={style.right}>{maxVal}</div>
       </div>
     </div>
   );

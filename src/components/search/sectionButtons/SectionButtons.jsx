@@ -4,7 +4,7 @@ import { Context } from '../../../context/context';
 
 import style from './section-buttons.module.scss';
 
-const SectionButtons = ({ index, setIndex, setGenresSelected, activeBtn }) => {
+const SectionButtons = ({ index, setIndex, activeBtn, setGenresSelected }) => {
   const { currentLang } = useContext(Context);
 
   const buttonsName = [
@@ -19,7 +19,10 @@ const SectionButtons = ({ index, setIndex, setGenresSelected, activeBtn }) => {
         el[currentLang].map((btn, i) => (
           <button 
             key={i}
-            onClick={() => setIndex(i)}
+            onClick={() => {
+              setIndex(i);
+              setGenresSelected([]);
+            }}
             className={style.btn}
             style={index === i ? activeBtn : null}
           >
