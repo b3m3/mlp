@@ -1,16 +1,52 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { API_SEARCH } from '../../../constans/api';
+import { API_SEARCH, API_DISCOVER, API_WITH_GENRES, API_SORT, API_LTE, API_GTE, 
+  API_RELEASE_DATE, API_VOTE_AVERAGE, API_FIRST_AIR_DATE } from '../../../constans/api';
 import { Context } from '../../../context/context';
 
 import { RiSearchLine } from 'react-icons/ri';
 import style from './input.module.scss';
 
-const Input = ({ mediaType, setInputValue, setInputFocus, indexSectionBtn, inputValue }) => {
+const Input = ({mediaType, setInputValue, setInputFocus, indexSectionBtn, inputValue, 
+  setGenresSelected, genresSelected, sortBy, ratings, years}) => {
+
   const { currentLang } = useContext(Context);
 
-  const link = `/${currentLang}${mediaType[indexSectionBtn]}${API_SEARCH}/${inputValue}/1`;
+  const activeBtnStyle = {color: 'var(--gray-50)'}
+
+  const type = mediaType[indexSectionBtn];
+  const isTypeMovie = type === '/movie';
+
+  const isSort = 
+    sortBy.length > 0 
+      ? API_SORT+sortBy.slice(1) 
+      : '';
+
+  const isGenres = 
+    genresSelected.length > 0 
+      ? API_WITH_GENRES+genresSelected.map(({id}) => id) 
+      : '';
+
+  const isYears = 
+    years.length > 0 
+      ? isTypeMovie 
+        ? API_RELEASE_DATE+API_GTE+years[0]+API_RELEASE_DATE+API_LTE+years[1]
+        : API_FIRST_AIR_DATE+API_GTE+years[0]+API_FIRST_AIR_DATE+API_LTE+years[1]
+      : '';
+
+  const isRating = 
+    ratings.length > 0 
+      ? API_VOTE_AVERAGE+API_GTE+ratings[0]+API_VOTE_AVERAGE+API_LTE+ratings[1] 
+      : '';
+
+  const isValue = sortBy.length > 0 || genresSelected.length > 0 || 
+    ratings.length > 0 ||  years.length > 0 || inputValue;
+
+  const link = 
+    inputValue 
+      ? `/${currentLang}${type}${API_SEARCH}/${inputValue}/1`
+      : `/${currentLang}${type}${API_DISCOVER}/${isSort}${isGenres}${isRating}${isYears}/1`;
 
   return (
     <div className={style.wrapp}>
@@ -22,14 +58,16 @@ const Input = ({ mediaType, setInputValue, setInputFocus, indexSectionBtn, input
         value={inputValue}
       /> 
       <Link
-        to={inputValue ? link : null}
-        className={inputValue && style.active}
+        to={isValue ? link : null}
         onClick={() => {
           setInputValue('');
           setInputFocus(false);
+          setGenresSelected([]);
         }}
       >
-        <RiSearchLine />
+        <RiSearchLine 
+          style={isValue ? activeBtnStyle : null}
+        />
       </Link>
     </div>
   );
