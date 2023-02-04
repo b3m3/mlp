@@ -13,9 +13,9 @@ const NotFound = () => {
   const { currentLang } = useContext(Context);
 
   const errors = [
-    {en: `No results found for "${pathname}"`},
-    {uk: `За запитом "${pathname}" нічого не знайдено`},
-    {ru: `По запросу "${pathname}" ничего не найдено`}
+    {en: `The path "${pathname}" is invalid `},
+    {uk: `Шлях "${pathname}" вказано невірно`},
+    {ru: `Путь "${pathname}" указан неверный`}
   ]
 
   return (
