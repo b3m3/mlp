@@ -61,7 +61,11 @@ const Category = () => {
         setErrorApi(true);
       }
 
-      if (isSearch || isDiscover && res && res.results.length < 1) {
+      if (isSearch && res && res.results.length < 1) {
+        setNoSearchResults(true);
+      }
+
+      if (isDiscover && res && res.results.length < 1) {
         setNoSearchResults(true);
       }
     })();
@@ -98,12 +102,11 @@ const Category = () => {
             }
           </div>}
 
-      {noSearchResults 
-        ? <SearchError value={id}/>
-        : <PageNavigation 
-            totalPages={totalPages && totalPages > 500 ? 500 : totalPages}
-          />
-        }
+      {noSearchResults && <SearchError value={id}/>}
+
+      <PageNavigation 
+        totalPages={totalPages && totalPages > 500 ? 500 : totalPages}
+      />
     </section>
   );
 }

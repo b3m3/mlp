@@ -19,17 +19,17 @@ export const getLangIdFromLocation = location => {
 }
 
 export const nextPage = (id, location) => {
-  return location.indexOf(id) !== -1 
-    ? location.slice(0, location.indexOf(id)) + (+id + 1) : null;
+  return location.indexOf('/'+id) !== -1 
+    ? location.slice(0, location.indexOf('/'+id)) + '/' + (+id + 1) : null;
 };
 
 export const prevPage = (id, location) => {
-  return location.indexOf(id) !== -1 
-    ? location.slice(0, location.indexOf(id)) + (+id - 1) : null;
+  return location.indexOf('/'+id) !== -1 
+    ? location.slice(0, location.indexOf('/'+id)) + '/' + (+id - 1) : null;
 };
 
 export const goToPage = (id, location, page) => {
-  return location.slice(0, location.indexOf(id)) + page
+  return location.slice(0, location.indexOf('/'+id)) + '/' + page;
 };
 
 export const changeLangLocation = (location, lang) => {
