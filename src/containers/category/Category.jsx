@@ -37,6 +37,10 @@ const Category = () => {
     {airing_today: [{en: 'Airing today', uk: 'Сьогодні в ефірі', ru: 'Сегодня в эфире'}]}
   ];
 
+  const discoverTitles = [
+    {en: 'Custom filter'}, {uk: 'Спеціальний фільтр'}, {ru: 'Пользовательский фильтр'}
+  ];
+
   const isSearch = category === 'search';
   const isDiscover = category === 'discover';
 
@@ -74,7 +78,13 @@ const Category = () => {
   return (
     <section className={style.category}>
       <h2>
-        {isSearch ? id : translateCategoryTitle(titles, category, currentLang)}
+        {
+          isSearch 
+            ? id 
+            : isDiscover 
+              ? discoverTitles.map(t => t[currentLang]) 
+              : translateCategoryTitle(titles, category, currentLang)
+        }
       </h2>
 
       {errorApi
