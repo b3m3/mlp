@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 import Header from '../../components/header/Header';
 import Sidebar from '../../components/sidebar/Sidebar';
@@ -14,17 +14,33 @@ import InfoActor from '../infoActor/InfoActor';
 import NotFound from '../../containers/notFound/NotFound';
 
 import { Context } from '../../context/context';
+import { FAVORITE_KEY } from '../../constans/localStorage';
+
+import { getFromLocalStorage, addArrToStorage } from '../../utils/localStorage';
 
 import './app.scss';
 
 const App = () => {
   const [menuActive, setMenuActive] = useState(false);
   const [currentLang, setCurrentLang] = useState('');
-
+  const [favorites, setFavorites] = useState({});
+  
   const refInfoVideo = useRef(null);
   const refInfoActor = useRef(null);
+  
+  const favoritesStorage = getFromLocalStorage(FAVORITE_KEY);
 
-  const provider = {currentLang, menuActive, setCurrentLang, setMenuActive};
+  useEffect(() => {
+    if (favoritesStorage) {
+      setFavorites(JSON.parse(favoritesStorage));
+    }
+  }, [])
+
+  useEffect(() => {
+    addArrToStorage(FAVORITE_KEY, favorites);
+  }, [favorites])
+
+  const provider = {currentLang, menuActive, favorites, setCurrentLang, setMenuActive, setFavorites};
 
   return (
     <Context.Provider value={provider}>
