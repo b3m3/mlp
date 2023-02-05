@@ -81,3 +81,10 @@ export const getGenresFromId = (list, ids) => {
 
   return list.filter(el1 => ids.some(el2 => el1.id === el2));
 };
+
+export const removeItemFromObj = (state, setState, id) => {
+  const coppy = {...state};
+  delete coppy[id];
+
+  setState({...coppy});
+};
