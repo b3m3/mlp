@@ -9,3 +9,11 @@ export const getFromLocalStorage = key => {
 export const removeItemFromLocalStorage = (key) => {
   return localStorage.removeItem(key)
 };
+
+export const addArrToStorage = (key, arr) => {
+  return localStorage.setItem(key, JSON.stringify(arr));
+};
+
+export const getArrFromStorage= (key) => {
+  return localStorage.getItem(JSON.parse(key));
+};
