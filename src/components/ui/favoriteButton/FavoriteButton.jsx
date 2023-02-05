@@ -19,7 +19,7 @@ const FavoriteButton = ({id, poster_path, title, name}) => {
   useEffect(() => {
     if (favorites) {
       for (const key in favorites) {
-        if (favorites[key].id === id) {
+        if (favorites[key].id === id && favorites[key].poster_path === poster_path) {
           setIsActive(true);
         }
       }
