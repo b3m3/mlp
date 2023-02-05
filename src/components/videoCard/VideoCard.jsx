@@ -3,6 +3,7 @@ import { useContext } from 'react';
 
 import Rating from '../ui/rating/Rating';
 import Poster from '../ui/poster/Poster';
+import FavoriteButton from '../ui/favoriteButton/FavoriteButton';
 
 import { getTypeFromLocation } from '../../utils/functions';
 import { Context } from "../../context/context";
@@ -23,6 +24,15 @@ const VideoCard = ({id, poster_path, title, name, category, vote_average, small}
         <Link to={link}>
           <Poster path={poster_path} />
         </Link>
+      </div>
+
+      <div className={style.favorite}>
+        <FavoriteButton 
+          id={id}
+          poster_path={poster_path}
+          title={title}
+          name={name}
+        />
       </div>
 
       {!small &&
