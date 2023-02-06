@@ -106,14 +106,45 @@
   & svg {
     position: relative;
     z-index: 2;
-    font-size: 26px;
-    min-width: 26px;
+    font-size: 1.625rem;
+    min-width: 1.625rem;
   }
 
   & span {
     font-weight: 700;
     font-size: 1.125rem;
     white-space: nowrap;
+  }
+
+  & i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: .75rem;
+    font-style: normal;
+    padding: 2px 7px;
+    background: var(--blue-gradient);
+    border-radius: 1.5625rem;
+    transition: .2s;
+
+    @media screen and (max-width: 1024px) {
+      right: -10px;
+      top: -10px;
+      transform: translateY(0);
+
+      &.open {
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+
+        @media screen and (max-width: 768px) {
+          right: -10px;
+          top: -10px;
+          transform: translateY(0);
+        }
+      }
+    }
   }
   
   :global(a.active) {

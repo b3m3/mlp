@@ -14,7 +14,7 @@ import style from './sidebar.module.scss';
 const Sidebar = ({refInfoVideo, refInfoActor}) => {
   const [isActive, setIsActive] = useState(false);
 
-  const { currentLang, menuActive } = useContext(Context);
+  const { currentLang, menuActive, favorites } = useContext(Context);
   const { pathname } = useLocation();
 
   const links = [
@@ -33,12 +33,20 @@ const Sidebar = ({refInfoVideo, refInfoActor}) => {
     <aside>
       <nav className={`${style.navbar} ${menuActive && style.active} ${isActive && style.hidden}`}>
         <ul>
-          {links.map(link => (
+          {links.map((link, i) => (
             <li key={link.en}>
               <NavLink to={link.path} end={link.end && link.end}>
                 {link.icon}
                 <span>{link[currentLang]}</span>
               </NavLink>
+
+              {links.length -1 === i && favorites && favorites.length > 0 &&
+                <i 
+                  className={menuActive ? style.open : ''}
+                >
+                  {favorites.length}
+                </i>
+              }
             </li>
           ))}
         </ul>
