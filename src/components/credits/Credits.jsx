@@ -18,7 +18,7 @@ const Credits = ({ url, titles, prevClass, nextClass, resultName, actors, fullCo
 
   const { currentLang } = useContext(Context);
 
-  const category = titles[0].en === 'Movies' ? '/movie' : '/tv';
+  const type = titles[0].en === 'Movies' ? '/movie' : '/tv';
 
   useEffect(() => {
     (async() => {
@@ -69,7 +69,7 @@ const Credits = ({ url, titles, prevClass, nextClass, resultName, actors, fullCo
               <SwiperSlide key={props.credit_id ? props.credit_id : props.id}>
                 {actors 
                   ? <ActorCard {...props} /> 
-                  : <VideoCard {...props} category={category} small />
+                  : <VideoCard {...props} type={type} small />
                 }
               </SwiperSlide>
             ))}
