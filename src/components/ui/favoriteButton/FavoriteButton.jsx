@@ -6,7 +6,7 @@ import { Context } from '../../../context/context';
 import { addArrToStorage } from '../../../utils/localStorage';
 import { getTypeFromLocation } from '../../../utils/functions';
 
-import { BsBookmarkStarFill } from 'react-icons/bs';
+import { TiHeartFullOutline } from 'react-icons/ti';
 
 import style from './favorite-button.module.scss';
 
@@ -15,8 +15,6 @@ const FavoriteButton = ({ id, poster_path, title, name }) => {
 
   const { favorites, setFavorites } = useContext(Context);
   const { pathname } = useLocation();
-
-  const activeStyle = { color: 'var(--orange-400)' };
 
   const type = getTypeFromLocation(pathname);
   const data = { id, poster_path, title, name, type };
@@ -33,17 +31,18 @@ const FavoriteButton = ({ id, poster_path, title, name }) => {
   }, [favorites]);
 
   return (
-    <BsBookmarkStarFill
-      className={style.btn}
-      style={isActive ? activeStyle : null}
-      onClick={() => {
-        setIsActive(a => !a);
-        
-        !isActive
-          ? setFavorites(current => [...current, data])
-          : setFavorites(current => current.filter(el => el.id !== id ));
-      }}
-    />
+    <div className={style.btn}>
+      <TiHeartFullOutline
+        className={isActive ? style.active : ''}
+        onClick={() => {
+          setIsActive(a => !a);
+          
+          !isActive
+            ? setFavorites(current => [...current, data])
+            : setFavorites(current => current.filter(el => el.id !== id ));
+        }}
+      />
+    </div>
   );
 };
 
