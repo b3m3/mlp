@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext, forwardRef } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 
+import FavoriteButton from '../../components/ui/favoriteButton/FavoriteButton';
 import Button from '../../components/ui/button/Button';
 import Rating from '../../components/ui/rating/Rating';
 import Poster from '../../components/ui/poster/Poster';
@@ -32,7 +33,7 @@ const InfoVideo = forwardRef((props, ref) => {
   const { type, id } = useParams();
   const navigate = useNavigate();
 
-  const bodyBorderRadius = '0 0 .75rem .75rem';
+  const bodyBorderRadius = {borderRadius: '0 0 .75rem .75rem'}
 
   const actorsTitles = [{en: 'Cast'},{ru: 'В ролях'},{uk: 'Акторський склад'}];
   const recomendationsTitles = [{en: 'Recommendations'},{ru: 'Рекомендации'},{uk: 'Рекомендації'}];
@@ -68,7 +69,7 @@ const InfoVideo = forwardRef((props, ref) => {
 
                     <div 
                       className={style.body}
-                      style={activeTrailer ? {borderRadius: bodyBorderRadius} : null}
+                      style={activeTrailer ? bodyBorderRadius : null}
                     >
                       <div className={style.col}>
                         <h1>{results.title ? results.title : results.name}</h1>
@@ -95,6 +96,12 @@ const InfoVideo = forwardRef((props, ref) => {
 
                       <div className={style.col}>
                         <Poster path={results.poster_path}/>
+                        <FavoriteButton 
+                          id={parseInt(id)}
+                          poster_path={results.poster_path}
+                          title={results.title}
+                          name={results.name}
+                        />
                       </div>
                     </div>
 
