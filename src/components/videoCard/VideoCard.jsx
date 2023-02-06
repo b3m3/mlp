@@ -10,13 +10,15 @@ import { Context } from "../../context/context";
 
 import style from './video-card.module.scss';
 
-const VideoCard = ({id, poster_path, title, name, category, vote_average, small}) => {
+const VideoCard = ({id, poster_path, title, name, type, vote_average, small}) => {
   const { pathname } = useLocation();
   const { currentLang } = useContext(Context);
 
-  const isPerson = getTypeFromLocation(pathname) === '/person';
+  const currentType = getTypeFromLocation(pathname);
+  const isPerson = currentType === '/person';
+  const isFavorites = currentType === '/favorites';
 
-  const link = `/${currentLang}${isPerson ? category : getTypeFromLocation(pathname)}/${id}`;
+  const link = `/${currentLang}${isPerson || isFavorites ? type : currentType}/${id}`;
 
   return (
     <div className={style.card}>
