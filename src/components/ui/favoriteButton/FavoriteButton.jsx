@@ -1,9 +1,10 @@
 import { useState, useContext, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { FAVORITE_KEY } from '../../../constans/localStorage';
 import { Context } from '../../../context/context';
-import { removeItemFromObj } from '../../../utils/functions';
 import { addArrToStorage } from '../../../utils/localStorage';
+import { getTypeFromLocation } from '../../../utils/functions';
 
 import { BsBookmarkStarFill } from 'react-icons/bs';
 
@@ -13,20 +14,22 @@ const FavoriteButton = ({ id, poster_path, title, name }) => {
   const [isActive, setIsActive] = useState(false);
 
   const { favorites, setFavorites } = useContext(Context);
+  const { pathname } = useLocation();
 
   const activeStyle = { color: 'var(--orange-400)' };
 
-  const data = { [id]: { id, poster_path, title, name } };
+  const type = getTypeFromLocation(pathname);
+  const data = { id, poster_path, title, name, type };
 
   useEffect(() => {
     addArrToStorage(FAVORITE_KEY, favorites);
     setIsActive(false);
 
-    for (const key in favorites) {
-      if (favorites[key].id === id) {
+    favorites.map(el => {
+      if (el.id === id) {
         setIsActive(true);
       }
-    }
+    });
   }, [favorites]);
 
   return (
@@ -37,8 +40,8 @@ const FavoriteButton = ({ id, poster_path, title, name }) => {
         setIsActive(a => !a);
         
         !isActive
-          ? setFavorites(current => ({ ...current, ...data }))
-          : removeItemFromObj(favorites, setFavorites, id);
+          ? setFavorites(current => [...current, data])
+          : setFavorites(current => current.filter(el => el.id !== id ));
       }}
     />
   );

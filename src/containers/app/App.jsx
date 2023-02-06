@@ -24,7 +24,7 @@ const App = () => {
 
   const [menuActive, setMenuActive] = useState(false);
   const [currentLang, setCurrentLang] = useState('');
-  const [favorites, setFavorites] = useState(favoritesStorage ? JSON.parse(favoritesStorage) : {});
+  const [favorites, setFavorites] = useState(favoritesStorage ? JSON.parse(favoritesStorage) : []);
   
   const refInfoVideo = useRef(null);
   const refInfoActor = useRef(null);
