@@ -28,14 +28,12 @@ const VideoCard = ({id, poster_path, title, name, type, vote_average, small}) =>
         </Link>
       </div>
 
-      <div className={style.favorite}>
-        <FavoriteButton 
-          id={id}
-          poster_path={poster_path}
-          title={title}
-          name={name}
-        />
-      </div>
+      <FavoriteButton 
+        id={id}
+        poster_path={poster_path}
+        title={title}
+        name={name}
+      />
 
       {!small &&
         <>
