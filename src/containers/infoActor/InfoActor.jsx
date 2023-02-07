@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext, forwardRef } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-import Button from '../../components/ui/button/Button';
 import Poster from '../../components/ui/poster/Poster';
 import Background from '../../components/ui/background/Background';
 import Dates from '../../components/ui/dates/Dates';
@@ -11,6 +10,7 @@ import Credits from '../../components/credits/Credits';
 import Photos from '../../components/infoActor/photos/Photos';
 import Error from '../../components/error/Error';
 import Loading from '../../components/loading/Loading';
+import Back from '../../components/ui/back/Back';
 
 import { API_ROOT, API_KEY, API_ACTORS, API_LANGUAGE, API_ACTORS_MOVIE_CREDITS, API_ACTORS_TV_CREDITS } from '../../constans/api';
 import { getApiResults } from '../../service/getApiResources';
@@ -25,7 +25,6 @@ const InfoActor = forwardRef((props, ref) => {
 
   const { currentLang } = useContext(Context);
   const { id } = useParams();
-  const navigate = useNavigate();
 
   const moviesTitles = [{en: 'Movies'},{ru: 'Фильмы'},{uk: 'Фільми'}];
   const tvShowsTitles = [{en: 'TV Shows'},{ru: 'Сериалы'},{uk: 'Серіали'}];
@@ -46,10 +45,7 @@ const InfoActor = forwardRef((props, ref) => {
             {results
               ? <>
                   <Background path={results.profile_path} />
-                  
-                  <Link onClick={() => navigate(-1)}>
-                    <Button left />
-                  </Link>
+                  <Back path={-1} />
 
                   <div className={style.body}>
                     <div className={style.col}>

@@ -1,8 +1,7 @@
 import { useState, useEffect, useContext, forwardRef } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import FavoriteButton from '../../components/ui/favoriteButton/FavoriteButton';
-import Button from '../../components/ui/button/Button';
 import Rating from '../../components/ui/rating/Rating';
 import Poster from '../../components/ui/poster/Poster';
 import Background from '../../components/ui/background/Background';
@@ -16,6 +15,7 @@ import Credits from '../../components/credits/Credits';
 import Genres from '../../components/genres/Genres';
 import Error from '../../components/error/Error';
 import Loading from '../../components/loading/Loading';
+import Back from '../../components/ui/back/Back';
 
 import { API_ROOT, API_KEY, API_LANGUAGE, API_CREDITS, API_RECOMMEND } from '../../constans/api';
 import { getApiResults } from '../../service/getApiResources';
@@ -31,7 +31,6 @@ const InfoVideo = forwardRef((props, ref) => {
 
   const { currentLang } = useContext(Context);
   const { type, id } = useParams();
-  const navigate = useNavigate();
 
   const bodyBorderRadius = {borderRadius: '0 0 .75rem .75rem'}
 
@@ -56,10 +55,7 @@ const InfoVideo = forwardRef((props, ref) => {
             {results
               ? <>
                   <Background path={results.backdrop_path}/>
-                  
-                  <Link onClick={() => navigate(-1)}>
-                    <Button left />
-                  </Link> 
+                  <Back path={-1}/>
                   
                   <div className='container-800'>
                     <Trailers
@@ -104,7 +100,6 @@ const InfoVideo = forwardRef((props, ref) => {
                         />
                       </div>
                     </div>
-
 
                     <Credits 
                       url={actorsUrl}
