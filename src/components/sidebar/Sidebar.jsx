@@ -22,7 +22,7 @@ const Sidebar = ({refInfoVideo, refInfoActor}) => {
     {en: 'Movies', uk: 'Фільми', ru: 'Фильмы', icon: <MdLocalMovies />, path: '/'+currentLang+'/movie'},
     {en: 'TV Shows', uk: 'Серіали', ru: 'Сериалы', icon: <RiMovie2Fill />, path: '/'+currentLang+'/tv'},
     {en: 'Actors', uk: 'Актори', ru: 'Актеры', icon: <BsFillPeopleFill />, path: '/'+currentLang+'/person'},
-    {en: 'Favorites', uk: 'Вибране', ru: 'Избранное', icon: <MdFavorite />, path: '/'+currentLang+'/favorites'},
+    {en: 'Favorites', uk: 'Обране', ru: 'Избранное', icon: <MdFavorite />, path: '/'+currentLang+'/favorites'},
   ];
 
   useEffect(() => {
