@@ -13,8 +13,8 @@ import InfoVideo from '../containers/infoVideo/InfoVideo';
 import InfoActor from '../containers/infoActor/InfoActor';
 import NotFound from '../containers/notFound/NotFound';
 
-const RoutesElements = ({ refInfoVideo, refInfoActor }) => {
-  const {currentLang} = useContext(Context);
+const RoutesElements = () => {
+  const { currentLang, refInfoVideo, refInfoActor } = useContext(Context);
 
   return useRoutes([
     {path: '/:lang', element: <Home/>},

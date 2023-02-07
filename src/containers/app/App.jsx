@@ -22,27 +22,22 @@ const App = () => {
   const refInfoVideo = useRef(null);
   const refInfoActor = useRef(null);
 
-  const provider = {currentLang, menuActive, favorites, setCurrentLang, setMenuActive, setFavorites};
+  const provider = {
+    currentLang, menuActive, favorites, 
+    setCurrentLang, setMenuActive, setFavorites,
+    refInfoVideo, refInfoActor
+  };
 
   return (
     <Context.Provider value={provider}>
       <BrowserRouter>
         <div className="app">
           <div className="container">
-            <Header 
-              refInfoVideo={refInfoVideo}
-              refInfoActor={refInfoActor}
-            />
+            <Header />
             <div className='app-wrapp'>
-              <Sidebar 
-                refInfoVideo={refInfoVideo}
-                refInfoActor={refInfoActor}
-              />
+              <Sidebar />
               <main>
-                <RoutesElements 
-                  refInfoVideo={refInfoVideo}
-                  refInfoActor={refInfoActor}
-                />
+                <RoutesElements />
               </main>
             </div>
           </div>

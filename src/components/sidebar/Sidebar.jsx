@@ -11,10 +11,10 @@ import { Context } from '../../context/context';
 
 import style from './sidebar.module.scss';
 
-const Sidebar = ({refInfoVideo, refInfoActor}) => {
+const Sidebar = () => {
   const [isActive, setIsActive] = useState(false);
 
-  const { currentLang, menuActive, favorites } = useContext(Context);
+  const { currentLang, menuActive, favorites, refInfoVideo, refInfoActor } = useContext(Context);
   const { pathname } = useLocation();
 
   const links = [
@@ -41,9 +41,7 @@ const Sidebar = ({refInfoVideo, refInfoActor}) => {
               </NavLink>
 
               {links.length -1 === i && favorites && favorites.length > 0 &&
-                <i 
-                  className={menuActive ? style.open : ''}
-                >
+                <i className={menuActive ? style.open : ''}>
                   {favorites.length}
                 </i>
               }
