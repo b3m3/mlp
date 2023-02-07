@@ -6,11 +6,17 @@ import style from './logo.module.scss';
 
 const Logo = () => {
   return (
-    <Link to={'/'}>
-      <h2 className={style.logo}>
-          <img src={Movie} alt="Logo" />
-          Movies lib
-      </h2>
+    <Link 
+      className={style.wrapp}
+      to={'/'}
+    >
+      <div className={style.logo}>
+        <img src={Movie} alt="Logo" />
+        <p>
+          <span>M</span>
+          <span>L</span>
+        </p>
+      </div>
     </Link>
   );
 }

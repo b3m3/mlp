@@ -1,14 +1,45 @@
+.wrapp {
+  padding: .3125rem 0;
+  width: 4.375rem;
+}
+
 .logo {
-  font-size: 1.25rem;
-  font-weight: 800;
+  position: relative;
   display: flex;
   align-items: center;
-  color: var(--blue-200);
+  color: var(--gray-50);
+
+  &:hover {
+    & img {
+      transform: translateX(10px) rotate(45deg);
+    }
+
+    & span {
+      &:first-child {
+        transform: rotateY(180deg) translate(0, 5px);
+      }
+
+      &:last-child {
+        transform: rotate(360deg) translate(-5px, -5px);
+      }
+    }
+  }
 
   & img {
     width: 1.875rem;
     transform: translateX(.3125rem);
+    transition: .38s ease-out;
   }
 
-
+  & p {
+    position: relative;
+    z-index: 1;
+    font-size: 1.25rem;
+    font-weight: 800;
+    
+    & span {
+      transition: .38s ease-out;
+      display: inline-block;
+    }
+  }
 }
