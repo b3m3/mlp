@@ -22,11 +22,11 @@ export const getApiResults = async (url, setResults, setErrorApi) => {
   }
 };
 
-export const getApiTotalPages = async (url, setResults) => {
+export const getApiItem = async (url, itemName, setResults) => {
   const res = await getApiResources(url);
   if (res) {
-    setResults(res.total_pages);
+    setResults(res[itemName]);
   } else {
-    return null;
+    return setResults(null);
   }
 };

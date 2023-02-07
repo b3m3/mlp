@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
-import { getApiResources, getApiTotalPages } from '../../service/getApiResources';
+import { getApiResources, getApiItem } from '../../service/getApiResources';
 import { translateCategoryTitle } from '../../utils/functions';
 import { API_ROOT, API_KEY, API_PAGE, API_LANGUAGE, API_QUERY, API_DISCOVER, API_SEARCH } from '../../constans/api';
 
@@ -54,7 +54,7 @@ const Category = () => {
     setResults(null);
     setNoSearchResults(false);
     window.scrollTo(0, 0);
-    getApiTotalPages(url, setTotalPages);
+    getApiItem(url, 'total_pages', setTotalPages);
 
     (async() => {
       const res = await getApiResources(url);
