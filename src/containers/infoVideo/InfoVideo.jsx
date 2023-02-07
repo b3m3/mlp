@@ -86,7 +86,7 @@ const InfoVideo = forwardRef((props, ref) => {
                         <p>{results.overview && results.overview}</p>
 
                         <div className={style.row}>
-                          <LinkPage imdb={results.imdb_id} homepage={results.homepage} />
+                          <LinkPage />
                         </div>
                       </div>
 

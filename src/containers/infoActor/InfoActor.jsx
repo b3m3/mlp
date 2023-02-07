@@ -60,7 +60,7 @@ const InfoActor = forwardRef((props, ref) => {
                       />
                       <Countries countries={results.place_of_birth} />
                       <p>{results.biography && results.biography}</p>
-                      <LinkPage imdb={results.imdb_id} />
+                      <LinkPage />
                     </div>
                   </div>
 
