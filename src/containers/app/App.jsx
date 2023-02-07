@@ -1,21 +1,14 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { useState, useRef } from 'react';
 
 import Header from '../../components/header/Header';
 import Sidebar from '../../components/sidebar/Sidebar';
-import Home from '../../containers/home/Home';
-import Movies from '../../containers/movies/Movies';
-import TvShows from '../tvShows/TvShows';
-import Actors from '../actors/Actors';
-import Favorites from '../../containers/favorites/Favorites';
-import Category from '../../containers/category/Category';
-import InfoVideo from '../infoVideo/InfoVideo';
-import InfoActor from '../infoActor/InfoActor';
-import NotFound from '../../containers/notFound/NotFound';
 
 import { Context } from '../../context/context';
 import { FAVORITE_KEY } from '../../constans/localStorage';
 import { getFromLocalStorage } from '../../utils/localStorage';
+
+import RoutesElements from '../../routes/RoutesElements';
 
 import './app.scss';
 
@@ -46,19 +39,10 @@ const App = () => {
                 refInfoActor={refInfoActor}
               />
               <main>
-                <Routes>
-                  <Route path={'/:lang'} element={<Home/>}/>
-                  <Route path={'/:lang/movie'} element={<Movies/>}/>
-                  <Route path={'/:lang/tv'} element={<TvShows/>}/>
-                  <Route path={'/:lang/person'} element={<Actors/>}/>
-                  <Route path={'/:lang/favorites'} element={<Favorites/>}/>
-                  <Route path={'/:lang/:type/:category/:page'} element={<Category/>}/>
-                  <Route path={'/:lang/:type/:id'} element={<InfoVideo ref={refInfoVideo}/>}/>
-                  <Route path={'/:lang/person/:id'} element={<InfoActor ref={refInfoActor}/>}/>
-                  <Route path={'/:lang/:type/:category/:id/:page'} element={<Category/>}/>
-                  <Route path={'*'} element={<NotFound/>}/>
-                  <Route path={'/'} element={<Navigate to={'/'+currentLang} replace/>}/>
-                </Routes>
+                <RoutesElements 
+                  refInfoVideo={refInfoVideo}
+                  refInfoActor={refInfoActor}
+                />
               </main>
             </div>
           </div>
