@@ -28,7 +28,7 @@ const LinkPage = () => {
   }, []);
 
   return (
-    <>
+    <div className={style.wrapp}>
       {imdbLink &&
         <a 
           className={style.link}
@@ -49,7 +49,7 @@ const LinkPage = () => {
           <RiHomeWifiFill />
         </a>
       }
-    </>
+    </div>
   );
 }
 

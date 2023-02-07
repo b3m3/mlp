@@ -85,9 +85,7 @@ const InfoVideo = forwardRef((props, ref) => {
                         <Countries countries={results.production_countries} />
                         <p>{results.overview && results.overview}</p>
 
-                        <div className={style.row}>
-                          <LinkPage />
-                        </div>
+                        <LinkPage />
                       </div>
 
                       <div className={style.col}>
