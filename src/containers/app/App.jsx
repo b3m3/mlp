@@ -8,7 +8,7 @@ import { Context } from '../../context/context';
 import { FAVORITE_KEY } from '../../constans/localStorage';
 import { getFromLocalStorage } from '../../utils/localStorage';
 
-import RoutesElements from '../../routes/RoutesElements';
+import Router from '../../routes/Router';
 
 import './app.scss';
 
@@ -37,7 +37,7 @@ const App = () => {
             <div className='app-wrapp'>
               <Sidebar />
               <main>
-                <RoutesElements />
+                <Router />
               </main>
             </div>
           </div>

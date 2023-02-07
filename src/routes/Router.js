@@ -13,7 +13,8 @@ import InfoVideo from '../containers/infoVideo/InfoVideo';
 import InfoActor from '../containers/infoActor/InfoActor';
 import NotFound from '../containers/notFound/NotFound';
 
-const RoutesElements = () => {
+
+const Router = () => {
   const { currentLang, refInfoVideo, refInfoActor } = useContext(Context);
 
   return useRoutes([
@@ -31,4 +32,4 @@ const RoutesElements = () => {
   ]);
 };
 
-export default RoutesElements;
+export default Router;
