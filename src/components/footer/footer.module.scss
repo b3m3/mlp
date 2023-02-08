@@ -1,0 +1,33 @@
+.wrapp {
+  margin-top: 3.125rem;
+  padding: 1.875rem 0;
+  background: rgba(33, 127, 244, 0.03);
+}
+
+.body {
+  display: grid;
+  grid-template: auto / minmax(auto, 9.375rem) minmax(auto, 12.5rem) minmax(auto, 12.5rem);
+}
+
+.col {
+  & h5 {
+    font-weight: 600;
+    line-height: 2;
+  }
+
+  & ul {
+    & li {
+      line-height: 1.5;
+    }
+
+    & a {
+      font-size: 12px;
+      font-weight: 200;
+      transition: .2s;
+
+      &:hover {
+        color: var(--gray-400);
+      }
+    }
+  }
+}
