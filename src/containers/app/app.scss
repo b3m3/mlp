@@ -47,17 +47,14 @@ body {
   width: 100%;
   max-width: 1330px;
   margin: 0 auto;
-  padding: 2.5rem .9375rem;
+  padding: 0 .9375rem;
   display: grid;
   grid-template: auto / auto 1fr;
   flex: 1 1 auto;
-  
-  @media screen and (max-width: 1024px) {
-    padding-top: 1.25rem;
-  }
 }
 
 main {
+  padding-top: 3.125rem;
   width: 100%;
   min-width: 0;
 }
