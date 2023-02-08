@@ -44,10 +44,10 @@ const Trending = ({ item, actors }) => {
             style={actors ? swiperWidthActors : swiperWidthCards}
             modules={[Navigation, Pagination, EffectCards, EffectCoverflow]}
             effect={actors ? "coverflow" : "cards"}
-            slidesPerView={actors ? 2 : 1}
-            initialSlide={5}
+            initialSlide={4}
             loop={true}
             pagination={{ clickable: true }}
+            cardsEffect={{slideShadows: false}}
             breakpoints={actors && {
               320: {slidesPerView: 1},
               475: {slidesPerView: 2},
@@ -59,7 +59,7 @@ const Trending = ({ item, actors }) => {
             }}
           >
             {results
-              ? results.results.slice(0, 9).map(props => (
+              ? results.results.slice(0, 7).map(props => (
                   <SwiperSlide key={props.id}>
                     {actors
                       ? <TrendingActorCard type={item.type} {...props}/>
