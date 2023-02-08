@@ -7,7 +7,7 @@
 .body {
   display: grid;
   gap: 3.125rem;
-  grid-template: auto / minmax(auto, 9.375rem) repeat(2, minmax(auto, 9.375rem));
+  grid-template: auto / minmax(auto, 9.375rem) repeat(3, minmax(auto, 9.375rem));
 }
 
 .col {

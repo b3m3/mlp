@@ -30,10 +30,6 @@ const Footer = () => {
         <div className={style.body}>
           <div className={style.col}>
             <Logo />
-
-            <a href="https://www.themoviedb.org/" target="_blank" rel="noreferrer">
-              <img src={tmdb} alt="TMDb" />
-            </a>
           </div>
 
           <div className={style.col}>
@@ -57,6 +53,14 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
+          </div>
+
+          <div className={style.col}>
+            <h5>About</h5>
+            
+            <a href="https://www.themoviedb.org/" target="_blank" rel="noreferrer">
+              <img src={tmdb} alt="TMDb" />
+            </a>
           </div>
         </div>
       </div>
