@@ -3,12 +3,12 @@ import { useState, useRef } from 'react';
 
 import Header from '../../components/header/Header';
 import Sidebar from '../../components/sidebar/Sidebar';
+import Footer from '../../components/footer/Footer';
+import Router from '../../routes/Router';
 
 import { Context } from '../../context/context';
 import { FAVORITE_KEY } from '../../constans/localStorage';
 import { getFromLocalStorage } from '../../utils/localStorage';
-
-import Router from '../../routes/Router';
 
 import './app.scss';
 
@@ -32,15 +32,14 @@ const App = () => {
     <Context.Provider value={provider}>
       <BrowserRouter>
         <div className="app">
-          <div className="container">
-            <Header />
+          <Header/>
             <div className='app-wrapp'>
               <Sidebar />
               <main>
                 <Router />
               </main>
             </div>
-          </div>
+          <Footer/>
         </div>
       </BrowserRouter>
     </Context.Provider>

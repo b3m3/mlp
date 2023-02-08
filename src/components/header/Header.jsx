@@ -7,15 +7,17 @@ import style from './header.module.scss';
 
 const Header = () => {
   return (
-    <header className={style.header}>
-      <Logo />
-      <Search />
+    <div className="container">
+      <header className={style.header}>
+        <Logo />
+        <Search />
 
-      <div className={style.box}>
-        <Language />
-        <MenuHamburger />
-      </div>
-    </header>
+        <div className={style.box}>
+          <Language />
+          <MenuHamburger />
+        </div>
+      </header>
+    </div>
   );
 }
 
