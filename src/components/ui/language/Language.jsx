@@ -31,9 +31,20 @@ const Language = () => {
     } 
   }, [setCurrentLang, pathname]);
 
+  useEffect(() => {
+    const handleClick = e => {
+      if (!e.target.closest('.language')) {
+        return setIsActive(false);
+      }
+    };
+
+    document.addEventListener('click', handleClick);
+    return() => document.removeEventListener('click', handleClick);
+  }, [currentLang]);
+
   return (
     <div 
-      className={style.language}
+      className={`${style.language} language`}
       onClick={() => setIsActive(a => !a)}
     >
       <p>{currentLang && currentLang.toUpperCase()}</p>
