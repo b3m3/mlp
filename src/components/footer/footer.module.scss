@@ -6,10 +6,16 @@
 
 .body {
   display: grid;
-  grid-template: auto / minmax(auto, 9.375rem) minmax(auto, 12.5rem) minmax(auto, 12.5rem);
+  gap: 3.125rem;
+  grid-template: auto / minmax(auto, 9.375rem) repeat(2, minmax(auto, 9.375rem));
 }
 
 .col {
+  &:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
   & h5 {
     font-weight: 600;
     line-height: 2;
