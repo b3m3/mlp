@@ -1,0 +1,47 @@
+.wrapp {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.swiper {
+  height: 85%;
+  width: 85%;
+
+  & img {
+    object-fit: contain;
+  }
+}
+
+.navigate {
+  & span {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    &:first-child {
+      left: 10%;
+    }
+    &:last-child {
+      right: 10%;
+    }
+  }
+}
+
+.close {
+  cursor: pointer;
+  position: absolute;
+  z-index: 10;
+  top: .9375rem;
+  right: .9375rem;
+  font-size: 1.875rem;
+}
