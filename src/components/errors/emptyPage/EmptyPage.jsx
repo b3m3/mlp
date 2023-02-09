@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { Context } from '../../context/context';
+import { Context } from '../../../context/context';
 
 import Empty from './img/Empty.webp';
 

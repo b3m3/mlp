@@ -5,7 +5,7 @@ import { Pagination, Navigation, EffectCards, EffectCoverflow } from 'swiper';
 import TrendingVideoCard from '../trendingVideoCard/TrendingVideoCard';
 import TrendingActorCard from '../trendingActorCard/TrendingActorCard';
 import SliderNavigation from '../ui/sliderNavigation/SliderNavigation';
-import Error from '../error/Error';
+import ErrorApi from '../errors/errorApi/ErrorApi';
 import ShimmerSolidBlock from '../ui/shimmers/shimmerSolidBlock/ShimmerSolidBlock';
 
 import { getApiResults } from '../../service/getApiResources';
@@ -38,7 +38,7 @@ const Trending = ({ item, actors }) => {
       </div>
       
       {errorApi
-        ? <Error />
+        ? <ErrorApi />
         : <Swiper
             className={style.swiper}
             style={actors ? swiperWidthActors : swiperWidthCards}

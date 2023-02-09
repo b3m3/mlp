@@ -8,7 +8,7 @@ import LinkPage from '../../components/ui/linkPage/LinkPage';
 import Countries from '../../components/ui/countries/Countries';
 import Credits from '../../components/credits/Credits';
 import Photos from '../../components/infoActor/photos/Photos';
-import Error from '../../components/error/Error';
+import ErrorApi from '../../components/errors/errorApi/ErrorApi';
 import Loading from '../../components/loading/Loading';
 import Back from '../../components/ui/back/Back';
 
@@ -40,7 +40,7 @@ const InfoActor = forwardRef((props, ref) => {
   return (
     <div ref={ref}>
       {errorApi
-        ? <Error navigation />
+        ? <ErrorApi navigation />
         : <>
             {results
               ? <>

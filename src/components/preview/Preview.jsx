@@ -5,7 +5,7 @@ import { Scrollbar } from 'swiper';
 import VideoCard from '../videoCard/VideoCard';
 import ActorCard from '../actorCard/ActorCard';
 import SeeAll from '../ui/seeAll/SeeAll';
-import Error from '../error/Error';
+import ErrorApi from '../errors/errorApi/ErrorApi';
 import ShimmerVideoCard from '../ui/shimmers/shimmerVideoCard/ShimmerVideoCard';
 import ShimmerActorCard from '../ui/shimmers/shimmerActorCard/ShimmerActorCard';
 
@@ -34,7 +34,7 @@ const Preview = ({ item, actors }) => {
       </div>
       
       {errorApi
-        ? <Error />
+        ? <ErrorApi />
         : <Swiper
             className={style.swiper}
             modules={[Scrollbar]}

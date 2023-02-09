@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import { Context } from '../../context/context';
 import VideoCard from '../../components/videoCard/VideoCard';
-import EmptyPage from '../../components/emptyPage/EmptyPage';
+import EmptyPage from '../../components/errors/emptyPage/EmptyPage';
 
 import style from './favorites.module.scss';
 

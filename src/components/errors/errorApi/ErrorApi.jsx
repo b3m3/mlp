@@ -1,10 +1,10 @@
-import Back from '../ui/back/Back';
+import Back from '../../ui/back/Back';
 
 import ErrorImg from './img/error.webp';
 
-import style from './error.module.scss';
+import style from './error-api.module.scss';
 
-const Error = ({ navigation }) => {
+const ErrorApi = ({ navigation }) => {
   return (
     <div className={style.wrapp}>
       {navigation && <Back path={-1}/>}
@@ -17,4 +17,4 @@ const Error = ({ navigation }) => {
   );
 }
 
-export default Error;
+export default ErrorApi;

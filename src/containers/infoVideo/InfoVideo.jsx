@@ -13,7 +13,7 @@ import Countries from '../../components/ui/countries/Countries';
 import Reviews from '../../components/infoVideo/reviews/Reviews';
 import Credits from '../../components/credits/Credits';
 import Genres from '../../components/genres/Genres';
-import Error from '../../components/error/Error';
+import ErrorApi from '../../components/errors/errorApi/ErrorApi';
 import Loading from '../../components/loading/Loading';
 import Back from '../../components/ui/back/Back';
 
@@ -50,7 +50,7 @@ const InfoVideo = forwardRef((props, ref) => {
   return (
     <section ref={ref}>
       {errorApi
-        ? <Error navigation />
+        ? <ErrorApi navigation />
         : <>
             {results
               ? <>

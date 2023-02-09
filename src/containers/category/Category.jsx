@@ -6,13 +6,13 @@ import { translateCategoryTitle } from '../../utils/functions';
 import { API_ROOT, API_KEY, API_PAGE, API_LANGUAGE, API_QUERY, API_DISCOVER, API_SEARCH } from '../../constans/api';
 
 import PageNavigation from '../../components/ui/pageNavigation/PageNavigation';
-import Error from '../../components/error/Error';
+import ErrorApi from '../../components/errors/errorApi/ErrorApi';
 
 import { Context } from '../../context/context';
 
 import VideoCard from '../../components/videoCard/VideoCard';
 import ActorCard from '../../components/actorCard/ActorCard';
-import SearchError from '../../components/searchError/SearchError';
+import SearchError from '../../components/errors/emptyPage/EmptyPage';
 import ShimmerActorCard from '../../components/ui/shimmers/shimmerActorCard/ShimmerActorCard';
 import ShimmerVideoCard from '../../components/ui/shimmers/shimmerVideoCard/ShimmerVideoCard';
 
@@ -73,7 +73,7 @@ const Category = () => {
         setNoSearchResults(true);
       }
     })();
-  }, [currentLang, pathname, url]);
+  }, [currentLang, pathname, url, isSearch, isDiscover]);
 
   return (
     <section className={style.category}>
@@ -88,7 +88,7 @@ const Category = () => {
       </h2>
 
       {errorApi
-        ? <Error />
+        ? <ErrorApi />
         : <div className={style.body}>
             {results
               ? results.results.map(props => (
