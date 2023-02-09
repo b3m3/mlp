@@ -6,7 +6,7 @@ import style from './trending-actor-card.module.scss';
 const TrendingActorCard = ({ id, type, original_name, profile_path }) => {
   return (
     <div className={style.wrapp}>
-      <Backdrop path={profile_path} />
+      <Backdrop path={profile_path} light />
 
       <div className={style.body}>
         <div className={style.content}>

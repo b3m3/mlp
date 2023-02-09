@@ -15,7 +15,7 @@ const TrendingVideoCard = ({id, backdrop_path, first_air_date, genre_ids, releas
   
   return (
     <div className={style.wrapp}>
-      <Backdrop path={backdrop_path} />
+      <Backdrop path={backdrop_path} light />
 
       <div className={style.body}>
         <div className={style.content}>
