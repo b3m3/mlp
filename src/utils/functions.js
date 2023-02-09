@@ -40,6 +40,10 @@ export const translateCategoryTitle = (arr, title, lang) => {
   return arr.map(el => el[title] && el[title][0][lang]);
 };
 
+export const getTitleLang = (arr, lang) => {
+  return arr.map(t => t[lang]);
+};
+
 export const notFoundError = (arr, lang) => {
   return arr.map(el => el[lang]);
 };
