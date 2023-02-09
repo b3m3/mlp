@@ -14,6 +14,7 @@ export const YOUTUBE_POSTER_END = '/mqdefault.jpg';
 
 // IMG
 export const API_POSTER = 'https://image.tmdb.org/t/p/w500/';
+export const API_IMAGE_1280 = 'https://image.tmdb.org/t/p/w1280/';
 export const API_IMAGE_ORIGINAL = 'https://image.tmdb.org/t/p/original';
 
 // GENERAL
