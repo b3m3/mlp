@@ -101,6 +101,19 @@
     &:hover {
       color: var(--gray-50);
     }
+    
+    &.active {
+      color: var(--gray-50);
+      border-left: 3px solid var(--blue-400);
+
+      &::before {
+        width: 100%;
+      }
+
+      & svg {
+        color: var(--blue-400);
+      }
+    }
   }
   
   & svg {
@@ -144,19 +157,6 @@
           transform: translateY(0);
         }
       }
-    }
-  }
-  
-  :global(a.active) {
-    color: var(--gray-50);
-    border-left: 3px solid var(--blue-400);
-
-    &::before {
-      width: 100%;
-    }
-
-    & svg {
-      color: var(--blue-400);
     }
   }
 }

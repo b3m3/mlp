@@ -35,7 +35,11 @@ const Sidebar = () => {
         <ul>
           {links.map((link, i) => (
             <li key={link.en}>
-              <NavLink to={link.path} end={link.end && link.end}>
+              <NavLink 
+                to={link.path} 
+                end={link.end && link.end} 
+                className={({isActive}) => isActive ? style.active : ''}
+              >
                 {link.icon}
                 <span>{link[currentLang]}</span>
               </NavLink>
