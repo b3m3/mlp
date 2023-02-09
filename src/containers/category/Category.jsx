@@ -1,18 +1,19 @@
 import { useEffect, useState, useContext } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
+import { categoryTitles, discoverTitles } from '../../constans/titles';
 import { getApiResources, getApiItem } from '../../service/getApiResources';
-import { translateCategoryTitle } from '../../utils/functions';
+import { translateCategoryTitle, getTitleLang } from '../../utils/functions';
 import { API_ROOT, API_KEY, API_PAGE, API_LANGUAGE, API_QUERY, API_DISCOVER, API_SEARCH } from '../../constans/api';
 
 import PageNavigation from '../../components/ui/pageNavigation/PageNavigation';
 import ErrorApi from '../../components/errors/errorApi/ErrorApi';
+import SearchError from '../../components/errors/searchError/SearchError';
 
 import { Context } from '../../context/context';
 
 import VideoCard from '../../components/videoCard/VideoCard';
 import ActorCard from '../../components/actorCard/ActorCard';
-import SearchError from '../../components/errors/emptyPage/EmptyPage';
 import ShimmerActorCard from '../../components/ui/shimmers/shimmerActorCard/ShimmerActorCard';
 import ShimmerVideoCard from '../../components/ui/shimmers/shimmerVideoCard/ShimmerVideoCard';
 
@@ -27,19 +28,6 @@ const Category = () => {
   const { currentLang } = useContext(Context);
   const { type, category, page, id } = useParams();
   const { pathname } = useLocation();
-
-  const titles = [
-    {popular: [{en: 'Popular', uk: 'Популярні', ru: 'Популярные'}]},
-    {now_playing: [{en: 'Now playing', uk: 'Зараз у прокаті', ru: 'Сейчас в прокате'}]},
-    {upcoming: [{en: 'Upcoming', uk: 'Майбутні', ru: 'Предстоящие'}]},
-    {top_rated: [{en: 'Top rated', uk: 'Найкращий рейтинг', ru: 'Лучший рейтинг'}]},
-    {on_the_air: [{en: 'On the air', uk: 'В ефірі', ru: 'В эфире'}]},
-    {airing_today: [{en: 'Airing today', uk: 'Сьогодні в ефірі', ru: 'Сегодня в эфире'}]}
-  ];
-
-  const discoverTitles = [
-    {en: 'Custom filter'}, {uk: 'Спеціальний фільтр'}, {ru: 'Пользовательский фильтр'}
-  ];
 
   const isSearch = category === 'search';
   const isDiscover = category === 'discover';
@@ -78,17 +66,16 @@ const Category = () => {
   return (
     <section className={style.category}>
       <h2>
-        {
-          isSearch 
-            ? id 
-            : isDiscover 
-              ? discoverTitles.map(t => t[currentLang]) 
-              : translateCategoryTitle(titles, category, currentLang)
+        {isSearch 
+          ? id 
+          : isDiscover 
+            ? getTitleLang(discoverTitles, currentLang)
+            : translateCategoryTitle(categoryTitles, category, currentLang)
         }
       </h2>
 
       {errorApi
-        ? <ErrorApi />
+        ? isSearch ?  <SearchError /> : <ErrorApi />
         : <div className={style.body}>
             {results
               ? results.results.map(props => (

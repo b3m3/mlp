@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
 
+import { sortTitles, sortDefaultTitle, sortOptionsTitles } from '../../../constans/titles';
 import { Context } from '../../../context/context';
+import { getTitleLang } from '../../../utils/functions';
 import { API_POPULARITY, API_RELEASE_DATE, API_VOTE_AVERAGE, API_DESC, API_ASC } from '../../../constans/api';
 
 import { MdKeyboardArrowDown } from 'react-icons/md';
@@ -15,47 +17,24 @@ const Sort = ({ indexSectionBtn, setSortBy }) => {
 
   const listActive = {padding: '.375rem .75rem', height: '11.25rem'};
 
-  const sortTitles = [{en: 'Sort by:'}, {uk: 'Сортувати за:'}, {ru: 'Сортировать по:'}];
-  const defaultTitle = [{en: 'Relevance', uk: 'Релевантністю', ru: 'Релевантности'}];
-  const options = [
-    {
-      path: [],
-      name: [{en: 'Relevance', uk: 'Релевантністю', ru: 'Релевантности'}]
-    },
-    {
-      path: API_POPULARITY+API_DESC,
-      name: [{en: 'Popularity', uk: 'Популярними', ru: 'Популярным'}]
-    },
-    {
-      path: API_POPULARITY+API_ASC,
-      name: [{en: 'Not popular', uk: 'Не популярними', ru: 'Не популярным'}]
-    },
-    {
-      path: API_VOTE_AVERAGE+API_DESC,
-      name: [{en: 'Best rating', uk: 'Кращим рейтингом', ru: 'Лучшему рейтингу'}]
-    },
-    {
-      path: API_VOTE_AVERAGE+API_ASC,
-      name: [{en: 'Low rating', uk: 'Низьким рейтингом', ru: 'Низкиму рейтингу'}]
-    },
-    {
-      path: API_RELEASE_DATE+API_DESC,
-      name: [{en: 'New', uk: 'Новими', ru: 'Новинкам'}]
-    },
-    {
-      path: API_RELEASE_DATE+API_ASC,
-      name: [{en: 'Old', uk: 'Старими', ru: 'Старым'}]
-    }
+  const optionsPath = [
+    {path: ''},
+    {path: API_POPULARITY+API_DESC},
+    {path: API_POPULARITY+API_ASC},
+    {path: API_VOTE_AVERAGE+API_DESC},
+    {path: API_VOTE_AVERAGE+API_ASC},
+    {path: API_RELEASE_DATE+API_DESC},
+    {path: API_RELEASE_DATE+API_ASC}
   ];
 
   useEffect(() => {
-    defaultTitle.map(el => setCurrentTitle(el[currentLang]));
+    sortDefaultTitle.map(el => setCurrentTitle(el[currentLang]));
     setSortBy([]);
-  }, [currentLang, indexSectionBtn]);
+  }, [currentLang, indexSectionBtn, setSortBy]);
 
   return (
     <div className={style.wrapp}>
-      <p>{sortTitles.map(el => el[currentLang])}</p>
+      <p>{getTitleLang(sortTitles, currentLang)}</p>
 
       <div className={style.row}>
         <div 
@@ -72,7 +51,7 @@ const Sort = ({ indexSectionBtn, setSortBy }) => {
           className={style.list}
           style={isOpen ? listActive : null}
         >
-          {options.map((el, i) => (
+          {optionsPath.map((el, i) => (
             <li
               key={i}
               id={el.path}
@@ -82,7 +61,7 @@ const Sort = ({ indexSectionBtn, setSortBy }) => {
                 setIsOpen(false);
               }}
             >
-              {el.name.map(l => l[currentLang])}
+              {sortOptionsTitles[i][currentLang]}
             </li>
           ))}
         </ul>

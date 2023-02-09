@@ -12,6 +12,7 @@ import ErrorApi from '../../components/errors/errorApi/ErrorApi';
 import Loading from '../../components/loading/Loading';
 import Back from '../../components/ui/back/Back';
 
+import { moviesTitles, tvShowsTitles } from '../../constans/titles';
 import { API_ROOT, API_KEY, API_ACTORS, API_LANGUAGE, API_ACTORS_MOVIE_CREDITS, API_ACTORS_TV_CREDITS } from '../../constans/api';
 import { getApiResults } from '../../service/getApiResources';
 
@@ -25,9 +26,6 @@ const InfoActor = forwardRef((props, ref) => {
 
   const { currentLang } = useContext(Context);
   const { id } = useParams();
-
-  const moviesTitles = [{en: 'Movies'},{ru: 'Фильмы'},{uk: 'Фільми'}];
-  const tvShowsTitles = [{en: 'TV Shows'},{ru: 'Сериалы'},{uk: 'Серіали'}];
 
   const url = `${API_ROOT}${API_ACTORS}/${id}${API_KEY}${API_LANGUAGE}${currentLang}`;
   const moviesUrl = `${API_ROOT}${API_ACTORS}/${id}${API_ACTORS_MOVIE_CREDITS}${API_KEY}${API_LANGUAGE}${currentLang}`;

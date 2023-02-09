@@ -8,6 +8,7 @@ import SliderNavigation from '../ui/sliderNavigation/SliderNavigation';
 
 import { getApiResources } from '../../service/getApiResources';
 import { Context } from '../../context/context';
+import { getTitleLang } from '../../utils/functions';
 
 import style from './credits.module.scss';
 import 'swiper/css';
@@ -32,7 +33,7 @@ const Credits = ({ url, titles, prevClass, nextClass, resultName, actors, fullCo
       {results && results[resultName].length > 0 &&
         <div className={style.wrapp}>
           <div className={style.top}>
-            <h2>{titles.map(t => t[currentLang])}</h2>
+            <h2>{getTitleLang(titles, currentLang)}</h2>
             {results[resultName].length > 5 &&
               <SliderNavigation
                 prevClass={prevClass}

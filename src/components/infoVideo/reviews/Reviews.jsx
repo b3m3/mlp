@@ -8,6 +8,8 @@ import Dates from '../../ui/dates/Dates';
 import { API_ROOT, API_KEY, API_REVIEWS } from '../../../constans/api';
 import { getApiResources } from '../../../service/getApiResources';
 import { Context } from '../../../context/context';
+import { reviewsTitles } from '../../../constans/titles';
+import { getTitleLang } from '../../../utils/functions';
 
 import { MdOutlineCloseFullscreen, MdOutlineOpenInFull } from 'react-icons/md';
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
@@ -21,8 +23,6 @@ const Reviews = () => {
 
   const { type, id } = useParams();
   const { currentLang } = useContext(Context);
-
-  const titles = [{en: 'Reviews'},{ru: 'Отзывы'},{uk: 'Відгуки'}];
 
   const url = `${API_ROOT}/${type}/${id}${API_REVIEWS}${API_KEY}`;
 
@@ -40,7 +40,7 @@ const Reviews = () => {
     <>
       {results && results.results.length > 0 &&
         <div className={style.wrapp}>
-          <h2>{titles.map(t => t[currentLang])}</h2>
+          <h2>{getTitleLang(reviewsTitles, currentLang)}</h2>
           {results.results.slice(0, numberResults).map(({ id, author_details, created_at, content}, i) => (
             <div 
               key={id}

@@ -40,7 +40,7 @@ const Search = () => {
 
       return setGenresList(null);
     })();
-  }, [urlGenres, currentLang]);
+  }, [urlGenres, currentLang, isActors]);
 
   useEffect(() => {
     const handleClick = e => {
@@ -102,7 +102,7 @@ const Search = () => {
                   min={1}
                   max={10}
                   step={0.1}
-                  onChange={({ min, max }) => (min, max)}
+                  onChange={({ min, max }) => ({min, max})}
                   setState={setRatings}
                   indexSectionBtn={indexSectionBtn}
                 />
@@ -113,7 +113,7 @@ const Search = () => {
                   min={1814}
                   max={2030}
                   step={1}
-                  onChange={({ min, max }) => (min, max)}
+                  onChange={({ min, max }) => ({min, max})}
                   setState={setYears}
                   indexSectionBtn={indexSectionBtn}
                 />

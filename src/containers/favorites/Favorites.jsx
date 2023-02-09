@@ -1,19 +1,19 @@
 import { useContext } from 'react';
 
-import { Context } from '../../context/context';
 import VideoCard from '../../components/videoCard/VideoCard';
 import EmptyPage from '../../components/errors/emptyPage/EmptyPage';
+import { favoritesTitles } from '../../constans/titles';
+import { getTitleLang } from '../../utils/functions';
+import { Context } from '../../context/context';
 
 import style from './favorites.module.scss';
 
 const Favorites = () => {
   const { currentLang, favorites } = useContext(Context);
 
-  const titles = [{en: 'Favorites', uk: 'Обране', ru: 'Избранное'}];
-
   return (
     <section className={style.favorites}>
-      <h2>{titles.map(t => t[currentLang])}</h2>
+      <h2>{getTitleLang(favoritesTitles, currentLang)}</h2>
 
       {favorites && favorites.length > 0
         ? <ul>

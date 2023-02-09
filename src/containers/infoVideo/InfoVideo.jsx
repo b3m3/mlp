@@ -21,6 +21,7 @@ import { API_ROOT, API_KEY, API_LANGUAGE, API_CREDITS, API_RECOMMEND } from '../
 import { getApiResults } from '../../service/getApiResources';
 
 import { Context } from '../../context/context';
+import { castTitles, recomendationsTitles } from '../../constans/titles';
 
 import style from './info-video.module.scss';
 
@@ -33,9 +34,6 @@ const InfoVideo = forwardRef((props, ref) => {
   const { type, id } = useParams();
 
   const bodyBorderRadius = {borderRadius: '0 0 .75rem .75rem'}
-
-  const actorsTitles = [{en: 'Cast'},{ru: 'В ролях'},{uk: 'Акторський склад'}];
-  const recomendationsTitles = [{en: 'Recommendations'},{ru: 'Рекомендации'},{uk: 'Рекомендації'}];
 
   const url = `${API_ROOT}/${type}/${id}${API_KEY}${API_LANGUAGE}${currentLang}`;
   const actorsUrl = `${API_ROOT}/${type}/${id}${API_CREDITS}${API_KEY}${API_LANGUAGE}${currentLang}`;
@@ -101,7 +99,7 @@ const InfoVideo = forwardRef((props, ref) => {
 
                     <Credits 
                       url={actorsUrl}
-                      titles={actorsTitles}
+                      titles={castTitles}
                       prevClass={'act-cre-prev'}
                       nextClass={'act-cre-next'}
                       resultName={'cast'}
