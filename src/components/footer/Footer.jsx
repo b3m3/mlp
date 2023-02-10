@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import { Context } from '../../context/context';
 
-import Logo from '../ui/logo/Logo';
 import tmdb from './img/tmdb.svg';
 
 import style from './footer.module.scss';
@@ -12,8 +11,8 @@ const Footer = () => {
   const { currentLang } = useContext(Context);
 
   const tmdbLinks = [
-    {link: 'https://www.themoviedb.org/', name: 'The Movie Database'},
-    {link: 'https://twitter.com/themoviedb',name: 'TMDB Twitter'}
+    {link: 'https://www.themoviedb.org/', name: 'TMDb'},
+    {link: 'https://twitter.com/themoviedb',name: 'TMDb Twitter'}
   ];
 
   const navigationLinks = [
@@ -30,7 +29,6 @@ const Footer = () => {
         <div className={style.body}>
           <div className={style.col}>
             <h5>Navigation</h5>
-
             <ul>
               {navigationLinks.map(({path, name}, i) => (
                 <li key={i}>
@@ -40,9 +38,8 @@ const Footer = () => {
             </ul>
           </div>
 
-
           <div className={style.col}>
-            <h5>TMDb</h5>
+            <h5>About</h5>
             <ul>
               {tmdbLinks.map(({link, name}, i) => (
                 <li key={i}>

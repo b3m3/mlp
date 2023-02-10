@@ -5,10 +5,10 @@
 }
 
 .body {
-  padding: 0 30px;
+  padding: 0 1.875rem;
   display: grid;
   gap: 3.125rem;
-  grid-template: auto / minmax(auto, 9.375rem) minmax(auto, 9.375rem) auto;
+  grid-template: auto / minmax(auto, 9.375rem) minmax(auto, 9.375rem) 1fr;
 
   @media screen and (max-width: 550px) {
     grid-template: auto / 1fr;
@@ -19,20 +19,12 @@
 
 .col {
   &:last-child {
-    width: 9.625rem;
+    width: 6.25rem;
+    align-self: end;
+    margin: 0 0 0 auto;
 
-    & a {
-      line-height: 3;
-    }
-  }
-
-  @media screen and (max-width: 550px) {
-    &:nth-child(1) {
-      grid-row: 3;
-    }
-    &:nth-child(3) {
+    @media screen and (max-width: 550px) {
       margin: 0 auto;
-      grid-row: 1;
     }
   }
 
@@ -48,7 +40,7 @@
     }
 
     & a {
-      font-size: 12px;
+      font-size: .75rem;
       font-weight: 200;
       transition: .2s;
 
