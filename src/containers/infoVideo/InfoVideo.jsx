@@ -46,8 +46,6 @@ const InfoVideo = forwardRef((props, ref) => {
     setActiveTrailer(false);
   }, [url, id]);
 
-  console.log(results);
-
   return (
     <section ref={ref}>
       {errorApi

@@ -15,7 +15,7 @@ import MultiRangeSlider from '../multiRangeSlider/MultiRangeSlider';
 const Search = () => {
   const [inputFocus, setInputFocus] = useState(false);
   const [inputValue, setInputValue] = useState('');
-  const [indexSectionBtn, setIndexSectionBtn] = useState(1);
+  const [indexSectionBtn, setIndexSectionBtn] = useState(0);
   const [genresList, setGenresList] = useState(null);
   const [genresSelected, setGenresSelected] = useState([]);
   const [sortBy, setSortBy] = useState([]);
