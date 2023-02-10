@@ -29,10 +29,6 @@ const Footer = () => {
       <div className="container">
         <div className={style.body}>
           <div className={style.col}>
-            <Logo />
-          </div>
-
-          <div className={style.col}>
             <h5>Navigation</h5>
 
             <ul>
@@ -43,6 +39,7 @@ const Footer = () => {
               ))}
             </ul>
           </div>
+
 
           <div className={style.col}>
             <h5>TMDb</h5>
@@ -56,8 +53,6 @@ const Footer = () => {
           </div>
 
           <div className={style.col}>
-            <h5>About</h5>
-            
             <a href="https://www.themoviedb.org/" target="_blank" rel="noreferrer">
               <img src={tmdb} alt="TMDb" />
             </a>

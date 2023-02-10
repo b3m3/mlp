@@ -5,17 +5,37 @@
 }
 
 .body {
+  padding: 0 30px;
   display: grid;
   gap: 3.125rem;
-  grid-template: auto / minmax(auto, 9.375rem) repeat(3, minmax(auto, 9.375rem));
+  grid-template: auto / minmax(auto, 9.375rem) minmax(auto, 9.375rem) auto;
+
+  @media screen and (max-width: 550px) {
+    grid-template: auto / 1fr;
+    text-align: center;
+    gap: 1.25rem;
+  }
 }
 
 .col {
-  &:first-child {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  &:last-child {
+    width: 9.625rem;
+
+    & a {
+      line-height: 3;
+    }
   }
+
+  @media screen and (max-width: 550px) {
+    &:nth-child(1) {
+      grid-row: 3;
+    }
+    &:nth-child(3) {
+      margin: 0 auto;
+      grid-row: 1;
+    }
+  }
+
   & h5 {
     font-weight: 600;
     line-height: 2;
@@ -24,6 +44,7 @@
   & ul {
     & li {
       line-height: 1.5;
+      white-space: nowrap;
     }
 
     & a {
