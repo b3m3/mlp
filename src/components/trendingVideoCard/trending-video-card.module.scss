@@ -36,6 +36,7 @@
 
   @media screen and (max-width: 1024px) {
     grid-template: auto / 1fr;
+    justify-items: start;
     height: unset;
     text-align: left;
   }
@@ -59,7 +60,6 @@
   flex-direction: column;
   justify-content: center;
   gap: .125rem;
-  width: 300px;
 
   @media screen and (max-width: 1024px) {
     grid-row: 2;
@@ -72,9 +72,8 @@
 
 .row {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  gap: .625rem;
   background: var(--blue-400-02);
   -webkit-backdrop-filter: blur(7px);
   backdrop-filter: blur(7px);
@@ -84,6 +83,9 @@
   
   @media screen and (max-width: 1024px) {
     padding: .625rem;
-    gap: .625rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-wrap: wrap;
   }
 }

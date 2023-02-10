@@ -9,8 +9,12 @@ import Dates from '../ui/dates/Dates';
 import Genres from '../genres/Genres';
 
 import style from './trending-video-card.module.scss';
+import Votes from '../ui/votes/Votes';
 
-const TrendingVideoCard = ({id, backdrop_path, first_air_date, genre_ids, release_date, vote_average, title, name, type}) => {
+const TrendingVideoCard = ({
+  id, backdrop_path, first_air_date, genre_ids, release_date, 
+  vote_count, vote_average, title, name, type
+}) => {
   const { menuActive } = useContext(Context);
   
   return (
@@ -23,6 +27,7 @@ const TrendingVideoCard = ({id, backdrop_path, first_air_date, genre_ids, releas
           <div className={style.info}>
             <div className={style.row}>
               <Rating rating={vote_average} />
+              <Votes vote_count={vote_count}/>
               <Dates release={release_date} first={first_air_date}  />
               <GetInfoBtn id={id} type={type} />
             </div>

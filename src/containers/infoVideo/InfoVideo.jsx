@@ -24,6 +24,7 @@ import { Context } from '../../context/context';
 import { castTitles, recomendationsTitles } from '../../constans/titles';
 
 import style from './info-video.module.scss';
+import Votes from '../../components/ui/votes/Votes';
 
 const InfoVideo = forwardRef((props, ref) => {
   const [results, setResults] = useState(null);
@@ -44,6 +45,8 @@ const InfoVideo = forwardRef((props, ref) => {
     getApiResults(url, setResults, setErrorApi);
     setActiveTrailer(false);
   }, [url, id]);
+
+  console.log(results);
 
   return (
     <section ref={ref}>
@@ -70,6 +73,7 @@ const InfoVideo = forwardRef((props, ref) => {
 
                         <div className={style.row}>
                           <Rating rating={results.vote_average} />
+                          <Votes vote_count={results.vote_count} />
                           <Runtime runtime={results.runtime} episodeRuntime={results.episode_run_time} />
                           <Dates 
                             release={results.release_date} 
@@ -82,7 +86,6 @@ const InfoVideo = forwardRef((props, ref) => {
                         <Genres ids={results.genres} type={type} />
                         <Countries countries={results.production_countries} />
                         <p>{results.overview && results.overview}</p>
-
                         <LinkPage />
                       </div>
 
