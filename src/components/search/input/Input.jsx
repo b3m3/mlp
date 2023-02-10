@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { API_SEARCH, API_DISCOVER, API_WITH_GENRES, API_SORT, API_LTE, API_GTE, 
-  API_RELEASE_DATE, API_VOTE_AVERAGE, API_VOTE_COUNT, API_VOICE_COUNT, API_FIRST_AIR_DATE } from '../../../constans/api';
+  API_RELEASE_DATE, API_VOTE_AVERAGE, API_VOTE_COUNT, API_FIRST_AIR_DATE } from '../../../constans/api';
 import { Context } from '../../../context/context';
 
 import { RiSearchLine } from 'react-icons/ri';
@@ -20,9 +20,7 @@ const Input = ({mediaType, setInputValue, setInputFocus, indexSectionBtn, inputV
 
   const isSort = 
     sortBy.length > 0
-      ? isTypeMovie 
-        ? API_SORT+sortBy.slice(1)+API_VOTE_COUNT+API_GTE+3
-        : API_SORT+sortBy.slice(1)+API_VOICE_COUNT+API_GTE+3
+      ? API_SORT+sortBy.slice(1)+API_VOTE_COUNT+API_GTE+15
       : '';
 
   const isGenres = 

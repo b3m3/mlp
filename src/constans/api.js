@@ -29,7 +29,6 @@ export const API_SORT = '&sort_by=';
 export const API_RELEASE_DATE = '&release_date';
 export const API_VOTE_AVERAGE = '&vote_average';
 export const API_VOTE_COUNT = '&vote_count';
-export const API_VOICE_COUNT = '&voice_count';
 
 export const API_FIRST_AIR_DATE = '&first_air_date';
 
