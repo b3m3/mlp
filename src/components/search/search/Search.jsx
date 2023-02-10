@@ -27,6 +27,8 @@ const Search = () => {
   const mediaType = [API_MOVIE, API_TV_SHOWS, API_ACTORS];
   const isActors = mediaType[indexSectionBtn] === API_ACTORS;
 
+  const currentYear = new Date().getFullYear();
+
   const activeBtn = {background:'var(--blue-400)'};
 
   const urlGenres = API_ROOT+API_GENRE+mediaType[indexSectionBtn]+API_LIST+API_KEY+API_LANGUAGE+currentLang;
@@ -111,7 +113,7 @@ const Search = () => {
               <div className={style.row}>
                 <MultiRangeSlider
                   min={1814}
-                  max={2030}
+                  max={currentYear}
                   step={1}
                   onChange={({ min, max }) => ({min, max})}
                   setState={setYears}

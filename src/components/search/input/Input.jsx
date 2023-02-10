@@ -50,8 +50,6 @@ const Input = ({mediaType, setInputValue, setInputFocus, indexSectionBtn, inputV
       ? `/${currentLang}${type}${API_SEARCH}/${inputValue}/1`
       : `/${currentLang}${type}${API_DISCOVER}/${isSort}${isGenres}${isRating}${isYears}/1`;
 
-  console.log(link);
-
   return (
     <div className={style.wrapp}>
       <input 
