@@ -42,7 +42,7 @@
   }
 
   @media screen and (max-width: 475px) {
-    gap: 10px;
+    gap: .625rem;
   }
 
   & h2 {
@@ -60,7 +60,7 @@
   flex-direction: column;
   justify-content: center;
   gap: .125rem;
-  max-width: 340px;
+  max-width: 21.875rem;
 
   @media screen and (max-width: 1024px) {
     grid-row: 2;
