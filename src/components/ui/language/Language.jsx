@@ -23,14 +23,20 @@ const Language = () => {
     }
 
     if (pathname !== '/') {
-      addToLocalStorage(LANG_KEY, getLangIdFromLocation(pathname));
+      const pathLang = getLangIdFromLocation(pathname);
+
+      if (pathLang !== 'en' || pathLang !== 'ru' || pathLang !== 'uk') {
+        addToLocalStorage(LANG_KEY, currentLang);
+      } else {
+        addToLocalStorage(LANG_KEY, getLangIdFromLocation(pathname));
+      }
     }
     
     if (localStorage.getItem(LANG_KEY)) {
       setCurrentLang(localStorage.getItem(LANG_KEY));
     } 
   }, [setCurrentLang, pathname]);
-
+  
   useEffect(() => {
     const handleClick = e => {
       if (!e.target.closest('.language')) {

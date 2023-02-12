@@ -16,7 +16,7 @@ const App = () => {
   const favoritesStorage = getFromLocalStorage(FAVORITE_KEY);
 
   const [menuActive, setMenuActive] = useState(false);
-  const [currentLang, setCurrentLang] = useState('');
+  const [currentLang, setCurrentLang] = useState('en');
   const [favorites, setFavorites] = useState(favoritesStorage ? JSON.parse(favoritesStorage) : []);
   
   const refInfoVideo = useRef(null);
