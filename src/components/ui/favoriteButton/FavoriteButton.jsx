@@ -23,12 +23,8 @@ const FavoriteButton = ({ id, poster_path, title, name }) => {
     addArrToStorage(FAVORITE_KEY, favorites);
     setIsActive(false);
 
-    favorites.map(el => {
-      if (el.id === id) {
-        setIsActive(true);
-      }
-    });
-  }, [favorites]);
+    favorites.map(el => el.id === id && setIsActive(true));
+  }, [id, favorites]);
 
   return (
     <div className={style.btn}>
@@ -36,10 +32,10 @@ const FavoriteButton = ({ id, poster_path, title, name }) => {
         className={isActive ? style.active : ''}
         onClick={() => {
           setIsActive(a => !a);
-          
-          !isActive
-            ? setFavorites(current => [...current, data])
-            : setFavorites(current => current.filter(el => el.id !== id ));
+
+          isActive 
+            ? setFavorites(favorites.filter(el => el.id !== id ))
+            : setFavorites([...favorites, data])
         }}
       />
     </div>
