@@ -1,4 +1,4 @@
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { useState, useRef } from 'react';
 
 import Header from '../../components/header/Header';
@@ -30,7 +30,7 @@ const App = () => {
 
   return (
     <Context.Provider value={provider}>
-      <BrowserRouter>
+      <HashRouter>
         <div className="app">
           <Header/>
             <div className='app-wrapp'>
@@ -41,7 +41,7 @@ const App = () => {
             </div>
           <Footer/>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     </Context.Provider>
   );
 }
