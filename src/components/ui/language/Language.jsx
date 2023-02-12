@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import { Context } from '../../../context/context';
 import { changeLangLocation, getLangIdFromLocation } from '../../../utils/functions';
-import { addToLocalStorage } from '../../../utils/localStorage';
+import { addToLocalStorage, getFromLocalStorage } from '../../../utils/localStorage';
 import { LANG_KEY } from '../../../constans/localStorage';
 import { API_EN, API_UK, API_RU } from '../../../constans/api';
 
@@ -14,27 +14,24 @@ const Language = () => {
 
   const { pathname } = useLocation();
   const { currentLang, setCurrentLang } = useContext(Context);
-
+  
   const languages = [API_EN, API_UK, API_RU];
-
+  
   useEffect(() => {
+    const langLocation = getLangIdFromLocation(pathname);
+    const isNoLang = langLocation !== API_EN && langLocation !== API_RU && langLocation !== API_UK;
+
     if (pathname === '/') {
-      setCurrentLang('en');
+      setCurrentLang(API_EN);
     }
 
     if (pathname !== '/') {
-      const pathLang = getLangIdFromLocation(pathname);
-
-      if (pathLang !== 'en' || pathLang !== 'ru' || pathLang !== 'uk') {
-        addToLocalStorage(LANG_KEY, currentLang);
-      } else {
-        addToLocalStorage(LANG_KEY, getLangIdFromLocation(pathname));
-      }
+      addToLocalStorage(LANG_KEY, isNoLang ? API_EN : langLocation);
     }
-    
-    if (localStorage.getItem(LANG_KEY)) {
-      setCurrentLang(localStorage.getItem(LANG_KEY));
-    } 
+
+    if (getFromLocalStorage(LANG_KEY)) {
+      setCurrentLang(getFromLocalStorage(LANG_KEY));
+    }
   }, [setCurrentLang, currentLang, pathname]);
   
   useEffect(() => {
