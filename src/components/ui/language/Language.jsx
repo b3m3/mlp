@@ -35,7 +35,7 @@ const Language = () => {
     if (localStorage.getItem(LANG_KEY)) {
       setCurrentLang(localStorage.getItem(LANG_KEY));
     } 
-  }, [setCurrentLang, pathname]);
+  }, [setCurrentLang, currentLang, pathname]);
   
   useEffect(() => {
     const handleClick = e => {
