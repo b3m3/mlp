@@ -15,5 +15,6 @@ export const addArrToStorage = (key, arr) => {
 };
 
 export const getArrFromStorage= (key) => {
-  return localStorage.getItem(JSON.parse(key));
+  const arr = localStorage.getItem(key);
+  return JSON.parse(arr);
 };
