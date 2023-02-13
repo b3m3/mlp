@@ -33,6 +33,7 @@ const VideoCard = ({id, poster_path, title, name, type, vote_average, small}) =>
         poster_path={poster_path}
         title={title}
         name={name}
+        vote_average={vote_average}
       />
 
       {!small &&

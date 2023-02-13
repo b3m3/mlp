@@ -10,14 +10,14 @@ import { TiHeartFullOutline } from 'react-icons/ti';
 
 import style from './favorite-button.module.scss';
 
-const FavoriteButton = ({ id, poster_path, title, name }) => {
+const FavoriteButton = ({ id, poster_path, vote_average, title, name }) => {
   const [isActive, setIsActive] = useState(false);
 
   const { favorites, setFavorites } = useContext(Context);
   const { pathname } = useLocation();
 
   const type = getTypeFromLocation(pathname);
-  const data = { id, poster_path, title, name, type };
+  const data = { id, poster_path, vote_average, title, name, type };
 
   useEffect(() => {
     addArrToStorage(FAVORITE_KEY, favorites);
@@ -25,6 +25,8 @@ const FavoriteButton = ({ id, poster_path, title, name }) => {
 
     favorites.map(el => el.id === id && setIsActive(true));
   }, [id, favorites]);
+
+  console.log(favorites);
 
   return (
     <div className={style.btn}>

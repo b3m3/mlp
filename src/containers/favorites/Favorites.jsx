@@ -33,7 +33,7 @@ const Favorites = () => {
 
       {favorites.length > 0
         ? <ul>
-            {favorites.map(({id, poster_path, title, name, type}) => (
+            {favorites.map(({id, poster_path, vote_average, title, name, type}) => (
               <li key={id}>
                 <VideoCard 
                   id={id}
@@ -41,6 +41,7 @@ const Favorites = () => {
                   title={title}
                   name={name}
                   type={type}
+                  vote_average={vote_average}
                 />
               </li>
             ))}
