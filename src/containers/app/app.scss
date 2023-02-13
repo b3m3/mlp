@@ -57,6 +57,10 @@ main {
   padding-top: 3.125rem;
   width: 100%;
   min-width: 0;
+
+  @media screen and (max-width: 768px) {
+    padding-top: 1.25rem;
+  }
 }
 
 section {
