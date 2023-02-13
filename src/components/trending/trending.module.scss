@@ -15,14 +15,12 @@
   justify-content: space-between;
 }
 
-.navigation {
-  position: absolute;
-  z-index: 10;
-  bottom: 4.375rem;
-  right: 1.875rem;
+.shimers_wrapp {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 
-  @media screen and (max-width: 768px) {
-    bottom: 3.4375rem;
-    right: .9375rem;
+  & div {
+    width: 100%;
   }
 }

@@ -1,7 +1,3 @@
-import { useContext } from 'react';
-
-import { Context } from '../../context/context';
-
 import Backdrop from '../ui/backdrop/Backdrop';
 import Rating from '../ui/rating/Rating';
 import GetInfoBtn from '../ui/getInfoBtn/GetInfoBtn';
@@ -15,28 +11,30 @@ const TrendingVideoCard = ({
   id, backdrop_path, first_air_date, genre_ids, release_date, 
   vote_count, vote_average, title, name, type
 }) => {
-  const { menuActive } = useContext(Context);
   
   return (
     <div className={style.wrapp}>
       <Backdrop path={backdrop_path} light />
 
-      <div className={style.body}>
-        <div className={style.content}>
+      <div className={style.row}>
+        <h2 data-swiper-parallax="-500">{title ? title : name}</h2>
+        <div data-swiper-parallax-scale="0">
+          <Genres type={type} ids={genre_ids} />
+        </div>
+      </div>
 
-          <div className={style.info}>
-            <div className={style.row}>
-              <Rating rating={vote_average} />
-              <Votes vote_count={vote_count}/>
-              <Dates release={release_date} first={first_air_date}  />
-              <GetInfoBtn id={id} type={type} />
-            </div>
-            <div className={style.row} style={menuActive ? {opacity: 0} : null}>
-              <Genres type={type} ids={genre_ids} />
-            </div>
-          </div>
-
-          <h2>{title ? title : name}</h2>
+      <div className={style.row}>
+        <div data-swiper-parallax="-150" >
+          <Rating rating={vote_average} />
+        </div>
+        <div data-swiper-parallax="-240">
+          <Votes vote_count={vote_count}/>
+        </div>
+        <div data-swiper-parallax="-330">
+          <Dates release={release_date} first={first_air_date}  />
+        </div>
+        <div data-swiper-parallax="-420">
+          <GetInfoBtn id={id} type={type} />
         </div>
       </div>
     </div>
