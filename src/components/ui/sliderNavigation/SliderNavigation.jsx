@@ -2,9 +2,9 @@ import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 import style from './navigation.module.scss';
 
-const SliderNavigation = ({ prevClass, nextClass, big }) => {
+const SliderNavigation = ({ prevClass, nextClass }) => {
   return (
-    <div className={`${style.wrapp} ${big && style.big}`}>
+    <div className={style.wrapp}>
       <button className={prevClass}><IoIosArrowBack/></button>
       <button className={nextClass}><IoIosArrowForward/></button>
     </div>
