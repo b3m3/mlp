@@ -12,17 +12,33 @@
   justify-content: center;
   align-items: center;
   background: rgba(255, 255, 255, .4);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(var(--blur));
+  backdrop-filter: blur(var(--blur));
   border-radius: 50%;
+  transition: .15s;
 
   & svg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #fff;
     font-size: 1.625rem;
-    transition: .3s ease;
 
     &.active {
       color: #f50b0bcb;
+      animation: identifier .39s ease-in;
     }
+  }
+}
+
+@keyframes identifier {
+  0% {
+    transform: scale(0.6);
+  }
+  50% {
+    transform: scale(1.45);
+  }
+  100% {
+    transform: scale(1);
   }
 }

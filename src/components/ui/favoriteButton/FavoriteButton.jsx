@@ -26,19 +26,20 @@ const FavoriteButton = ({ id, poster_path, vote_average, title, name }) => {
     favorites.map(el => el.id === id && setIsActive(true));
   }, [id, favorites]);
 
-  console.log(favorites);
-
   return (
-    <div className={style.btn}>
-      <TiHeartFullOutline
-        className={isActive ? style.active : ''}
-        onClick={() => {
-          setIsActive(a => !a);
+    <div 
+      className={style.btn}
+      style={isActive ? {background: 'rgba(243, 46, 46, 0.15)'} : null}
+      onClick={() => {
+        setIsActive(a => !a);
 
-          isActive 
-            ? setFavorites(favorites.filter(el => el.id !== id ))
-            : setFavorites([...favorites, data])
-        }}
+        isActive
+          ? setFavorites(favorites.filter(el => el.id !== id ))
+          : setFavorites([...favorites, data])
+      }}
+    >
+      <TiHeartFullOutline
+        className={isActive ? style.active : null}
       />
     </div>
   );
