@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation, Parallax, FreeMode } from 'swiper';
+import { Pagination, Navigation, Parallax } from 'swiper';
 
 import TrendingVideoCard from '../trendingVideoCard/TrendingVideoCard';
 import TrendingActorCard from '../trendingActorCard/TrendingActorCard';
@@ -29,6 +29,7 @@ const Trending = ({ item, actors }) => {
 
   useEffect(() => {
     getApiResults(item.url, setResults, setErrorApi);
+    
   }, [item.url, currentLang]);
 
   return (
@@ -62,13 +63,14 @@ const Trending = ({ item, actors }) => {
             breakpoints={
               actors
                 ? {
-                    320: {slidesPerView: 2},
-                    768: {slidesPerView: 3},
-                    1024: {slidesPerView: 5}
+                    320: {slidesPerView: 1},
+                    376: {slidesPerView: 2},
+                    601: {slidesPerView: 3},
+                    1025: {slidesPerView: 5}
                   }
                 : {
                     320: {slidesPerView: 1},
-                    1024: {slidesPerView: 2}
+                    1025: {slidesPerView: 2}
                   }
           }
           >
