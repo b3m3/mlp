@@ -19,7 +19,7 @@ const MenuHamburger = () => {
     } else {
       setIsActive(true)
     }
-  }, [pathname]);
+  }, [pathname, setMenuActive, refInfoVideo, refInfoActor]);
 
   return (
     <>
