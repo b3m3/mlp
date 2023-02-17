@@ -7,36 +7,34 @@ import Footer from '../../components/footer/Footer';
 import Router from '../../routes/Router';
 
 import { Context } from '../../context/context';
-import { FAVORITE_KEY } from '../../constans/localStorage';
-import { getFromLocalStorage } from '../../utils/localStorage';
 
 import './app.scss';
 
 const App = () => {
-  const favoritesStorage = getFromLocalStorage(FAVORITE_KEY);
-
-  const [menuActive, setMenuActive] = useState(false);
   const [currentLang, setCurrentLang] = useState('');
-  const [favorites, setFavorites] = useState(favoritesStorage ? JSON.parse(favoritesStorage) : []);
+  const provider = { currentLang, setCurrentLang };
   
   const refInfoVideo = useRef(null);
   const refInfoActor = useRef(null);
-
-  const provider = {
-    currentLang, menuActive, favorites, 
-    setCurrentLang, setMenuActive, setFavorites,
-    refInfoVideo, refInfoActor
-  };
 
   return (
     <Context.Provider value={provider}>
       <HashRouter>
         <div className="app">
-          <Header/>
+          <Header 
+            refInfoVideo={refInfoVideo}
+            refInfoActor={refInfoActor}
+          />
             <div className='app-wrapp'>
-              <Sidebar />
+              <Sidebar 
+                refInfoVideo={refInfoVideo}
+                refInfoActor={refInfoActor}
+              />
               <main>
-                <Router />
+                <Router 
+                  refInfoVideo={refInfoVideo}
+                  refInfoActor={refInfoActor}
+                />
               </main>
             </div>
           <Footer/>

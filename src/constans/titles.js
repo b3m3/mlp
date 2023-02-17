@@ -1,10 +1,10 @@
-export const sidebarTitles = [
-  {en: 'Home', uk: 'Домашня', ru: 'Домашняя'},
-  {en: 'Movies', uk: 'Фільми', ru: 'Фильмы'},
-  {en: 'TV Shows', uk: 'Серіали', ru: 'Сериалы'},
-  {en: 'Actors', uk: 'Актори', ru: 'Актеры'},
-  {en: 'Favorites', uk: 'Обране', ru: 'Избранное'}
-];
+// export const sidebarTitles = [
+//   {en: 'Home', uk: 'Домашня', ru: 'Домашняя'},
+//   {en: 'Movies', uk: 'Фільми', ru: 'Фильмы'},
+//   {en: 'TV Shows', uk: 'Серіали', ru: 'Сериалы'},
+//   {en: 'Actors', uk: 'Актори', ru: 'Актеры'},
+//   {en: 'Favorites', uk: 'Обране', ru: 'Избранное'}
+// ];
 
 export const sortOptionsTitles = [
   {en: 'Relevance', uk: 'Релевантністю', ru: 'Релевантности'},
@@ -45,9 +45,9 @@ export const recomendationsTitles = [
   {en: 'Recommendations', ru: 'Рекомендации', uk: 'Рекомендації'}
 ];
 
-export const favoritesTitles = [
-  {en: 'Favorites', uk: 'Обране', ru: 'Избранное'}
-];
+// export const favoritesTitles = [
+//   {en: 'Favorites', uk: 'Обране', ru: 'Избранное'}
+// ];
 
 export const sortTitles = [
   {en: 'Sort by:', uk: 'Сортувати за:', ru: 'Сортировать по:'}

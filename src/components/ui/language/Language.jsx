@@ -1,7 +1,8 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLanguage } from '../../../store/slices/languageSlice';
 
-import { Context } from '../../../context/context';
 import { changeLangLocation, getLangIdFromLocation } from '../../../utils/functions';
 import { addToLocalStorage, getFromLocalStorage } from '../../../utils/localStorage';
 import { LANG_KEY } from '../../../constans/localStorage';
@@ -13,16 +14,22 @@ const Language = () => {
   const [isActive, setIsActive] = useState(false);
 
   const { pathname } = useLocation();
-  const { currentLang, setCurrentLang } = useContext(Context);
+
+  const language = useSelector(state => state.language.language);
+  const dispatch = useDispatch();
   
   const languages = [API_EN, API_UK, API_RU];
+
+  const changeLang = useCallback((lang) => {
+    dispatch(setLanguage(lang))
+  }, [dispatch]);
   
   useEffect(() => {
     const langLocation = getLangIdFromLocation(pathname);
     const isNoLang = langLocation !== API_EN && langLocation !== API_RU && langLocation !== API_UK;
 
     if (pathname === '/') {
-      setCurrentLang(API_EN);
+      changeLang(API_EN);
     }
 
     if (pathname !== '/') {
@@ -30,9 +37,9 @@ const Language = () => {
     }
 
     if (getFromLocalStorage(LANG_KEY)) {
-      setCurrentLang(getFromLocalStorage(LANG_KEY));
+      changeLang(getFromLocalStorage(LANG_KEY));
     }
-  }, [setCurrentLang, currentLang, pathname]);
+  }, [changeLang, language, pathname]);
   
   useEffect(() => {
     const handleClick = e => {
@@ -43,14 +50,14 @@ const Language = () => {
 
     document.addEventListener('click', handleClick);
     return() => document.removeEventListener('click', handleClick);
-  }, [currentLang]);
+  }, [language]);
 
   return (
     <div 
       className={`${style.language} language`}
       onClick={() => setIsActive(a => !a)}
     >
-      <p>{currentLang && currentLang.toUpperCase()}</p>
+      <p>{language && language.toUpperCase()}</p>
 
       <ul className={isActive ? style.active : null}>
         {languages.map(lang => (
@@ -58,7 +65,7 @@ const Language = () => {
             to={changeLangLocation(pathname, lang)}
             key={lang} 
             onClick={() => {
-              setCurrentLang(lang);
+              changeLang(lang);
               addToLocalStorage(LANG_KEY, lang);
             }}
           >

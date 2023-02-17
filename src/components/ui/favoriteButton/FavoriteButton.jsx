@@ -1,8 +1,10 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect, useMemo, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addFavorite, removeFavorite } from '../../../store/slices/favoriteSlice';
+
 
 import { FAVORITE_KEY } from '../../../constans/localStorage';
-import { Context } from '../../../context/context';
 import { addArrToStorage } from '../../../utils/localStorage';
 import { getTypeFromLocation } from '../../../utils/functions';
 
@@ -10,32 +12,41 @@ import { TiHeartFullOutline } from 'react-icons/ti';
 
 import style from './favorite-button.module.scss';
 
+const styleBtn = {background: 'rgba(243, 46, 46, 0.15)'}
+
 const FavoriteButton = ({ id, poster_path, vote_average, title, name }) => {
   const [isActive, setIsActive] = useState(false);
 
-  const { favorites, setFavorites } = useContext(Context);
-  const { pathname } = useLocation();
+  const favoriteList = useSelector(state => state.favorite.favoritesList)
+  const dispatch = useDispatch();
 
+  const { pathname } = useLocation();
   const type = getTypeFromLocation(pathname);
-  const data = { id, poster_path, vote_average, title, name, type };
+
+  const toggleActive = useCallback(() => {
+    return setIsActive(a => !a)
+  }, [setIsActive]);
+
+  const data = useMemo(() => {
+    return ({id, poster_path, vote_average, title, name, type});
+  }, [id, poster_path, vote_average, title, name, type]);
 
   useEffect(() => {
-    addArrToStorage(FAVORITE_KEY, favorites);
+    addArrToStorage(FAVORITE_KEY, favoriteList);
     setIsActive(false);
 
-    favorites.map(el => el.id === id && setIsActive(true));
-  }, [id, favorites]);
+    favoriteList.map(el => el.id === id && setIsActive(true));
+  }, [id, favoriteList]);
+
+  console.log('favoriteBtn');
 
   return (
     <div 
       className={style.btn}
-      style={isActive ? {background: 'rgba(243, 46, 46, 0.15)'} : null}
+      style={isActive ? styleBtn : null}
       onClick={() => {
-        setIsActive(a => !a);
-
-        isActive
-          ? setFavorites(favorites.filter(el => el.id !== id ))
-          : setFavorites([...favorites, data])
+        toggleActive()
+        isActive ? dispatch(removeFavorite(id)) : dispatch(addFavorite(data))
       }}
     >
       <TiHeartFullOutline

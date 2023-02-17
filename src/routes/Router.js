@@ -1,7 +1,5 @@
 import { useRoutes, Navigate } from 'react-router-dom';
-import { useContext } from 'react';
-
-import { Context } from '../context/context';
+import { useSelector } from 'react-redux';
 
 import Home from '../containers/home/Home';
 import Movies from '../containers/movies/Movies';
@@ -13,9 +11,8 @@ import InfoVideo from '../containers/infoVideo/InfoVideo';
 import InfoActor from '../containers/infoActor/InfoActor';
 import NotFound from '../containers/notFound/NotFound';
 
-
-const Router = () => {
-  const { currentLang, refInfoVideo, refInfoActor } = useContext(Context);
+const Router = ({ refInfoVideo, refInfoActor }) => {
+  const language = useSelector(state => state.language.language);
 
   return useRoutes([
     {path: '/:lang', element: <Home/>},
@@ -28,7 +25,7 @@ const Router = () => {
     {path: '/:lang/person/:id', element: <InfoActor ref={refInfoActor}/>},
     {path: '/:lang/:type/:category/:id/:page', element: <Category/>},
     {path: '*', element: <NotFound/>},
-    {path: '/', element: <Navigate to={'/'+currentLang} replace/>}
+    {path: '/', element: <Navigate to={'/'+language} replace/>}
   ]);
 };
 

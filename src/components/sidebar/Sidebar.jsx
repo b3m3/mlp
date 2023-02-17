@@ -1,8 +1,6 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
-
-import { Context } from '../../context/context';
 
 import { AiFillHome } from 'react-icons/ai';
 import { MdLocalMovies } from 'react-icons/md';
@@ -20,27 +18,28 @@ const sidebarTitles = [
   {en: 'Favorites', uk: 'Обране', ru: 'Избранное'}
 ];
 
-const Sidebar = () => {
+const Sidebar = ({ refInfoVideo, refInfoActor }) => {
   const [isActive, setIsActive] = useState(false);
 
   const menuState = useSelector(state => state.menu.menuState);
+  const favoriteList = useSelector(state => state.favorite.favoritesList);
+  const language = useSelector(state => state.language.language);
 
-  const { currentLang, favorites, refInfoVideo, refInfoActor } = useContext(Context);
   const { pathname } = useLocation();
 
   const links = useMemo(() => [
-    {icon: <AiFillHome />, path: `/${currentLang}`, end: true},
-    {icon: <MdLocalMovies />, path: `/${currentLang}/movie`},
-    {icon: <RiMovie2Fill />, path: `/${currentLang}/tv`},
-    {icon: <BsFillPeopleFill />, path: `/${currentLang}/person`},
-    {icon: <MdFavorite />, path: `/${currentLang}/favorites`}
-  ], [currentLang]);
+    {icon: <AiFillHome />, path: `/${language}`, end: true},
+    {icon: <MdLocalMovies />, path: `/${language}/movie`},
+    {icon: <RiMovie2Fill />, path: `/${language}/tv`},
+    {icon: <BsFillPeopleFill />, path: `/${language}/person`},
+    {icon: <MdFavorite />, path: `/${language}/favorites`}
+  ], [language]);
 
   const classNameNav = `${style.navbar} ${menuState && style.active} ${isActive && style.hidden}`;
 
   const linkName = useCallback((i) => {
-    return sidebarTitles[i][currentLang]
-  }, [currentLang])
+    return sidebarTitles[i][language]
+  }, [language])
 
   useEffect(() => {
     return refInfoVideo.current || refInfoActor.current ? setIsActive(true) : setIsActive(false);
@@ -61,9 +60,9 @@ const Sidebar = () => {
                 <span>{linkName(i)}</span>
               </NavLink>
 
-              {links.length -1 === i && favorites && favorites.length > 0 &&
-                <i className={menuState && style.open}>
-                  {favorites.length}
+              {links.length -1 === i && favoriteList && favoriteList.length > 0 &&
+                <i className={menuState ? style.open : ''}>
+                  {favoriteList.length}
                 </i>
               }
             </li>

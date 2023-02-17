@@ -1,20 +1,17 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleMenu, closeMenu } from '../../../store/slices/menuSlices';
-
-import { Context } from '../../../context/context';
+import { toggleMenu, closeMenu } from '../../../store/slices/menuSlice';
 
 import style from './hamburger.module.scss';
 
-const MenuHamburger = () => {
+const MenuHamburger = ({ refInfoVideo, refInfoActor }) => {
   const [isActive, setIsActive] = useState(true);
 
   const menuState = useSelector(state => state.menu.menuState)
   const dispatch = useDispatch();
 
   const { pathname } = useLocation();
-  const { refInfoVideo, refInfoActor } = useContext(Context);
 
   useEffect(() => {
     if (refInfoVideo.current || refInfoActor.current) {

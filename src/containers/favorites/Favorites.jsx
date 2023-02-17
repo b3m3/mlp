@@ -1,39 +1,43 @@
-import { useContext, useEffect, useRef } from 'react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeFavorite } from '../../store/slices/favoriteSlice';
 
 import VideoCard from '../../components/videoCard/VideoCard';
 import EmptyPage from '../../components/errors/emptyPage/EmptyPage';
-import { favoritesTitles } from '../../constans/titles';
 import { FAVORITE_KEY } from '../../constans/localStorage';
-import { getTitleLang } from '../../utils/functions';
 import { removeItemFromLocalStorage } from '../../utils/localStorage';
-import { Context } from '../../context/context';
+import { getTitleLang } from '../../utils/functions';
 
 import style from './favorites.module.scss';
 
-const Favorites = () => {
-  const { currentLang, favorites, setFavorites } = useContext(Context);
+const favoritesTitles = [
+  {en: 'Favorites', uk: 'Обране', ru: 'Избранное'}
+];
 
-  const ref = useRef(null)
+const Favorites = () => {
+  const favoriteList = useSelector(state => state.favorite.favoritesList);
+  const language = useSelector(state => state.language.language);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const onClearArr = (e) => {
-      if (e.target && !favorites.length) {
-        setFavorites([]);
+      if (!favoriteList.length && e.target) {
+        dispatch(removeFavorite());
         removeItemFromLocalStorage(FAVORITE_KEY);
       }
-    }
+    };
 
     document.addEventListener('click', onClearArr);
     return() => document.removeEventListener('click', onClearArr);
-  }, [favorites, setFavorites]);
+  }, [favoriteList, dispatch]);
 
   return (
-    <section className={style.favorites} ref={ref}>
-      <h2>{getTitleLang(favoritesTitles, currentLang)}</h2>
+    <section className={style.favorites}>
+      <h2>{getTitleLang(favoritesTitles, language)}</h2>
 
-      {favorites.length > 0
+      {favoriteList.length > 0
         ? <ul>
-            {favorites.map(({id, poster_path, vote_average, title, name, type}) => (
+            {favoriteList.map(({id, poster_path, vote_average, title, name, type}) => (
               <li key={id}>
                 <VideoCard 
                   id={id}
