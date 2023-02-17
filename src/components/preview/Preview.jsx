@@ -1,4 +1,5 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar } from 'swiper';
 
@@ -10,7 +11,6 @@ import ShimmerVideoCard from '../ui/shimmers/shimmerVideoCard/ShimmerVideoCard';
 import ShimmerActorCard from '../ui/shimmers/shimmerActorCard/ShimmerActorCard';
 
 import { getApiResults } from '../../service/getApiResources';
-import { Context } from '../../context/context';
 
 import style from './preview.module.scss';
 import 'swiper/css';
@@ -20,7 +20,7 @@ const Preview = ({ item, actors }) => {
   const [results, setResults] = useState(null);
   const [errorApi, setErrorApi] = useState(false);
 
-  const { currentLang } = useContext(Context);
+  const language = useSelector(state => state.language.language);
 
   useEffect(() => {
     getApiResults(item.url, setResults, setErrorApi);
@@ -29,7 +29,7 @@ const Preview = ({ item, actors }) => {
   return (
     <div className={style.preview}>
       <div className={style.top}>
-        <h2>{item[currentLang]}</h2>
+        <h2>{item[language]}</h2>
         <SeeAll category={item.en}/>
       </div>
       

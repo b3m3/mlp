@@ -1,17 +1,17 @@
-import { useContext } from 'react';
+import { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 
 import Preview from '../../components/preview/Preview';
 import { ACTORS_POPULAR, API_LANGUAGE } from '../../constans/api';
-import { Context } from '../../context/context';
 
 import style from './actors.module.scss';
 
 const Actors = () => {
-  const { currentLang } = useContext(Context);
+  const language = useSelector(state => state.language.language);
 
-  const items = [
-    {en: 'Popular', uk: 'Популярні', ru: 'Популярные', url: ACTORS_POPULAR+API_LANGUAGE+currentLang},
-  ];
+  const items = useMemo(() => [
+    {en: 'Popular', uk: 'Популярні', ru: 'Популярные', url: ACTORS_POPULAR+API_LANGUAGE+language},
+  ], [language]);
 
   return (
     <section className={style.wrapp}>

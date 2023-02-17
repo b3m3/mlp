@@ -1,17 +1,16 @@
-import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 
 import { getYearFromDate } from '../../../utils/functions';
-import { Context } from '../../../context/context';
 
 import { AiFillCalendar } from 'react-icons/ai';
 
 import style from './dates.module.scss';
 
 const Dates = ({ release, first, last, birthday, deathday, status, fullDate }) => {
-  const { currentLang } = useContext(Context);
+  const language = useSelector(state => state.language.language);
 
-  const endeds = [{ru: 'Серии выпускаются'}, {uk: 'Серії випускаються'}, {en: 'Returning series'}];
-  const canceleds = [{ru: 'Отмененный'}, {uk: 'Скасований'}, {en: 'Canceled'}];
+  const endeds = [{ru: 'Серии выпускаются', uk: 'Серії випускаються', en: 'Returning series'}];
+  const canceleds = [{ru: 'Отмененный', uk: 'Скасований', en: 'Canceled'}];
 
   const translate = (arr, lang) => {
     return arr.map(s => s[lang]).join('')
@@ -28,8 +27,8 @@ const Dates = ({ release, first, last, birthday, deathday, status, fullDate }) =
           {birthday && birthday.split('-').join('.')}
           {deathday && deathday && ` - ${deathday.split('-').join('.')}`}
           {last && status === "Ended" && ` - ${getYearFromDate(last)}`}
-          {last && status === "Returning Series" && ` - ${translate(endeds, currentLang)}`}
-          {last && status === "Canceled" && ` - ${translate(canceleds, currentLang)}`}
+          {last && status === "Returning Series" && ` - ${translate(endeds, language)}`}
+          {last && status === "Canceled" && ` - ${translate(canceleds, language)}`}
         </h4>
       }
     </div>

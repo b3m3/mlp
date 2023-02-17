@@ -1,9 +1,8 @@
-import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { API_SEARCH, API_DISCOVER, API_WITH_GENRES, API_SORT, API_LTE, API_GTE, 
   API_RELEASE_DATE, API_VOTE_AVERAGE, API_VOTE_COUNT, API_FIRST_AIR_DATE } from '../../../constans/api';
-import { Context } from '../../../context/context';
 
 import { RiSearchLine } from 'react-icons/ri';
 import style from './input.module.scss';
@@ -11,7 +10,7 @@ import style from './input.module.scss';
 const Input = ({mediaType, setInputValue, setInputFocus, indexSectionBtn, inputValue, 
   setGenresSelected, genresSelected, sortBy, ratings, years}) => {
 
-  const { currentLang } = useContext(Context);
+    const language = useSelector(state => state.language.language);
 
   const activeBtnStyle = {color: 'var(--gray-50)'}
 
@@ -45,8 +44,8 @@ const Input = ({mediaType, setInputValue, setInputFocus, indexSectionBtn, inputV
 
   const link = 
     inputValue 
-      ? `/${currentLang}${type}${API_SEARCH}/${inputValue}/1`
-      : `/${currentLang}${type}${API_DISCOVER}/${isSort}${isGenres}${isRating}${isYears}/1`;
+      ? `/${language}${type}${API_SEARCH}/${inputValue}/1`
+      : `/${language}${type}${API_DISCOVER}/${isSort}${isGenres}${isRating}${isYears}/1`;
 
   return (
     <div className={style.wrapp}>

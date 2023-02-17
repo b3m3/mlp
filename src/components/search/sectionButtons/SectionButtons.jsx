@@ -1,22 +1,21 @@
-import { useContext } from 'react';
-
-import { Context } from '../../../context/context';
+import { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 
 import style from './section-buttons.module.scss';
 
 const SectionButtons = ({ index, setIndex, activeBtn, setGenresSelected }) => {
-  const { currentLang } = useContext(Context);
+  const language = useSelector(state => state.language.language);
 
-  const buttonsName = [
+  const buttonsName = useMemo(() => [
     {en: ['Movies', 'TV Shows', 'Actors']},
     {uk: ['Фільми', 'Серіали', 'Актори']},
     {ru: ['Фильмы', 'Сериалы', 'Актеры']}
-  ];
+  ], []);
 
   return (
     <div className={style.wrapp}>
-      {buttonsName.map(el => el[currentLang] && 
-        el[currentLang].map((btn, i) => (
+      {buttonsName.map(el => el[language] && 
+        el[language].map((btn, i) => (
           <button 
             key={i}
             onClick={() => {

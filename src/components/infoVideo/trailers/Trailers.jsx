@@ -1,11 +1,11 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Button from '../../ui/button/Button';
 
 import { API_ROOT, API_KEY, API_LANGUAGE, API_VIDEOS, 
   YOUTUBE_TRAILER_ROOT, YOUTUBE_TRAILER_AUTOPLAY } from '../../../constans/api';
-import { Context } from '../../../context/context';
 import { getApiResources } from '../../../service/getApiResources';
 
 import { GoPlay } from 'react-icons/go';
@@ -18,12 +18,12 @@ const Trailers = ({activeTrailer, setActiveTrailer}) => {
   const [totalTrailers, setTotalTrailers] = useState(null);
   const [trailerNumber, setTrailerNumber] = useState(0);
 
-  const { currentLang } = useContext(Context);
+  const language = useSelector(state => state.language.language);
   const { id, type } = useParams();
 
   const lock = {opacity: '.1', pointerEvents: 'none'};
 
-  const url = `${API_ROOT}/${type}/${id}${API_VIDEOS}${API_KEY}${API_LANGUAGE}${currentLang}`;
+  const url = `${API_ROOT}/${type}/${id}${API_VIDEOS}${API_KEY}${API_LANGUAGE}${language}`;
 
   useEffect(() => {
     (async() => {
@@ -39,7 +39,7 @@ const Trailers = ({activeTrailer, setActiveTrailer}) => {
         setActiveTrailer(0);
       }
     })();
-  }, [url, currentLang]);
+  }, [url, language, setActiveTrailer]);
 
   return (
     <div className={`${style.wrapp} ${activeTrailer && results.length > 0 && style.active}`}>
@@ -48,6 +48,7 @@ const Trailers = ({activeTrailer, setActiveTrailer}) => {
           {activeTrailer
             ? <>
                 <iframe
+                  title={' '}
                   src={YOUTUBE_TRAILER_ROOT+results[trailerNumber].key+YOUTUBE_TRAILER_AUTOPLAY}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                   allowFullScreen

@@ -1,6 +1,7 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation, Parallax } from 'swiper';
+import { useSelector } from 'react-redux';
 
 import TrendingVideoCard from '../trendingVideoCard/TrendingVideoCard';
 import TrendingActorCard from '../trendingActorCard/TrendingActorCard';
@@ -9,7 +10,6 @@ import ErrorApi from '../errors/errorApi/ErrorApi';
 import ShimmerSolidBlock from '../ui/shimmers/shimmerSolidBlock/ShimmerSolidBlock';
 
 import { getApiResults } from '../../service/getApiResources';
-import { Context } from '../../context/context';
 
 import style from './trending.module.scss';
 import 'swiper/css';
@@ -22,7 +22,7 @@ const Trending = ({ item, actors }) => {
   const [results, setResults] = useState(null);
   const [errorApi, setErrorApi] = useState(false);
 
-  const { currentLang } = useContext(Context);
+  const language = useSelector(state => state.language.language);
 
   const prevClass = `${item.en.split(' ')[1].toLowerCase()}-tre-prev`;
   const nextClass = `${item.en.split(' ')[1].toLowerCase()}-tre-next`;
@@ -30,12 +30,12 @@ const Trending = ({ item, actors }) => {
   useEffect(() => {
     getApiResults(item.url, setResults, setErrorApi);
     
-  }, [item.url, currentLang]);
+  }, [item.url, language]);
 
   return (
     <div className={style.wrapp}>
       <div className={style.top}>
-        <h2>{item[currentLang]}</h2>
+        <h2>{item[language]}</h2>
 
         <SliderNavigation 
           prevClass={prevClass}

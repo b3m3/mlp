@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import { sortTitles, sortDefaultTitle, sortOptionsTitles } from '../../../constans/titles';
-import { Context } from '../../../context/context';
 import { getTitleLang } from '../../../utils/functions';
 import { API_POPULARITY, API_RELEASE_DATE, API_VOTE_AVERAGE, API_DESC, API_ASC } from '../../../constans/api';
 
@@ -13,11 +13,11 @@ const Sort = ({ indexSectionBtn, setSortBy }) => {
   const [currentTitle, setCurrentTitle] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
-  const { currentLang } = useContext(Context);
+  const language = useSelector(state => state.language.language);
 
   const listActive = {padding: '.375rem .75rem', height: '11.25rem'};
 
-  const optionsPath = [
+  const optionsPath = useMemo(() => [
     {path: ''},
     {path: API_POPULARITY+API_DESC},
     {path: API_POPULARITY+API_ASC},
@@ -25,16 +25,16 @@ const Sort = ({ indexSectionBtn, setSortBy }) => {
     {path: API_VOTE_AVERAGE+API_ASC},
     {path: API_RELEASE_DATE+API_DESC},
     {path: API_RELEASE_DATE+API_ASC}
-  ];
+  ], []);
 
   useEffect(() => {
-    sortDefaultTitle.map(el => setCurrentTitle(el[currentLang]));
+    sortDefaultTitle.map(el => setCurrentTitle(el[language]));
     setSortBy([]);
-  }, [currentLang, indexSectionBtn, setSortBy]);
+  }, [language, indexSectionBtn, setSortBy]);
 
   return (
     <div className={style.wrapp}>
-      <p>{getTitleLang(sortTitles, currentLang)}</p>
+      <p>{getTitleLang(sortTitles, language)}</p>
 
       <div className={style.row}>
         <div 
@@ -61,7 +61,7 @@ const Sort = ({ indexSectionBtn, setSortBy }) => {
                 setIsOpen(false);
               }}
             >
-              {sortOptionsTitles[i][currentLang]}
+              {sortOptionsTitles[i][language]}
             </li>
           ))}
         </ul>

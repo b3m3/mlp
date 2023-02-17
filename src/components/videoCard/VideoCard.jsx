@@ -1,24 +1,23 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 
 import Rating from '../ui/rating/Rating';
 import Poster from '../ui/poster/Poster';
 import FavoriteButton from '../ui/favoriteButton/FavoriteButton';
 
 import { getTypeFromLocation } from '../../utils/functions';
-import { Context } from "../../context/context";
 
 import style from './video-card.module.scss';
 
 const VideoCard = ({id, poster_path, title, name, type, vote_average, small}) => {
   const { pathname } = useLocation();
-  const { currentLang } = useContext(Context);
+  const language = useSelector(state => state.language.language);
 
   const currentType = getTypeFromLocation(pathname);
   const isPerson = currentType === '/person';
   const isFavorites = currentType === '/favorites';
 
-  const link = `/${currentLang}${isPerson || isFavorites ? type : currentType}/${id}`;
+  const link = `/${language}${isPerson || isFavorites ? type : currentType}/${id}`;
 
   return (
     <div className={style.card}>

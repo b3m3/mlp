@@ -1,7 +1,7 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import { API_ROOT, API_GENRE, API_LIST, API_KEY, API_LANGUAGE, API_MOVIE, API_ACTORS, API_TV_SHOWS } from '../../../constans/api';
-import { Context } from '../../../context/context';
 
 import Input from '../input/Input';
 import SectionButtons from '../sectionButtons/SectionButtons';
@@ -22,7 +22,7 @@ const Search = () => {
   const [ratings, setRatings] = useState([]);
   const [years, setYears] = useState([]);
 
-  const { currentLang } = useContext(Context);
+  const language = useSelector(state => state.language.language);
 
   const mediaType = [API_MOVIE, API_TV_SHOWS, API_ACTORS];
   const isActors = mediaType[indexSectionBtn] === API_ACTORS;
@@ -31,7 +31,7 @@ const Search = () => {
 
   const activeBtn = {background:'var(--blue-400)'};
 
-  const urlGenres = API_ROOT+API_GENRE+mediaType[indexSectionBtn]+API_LIST+API_KEY+API_LANGUAGE+currentLang;
+  const urlGenres = API_ROOT+API_GENRE+mediaType[indexSectionBtn]+API_LIST+API_KEY+API_LANGUAGE+language;
 
   useEffect(() => {
     (async() => {
@@ -42,7 +42,7 @@ const Search = () => {
 
       return setGenresList(null);
     })();
-  }, [urlGenres, currentLang, isActors]);
+  }, [urlGenres, language, isActors]);
 
   useEffect(() => {
     const handleClick = e => {
@@ -53,7 +53,7 @@ const Search = () => {
 
     document.addEventListener('click', handleClick);
     return() => document.removeEventListener('click', handleClick);
-  }, [currentLang]);
+  }, [language]);
 
   return (
     <div className={`${style.search} search`}>
