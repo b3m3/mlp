@@ -1,8 +1,8 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import { Context } from '../../context/context';
-import { sidebarTitles } from '../../constans/titles';
 
 import { AiFillHome } from 'react-icons/ai';
 import { MdLocalMovies } from 'react-icons/md';
@@ -12,19 +12,35 @@ import { BsFillPeopleFill } from 'react-icons/bs';
 
 import style from './sidebar.module.scss';
 
+const sidebarTitles = [
+  {en: 'Home', uk: 'Домашня', ru: 'Домашняя'},
+  {en: 'Movies', uk: 'Фільми', ru: 'Фильмы'},
+  {en: 'TV Shows', uk: 'Серіали', ru: 'Сериалы'},
+  {en: 'Actors', uk: 'Актори', ru: 'Актеры'},
+  {en: 'Favorites', uk: 'Обране', ru: 'Избранное'}
+];
+
 const Sidebar = () => {
   const [isActive, setIsActive] = useState(false);
 
-  const { currentLang, menuActive, favorites, refInfoVideo, refInfoActor } = useContext(Context);
+  const menuState = useSelector(state => state.menu.menuState);
+
+  const { currentLang, favorites, refInfoVideo, refInfoActor } = useContext(Context);
   const { pathname } = useLocation();
 
-  const links = [
+  const links = useMemo(() => [
     {icon: <AiFillHome />, path: `/${currentLang}`, end: true},
     {icon: <MdLocalMovies />, path: `/${currentLang}/movie`},
     {icon: <RiMovie2Fill />, path: `/${currentLang}/tv`},
     {icon: <BsFillPeopleFill />, path: `/${currentLang}/person`},
     {icon: <MdFavorite />, path: `/${currentLang}/favorites`}
-  ];
+  ], [currentLang]);
+
+  const classNameNav = `${style.navbar} ${menuState && style.active} ${isActive && style.hidden}`;
+
+  const linkName = useCallback((i) => {
+    return sidebarTitles[i][currentLang]
+  }, [currentLang])
 
   useEffect(() => {
     return refInfoVideo.current || refInfoActor.current ? setIsActive(true) : setIsActive(false);
@@ -32,7 +48,7 @@ const Sidebar = () => {
 
   return (
     <aside>
-      <nav className={`${style.navbar} ${menuActive && style.active} ${isActive && style.hidden}`}>
+      <nav className={classNameNav}>
         <ul>
           {links.map((link, i) => (
             <li key={i}>
@@ -42,11 +58,11 @@ const Sidebar = () => {
                 className={({isActive}) => isActive ? style.active : ''}
               >
                 {link.icon}
-                <span>{sidebarTitles[i][currentLang]}</span>
+                <span>{linkName(i)}</span>
               </NavLink>
 
               {links.length -1 === i && favorites && favorites.length > 0 &&
-                <i className={menuActive ? style.open : ''}>
+                <i className={menuState && style.open}>
                   {favorites.length}
                 </i>
               }
