@@ -1,15 +1,14 @@
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 
 import Poster from '../ui/poster/Poster';
-import { Context } from '../../context/context';
 
 import style from './actor-card.module.scss';
 
 const ActorCard = ({ id, name, character, profile_path, onHover }) => {
-  const { currentLang } = useContext(Context);
+  const language = useSelector(state => state.language.language);
 
-  const link = `/${currentLang}/person/${id}`;
+  const link = `/${language}/person/${id}`;
 
   return (
     <div className={style.wrapp}>

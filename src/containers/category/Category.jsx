@@ -1,5 +1,6 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { categoryTitles, discoverTitles } from '../../constans/titles';
 import { getApiResources, getApiItem } from '../../service/getApiResources';
@@ -9,8 +10,6 @@ import { API_ROOT, API_KEY, API_PAGE, API_LANGUAGE, API_QUERY, API_DISCOVER, API
 import PageNavigation from '../../components/ui/pageNavigation/PageNavigation';
 import ErrorApi from '../../components/errors/errorApi/ErrorApi';
 import SearchError from '../../components/errors/searchError/SearchError';
-
-import { Context } from '../../context/context';
 
 import VideoCard from '../../components/videoCard/VideoCard';
 import ActorCard from '../../components/actorCard/ActorCard';
@@ -25,16 +24,16 @@ const Category = () => {
   const [noSearchResults, setNoSearchResults] = useState(false);
   const [totalPages, setTotalPages] = useState(null);
 
-  const { currentLang } = useContext(Context);
+  const language = useSelector(state => state.language.language);
   const { type, category, page, id } = useParams();
   const { pathname } = useLocation();
 
   const isSearch = category === 'search';
   const isDiscover = category === 'discover';
 
-  const categoryUrl = API_ROOT+'/'+type+'/'+category+API_KEY+API_LANGUAGE+currentLang+API_PAGE+page;
-  const searchUrl = API_ROOT+API_SEARCH+'/'+type+API_KEY+API_LANGUAGE+currentLang+API_QUERY+id+API_PAGE+page;
-  const discoverUrl = API_ROOT+API_DISCOVER+'/'+type+API_KEY+API_LANGUAGE+currentLang+id+API_PAGE+page;
+  const categoryUrl = API_ROOT+'/'+type+'/'+category+API_KEY+API_LANGUAGE+language+API_PAGE+page;
+  const searchUrl = API_ROOT+API_SEARCH+'/'+type+API_KEY+API_LANGUAGE+language+API_QUERY+id+API_PAGE+page;
+  const discoverUrl = API_ROOT+API_DISCOVER+'/'+type+API_KEY+API_LANGUAGE+language+id+API_PAGE+page;
 
   const url = isSearch ? searchUrl : isDiscover ? discoverUrl : categoryUrl;
 
@@ -61,7 +60,7 @@ const Category = () => {
         setNoSearchResults(true);
       }
     })();
-  }, [currentLang, pathname, url, isSearch, isDiscover]);
+  }, [language, pathname, url, isSearch, isDiscover]);
 
   return (
     <section className={style.category}>
@@ -69,8 +68,8 @@ const Category = () => {
         {isSearch 
           ? id 
           : isDiscover 
-            ? getTitleLang(discoverTitles, currentLang)
-            : translateCategoryTitle(categoryTitles, category, currentLang)
+            ? getTitleLang(discoverTitles, language)
+            : translateCategoryTitle(categoryTitles, category, language)
         }
       </h2>
 

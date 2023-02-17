@@ -1,27 +1,26 @@
-import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
-import { Context } from '../../context/context';
 
 import tmdb from './img/tmdb.svg';
 
 import style from './footer.module.scss';
+import { useMemo } from 'react';
 
 const Footer = () => {
-  const { currentLang } = useContext(Context);
+  const language = useSelector(state => state.language.language);
 
-  const tmdbLinks = [
+  const tmdbLinks = useMemo(() => [
     {link: 'https://www.themoviedb.org/', name: 'TMDb'},
     {link: 'https://twitter.com/themoviedb',name: 'TMDb Twitter'}
-  ];
+  ], []);
 
-  const navigationLinks = [
-    {path: `/${currentLang}`, name: 'Home'},
-    {path: `/${currentLang}/movie`, name: 'Movies'},
-    {path: `/${currentLang}/tv`, name: 'TV Shows'},
-    {path: `/${currentLang}/person`, name: 'Actors'},
-    {path: `/${currentLang}/favorites`, name: 'Favorites'},
-  ];
+  const navigationLinks = useMemo(() => [
+    {path: `/${language}`, name: 'Home'},
+    {path: `/${language}/movie`, name: 'Movies'},
+    {path: `/${language}/tv`, name: 'TV Shows'},
+    {path: `/${language}/person`, name: 'Actors'},
+    {path: `/${language}/favorites`, name: 'Favorites'},
+  ], [language]);
 
   return (
     <footer className={style.wrapp}>

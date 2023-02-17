@@ -1,4 +1,5 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 
@@ -7,19 +8,41 @@ import ActorCard from '../actorCard/ActorCard';
 import SliderNavigation from '../ui/sliderNavigation/SliderNavigation';
 
 import { getApiResources } from '../../service/getApiResources';
-import { Context } from '../../context/context';
 import { getTitleLang } from '../../utils/functions';
 
 import style from './credits.module.scss';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
+const breakPoints = {
+  320: {slidesPerView: 2},
+  420: {slidesPerView: 3},
+  550: {slidesPerView: 4},
+  700: {slidesPerView: 5}
+};
+
+const breakPointsFull = {
+  320: {slidesPerView: 2},
+  600: {slidesPerView: 4},
+  850: {slidesPerView: 6},
+  1100: {slidesPerView: 8}
+};
+
 const Credits = ({ url, titles, prevClass, nextClass, resultName, actors, fullContainer }) => {
   const [results, setResults] = useState(null);
 
-  const { currentLang } = useContext(Context);
+  const language = useSelector(state => state.language.language);
 
   const type = titles[0].en === 'Movies' ? '/movie' : '/tv';
+
+  const title = getTitleLang(titles, language);
+
+  const navigation = useMemo(() => {
+    return {
+      prevEl: `.${prevClass}`,
+      nextEl: `.${nextClass}`
+    }
+  }, [prevClass, nextClass])
 
   useEffect(() => {
     (async() => {
@@ -33,7 +56,7 @@ const Credits = ({ url, titles, prevClass, nextClass, resultName, actors, fullCo
       {results && results[resultName].length > 0 &&
         <div className={style.wrapp}>
           <div className={style.top}>
-            <h2>{getTitleLang(titles, currentLang)}</h2>
+            <h2>{title}</h2>
             {results[resultName].length > 5 &&
               <SliderNavigation
                 prevClass={prevClass}
@@ -46,24 +69,8 @@ const Credits = ({ url, titles, prevClass, nextClass, resultName, actors, fullCo
             modules={[Navigation]}
             spaceBetween={10}
             loop={results[resultName].length > 5 ? true : false}
-            breakpoints={ fullContainer
-              ? {
-                320: {slidesPerView: 2},
-                600: {slidesPerView: 4},
-                850: {slidesPerView: 6},
-                1100: {slidesPerView: 8}
-              }
-              : {
-                320: {slidesPerView: 2},
-                420: {slidesPerView: 3},
-                550: {slidesPerView: 4},
-                700: {slidesPerView: 5}
-              }
-            }
-            navigation={{
-              prevEl: `.${prevClass}`,
-              nextEl: `.${nextClass}`
-            }}
+            breakpoints={ fullContainer ? breakPointsFull : breakPoints}
+            navigation={navigation}
             style={{width: '100%'}}
           >
             {results && results[resultName].map(props => (

@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
-
+// const language = useSelector(state => state.language.language);
 import { AiFillHome } from 'react-icons/ai';
 import { MdLocalMovies } from 'react-icons/md';
 import { RiMovie2Fill } from 'react-icons/ri';

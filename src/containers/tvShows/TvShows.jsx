@@ -1,20 +1,19 @@
-import { useContext } from 'react';
+import { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 
 import Preview from '../../components/preview/Preview';
 import { TV_SHOWS_POPULAR, TV_SHOWS_TOP_RATED, TV_SHOWS_ON_THE_AIR, API_LANGUAGE } from '../../constans/api';
 
-import { Context } from '../../context/context';
-
 import style from './tv-shows.module.scss';
 
 const TvShows = () => {
-  const { currentLang } = useContext(Context);
+  const language = useSelector(state => state.language.language);
 
-  const items = [
-    {en: 'Popular', uk: 'Популярні', ru: 'Популярные', url: TV_SHOWS_POPULAR+API_LANGUAGE+currentLang},
-    {en: 'On the air', uk: 'В ефірі', ru: 'В эфире', url: TV_SHOWS_ON_THE_AIR+API_LANGUAGE+currentLang},
-    {en: 'Top rated', uk: 'Найкращий рейтинг', ru: 'Лучший рейтинг', url: TV_SHOWS_TOP_RATED+API_LANGUAGE+currentLang}
-  ];
+  const items = useMemo(() => [
+    {en: 'Popular', uk: 'Популярні', ru: 'Популярные', url: TV_SHOWS_POPULAR+API_LANGUAGE+language},
+    {en: 'On the air', uk: 'В ефірі', ru: 'В эфире', url: TV_SHOWS_ON_THE_AIR+API_LANGUAGE+language},
+    {en: 'Top rated', uk: 'Найкращий рейтинг', ru: 'Лучший рейтинг', url: TV_SHOWS_TOP_RATED+API_LANGUAGE+language}
+  ], [language]);
 
   return (
     <section className={style.wrapp}>

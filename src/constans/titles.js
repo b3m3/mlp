@@ -57,13 +57,13 @@ export const sortDefaultTitle = [
   {en: 'Relevance', uk: 'Релевантністю', ru: 'Релевантности'}
 ];
 
-export const reviewsTitles = [
-  {en: 'Reviews', ru: 'Отзывы', uk: 'Відгуки'}
-];
+// export const reviewsTitles = [
+//   {en: 'Reviews', ru: 'Отзывы', uk: 'Відгуки'}
+// ];
 
-export const emptyPageTitles = [
-  {en: 'Favorites list is empty', uk: 'Список обраного порожній', ru: 'Список избранного пуст'}
-];
+// export const emptyPageTitles = [
+//   {en: 'Favorites list is empty', uk: 'Список обраного порожній', ru: 'Список избранного пуст'}
+// ];
 
 export const searchErrorTitles = [
   {en: 'No results found for your search, search again',

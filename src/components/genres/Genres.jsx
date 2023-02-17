@@ -1,8 +1,9 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import { API_ROOT, API_GENRE, API_LIST, API_KEY, API_LANGUAGE } from '../../constans/api';
 import { getApiResources } from '../../service/getApiResources';
 
-import { Context } from '../../context/context';
 import { getGenresFromId } from '../../utils/functions';
 
 import style from './genres.module.scss';
@@ -11,24 +12,24 @@ const Genres = ({ type, ids }) => {
   const [results, setResults] = useState(null);
   const [currentGenres, setCurrentGenres] = useState(null);
 
-  const { currentLang } = useContext(Context);
+  const language = useSelector(state => state.language.language);
 
   const isObj = typeof ids[0] === 'object';
 
-  const url = `${API_ROOT}${API_GENRE}/${type}${API_LIST}${API_KEY}${API_LANGUAGE}${currentLang}`;
+  const url = `${API_ROOT}${API_GENRE}/${type}${API_LIST}${API_KEY}${API_LANGUAGE}${language}`;
 
   useEffect(() => {
     (async() => {
       const res = await getApiResources(url);
       return res && setResults(res.genres);
     })();
-  }, [url, currentLang]);
+  }, [url, language]);
   
   useEffect(() => {
     if (results) {
       setCurrentGenres(getGenresFromId(results, ids))
     }
-  }, [results, currentLang]);
+  }, [results, language, ids]);
 
   return (
     <ul className={style.list} style={{display: 'flex'}}>

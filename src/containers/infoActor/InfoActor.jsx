@@ -1,5 +1,6 @@
-import { useState, useEffect, useContext, forwardRef } from 'react';
+import { useState, useEffect, forwardRef } from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Poster from '../../components/ui/poster/Poster';
 import Background from '../../components/ui/background/Background';
@@ -16,20 +17,18 @@ import { moviesTitles, tvShowsTitles } from '../../constans/titles';
 import { API_ROOT, API_KEY, API_ACTORS, API_LANGUAGE, API_ACTORS_MOVIE_CREDITS, API_ACTORS_TV_CREDITS } from '../../constans/api';
 import { getApiResults } from '../../service/getApiResources';
 
-import { Context } from '../../context/context';
-
 import style from './info-actor.module.scss';
 
 const InfoActor = forwardRef((props, ref) => {
   const [results, setResults] = useState(null);
   const [errorApi, setErrorApi] = useState(false);
 
-  const { currentLang } = useContext(Context);
+  const language = useSelector(state => state.language.language);
   const { id } = useParams();
 
-  const url = `${API_ROOT}${API_ACTORS}/${id}${API_KEY}${API_LANGUAGE}${currentLang}`;
-  const moviesUrl = `${API_ROOT}${API_ACTORS}/${id}${API_ACTORS_MOVIE_CREDITS}${API_KEY}${API_LANGUAGE}${currentLang}`;
-  const tvShowsUrl = `${API_ROOT}${API_ACTORS}/${id}${API_ACTORS_TV_CREDITS}${API_KEY}${API_LANGUAGE}${currentLang}`;
+  const url = `${API_ROOT}${API_ACTORS}/${id}${API_KEY}${API_LANGUAGE}${language}`;
+  const moviesUrl = `${API_ROOT}${API_ACTORS}/${id}${API_ACTORS_MOVIE_CREDITS}${API_KEY}${API_LANGUAGE}${language}`;
+  const tvShowsUrl = `${API_ROOT}${API_ACTORS}/${id}${API_ACTORS_TV_CREDITS}${API_KEY}${API_LANGUAGE}${language}`;
 
   useEffect(() => {
     getApiResults(url, setResults, setErrorApi);

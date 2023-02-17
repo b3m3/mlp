@@ -1,5 +1,6 @@
-import { useState, useEffect, useContext, forwardRef } from 'react';
+import { useState, useEffect, forwardRef } from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import FavoriteButton from '../../components/ui/favoriteButton/FavoriteButton';
 import Rating from '../../components/ui/rating/Rating';
@@ -20,7 +21,6 @@ import Back from '../../components/ui/back/Back';
 import { API_ROOT, API_KEY, API_LANGUAGE, API_CREDITS, API_RECOMMEND } from '../../constans/api';
 import { getApiResults } from '../../service/getApiResources';
 
-import { Context } from '../../context/context';
 import { castTitles, recomendationsTitles } from '../../constans/titles';
 
 import style from './info-video.module.scss';
@@ -31,14 +31,14 @@ const InfoVideo = forwardRef((props, ref) => {
   const [errorApi, setErrorApi] = useState(false);
   const [activeTrailer, setActiveTrailer] = useState(false);
 
-  const { currentLang } = useContext(Context);
+  const language = useSelector(state => state.language.language);
   const { type, id } = useParams();
 
   const bodyBorderRadius = {borderRadius: '0 0 .75rem .75rem'}
 
-  const url = `${API_ROOT}/${type}/${id}${API_KEY}${API_LANGUAGE}${currentLang}`;
-  const actorsUrl = `${API_ROOT}/${type}/${id}${API_CREDITS}${API_KEY}${API_LANGUAGE}${currentLang}`;
-  const recomendationsUrl = `${API_ROOT}/${type}/${id}${API_RECOMMEND}${API_KEY}${API_LANGUAGE}${currentLang}`;
+  const url = `${API_ROOT}/${type}/${id}${API_KEY}${API_LANGUAGE}${language}`;
+  const actorsUrl = `${API_ROOT}/${type}/${id}${API_CREDITS}${API_KEY}${API_LANGUAGE}${language}`;
+  const recomendationsUrl = `${API_ROOT}/${type}/${id}${API_RECOMMEND}${API_KEY}${API_LANGUAGE}${language}`;
 
   useEffect(() => {
     setResults(null);

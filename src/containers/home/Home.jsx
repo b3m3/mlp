@@ -1,41 +1,41 @@
-import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 
-import { Context } from '../../context/context';
 import Trending from '../../components/trending/Trending';
 
 import { API_ROOT, API_MOVIE, API_TV_SHOWS, API_ACTORS, API_KEY, API_DAY, API_TRENDING, API_LANGUAGE } from '../../constans/api';
 
 import style from './home.module.scss';
+import { useMemo } from 'react';
 
 const Home = () => {
-  const { currentLang } = useContext(Context);
+  const language = useSelector(state => state.language.language);
 
-  const itemsVideo = [
+  const itemsVideo = useMemo(() => [
     {
       en: 'Trending мovies',
       uk: 'Фільми у тренді',
       ru: 'Фильмы в тренде',
-      url: API_ROOT+API_TRENDING+API_MOVIE+API_DAY+API_KEY+API_LANGUAGE+currentLang,
+      url: API_ROOT+API_TRENDING+API_MOVIE+API_DAY+API_KEY+API_LANGUAGE+language,
       type: API_MOVIE
     },
     {
       en: 'Trending TV Shows',
       uk: 'Серіали у тренді',
       ru: 'Сериалы в тренде',
-      url: API_ROOT+API_TRENDING+API_TV_SHOWS+API_DAY+API_KEY+API_LANGUAGE+currentLang,
+      url: API_ROOT+API_TRENDING+API_TV_SHOWS+API_DAY+API_KEY+API_LANGUAGE+language,
       type: API_TV_SHOWS
     }
-  ];
+  ], [language]);
 
-  const itemActors = [
+  const itemActors = useMemo(() => [
     {
       en: 'Trending Actors',
       uk: 'Актори у тренді',
       ru: 'Актеры в тренде',
-      url: API_ROOT+API_TRENDING+API_ACTORS+API_DAY+API_KEY+API_LANGUAGE+currentLang,
+      url: API_ROOT+API_TRENDING+API_ACTORS+API_DAY+API_KEY+API_LANGUAGE+language,
       type: API_ACTORS
     }
-  ];
+  ], [language]);
 
   return (
     <section className={style.wrapp}>
