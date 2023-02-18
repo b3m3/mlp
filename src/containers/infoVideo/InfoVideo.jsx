@@ -21,10 +21,16 @@ import Back from '../../components/ui/back/Back';
 import { API_ROOT, API_KEY, API_LANGUAGE, API_CREDITS, API_RECOMMEND } from '../../constans/api';
 import { getApiResults } from '../../service/getApiResources';
 
-import { castTitles, recomendationsTitles } from '../../constans/titles';
-
 import style from './info-video.module.scss';
 import Votes from '../../components/ui/votes/Votes';
+
+const castTitles = [
+  {en: 'Cast', ru: 'В ролях', uk: 'Акторський склад'}
+];
+
+const recomendationsTitles = [
+  {en: 'Recommendations', ru: 'Рекомендации', uk: 'Рекомендації'}
+];
 
 const InfoVideo = forwardRef((props, ref) => {
   const [results, setResults] = useState(null);

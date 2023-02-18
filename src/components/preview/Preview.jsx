@@ -29,6 +29,8 @@ const Preview = ({ item, actors }) => {
 
   const language = useSelector(state => state.language.language);
 
+  const title = item[language];
+
   useEffect(() => {
     getApiResults(item.url, setResults, setErrorApi);
   }, [item.url]);
@@ -36,7 +38,7 @@ const Preview = ({ item, actors }) => {
   return (
     <div className={style.preview}>
       <div className={style.top}>
-        <h2>{item[language]}</h2>
+        <h2>{title}</h2>
         <SeeAll category={item.en}/>
       </div>
       

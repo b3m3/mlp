@@ -1,13 +1,30 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { sortTitles, sortDefaultTitle, sortOptionsTitles } from '../../../constans/titles';
 import { getTitleLang } from '../../../utils/functions';
 import { API_POPULARITY, API_RELEASE_DATE, API_VOTE_AVERAGE, API_DESC, API_ASC } from '../../../constans/api';
 
 import { MdKeyboardArrowDown } from 'react-icons/md';
 
 import style from './sort.module.scss';
+
+const titles = [
+  {en: 'Sort by:', uk: 'Сортувати за:', ru: 'Сортировать по:'}
+];
+
+const optionTitles = [
+  {en: 'Relevance', uk: 'Релевантністю', ru: 'Релевантности'},
+  {en: 'Popularity', uk: 'Популярними', ru: 'Популярным'},
+  {en: 'Not popular', uk: 'Не популярними', ru: 'Не популярным'},
+  {en: 'Best rating', uk: 'Кращим рейтингом', ru: 'Лучшему рейтингу'},
+  {en: 'Low rating', uk: 'Низьким рейтингом', ru: 'Низкиму рейтингу'},
+  {en: 'New', uk: 'Новими', ru: 'Новинкам'},
+  {en: 'Old', uk: 'Старими', ru: 'Старым'}
+];
+
+const defaultTitle = [
+  {en: 'Relevance', uk: 'Релевантністю', ru: 'Релевантности'}
+];
 
 const Sort = ({ indexSectionBtn, setSortBy }) => {
   const [currentTitle, setCurrentTitle] = useState('');
@@ -16,6 +33,8 @@ const Sort = ({ indexSectionBtn, setSortBy }) => {
   const language = useSelector(state => state.language.language);
 
   const listActive = {padding: '.375rem .75rem', height: '11.25rem'};
+  const rotate = {transform: 'rotate(180deg)'};
+  const title = getTitleLang(titles, language);
 
   const optionsPath = useMemo(() => [
     {path: ''},
@@ -28,13 +47,13 @@ const Sort = ({ indexSectionBtn, setSortBy }) => {
   ], []);
 
   useEffect(() => {
-    sortDefaultTitle.map(el => setCurrentTitle(el[language]));
+    defaultTitle.map(el => setCurrentTitle(el[language]));
     setSortBy([]);
   }, [language, indexSectionBtn, setSortBy]);
 
   return (
     <div className={style.wrapp}>
-      <p>{getTitleLang(sortTitles, language)}</p>
+      <p>{title}</p>
 
       <div className={style.row}>
         <div 
@@ -42,7 +61,7 @@ const Sort = ({ indexSectionBtn, setSortBy }) => {
           onClick={() => setIsOpen(a => !a)}
         >
           <span>{currentTitle}</span>
-          <span style={isOpen ? {transform: 'rotate(180deg)'} : null}>
+          <span style={isOpen ? rotate : null}>
             <MdKeyboardArrowDown />
           </span>
         </div>
@@ -61,7 +80,7 @@ const Sort = ({ indexSectionBtn, setSortBy }) => {
                 setIsOpen(false);
               }}
             >
-              {sortOptionsTitles[i][language]}
+              {optionTitles[i][language]}
             </li>
           ))}
         </ul>
