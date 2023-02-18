@@ -1,10 +1,11 @@
 .wrapp {
   width: 100%;
-  height: 330px;
+  max-height: 20.625rem;
   display: flex;
   flex-direction: column;
   gap: 8px;
   border-radius: .9375rem;
+  overflow: hidden;
 
   & i {
     position: relative;
@@ -13,7 +14,7 @@
     display: block;
     background: #ffffff40;
     width: 100%;
-    height: 330px;
+    padding: 75.75% 0;
 
     &::before {
       position: absolute;

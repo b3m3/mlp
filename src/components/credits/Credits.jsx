@@ -6,6 +6,8 @@ import { Navigation } from 'swiper';
 import VideoCard from '../videoCard/VideoCard';
 import ActorCard from '../actorCard/ActorCard';
 import SliderNavigation from '../ui/sliderNavigation/SliderNavigation';
+import ShimmerSolidBlock from '../ui/shimmers/shimmerSolidBlock/ShimmerSolidBlock';
+import ShimmerActorCard from '../ui/shimmers/shimmerActorCard/ShimmerActorCard';
 
 import { getApiResources } from '../../service/getApiResources';
 import { getTitleLang } from '../../utils/functions';
@@ -73,14 +75,26 @@ const Credits = ({ url, titles, prevClass, nextClass, resultName, actors, fullCo
             navigation={navigation}
             style={{width: '100%'}}
           >
-            {results && results[resultName].map(props => (
-              <SwiperSlide key={props.credit_id ? props.credit_id : props.id}>
-                {actors 
-                  ? <ActorCard {...props} /> 
-                  : <VideoCard {...props} type={type} small />
-                }
-              </SwiperSlide>
-            ))}
+            {results 
+              ? results[resultName].map(props => (
+                  <SwiperSlide key={props.credit_id ? props.credit_id : props.id}>
+                    {actors 
+                      ? <ActorCard {...props} /> 
+                      : <VideoCard {...props} type={type} small />
+                    }
+                  </SwiperSlide>
+                ))
+              : <>
+                  {[...Array(3)].map((_, i) => (
+                    <SwiperSlide key={i}>
+                      {actors
+                        ? <ShimmerActorCard />
+                        : <ShimmerSolidBlock />
+                      }
+                    </SwiperSlide>
+                  ))}
+                </>
+            }
           </Swiper>
         </div>
       }

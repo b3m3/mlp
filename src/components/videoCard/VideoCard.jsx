@@ -17,6 +17,8 @@ const VideoCard = ({id, poster_path, title, name, type, vote_average, small}) =>
   const isPerson = currentType === '/person';
   const isFavorites = currentType === '/favorites';
 
+  const favoriteBtnProps = {id, poster_path, title, name, vote_average}
+
   const link = `/${language}${isPerson || isFavorites ? type : currentType}/${id}`;
 
   return (
@@ -27,13 +29,7 @@ const VideoCard = ({id, poster_path, title, name, type, vote_average, small}) =>
         </Link>
       </div>
 
-      <FavoriteButton 
-        id={id}
-        poster_path={poster_path}
-        title={title}
-        name={name}
-        vote_average={vote_average}
-      />
+      <FavoriteButton {...favoriteBtnProps} />
 
       {!small &&
         <>

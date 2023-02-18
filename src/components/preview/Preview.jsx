@@ -16,6 +16,13 @@ import style from './preview.module.scss';
 import 'swiper/css';
 import 'swiper/css/scrollbar';
 
+const breakPoints = {
+  320: {slidesPerView: 2, slidesPerGroup: 2, spaceBetween: 5},
+  475: {slidesPerView: 3, slidesPerGroup: 3},
+  768: {slidesPerView: 4, slidesPerGroup: 4, spaceBetween: 8},
+  1024: {slidesPerView: 6, slidesPerGroup: 6, spaceBetween: 10}
+};
+
 const Preview = ({ item, actors }) => {
   const [results, setResults] = useState(null);
   const [errorApi, setErrorApi] = useState(false);
@@ -41,12 +48,7 @@ const Preview = ({ item, actors }) => {
             spaceBetween={10}
             scrollbar={{draggable: true}}
             speed={800}
-            breakpoints={{
-              320: {slidesPerView: 2, slidesPerGroup: 2, spaceBetween: 5},
-              475: {slidesPerView: 3, slidesPerGroup: 3},
-              768: {slidesPerView: 4, slidesPerGroup: 4, spaceBetween: 8},
-              1024: {slidesPerView: 6, slidesPerGroup: 6, spaceBetween: 10}
-            }}
+            breakpoints={breakPoints}
           >
             {results
               ? results.results.slice(0, 12).map(props => (
@@ -55,7 +57,7 @@ const Preview = ({ item, actors }) => {
                   </SwiperSlide>
                 ))
               : <>
-                  {[...Array(7)].map((v, i) =>
+                  {[...Array(7)].map((_, i) =>
                     <SwiperSlide key={i}>
                       {actors ? <ShimmerActorCard /> : <ShimmerVideoCard />}
                     </SwiperSlide>

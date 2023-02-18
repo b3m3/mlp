@@ -10,7 +10,7 @@ import { BsFillPeopleFill } from 'react-icons/bs';
 
 import style from './sidebar.module.scss';
 
-const sidebarTitles = [
+const titles = [
   {en: 'Home', uk: 'Домашня', ru: 'Домашняя'},
   {en: 'Movies', uk: 'Фільми', ru: 'Фильмы'},
   {en: 'TV Shows', uk: 'Серіали', ru: 'Сериалы'},
@@ -37,9 +37,7 @@ const Sidebar = ({ refInfoVideo, refInfoActor }) => {
 
   const classNameNav = `${style.navbar} ${menuState && style.active} ${isActive && style.hidden}`;
 
-  const linkName = useCallback((i) => {
-    return sidebarTitles[i][language]
-  }, [language])
+  const linkName = useCallback((i) => titles[i][language], [language])
 
   useEffect(() => {
     return refInfoVideo.current || refInfoActor.current ? setIsActive(true) : setIsActive(false);

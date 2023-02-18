@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavorite, removeFavorite } from '../../../store/slices/favoriteSlice';
@@ -37,8 +37,6 @@ const FavoriteButton = ({ id, poster_path, vote_average, title, name }) => {
 
     favoriteList.map(el => el.id === id && setIsActive(true));
   }, [id, favoriteList]);
-
-  console.log('favoriteBtn');
 
   return (
     <div 

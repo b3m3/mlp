@@ -16,14 +16,14 @@ export const sortOptionsTitles = [
   {en: 'Old', uk: 'Старими', ru: 'Старым'}
 ];
 
-export const categoryTitles = [
-  {popular: [{en: 'Popular', uk: 'Популярні', ru: 'Популярные'}]},
-  {now_playing: [{en: 'Now playing', uk: 'Зараз у прокаті', ru: 'Сейчас в прокате'}]},
-  {upcoming: [{en: 'Upcoming', uk: 'Майбутні', ru: 'Предстоящие'}]},
-  {top_rated: [{en: 'Top rated', uk: 'Найкращий рейтинг', ru: 'Лучший рейтинг'}]},
-  {on_the_air: [{en: 'On the air', uk: 'В ефірі', ru: 'В эфире'}]},
-  {airing_today: [{en: 'Airing today', uk: 'Сьогодні в ефірі', ru: 'Сегодня в эфире'}]}
-];
+// export const categoryTitles = [
+//   {popular: [{en: 'Popular', uk: 'Популярні', ru: 'Популярные'}]},
+//   {now_playing: [{en: 'Now playing', uk: 'Зараз у прокаті', ru: 'Сейчас в прокате'}]},
+//   {upcoming: [{en: 'Upcoming', uk: 'Майбутні', ru: 'Предстоящие'}]},
+//   {top_rated: [{en: 'Top rated', uk: 'Найкращий рейтинг', ru: 'Лучший рейтинг'}]},
+//   {on_the_air: [{en: 'On the air', uk: 'В ефірі', ru: 'В эфире'}]},
+//   {airing_today: [{en: 'Airing today', uk: 'Сьогодні в ефірі', ru: 'Сегодня в эфире'}]}
+// ];
 
 export const moviesTitles = [
   {en: 'Movies', ru: 'Фильмы', uk: 'Фільми'}
@@ -33,9 +33,9 @@ export const tvShowsTitles = [
   {en: 'TV Shows', ru: 'Сериалы', uk: 'Серіали'} 
 ];
 
-export const discoverTitles = [
-  {en: 'Custom filter', uk: 'Користувальницький фільтр', ru: 'Пользовательский фильтр'}
-];
+// export const discoverTitles = [
+//   {en: 'Custom filter', uk: 'Користувальницький фільтр', ru: 'Пользовательский фильтр'}
+// ];
 
 export const castTitles = [
   {en: 'Cast', ru: 'В ролях', uk: 'Акторський склад'}

@@ -5,13 +5,11 @@ import NoPoster from './img/no-poster.webp';
 import style from './poster.module.scss';
 
 const Poster = ({ path }) => {
+  const src = path ? path.indexOf('http') === 1 ? path.slice(1) : API_POSTER+path : NoPoster;
+
   return (
     <img 
-      src={
-        path
-          ? path.indexOf('http') === 1 ? path.slice(1) : API_POSTER+path
-          : NoPoster
-      }
+      src={src}
       alt="poster"
       className={style.img}
     />
