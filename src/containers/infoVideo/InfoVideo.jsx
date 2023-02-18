@@ -94,6 +94,7 @@ const InfoVideo = forwardRef((props, ref) => {
                           poster_path={results.poster_path}
                           title={results.title}
                           name={results.name}
+                          vote_average={results.vote_average}
                         />
                       </div>
                     </div>
