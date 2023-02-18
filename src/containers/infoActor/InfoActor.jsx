@@ -15,6 +15,7 @@ import Back from '../../components/ui/back/Back';
 
 import { API_ROOT, API_KEY, API_ACTORS, API_LANGUAGE, API_ACTORS_MOVIE_CREDITS, API_ACTORS_TV_CREDITS } from '../../constans/api';
 import { getApiResults } from '../../service/getApiResources';
+import { setDocumentTitle } from '../../utils/functions';
 
 import style from './info-actor.module.scss';
 
@@ -40,6 +41,12 @@ const InfoActor = forwardRef((props, ref) => {
   useEffect(() => {
     getApiResults(url, setResults, setErrorApi);
   }, [url]);
+
+  useEffect(() => {
+    if (results) {
+      setDocumentTitle(results.name && results.name)
+    }
+  }, [results])
 
   return (
     <div ref={ref}>

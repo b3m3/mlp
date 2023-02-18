@@ -1,11 +1,20 @@
+import { useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
 import Trending from '../../components/trending/Trending';
 
 import { API_ROOT, API_MOVIE, API_TV_SHOWS, API_ACTORS, API_KEY, API_DAY, API_TRENDING, API_LANGUAGE } from '../../constans/api';
+import { setDocumentTitle, getTitleLang } from '../../utils/functions';
 
 import style from './home.module.scss';
-import { useMemo } from 'react';
+
+const documetTitles = [
+  {
+    en: 'Search movies, tv shows, actors',
+    uk: 'Пошук фільмів, серіалів, акторів', 
+    ru: 'Поиск фильмов, сериалов, актеров'
+  }
+];
 
 const Home = () => {
   const language = useSelector(state => state.language.language);
@@ -36,6 +45,10 @@ const Home = () => {
       type: API_ACTORS
     }
   ], [language]);
+
+  useEffect(() => {
+    setDocumentTitle(getTitleLang(documetTitles, language))
+  }, [getTitleLang, language]);
 
   return (
     <section className={style.wrapp}>

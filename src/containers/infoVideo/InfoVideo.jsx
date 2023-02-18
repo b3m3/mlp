@@ -20,6 +20,7 @@ import Back from '../../components/ui/back/Back';
 
 import { API_ROOT, API_KEY, API_LANGUAGE, API_CREDITS, API_RECOMMEND } from '../../constans/api';
 import { getApiResults } from '../../service/getApiResources';
+import { setDocumentTitle } from '../../utils/functions';
 
 import style from './info-video.module.scss';
 import Votes from '../../components/ui/votes/Votes';
@@ -51,6 +52,12 @@ const InfoVideo = forwardRef((props, ref) => {
     getApiResults(url, setResults, setErrorApi);
     setActiveTrailer(false);
   }, [url, id]);
+
+  useEffect(() => {
+    if (results) {
+      setDocumentTitle(results.title ? results.title : results.name)
+    }
+  }, [results])
 
   return (
     <section ref={ref}>
