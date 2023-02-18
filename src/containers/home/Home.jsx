@@ -48,7 +48,7 @@ const Home = () => {
 
   useEffect(() => {
     setDocumentTitle(getTitleLang(documetTitles, language))
-  }, [language]);
+  }, [getTitleLang, language]);
 
   return (
     <section className={style.wrapp}>
