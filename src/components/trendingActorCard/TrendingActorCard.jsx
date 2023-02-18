@@ -10,8 +10,12 @@ const TrendingActorCard = ({ id, type, original_name, profile_path }) => {
 
       <div className={style.body}>
         <div className={style.content}>
-          <h2>{original_name && original_name}</h2>
-          <GetInfoBtn id={id} type={type} />
+          <div className={style.row}>
+            <h2>{original_name && original_name}</h2>
+          </div>
+          <div className={style.row}>
+            <GetInfoBtn id={id} type={type} />
+          </div>
         </div>
       </div>
     </div>
