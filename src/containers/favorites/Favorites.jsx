@@ -5,7 +5,7 @@ import { removeFavorite } from '../../store/slices/favoriteSlice';
 import VideoCard from '../../components/videoCard/VideoCard';
 import EmptyPage from '../../components/errors/emptyPage/EmptyPage';
 import { FAVORITE_KEY } from '../../constans/localStorage';
-import { removeItemFromLocalStorage } from '../../utils/localStorage';
+import { removeFromLocalStorage } from '../../utils/localStorage';
 import { getTitleLang } from '../../utils/functions';
 
 import style from './favorites.module.scss';
@@ -23,7 +23,7 @@ const Favorites = () => {
     const onClearArr = (e) => {
       if (!favoriteList.length && e.target) {
         dispatch(removeFavorite());
-        removeItemFromLocalStorage(FAVORITE_KEY);
+        removeFromLocalStorage(FAVORITE_KEY);
       }
     };
 

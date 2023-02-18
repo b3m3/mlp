@@ -5,7 +5,7 @@ import { addFavorite, removeFavorite } from '../../../store/slices/favoriteSlice
 
 
 import { FAVORITE_KEY } from '../../../constans/localStorage';
-import { addArrToStorage } from '../../../utils/localStorage';
+import { addArrToLocalStorage } from '../../../utils/localStorage';
 import { getTypeFromLocation } from '../../../utils/functions';
 
 import { TiHeartFullOutline } from 'react-icons/ti';
@@ -32,7 +32,7 @@ const FavoriteButton = ({ id, poster_path, vote_average, title, name }) => {
   }, [id, poster_path, vote_average, title, name, type]);
 
   useEffect(() => {
-    addArrToStorage(FAVORITE_KEY, favoriteList);
+    addArrToLocalStorage(FAVORITE_KEY, favoriteList);
     setIsActive(false);
 
     favoriteList.map(el => el.id === id && setIsActive(true));
