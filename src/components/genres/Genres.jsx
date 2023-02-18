@@ -1,10 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { API_ROOT, API_GENRE, API_LIST, API_KEY, API_LANGUAGE } from '../../constans/api';
 import { getApiResources } from '../../service/getApiResources';
-
-import { getGenresFromId } from '../../utils/functions';
 
 import style from './genres.module.scss';
 
@@ -18,6 +16,12 @@ const Genres = ({ type, ids }) => {
 
   const url = `${API_ROOT}${API_GENRE}/${type}${API_LIST}${API_KEY}${API_LANGUAGE}${language}`;
 
+  const getGenres = useCallback(() => {
+    if (typeof ids[0] === 'object') 
+      return results.filter(el1 => ids.some(el2 => el1.id === el2.id));
+    return results.filter(el1 => ids.some(el2 => el1.id === el2));
+  }, [results, ids]);
+
   useEffect(() => {
     (async() => {
       const res = await getApiResources(url);
@@ -27,9 +31,9 @@ const Genres = ({ type, ids }) => {
   
   useEffect(() => {
     if (results) {
-      setCurrentGenres(getGenresFromId(results, ids))
+      setCurrentGenres(getGenres())
     }
-  }, [results, language, ids]);
+  }, [results, language, ids, getGenres]);
 
   return (
     <ul className={style.list} style={{display: 'flex'}}>

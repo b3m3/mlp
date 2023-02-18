@@ -1,8 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { notFoundError } from '../../utils/functions';
-
 import Img from './img/notFound.webp';
 
 import style from './not-found.module.scss';
@@ -18,14 +16,16 @@ const NotFound = () => {
     {ru: `Путь "${pathname}" указан неверный`}
   ], [pathname]);
 
-  const desc = notFoundError(errors, language);
+  const translateError = useMemo(() => {
+    return errors.map(el => el[language]);
+  }, [language, errors]);
 
   return (
     <div className={style.not_found}>
       <div className={style.image}>
         <img src={Img} alt="not-found" />
       </div>
-      <p>{desc}</p>
+      <p>{translateError}</p>
     </div>
   );
 }

@@ -1,9 +1,8 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLanguage } from '../../../store/slices/languageSlice';
 
-import { changeLangLocation, getLangIdFromLocation } from '../../../utils/functions';
 import { addToLocalStorage, getFromLocalStorage } from '../../../utils/localStorage';
 import { LANG_KEY } from '../../../constans/localStorage';
 import { API_EN, API_UK, API_RU } from '../../../constans/api';
@@ -23,9 +22,17 @@ const Language = () => {
   const changeLang = useCallback((lang) => {
     dispatch(setLanguage(lang))
   }, [dispatch]);
+
+  const getLocationLang = useMemo(() => {
+    return pathname.split('/')[1]
+  }, [pathname]);
+
+  const setLangLocation = useCallback((lang) => {
+    return '/'+lang + pathname.slice(3);
+  }, [pathname]);
   
   useEffect(() => {
-    const langLocation = getLangIdFromLocation(pathname);
+    const langLocation = getLocationLang;
     const isNoLang = langLocation !== API_EN && langLocation !== API_RU && langLocation !== API_UK;
 
     if (pathname === '/') {
@@ -39,7 +46,7 @@ const Language = () => {
     if (getFromLocalStorage(LANG_KEY)) {
       changeLang(getFromLocalStorage(LANG_KEY));
     }
-  }, [changeLang, language, pathname]);
+  }, [changeLang, getLocationLang, language, pathname]);
   
   useEffect(() => {
     const handleClick = e => {
@@ -62,7 +69,7 @@ const Language = () => {
       <ul className={isActive ? style.active : null}>
         {languages.map(lang => (
           <Link
-            to={changeLangLocation(pathname, lang)}
+            to={setLangLocation(lang)}
             key={lang} 
             onClick={() => {
               changeLang(lang);

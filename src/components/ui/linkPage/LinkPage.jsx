@@ -25,7 +25,7 @@ const LinkPage = () => {
   useEffect(() => {
     getApiItem(url, 'homepage', setHomeLink);
     getApiItem(url, 'imdb_id', setImdbLink);
-  }, []);
+  }, [url]);
 
   return (
     <div className={style.wrapp}>
