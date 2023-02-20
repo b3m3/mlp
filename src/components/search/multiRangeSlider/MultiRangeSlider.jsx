@@ -44,7 +44,7 @@ const MultiRangeSlider = ({ min, max, step, onChange, setState, indexSectionBtn 
     setMaxVal(max);
     setMinVal(min);
     setState([])
-  }, [indexSectionBtn]);
+  }, [indexSectionBtn, setState, max, min]);
 
   return (
     <div className={style.wrapp}>
