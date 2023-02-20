@@ -1,15 +1,15 @@
 import { useRoutes, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import Home from '../containers/home/Home';
-import Movies from '../containers/movies/Movies';
-import TvShows from '../containers/tvShows/TvShows';
-import Actors from '../containers/actors/Actors';
-import Favorites from '../containers/favorites/Favorites';
+import Home from '../pages/home/Home';
+import Movies from '../pages/movies/Movies';
+import TvShows from '../pages/tvShows/TvShows';
+import Actors from '../pages/actors/Actors';
+import Favorites from '../pages/favorites/Favorites';
 import Category from '../containers/category/Category';
 import InfoVideo from '../containers/infoVideo/InfoVideo';
 import InfoActor from '../containers/infoActor/InfoActor';
-import NotFound from '../containers/notFound/NotFound';
+import NotFound from '../pages/notFound/NotFound';
 
 const Router = ({ refInfoVideo, refInfoActor }) => {
   const language = useSelector(state => state.language.language);
