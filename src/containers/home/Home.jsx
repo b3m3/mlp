@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import Trending from '../../components/trending/Trending';
 
-import { API_ROOT, API_MOVIE, API_TV_SHOWS, API_ACTORS, API_KEY, API_DAY, API_TRENDING, API_LANGUAGE } from '../../constans/api';
+import { API_ROOT, API_MOVIE, API_TV_SHOWS, API_ACTORS, API_KEY, API_DAY, API_TRENDING, API_LANGUAGE } from '../../constants/api';
 import { setDocumentTitle, getTitleLang } from '../../utils/functions';
 
 import style from './home.module.scss';

@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setLanguage } from '../../../store/slices/languageSlice';
 
 import { addToLocalStorage, getFromLocalStorage } from '../../../utils/localStorage';
-import { LANG_KEY } from '../../../constans/localStorage';
-import { API_EN, API_UK, API_RU } from '../../../constans/api';
+import { LANG_KEY } from '../../../constants/localStorage';
+import { API_EN, API_UK, API_RU } from '../../../constants/api';
 
 import style from './language.module.scss';
 

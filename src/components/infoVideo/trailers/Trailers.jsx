@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import Button from '../../ui/button/Button';
 
 import { API_ROOT, API_KEY, API_LANGUAGE, API_VIDEOS, 
-  YOUTUBE_TRAILER_ROOT, YOUTUBE_TRAILER_AUTOPLAY } from '../../../constans/api';
+  YOUTUBE_TRAILER_ROOT, YOUTUBE_TRAILER_AUTOPLAY } from '../../../constants/api';
 import { getApiResources } from '../../../service/getApiResources';
 
 import { GoPlay } from 'react-icons/go';

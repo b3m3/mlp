@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { API_ROOT, API_GENRE, API_LIST, API_KEY, API_LANGUAGE } from '../../constans/api';
+import { API_ROOT, API_GENRE, API_LIST, API_KEY, API_LANGUAGE } from '../../constants/api';
 import { getApiResources } from '../../service/getApiResources';
 
 import style from './genres.module.scss';

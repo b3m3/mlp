@@ -13,7 +13,7 @@ import ErrorApi from '../../components/errors/errorApi/ErrorApi';
 import Loading from '../../components/loading/Loading';
 import Back from '../../components/ui/back/Back';
 
-import { API_ROOT, API_KEY, API_ACTORS, API_LANGUAGE, API_ACTORS_MOVIE_CREDITS, API_ACTORS_TV_CREDITS } from '../../constans/api';
+import { API_ROOT, API_KEY, API_ACTORS, API_LANGUAGE, API_ACTORS_MOVIE_CREDITS, API_ACTORS_TV_CREDITS } from '../../constants/api';
 import { getApiResults } from '../../service/getApiResources';
 import { setDocumentTitle } from '../../utils/functions';
 

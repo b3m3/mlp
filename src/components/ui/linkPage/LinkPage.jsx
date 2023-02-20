@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
-import { API_ROOT, API_KEY, IMDB_ROOT, IMDB_ACTOR_ROOT } from '../../../constans/api';
+import { API_ROOT, API_KEY, IMDB_ROOT, IMDB_ACTOR_ROOT } from '../../../constants/api';
 import { getTypeFromLocation } from '../../../utils/functions';
 import { getApiItem } from '../../../service/getApiResources';
 

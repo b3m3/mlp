@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { FAVORITE_KEY } from "../../constans/localStorage";
+import { FAVORITE_KEY } from "../../constants/localStorage";
 import { getFromLocalStorage } from "../../utils/localStorage";
 
 const favoritesStorage = getFromLocalStorage(FAVORITE_KEY);

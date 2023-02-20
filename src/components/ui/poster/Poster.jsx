@@ -1,4 +1,4 @@
-import { API_POSTER } from '../../../constans/api';
+import { API_POSTER } from '../../../constants/api';
 
 import NoPoster from './img/no-poster.webp';
 

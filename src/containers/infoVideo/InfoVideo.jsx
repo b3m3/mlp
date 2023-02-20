@@ -18,7 +18,7 @@ import ErrorApi from '../../components/errors/errorApi/ErrorApi';
 import Loading from '../../components/loading/Loading';
 import Back from '../../components/ui/back/Back';
 
-import { API_ROOT, API_KEY, API_LANGUAGE, API_CREDITS, API_RECOMMEND } from '../../constans/api';
+import { API_ROOT, API_KEY, API_LANGUAGE, API_CREDITS, API_RECOMMEND } from '../../constants/api';
 import { getApiResults } from '../../service/getApiResources';
 import { setDocumentTitle } from '../../utils/functions';
 

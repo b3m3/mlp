@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { getApiResources, getApiItem } from '../../service/getApiResources';
 import { getTitleLang } from '../../utils/functions';
-import { API_ROOT, API_KEY, API_PAGE, API_LANGUAGE, API_QUERY, API_DISCOVER, API_SEARCH } from '../../constans/api';
+import { API_ROOT, API_KEY, API_PAGE, API_LANGUAGE, API_QUERY, API_DISCOVER, API_SEARCH } from '../../constants/api';
 
 import PageNavigation from '../../components/ui/pageNavigation/PageNavigation';
 import ErrorApi from '../../components/errors/errorApi/ErrorApi';

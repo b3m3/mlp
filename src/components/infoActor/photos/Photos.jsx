@@ -6,7 +6,7 @@ import Backdrop from '../../ui/backdrop/Backdrop';
 import PhotoGallery from '../photoGallery/PhotoGallery';
 import { getApiResources } from '../../../service/getApiResources';
 import { getTypeFromLocation } from '../../../utils/functions';
-import { API_ROOT, API_KEY, API_ACTORS_IMAGES } from '../../../constans/api';
+import { API_ROOT, API_KEY, API_ACTORS_IMAGES } from '../../../constants/api';
 
 import style from './photos.module.scss';
 

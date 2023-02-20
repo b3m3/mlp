@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addFavorite, removeFavorite } from '../../../store/slices/favoriteSlice';
 
 
-import { FAVORITE_KEY } from '../../../constans/localStorage';
+import { FAVORITE_KEY } from '../../../constants/localStorage';
 import { addArrToLocalStorage } from '../../../utils/localStorage';
 import { getTypeFromLocation } from '../../../utils/functions';
 

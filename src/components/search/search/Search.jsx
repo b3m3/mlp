@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { API_ROOT, API_GENRE, API_LIST, API_KEY, API_LANGUAGE, API_MOVIE, API_ACTORS, API_TV_SHOWS } from '../../../constans/api';
+import { API_ROOT, API_GENRE, API_LIST, API_KEY, API_LANGUAGE, API_MOVIE, API_ACTORS, API_TV_SHOWS } from '../../../constants/api';
 
 import Input from '../input/Input';
 import SectionButtons from '../sectionButtons/SectionButtons';

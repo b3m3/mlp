@@ -6,7 +6,7 @@ import Poster from '../../ui/poster/Poster';
 import Rating from '../../ui/rating/Rating';
 import Dates from '../../ui/dates/Dates';
 
-import { API_ROOT, API_KEY, API_REVIEWS } from '../../../constans/api';
+import { API_ROOT, API_KEY, API_REVIEWS } from '../../../constants/api';
 import { getApiResources } from '../../../service/getApiResources';
 import { getTitleLang } from '../../../utils/functions';
 

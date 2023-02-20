@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { getTitleLang } from '../../../utils/functions';
-import { API_POPULARITY, API_RELEASE_DATE, API_VOTE_AVERAGE, API_DESC, API_ASC } from '../../../constans/api';
+import { API_POPULARITY, API_RELEASE_DATE, API_VOTE_AVERAGE, API_DESC, API_ASC } from '../../../constants/api';
 
 import { MdKeyboardArrowDown } from 'react-icons/md';
 

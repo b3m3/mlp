@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
 import Preview from '../../components/preview/Preview';
-import { TV_SHOWS_POPULAR, TV_SHOWS_TOP_RATED, TV_SHOWS_ON_THE_AIR, API_LANGUAGE } from '../../constans/api';
+import { TV_SHOWS_POPULAR, TV_SHOWS_TOP_RATED, TV_SHOWS_ON_THE_AIR, API_LANGUAGE } from '../../constants/api';
 
 import style from './tv-shows.module.scss';
 

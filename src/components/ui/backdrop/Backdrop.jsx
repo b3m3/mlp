@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { API_IMAGE_ORIGINAL, API_IMAGE_1280 } from '../../../constans/api';
+import { API_IMAGE_ORIGINAL, API_IMAGE_1280 } from '../../../constants/api';
 
 import bgMask from './img/bg-mask.webp';
 import whiteMask  from './img/white-mask.svg';
