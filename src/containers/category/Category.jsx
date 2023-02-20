@@ -7,11 +7,11 @@ import { getTitleLang } from '../../utils/functions';
 import { API_ROOT, API_KEY, API_PAGE, API_LANGUAGE, API_QUERY, API_DISCOVER, API_SEARCH } from '../../constants/api';
 
 import PageNavigation from '../../components/ui/pageNavigation/PageNavigation';
-import ErrorApi from '../../components/errors/errorApi/ErrorApi';
-import SearchError from '../../components/errors/searchError/SearchError';
+import ErrorApi from '../../components/ui/errors/errorApi/ErrorApi';
+import SearchError from '../../components/ui/errors/searchError/SearchError';
 
-import VideoCard from '../../components/videoCard/VideoCard';
-import ActorCard from '../../components/actorCard/ActorCard';
+import VideoCard from '../../components/smart/videoCard/VideoCard';
+import ActorCard from '../../components/smart/actorCard/ActorCard';
 import ShimmerActorCard from '../../components/ui/shimmers/shimmerActorCard/ShimmerActorCard';
 import ShimmerVideoCard from '../../components/ui/shimmers/shimmerVideoCard/ShimmerVideoCard';
 

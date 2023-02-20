@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import { getTitleLang } from '../../../utils/functions';
+import { getTitleLang } from '../../../../utils/functions';
 
 import img from './img/img.webp';
 

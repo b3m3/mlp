@@ -1,5 +1,5 @@
-import Backdrop from '../ui/backdrop/Backdrop';
-import GetInfoBtn from '../ui/getInfoBtn/GetInfoBtn';
+import Backdrop from '../../ui/backdrop/Backdrop';
+import GetInfoBtn from '../../ui/getInfoBtn/GetInfoBtn';
 
 import style from './trending-actor-card.module.scss';
 

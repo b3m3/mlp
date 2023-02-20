@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import Poster from '../ui/poster/Poster';
+import Poster from '../../ui/poster/Poster';
 
 import style from './actor-card.module.scss';
 

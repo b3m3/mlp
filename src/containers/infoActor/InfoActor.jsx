@@ -7,10 +7,10 @@ import Background from '../../components/ui/background/Background';
 import Dates from '../../components/ui/dates/Dates';
 import LinkPage from '../../components/ui/linkPage/LinkPage';
 import Countries from '../../components/ui/countries/Countries';
-import Credits from '../../components/credits/Credits';
-import Photos from '../../components/infoActor/photos/Photos';
-import ErrorApi from '../../components/errors/errorApi/ErrorApi';
-import Loading from '../../components/loading/Loading';
+import Credits from '../../components/smart/credits/Credits';
+import Photos from '../../components/smart/photos/Photos';
+import ErrorApi from '../../components/ui/errors/errorApi/ErrorApi';
+import Loading from '../../components/ui/loading/Loading';
 import Back from '../../components/ui/back/Back';
 
 import { API_ROOT, API_KEY, API_ACTORS, API_LANGUAGE, API_ACTORS_MOVIE_CREDITS, API_ACTORS_TV_CREDITS } from '../../constants/api';

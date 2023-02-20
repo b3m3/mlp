@@ -1,6 +1,6 @@
-import Search from '../../components/search/search/Search';
+import Search from '../../components/smart/search/search/Search';
 import Logo from '../../components/ui/logo/Logo';
-import Language from '../../components/ui/language/Language';
+import Language from '../../components/smart/language/Language';
 import MenuHamburger from '../../components/ui/menuHamburger/MenuHamburger';
 
 import style from './header.module.scss';

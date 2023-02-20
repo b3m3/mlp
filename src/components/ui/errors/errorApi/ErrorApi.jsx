@@ -1,4 +1,4 @@
-import Back from '../../ui/back/Back';
+import Back from '../errorApi/ErrorApi';
 
 import ErrorImg from './img/error.webp';
 

@@ -1,11 +1,11 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import Rating from '../ui/rating/Rating';
-import Poster from '../ui/poster/Poster';
-import FavoriteButton from '../ui/favoriteButton/FavoriteButton';
+import Rating from '../../ui/rating/Rating';
+import Poster from '../../ui/poster/Poster';
+import FavoriteButton from '../../ui/favoriteButton/FavoriteButton';
 
-import { getTypeFromLocation } from '../../utils/functions';
+import { getTypeFromLocation } from '../../../utils/functions';
 
 import style from './video-card.module.scss';
 

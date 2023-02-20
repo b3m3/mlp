@@ -5,12 +5,12 @@ import { Navigation } from 'swiper';
 
 import VideoCard from '../videoCard/VideoCard';
 import ActorCard from '../actorCard/ActorCard';
-import SliderNavigation from '../ui/sliderNavigation/SliderNavigation';
-import ShimmerSolidBlock from '../ui/shimmers/shimmerSolidBlock/ShimmerSolidBlock';
-import ShimmerActorCard from '../ui/shimmers/shimmerActorCard/ShimmerActorCard';
+import SliderNavigation from '../../ui/sliderNavigation/SliderNavigation';
+import ShimmerSolidBlock from '../../ui/shimmers/shimmerSolidBlock/ShimmerSolidBlock';
+import ShimmerActorCard from '../../ui/shimmers/shimmerActorCard/ShimmerActorCard';
 
-import { getApiResources } from '../../service/getApiResources';
-import { getTitleLang } from '../../utils/functions';
+import { getApiResources } from '../../../service/getApiResources';
+import { getTitleLang } from '../../../utils/functions';
 
 import style from './credits.module.scss';
 import 'swiper/css';

@@ -3,10 +3,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation, Parallax } from 'swiper';
 import { useSelector } from 'react-redux';
 
-import TrendingVideoCard from '../../components/trendingVideoCard/TrendingVideoCard';
-import TrendingActorCard from '../../components/trendingActorCard/TrendingActorCard';
+import TrendingVideoCard from '../../components/smart/trendingVideoCard/TrendingVideoCard';
+import TrendingActorCard from '../../components/smart/trendingActorCard/TrendingActorCard';
 import SliderNavigation from '../../components/ui/sliderNavigation/SliderNavigation';
-import ErrorApi from '../../components/errors/errorApi/ErrorApi';
+import ErrorApi from '../../components/ui/errors/errorApi/ErrorApi';
 import ShimmerSolidBlock from '../../components/ui/shimmers/shimmerSolidBlock/ShimmerSolidBlock';
 
 import { getApiResults } from '../../service/getApiResources';

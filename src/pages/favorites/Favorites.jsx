@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFavorite } from '../../store/slices/favoriteSlice';
 
-import VideoCard from '../../components/videoCard/VideoCard';
-import EmptyPage from '../../components/errors/emptyPage/EmptyPage';
+import VideoCard from '../../components/smart/videoCard/VideoCard';
+import EmptyPage from '../../components/ui/errors/emptyPage/EmptyPage';
 import { FAVORITE_KEY } from '../../constants/localStorage';
 import { removeFromLocalStorage } from '../../utils/localStorage';
 import { getTitleLang } from '../../utils/functions';

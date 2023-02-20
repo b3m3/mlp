@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar } from 'swiper';
 
-import VideoCard from '../../components/videoCard/VideoCard';
-import ActorCard from '../../components/actorCard/ActorCard';
+import VideoCard from '../../components/smart/videoCard/VideoCard';
+import ActorCard from '../../components/smart/actorCard/ActorCard';
 import SeeAll from '../../components/ui/seeAll/SeeAll';
-import ErrorApi from '../../components/errors/errorApi/ErrorApi';
+import ErrorApi from '../../components/ui/errors/errorApi/ErrorApi';
 import ShimmerVideoCard from '../../components/ui/shimmers/shimmerVideoCard/ShimmerVideoCard';
 import ShimmerActorCard from '../../components/ui/shimmers/shimmerActorCard/ShimmerActorCard';
 
