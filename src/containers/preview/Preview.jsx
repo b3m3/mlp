@@ -3,12 +3,12 @@ import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar } from 'swiper';
 
-import VideoCard from '../videoCard/VideoCard';
-import ActorCard from '../actorCard/ActorCard';
-import SeeAll from '../ui/seeAll/SeeAll';
-import ErrorApi from '../errors/errorApi/ErrorApi';
-import ShimmerVideoCard from '../ui/shimmers/shimmerVideoCard/ShimmerVideoCard';
-import ShimmerActorCard from '../ui/shimmers/shimmerActorCard/ShimmerActorCard';
+import VideoCard from '../../components/videoCard/VideoCard';
+import ActorCard from '../../components/actorCard/ActorCard';
+import SeeAll from '../../components/ui/seeAll/SeeAll';
+import ErrorApi from '../../components/errors/errorApi/ErrorApi';
+import ShimmerVideoCard from '../../components/ui/shimmers/shimmerVideoCard/ShimmerVideoCard';
+import ShimmerActorCard from '../../components/ui/shimmers/shimmerActorCard/ShimmerActorCard';
 
 import { getApiResults } from '../../service/getApiResources';
 

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
-import Preview from '../../components/preview/Preview';
+import Preview from '../../containers/preview/Preview';
 import { ACTORS_POPULAR, API_LANGUAGE } from '../../constants/api';
 
 import style from './actors.module.scss';
