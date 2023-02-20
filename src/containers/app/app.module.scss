@@ -1,0 +1,27 @@
+.app {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+}
+
+.wrapp {
+  width: 100%;
+  max-width: 83.125rem;
+  margin: 0 auto;
+  padding: 0 .9375rem;
+  display: grid;
+  grid-template: auto / auto 1fr;
+  flex: 1 1 auto;
+}
+
+.main {
+  padding-top: 3.125rem;
+  width: 100%;
+  min-width: 0;
+
+  @media screen and (max-width: 48rem) {
+    padding-top: 1.25rem;
+  }
+}

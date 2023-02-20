@@ -1,0 +1,14 @@
+.swiper-scrollbar {
+  bottom: 15px !important;
+  background: transparent;
+}
+
+.swiper-scrollbar-drag {
+  cursor: grab;
+  height: 2px;
+  background: radial-gradient(circle, var(--white-01) 50%, rgba(255, 255, 255, 0) 100%);
+}
+
+.swiper-pagination {
+  bottom: 0 !important;
+}

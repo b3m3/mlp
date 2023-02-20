@@ -6,7 +6,8 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import Footer from '../../components/footer/Footer';
 import Router from '../../routes/Router';
 
-import './app.scss';
+import style from './app.module.scss';
+import '../../styles/index.css';
 
 const App = () => {
   const refInfoVideo = useRef(null);
@@ -14,17 +15,17 @@ const App = () => {
 
   return (
     <HashRouter>
-      <div className="app">
+      <div className={style.app}>
         <Header 
           refInfoVideo={refInfoVideo}
           refInfoActor={refInfoActor}
         />
-          <div className='app-wrapp'>
+          <div className={style.wrapp}>
             <Sidebar 
               refInfoVideo={refInfoVideo}
               refInfoActor={refInfoActor}
             />
-            <main>
+            <main className={style.main}>
               <Router 
                 refInfoVideo={refInfoVideo}
                 refInfoActor={refInfoActor}
