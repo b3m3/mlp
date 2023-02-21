@@ -1,6 +1,6 @@
 import { Link, useParams, useLocation } from 'react-router-dom';
 
-import Button from '../button/Button';
+import Button from '../../ui/button/Button';
 
 import style from './page-navigation.module.scss';
 import { useCallback } from 'react';

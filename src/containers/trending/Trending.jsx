@@ -4,8 +4,8 @@ import { Pagination, Navigation, Parallax } from 'swiper';
 import { useSelector } from 'react-redux';
 import { useFetching } from '../../hooks/useFetching';
 
-import TrendingVideoCard from '../../components/smart/trendingVideoCard/TrendingVideoCard';
-import TrendingActorCard from '../../components/smart/trendingActorCard/TrendingActorCard';
+import TrendingVideoCard from '../../components/ordinary/trendingVideoCard/TrendingVideoCard';
+import TrendingActorCard from '../../components/ordinary/trendingActorCard/TrendingActorCard';
 import SliderNavigation from '../../components/ui/sliderNavigation/SliderNavigation';
 import ErrorApi from '../../components/ui/errors/errorApi/ErrorApi';
 import ShimmerSolidBlock from '../../components/ui/shimmers/shimmerSolidBlock/ShimmerSolidBlock';

@@ -1,11 +1,11 @@
 import Backdrop from '../../ui/backdrop/Backdrop';
-import Rating from '../../ui/rating/Rating';
 import GetInfoBtn from '../../ui/getInfoBtn/GetInfoBtn';
-import Dates from '../../ui/dates/Dates';
-import Genres from '../genres/Genres';
+import Rating from '../rating/Rating';
+import Dates from '../dates/Dates';
+import Genres from '../../smart/genres/Genres';
+import Votes from '../votes/Votes';
 
 import style from './trending-video-card.module.scss';
-import Votes from '../../ui/votes/Votes';
 
 const TrendingVideoCard = ({
   id, backdrop_path, first_air_date, genre_ids, release_date, 

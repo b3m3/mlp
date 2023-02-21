@@ -4,8 +4,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import { useFetching } from '../../../hooks/useFetching';
 
-import VideoCard from '../videoCard/VideoCard';
-import ActorCard from '../actorCard/ActorCard';
+import VideoCard from '../../ordinary/videoCard/VideoCard';
+import ActorCard from '../../ordinary/actorCard/ActorCard';
 import SliderNavigation from '../../ui/sliderNavigation/SliderNavigation';
 import ShimmerSolidBlock from '../../ui/shimmers/shimmerSolidBlock/ShimmerSolidBlock';
 import ShimmerActorCard from '../../ui/shimmers/shimmerActorCard/ShimmerActorCard';

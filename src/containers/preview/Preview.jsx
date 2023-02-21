@@ -3,8 +3,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar } from 'swiper';
 import { useFetching } from '../../hooks/useFetching';
 
-import VideoCard from '../../components/smart/videoCard/VideoCard';
-import ActorCard from '../../components/smart/actorCard/ActorCard';
+import VideoCard from '../../components/ordinary/videoCard/VideoCard';
+import ActorCard from '../../components/ordinary/actorCard/ActorCard';
 import SeeAll from '../../components/ui/seeAll/SeeAll';
 import ErrorApi from '../../components/ui/errors/errorApi/ErrorApi';
 import ShimmerVideoCard from '../../components/ui/shimmers/shimmerVideoCard/ShimmerVideoCard';

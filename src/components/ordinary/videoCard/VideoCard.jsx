@@ -1,9 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import Rating from '../../ui/rating/Rating';
+import Rating from '../../ordinary/rating/Rating';
 import Poster from '../../ui/poster/Poster';
-import FavoriteButton from '../../ui/favoriteButton/FavoriteButton';
+import FavoriteButton from '../../ordinary/favoriteButton/FavoriteButton';
 
 import { getTypeFromLocation } from '../../../utils/functions';
 

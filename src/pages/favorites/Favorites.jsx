@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFavorite } from '../../store/slices/favoriteSlice';
 
-import VideoCard from '../../components/smart/videoCard/VideoCard';
+import VideoCard from '../../components/ordinary/videoCard/VideoCard';
 import EmptyPage from '../../components/ui/errors/emptyPage/EmptyPage';
 import { FAVORITE_KEY } from '../../constants/localStorage';
 import { removeFromLocalStorage } from '../../utils/localStorage';

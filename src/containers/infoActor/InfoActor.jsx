@@ -1,12 +1,13 @@
 import { useEffect, forwardRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useFetching } from '../../hooks/useFetching';
 
 import Poster from '../../components/ui/poster/Poster';
 import Background from '../../components/ui/background/Background';
-import Dates from '../../components/ui/dates/Dates';
-import LinkPage from '../../components/ui/linkPage/LinkPage';
-import Countries from '../../components/ui/countries/Countries';
+import Dates from '../../components/ordinary/dates/Dates';
+import LinkPage from '../../components/smart/linkPage/LinkPage';
+import Countries from '../../components/ordinary/countries/Countries';
 import Credits from '../../components/smart/credits/Credits';
 import Photos from '../../components/smart/photos/Photos';
 import ErrorApi from '../../components/ui/errors/errorApi/ErrorApi';
@@ -17,7 +18,6 @@ import { API_ROOT, API_KEY, API_ACTORS, API_LANGUAGE, API_ACTORS_MOVIE_CREDITS, 
 import { setDocumentTitle } from '../../utils/functions';
 
 import style from './info-actor.module.scss';
-import { useFetching } from '../../hooks/useFetching';
 
 const moviesTitles = [
   {en: 'Movies', ru: 'Фильмы', uk: 'Фільми'}

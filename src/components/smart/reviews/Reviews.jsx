@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 import { useFetching } from '../../../hooks/useFetching';
 
 import Poster from '../../ui/poster/Poster';
-import Rating from '../../ui/rating/Rating';
-import Dates from '../../ui/dates/Dates';
+import Rating from '../../ordinary/rating/Rating';
+import Dates from '../../ordinary/dates/Dates';
 
 import { API_ROOT, API_KEY, API_REVIEWS } from '../../../constants/api';
 import { getTitleLang } from '../../../utils/functions';

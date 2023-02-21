@@ -1,29 +1,29 @@
 import { useState, useEffect, forwardRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useFetching } from '../../hooks/useFetching';
 
-import FavoriteButton from '../../components/ui/favoriteButton/FavoriteButton';
-import Rating from '../../components/ui/rating/Rating';
+import FavoriteButton from '../../components/ordinary/favoriteButton/FavoriteButton';
+import Rating from '../../components/ordinary/rating/Rating';
 import Poster from '../../components/ui/poster/Poster';
 import Background from '../../components/ui/background/Background';
-import Runtime from '../../components/ui/runtime/Runtime';
-import Dates from '../../components/ui/dates/Dates';
+import Runtime from '../../components/ordinary/runtime/Runtime';
+import Dates from '../../components/ordinary/dates/Dates';
 import Trailers from '../../components/smart/trailers/Trailers';
-import LinkPage from '../../components/ui/linkPage/LinkPage';
-import Countries from '../../components/ui/countries/Countries';
+import LinkPage from '../../components/smart/linkPage/LinkPage';
+import Countries from '../../components/ordinary/countries/Countries';
 import Reviews from '../../components/smart/reviews/Reviews';
 import Credits from '../../components/smart/credits/Credits';
 import Genres from '../../components/smart/genres/Genres';
 import ErrorApi from '../../components/ui/errors/errorApi/ErrorApi';
 import Loading from '../../components/ui/loading/Loading';
+import Votes from '../../components/ordinary/votes/Votes';
 import Back from '../../components/ui/back/Back';
 
 import { API_ROOT, API_KEY, API_LANGUAGE, API_CREDITS, API_RECOMMEND } from '../../constants/api';
 import { setDocumentTitle } from '../../utils/functions';
 
 import style from './info-video.module.scss';
-import Votes from '../../components/ui/votes/Votes';
-import { useFetching } from '../../hooks/useFetching';
 
 const castTitles = [
   {en: 'Cast', ru: 'В ролях', uk: 'Акторський склад'}

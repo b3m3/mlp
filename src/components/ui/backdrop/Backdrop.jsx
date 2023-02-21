@@ -10,9 +10,7 @@ import style from './backdrop.module.scss';
 const Backdrop = ({ path, actor, light }) => {
   const [loaded, setLoaded] = useState(false);
 
-  useEffect(() => {
-    setLoaded(false);
-  }, []);
+  useEffect(() => setLoaded(false), []);
 
   return (
     <div>
