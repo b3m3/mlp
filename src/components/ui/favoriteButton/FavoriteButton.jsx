@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavorite, removeFavorite } from '../../../store/slices/favoriteSlice';
@@ -23,13 +23,11 @@ const FavoriteButton = ({ id, poster_path, vote_average, title, name }) => {
   const { pathname } = useLocation();
   const type = getTypeFromLocation(pathname);
 
-  const toggleActive = useCallback(() => {
-    return setIsActive(a => !a)
-  }, [setIsActive]);
+  const data = {id, poster_path, vote_average, title, name, type};
 
-  const data = useMemo(() => {
-    return ({id, poster_path, vote_average, title, name, type});
-  }, [id, poster_path, vote_average, title, name, type]);
+  const toggleActive = useCallback(() => {
+    return setIsActive(a => !a);
+  }, [setIsActive]);
 
   useEffect(() => {
     addArrToLocalStorage(FAVORITE_KEY, favoriteList);
