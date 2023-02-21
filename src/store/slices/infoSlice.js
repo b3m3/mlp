@@ -8,14 +8,14 @@ const infoSlice = createSlice({
   name: 'infoState',
   initialState,
   reducers: {
-    onActive: (state) => {
+    onActiveInfo: (state) => {
       state.infoState = true;
     },
-    onClose: (state) => {
+    onCloseInfo: (state) => {
       state.infoState = false;
     }
   }
 })
 
-export const { onActive, onClose } = infoSlice.actions;
+export const { onActiveInfo, onCloseInfo } = infoSlice.actions;
 export default infoSlice.reducer;

@@ -11,7 +11,7 @@ import InfoVideo from '../containers/infoVideo/InfoVideo';
 import InfoActor from '../containers/infoActor/InfoActor';
 import NotFound from '../pages/notFound/NotFound';
 
-const Router = ({ refInfo }) => {
+const Router = () => {
   const language = useSelector(state => state.language.language);
 
   return useRoutes([
@@ -21,8 +21,8 @@ const Router = ({ refInfo }) => {
     {path: '/:lang/person', element: <Actors/>},
     {path: '/:lang/favorites', element: <Favorites/>},
     {path: '/:lang/:type/:category/:page', element: <Category/>},
-    {path: '/:lang/:type/:id', element: <InfoVideo ref={refInfo}/>},
-    {path: '/:lang/person/:id', element: <InfoActor ref={refInfo}/>},
+    {path: '/:lang/:type/:id', element: <InfoVideo />},
+    {path: '/:lang/person/:id', element: <InfoActor />},
     {path: '/:lang/:type/:category/:id/:page', element: <Category/>},
     {path: '*', element: <NotFound/>},
     {path: '/', element: <Navigate to={'/'+language} replace/>}

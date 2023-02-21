@@ -1,7 +1,9 @@
-import { useEffect, forwardRef } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useFetching } from '../../hooks/useFetching';
+
+import { onActiveInfo } from '../../store/slices/infoSlice';
 
 import Poster from '../../components/ui/poster/Poster';
 import Background from '../../components/ui/background/Background';
@@ -27,8 +29,10 @@ const tvShowsTitles = [
   {en: 'TV Shows', ru: 'Сериалы', uk: 'Серіали'} 
 ];
 
-const InfoActor = forwardRef((props, ref) => {
+const InfoActor = () => {
   const language = useSelector(state => state.language.language);
+  const infoState = useSelector(state => state.info.infoState);
+  const dispatch = useDispatch();
   const { id } = useParams();
 
   const url = `${API_ROOT}${API_ACTORS}/${id}${API_KEY}${API_LANGUAGE}${language}`;
@@ -41,10 +45,14 @@ const InfoActor = forwardRef((props, ref) => {
     if (results) {
       setDocumentTitle(results.name && results.name)
     }
-  }, [results])
+  }, [results]);
+
+  useEffect(() => {
+    dispatch(onActiveInfo());
+  }, [dispatch, infoState, id])
 
   return (
-    <div ref={ref}>
+    <section>
       {errorApi
         ? <ErrorApi navigation />
         : <>
@@ -93,8 +101,8 @@ const InfoActor = forwardRef((props, ref) => {
             }
           </>
       }
-    </div>
+    </section>
   );
-});
+}
 
 export default InfoActor;

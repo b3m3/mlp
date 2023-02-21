@@ -5,24 +5,26 @@ import { toggleMenu, closeMenu } from '../../../store/slices/menuSlice';
 
 import style from './hamburger.module.scss';
 
-const MenuHamburger = ({ refInfo }) => {
+const MenuHamburger = () => {
   const [isActive, setIsActive] = useState(true);
 
-  const menuState = useSelector(state => state.menu.menuState)
+  const menuState = useSelector(state => state.menu.menuState);
+  const infoState = useSelector(state => state.info.infoState);
   const dispatch = useDispatch();
 
   const { pathname } = useLocation();
 
+  const className = `${style.hamburger} ${menuState && style.active}`;
+
   useEffect(() => {
-    if (refInfo.current) {
+    if (infoState) {
       setIsActive(false);
-      dispatch(closeMenu())
+      dispatch(closeMenu());
     } else {
       setIsActive(true);
     }
-  }, [pathname, isActive, dispatch, refInfo]);
+  }, [pathname, isActive, dispatch, infoState]);
 
-  const className = `${style.hamburger} ${menuState && style.active}`;
 
   return (
     <>

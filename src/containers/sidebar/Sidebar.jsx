@@ -1,6 +1,8 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { onCloseInfo } from '../../store/slices/infoSlice';
 
 import { AiFillHome } from 'react-icons/ai';
 import { MdLocalMovies } from 'react-icons/md';
@@ -18,12 +20,14 @@ const titles = [
   {en: 'Favorites', uk: 'Обране', ru: 'Избранное'}
 ];
 
-const Sidebar = ({ refInfo }) => {
+const Sidebar = () => {
   const [isActive, setIsActive] = useState(false);
 
   const menuState = useSelector(state => state.menu.menuState);
   const favoriteList = useSelector(state => state.favorite.favoritesList);
   const language = useSelector(state => state.language.language);
+  const infoState = useSelector(state => state.info.infoState);
+  const dispatch = useDispatch();
 
   const { pathname } = useLocation();
 
@@ -40,9 +44,10 @@ const Sidebar = ({ refInfo }) => {
   const linkName = useCallback((i) => titles[i][language], [language]);
 
   useEffect(() => {
-    return refInfo.current ? setIsActive(true) : setIsActive(false);
-  }, [pathname, refInfo]);
-
+    dispatch(onCloseInfo());
+    return infoState ? setIsActive(true) : setIsActive(false);
+  }, [pathname, infoState, dispatch]);
+  
   return (
     <aside>
       <nav className={classNameNav}>

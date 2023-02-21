@@ -5,7 +5,7 @@ import MenuHamburger from '../../components/ordinary/menuHamburger/MenuHamburger
 
 import style from './header.module.scss';
 
-const Header = ({ refInfo }) => {
+const Header = () => {
   return (
     <div className="container">
       <header className={style.header}>
@@ -14,7 +14,7 @@ const Header = ({ refInfo }) => {
 
         <div className={style.box}>
           <Language />
-          <MenuHamburger refInfo={refInfo} />
+          <MenuHamburger />
         </div>
       </header>
     </div>

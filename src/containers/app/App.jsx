@@ -1,5 +1,4 @@
 import { HashRouter } from 'react-router-dom';
-import { useRef } from 'react';
 
 import Header from '../../containers/header/Header';
 import Sidebar from '../../containers/sidebar/Sidebar';
@@ -10,16 +9,14 @@ import style from './app.module.scss';
 import '../../styles/index.css';
 
 const App = () => {
-  const refInfo = useRef(null);
-
   return (
     <HashRouter>
       <div className={style.app}>
-        <Header refInfo={refInfo}/>
+        <Header/>
           <div className={style.wrapp}>
-            <Sidebar refInfo={refInfo}/>
+            <Sidebar/>
             <main className={style.main}>
-              <Router refInfo={refInfo}/>
+              <Router/>
             </main>
           </div>
         <Footer/>

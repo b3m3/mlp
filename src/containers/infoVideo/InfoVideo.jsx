@@ -1,7 +1,9 @@
-import { useState, useEffect, forwardRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useFetching } from '../../hooks/useFetching';
+
+import { onActiveInfo } from '../../store/slices/infoSlice';
 
 import FavoriteButton from '../../components/ordinary/favoriteButton/FavoriteButton';
 import Rating from '../../components/ordinary/rating/Rating';
@@ -33,10 +35,12 @@ const recomendationsTitles = [
   {en: 'Recommendations', ru: 'Рекомендации', uk: 'Рекомендації'}
 ];
 
-const InfoVideo = forwardRef((props, ref) => {
+const InfoVideo = () => {
   const [activeTrailer, setActiveTrailer] = useState(false);
 
   const language = useSelector(state => state.language.language);
+  const infoState = useSelector(state => state.info.infoState);
+  const dispatch = useDispatch();
   const { type, id } = useParams();
 
   const bodyBorderRadius = {borderRadius: '0 0 .75rem .75rem'}
@@ -58,8 +62,12 @@ const InfoVideo = forwardRef((props, ref) => {
     }
   }, [results]);
 
+  useEffect(() => {
+    dispatch(onActiveInfo());
+  }, [dispatch, infoState, id])
+
   return (
-    <section ref={ref}>
+    <section>
       {errorApi
         ? <ErrorApi navigation />
         : <>
@@ -135,6 +143,6 @@ const InfoVideo = forwardRef((props, ref) => {
       }
     </section>
   );
-})
+}
 
 export default InfoVideo;
