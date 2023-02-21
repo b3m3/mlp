@@ -1,4 +1,4 @@
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import Header from '../../containers/header/Header';
 import Sidebar from '../../containers/sidebar/Sidebar';
@@ -10,7 +10,7 @@ import '../../styles/index.css';
 
 const App = () => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <div className={style.app}>
         <Header/>
           <div className={style.wrapp}>
@@ -21,7 +21,7 @@ const App = () => {
           </div>
         <Footer/>
       </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
