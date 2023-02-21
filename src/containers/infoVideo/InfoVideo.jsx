@@ -10,7 +10,7 @@ import Background from '../../components/ui/background/Background';
 import Runtime from '../../components/ordinary/runtime/Runtime';
 import Dates from '../../components/ordinary/dates/Dates';
 import Trailers from '../../components/smart/trailers/Trailers';
-import LinkPage from '../../components/smart/linkPage/LinkPage';
+import Links from '../../components/smart/links/Links';
 import Countries from '../../components/ordinary/countries/Countries';
 import Reviews from '../../components/smart/reviews/Reviews';
 import Credits from '../../components/smart/credits/Credits';
@@ -96,7 +96,7 @@ const InfoVideo = forwardRef((props, ref) => {
                         <Genres ids={results.genres} type={type} />
                         <Countries countries={results.production_countries} />
                         <p>{results.overview && results.overview}</p>
-                        <LinkPage />
+                        <Links />
                       </div>
 
                       <div className={style.col}>

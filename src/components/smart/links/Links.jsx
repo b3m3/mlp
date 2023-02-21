@@ -6,10 +6,10 @@ import { getTypeFromLocation } from '../../../utils/functions';
 import { FaImdb } from 'react-icons/fa';
 import { RiHomeWifiFill } from 'react-icons/ri';
 
-import style from './link-page.module.scss';
+import style from './links.module.scss';
 import { useFetching } from '../../../hooks/useFetching';
 
-const LinkPage = () => {
+const Links = () => {
   const { pathname } = useLocation();
   const { id } = useParams();
   const type = getTypeFromLocation(pathname);
@@ -46,4 +46,4 @@ const LinkPage = () => {
   );
 }
 
-export default LinkPage;
+export default Links;

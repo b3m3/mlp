@@ -6,7 +6,7 @@ import { useFetching } from '../../hooks/useFetching';
 import Poster from '../../components/ui/poster/Poster';
 import Background from '../../components/ui/background/Background';
 import Dates from '../../components/ordinary/dates/Dates';
-import LinkPage from '../../components/smart/linkPage/LinkPage';
+import Links from '../../components/smart/links/Links';
 import Countries from '../../components/ordinary/countries/Countries';
 import Credits from '../../components/smart/credits/Credits';
 import Photos from '../../components/smart/photos/Photos';
@@ -66,7 +66,7 @@ const InfoActor = forwardRef((props, ref) => {
                       />
                       <Countries countries={results.place_of_birth} />
                       <p>{results.biography && results.biography}</p>
-                      <LinkPage />
+                      <Links />
                     </div>
                   </div>
 
