@@ -5,7 +5,8 @@ import { getFromLocalStorage } from "../../utils/localStorage";
 const favoritesStorage = getFromLocalStorage(FAVORITE_KEY);
 
 const initialState = {
-  favoritesList: favoritesStorage ? JSON.parse(favoritesStorage) : []
+  favoritesList: (favoritesStorage && favoritesStorage !== 'undefined') 
+    ? JSON.parse(favoritesStorage) : []
 };
 
 const favoriteSlice = createSlice({
