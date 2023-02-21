@@ -56,7 +56,7 @@ const InfoVideo = forwardRef((props, ref) => {
     if (results) {
       setDocumentTitle(results.title ? results.title : results.name)
     }
-  }, [results])
+  }, [results]);
 
   return (
     <section ref={ref}>

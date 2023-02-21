@@ -18,7 +18,7 @@ const titles = [
   {en: 'Favorites', uk: 'Обране', ru: 'Избранное'}
 ];
 
-const Sidebar = ({ refInfoVideo, refInfoActor }) => {
+const Sidebar = ({ refInfo }) => {
   const [isActive, setIsActive] = useState(false);
 
   const menuState = useSelector(state => state.menu.menuState);
@@ -37,11 +37,11 @@ const Sidebar = ({ refInfoVideo, refInfoActor }) => {
 
   const classNameNav = `${style.navbar} ${menuState && style.active} ${isActive && style.hidden}`;
 
-  const linkName = useCallback((i) => titles[i][language], [language])
+  const linkName = useCallback((i) => titles[i][language], [language]);
 
   useEffect(() => {
-    return refInfoVideo.current || refInfoActor.current ? setIsActive(true) : setIsActive(false);
-  }, [pathname, refInfoVideo, refInfoActor]);
+    return refInfo.current ? setIsActive(true) : setIsActive(false);
+  }, [pathname, refInfo]);
 
   return (
     <aside>

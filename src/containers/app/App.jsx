@@ -10,26 +10,16 @@ import style from './app.module.scss';
 import '../../styles/index.css';
 
 const App = () => {
-  const refInfoVideo = useRef(null);
-  const refInfoActor = useRef(null);
+  const refInfo = useRef(null);
 
   return (
     <HashRouter>
       <div className={style.app}>
-        <Header 
-          refInfoVideo={refInfoVideo}
-          refInfoActor={refInfoActor}
-        />
+        <Header refInfo={refInfo}/>
           <div className={style.wrapp}>
-            <Sidebar 
-              refInfoVideo={refInfoVideo}
-              refInfoActor={refInfoActor}
-            />
+            <Sidebar refInfo={refInfo}/>
             <main className={style.main}>
-              <Router 
-                refInfoVideo={refInfoVideo}
-                refInfoActor={refInfoActor}
-              />
+              <Router refInfo={refInfo}/>
             </main>
           </div>
         <Footer/>
