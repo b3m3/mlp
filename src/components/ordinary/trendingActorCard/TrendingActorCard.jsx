@@ -1,5 +1,5 @@
 import Backdrop from '../../ui/backdrop/Backdrop';
-import GetInfoBtn from '../../ui/getInfoBtn/GetInfoBtn';
+import GetInfoButton from '../../ui/getInfoButton/GetInfoButton';
 
 import style from './trending-actor-card.module.scss';
 
@@ -14,7 +14,7 @@ const TrendingActorCard = ({ id, type, original_name, profile_path }) => {
             <h2>{original_name && original_name}</h2>
           </div>
           <div className={style.row}>
-            <GetInfoBtn id={id} type={type} />
+            <GetInfoButton id={id} type={type} />
           </div>
         </div>
       </div>

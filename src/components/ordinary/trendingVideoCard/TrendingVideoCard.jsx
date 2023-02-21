@@ -1,5 +1,5 @@
 import Backdrop from '../../ui/backdrop/Backdrop';
-import GetInfoBtn from '../../ui/getInfoBtn/GetInfoBtn';
+import GetInfoButton from '../../ui/getInfoButton/GetInfoButton';
 import Rating from '../rating/Rating';
 import Dates from '../dates/Dates';
 import Genres from '../../smart/genres/Genres';
@@ -34,7 +34,7 @@ const TrendingVideoCard = ({
           <Dates release={release_date} first={first_air_date}  />
         </div>
         <div data-swiper-parallax="-420">
-          <GetInfoBtn id={id} type={type} />
+          <GetInfoButton id={id} type={type} />
         </div>
       </div>
     </div>

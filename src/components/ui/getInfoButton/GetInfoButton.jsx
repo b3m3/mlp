@@ -1,8 +1,8 @@
 import { Link, useParams } from 'react-router-dom';
 
-import style from './get-info-btn.module.scss';
+import style from './get-info.module.scss';
 
-const GetInfoBtn = ({ id, type }) => {
+const GetInfoButton = ({ id, type }) => {
   const { lang } = useParams();
 
   const link = `/${lang}${type}/${id}`;
@@ -17,4 +17,4 @@ const GetInfoBtn = ({ id, type }) => {
   );
 }
 
-export default GetInfoBtn;
+export default GetInfoButton;
