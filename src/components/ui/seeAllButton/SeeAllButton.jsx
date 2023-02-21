@@ -8,7 +8,7 @@ import { MdCallMade } from 'react-icons/md'
 import style from './see-all.module.scss';
 import { useMemo } from 'react';
 
-const SeeAll = ({ category }) => {
+const SeeAllButton = ({ category }) => {
   const { pathname } = useLocation();
   const language = useSelector(state => state.language.language);
 
@@ -28,4 +28,4 @@ const SeeAll = ({ category }) => {
   );
 }
 
-export default SeeAll;
+export default SeeAllButton;

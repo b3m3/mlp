@@ -5,7 +5,7 @@ import { useFetching } from '../../hooks/useFetching';
 
 import VideoCard from '../../components/ordinary/videoCard/VideoCard';
 import ActorCard from '../../components/ordinary/actorCard/ActorCard';
-import SeeAll from '../../components/ui/seeAll/SeeAll';
+import SeeAllButton from '../../components/ui/seeAllButton/SeeAllButton';
 import ErrorApi from '../../components/ui/errors/errorApi/ErrorApi';
 import ShimmerVideoCard from '../../components/ui/shimmers/shimmerVideoCard/ShimmerVideoCard';
 import ShimmerActorCard from '../../components/ui/shimmers/shimmerActorCard/ShimmerActorCard';
@@ -31,7 +31,7 @@ const Preview = ({ item, actors }) => {
     <div className={style.preview}>
       <div className={style.top}>
         <h2>{title}</h2>
-        <SeeAll category={item.en}/>
+        <SeeAllButton category={item.en}/>
       </div>
       
       {errorApi
