@@ -1,4 +1,4 @@
-.navbar {
+.wrapp {
   position: relative;
   height: 100%;
   width: 12.5rem;
@@ -101,19 +101,19 @@
     &:hover {
       color: var(--gray-50);
     }
-    
-    &.active {
-      color: var(--gray-50);
-      border-left: 3px solid var(--blue-400);
+  }
 
-      &::before {
-        width: 100%;
-      }
+  :global(a.active) {
+    color: var(--gray-50);
+    border-left: 3px solid var(--blue-400);
 
-      & svg {
-        color: var(--blue-400);
-      }
+    &::before {
+      width: 100%;
     }
+
+    & svg {
+      color: var(--blue-400);
+    } 
   }
   
   & svg {
