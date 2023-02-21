@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 import { API_ROOT, API_GENRE, API_LIST, API_KEY, API_LANGUAGE, API_MOVIE, API_ACTORS, API_TV_SHOWS } from '../../../../constants/api';
 
@@ -8,7 +9,6 @@ import SectionButtons from '../sectionButtons/SectionButtons';
 import GenreButton from '../genreButton/GenreButton';
 
 import style from './search.module.scss';
-import { getApiResources } from '../../../../service/getApiResources';
 import Sort from '../sort/Sort';
 import MultiRangeSlider from '../multiRangeSlider/MultiRangeSlider';
 
@@ -34,14 +34,11 @@ const Search = () => {
   const urlGenres = API_ROOT+API_GENRE+mediaType[indexSectionBtn]+API_LIST+API_KEY+API_LANGUAGE+language;
 
   useEffect(() => {
-    (async() => {
-      if (!isActors) {
-        const res = await getApiResources(urlGenres);
-        return res && setGenresList(res.genres);
-      }
-
-      return setGenresList(null);
-    })();
+    if (!isActors) {
+      axios({url:urlGenres})
+        .then(res => setGenresList(res.data.genres))
+        .catch(() => setGenresList(null));
+    }
   }, [urlGenres, language, isActors]);
 
   useEffect(() => {
@@ -81,7 +78,7 @@ const Search = () => {
             />
           </div>
 
-          {genresList && !inputValue &&
+          {genresList && !inputValue && !isActors &&
             <>
               <div className={style.row}>
                 <ul className={style.genres_list}>

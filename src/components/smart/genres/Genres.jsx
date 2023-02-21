@@ -1,37 +1,33 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useFetching } from '../../../hooks/useFetching';
 
 import { API_ROOT, API_GENRE, API_LIST, API_KEY, API_LANGUAGE } from '../../../constants/api';
-import { getApiResources } from '../../../service/getApiResources';
 
 import style from './genres.module.scss';
 
 const Genres = ({ type, ids }) => {
-  const [results, setResults] = useState(null);
   const [currentGenres, setCurrentGenres] = useState(null);
-
   const language = useSelector(state => state.language.language);
 
   const isObj = typeof ids[0] === 'object';
 
   const url = `${API_ROOT}${API_GENRE}/${type}${API_LIST}${API_KEY}${API_LANGUAGE}${language}`;
 
-  const getGenres = useCallback(() => {
-    if (typeof ids[0] === 'object') 
-      return results.filter(el1 => ids.some(el2 => el1.id === el2.id));
-    return results.filter(el1 => ids.some(el2 => el1.id === el2));
-  }, [results, ids]);
+  const { results } = useFetching(url);
 
-  useEffect(() => {
-    (async() => {
-      const res = await getApiResources(url);
-      return res && setResults(res.genres);
-    })();
-  }, [url, language]);
+  const getGenres = useCallback(() => {
+    if (results) {
+      if (isObj) {
+        return results.genres.filter(el1 => ids.some(el2 => el1.id === el2.id));
+      }
+      return results.genres.filter(el1 => ids.some(el2 => el1.id === el2));
+    }
+  }, [results, isObj, ids]);
   
   useEffect(() => {
     if (results) {
-      setCurrentGenres(getGenres())
+      setCurrentGenres(getGenres());
     }
   }, [results, language, ids, getGenres]);
 

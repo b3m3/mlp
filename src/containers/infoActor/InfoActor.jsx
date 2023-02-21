@@ -1,4 +1,4 @@
-import { useState, useEffect, forwardRef } from 'react';
+import { useEffect, forwardRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -14,10 +14,10 @@ import Loading from '../../components/ui/loading/Loading';
 import Back from '../../components/ui/back/Back';
 
 import { API_ROOT, API_KEY, API_ACTORS, API_LANGUAGE, API_ACTORS_MOVIE_CREDITS, API_ACTORS_TV_CREDITS } from '../../constants/api';
-import { getApiResults } from '../../service/getApiResources';
 import { setDocumentTitle } from '../../utils/functions';
 
 import style from './info-actor.module.scss';
+import { useFetching } from '../../hooks/useFetching';
 
 const moviesTitles = [
   {en: 'Movies', ru: 'Фильмы', uk: 'Фільми'}
@@ -28,9 +28,6 @@ const tvShowsTitles = [
 ];
 
 const InfoActor = forwardRef((props, ref) => {
-  const [results, setResults] = useState(null);
-  const [errorApi, setErrorApi] = useState(false);
-
   const language = useSelector(state => state.language.language);
   const { id } = useParams();
 
@@ -38,9 +35,7 @@ const InfoActor = forwardRef((props, ref) => {
   const moviesUrl = `${API_ROOT}${API_ACTORS}/${id}${API_ACTORS_MOVIE_CREDITS}${API_KEY}${API_LANGUAGE}${language}`;
   const tvShowsUrl = `${API_ROOT}${API_ACTORS}/${id}${API_ACTORS_TV_CREDITS}${API_KEY}${API_LANGUAGE}${language}`;
 
-  useEffect(() => {
-    getApiResults(url, setResults, setErrorApi);
-  }, [url]);
+  const { results, errorApi } = useFetching(url);
 
   useEffect(() => {
     if (results) {

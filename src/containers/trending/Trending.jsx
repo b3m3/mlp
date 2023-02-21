@@ -1,15 +1,14 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation, Parallax } from 'swiper';
 import { useSelector } from 'react-redux';
+import { useFetching } from '../../hooks/useFetching';
 
 import TrendingVideoCard from '../../components/smart/trendingVideoCard/TrendingVideoCard';
 import TrendingActorCard from '../../components/smart/trendingActorCard/TrendingActorCard';
 import SliderNavigation from '../../components/ui/sliderNavigation/SliderNavigation';
 import ErrorApi from '../../components/ui/errors/errorApi/ErrorApi';
 import ShimmerSolidBlock from '../../components/ui/shimmers/shimmerSolidBlock/ShimmerSolidBlock';
-
-import { getApiResults } from '../../service/getApiResources';
 
 import style from './trending.module.scss';
 import 'swiper/css';
@@ -31,8 +30,7 @@ const breakPointsActors = {
 };
 
 const Trending = ({ item, actors }) => {
-  const [results, setResults] = useState(null);
-  const [errorApi, setErrorApi] = useState(false);
+  const { results, errorApi } = useFetching(item.url);
 
   const language = useSelector(state => state.language.language);
 
@@ -47,10 +45,6 @@ const Trending = ({ item, actors }) => {
       nextEl: `.${nextClass}`
     }
   }, [prevClass, nextClass]);
-
-  useEffect(() => {
-    getApiResults(item.url, setResults, setErrorApi);
-  }, [item.url, language]);
 
   return (
     <div className={style.wrapp}>

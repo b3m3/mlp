@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar } from 'swiper';
+import { useFetching } from '../../hooks/useFetching';
 
 import VideoCard from '../../components/smart/videoCard/VideoCard';
 import ActorCard from '../../components/smart/actorCard/ActorCard';
@@ -9,8 +9,6 @@ import SeeAll from '../../components/ui/seeAll/SeeAll';
 import ErrorApi from '../../components/ui/errors/errorApi/ErrorApi';
 import ShimmerVideoCard from '../../components/ui/shimmers/shimmerVideoCard/ShimmerVideoCard';
 import ShimmerActorCard from '../../components/ui/shimmers/shimmerActorCard/ShimmerActorCard';
-
-import { getApiResults } from '../../service/getApiResources';
 
 import style from './preview.module.scss';
 import 'swiper/css';
@@ -24,16 +22,10 @@ const breakPoints = {
 };
 
 const Preview = ({ item, actors }) => {
-  const [results, setResults] = useState(null);
-  const [errorApi, setErrorApi] = useState(false);
-
   const language = useSelector(state => state.language.language);
-
+  const {results, errorApi} = useFetching(item.url);
+  
   const title = item[language];
-
-  useEffect(() => {
-    getApiResults(item.url, setResults, setErrorApi);
-  }, [item.url]);
 
   return (
     <div className={style.preview}>

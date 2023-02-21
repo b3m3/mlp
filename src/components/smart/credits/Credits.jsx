@@ -1,7 +1,8 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
+import { useFetching } from '../../../hooks/useFetching';
 
 import VideoCard from '../videoCard/VideoCard';
 import ActorCard from '../actorCard/ActorCard';
@@ -9,7 +10,6 @@ import SliderNavigation from '../../ui/sliderNavigation/SliderNavigation';
 import ShimmerSolidBlock from '../../ui/shimmers/shimmerSolidBlock/ShimmerSolidBlock';
 import ShimmerActorCard from '../../ui/shimmers/shimmerActorCard/ShimmerActorCard';
 
-import { getApiResources } from '../../../service/getApiResources';
 import { getTitleLang } from '../../../utils/functions';
 
 import style from './credits.module.scss';
@@ -31,8 +31,6 @@ const breakPointsFull = {
 };
 
 const Credits = ({ url, titles, prevClass, nextClass, resultName, actors, fullContainer }) => {
-  const [results, setResults] = useState(null);
-
   const language = useSelector(state => state.language.language);
 
   const type = titles[0].en === 'Movies' ? '/movie' : '/tv';
@@ -46,12 +44,7 @@ const Credits = ({ url, titles, prevClass, nextClass, resultName, actors, fullCo
     }
   }, [prevClass, nextClass])
 
-  useEffect(() => {
-    (async() => {
-      const res = await getApiResources(url);
-      return res && setResults(res);
-    })();
-  }, [url]);
+  const { results } = useFetching(url);
 
   return (
     <>

@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useFetching } from '../../../hooks/useFetching';
 
 import Poster from '../../ui/poster/Poster';
 import Rating from '../../ui/rating/Rating';
 import Dates from '../../ui/dates/Dates';
 
 import { API_ROOT, API_KEY, API_REVIEWS } from '../../../constants/api';
-import { getApiResources } from '../../../service/getApiResources';
 import { getTitleLang } from '../../../utils/functions';
 
 import { MdOutlineCloseFullscreen, MdOutlineOpenInFull } from 'react-icons/md';
@@ -20,7 +20,6 @@ const titles = [
 ];
 
 const Reviews = () => {
-  const [results, setResults] = useState(null);
   const [numberResults, setNumberResults] = useState(3);
   const [isOpen, setIsOpen] = useState(null);
 
@@ -29,17 +28,14 @@ const Reviews = () => {
 
   const url = `${API_ROOT}/${type}/${id}${API_REVIEWS}${API_KEY}`;
 
-  const title = getTitleLang(titles, language)
+  const title = getTitleLang(titles, language);
+
+  const { results } = useFetching(url)
 
   useEffect(() => {
-    (async() => {
-      const res = await getApiResources(url);
-      return res && setResults(res);
-    })();
-
     setNumberResults(3);
     setIsOpen(false);
-  }, [type, url]);
+  }, [type, id]);
 
   return (
     <>

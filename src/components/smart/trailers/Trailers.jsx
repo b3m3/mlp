@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 import Button from '../../ui/button/Button';
 
 import { API_ROOT, API_KEY, API_LANGUAGE, API_VIDEOS, 
   YOUTUBE_TRAILER_ROOT, YOUTUBE_TRAILER_AUTOPLAY } from '../../../constants/api';
-import { getApiResources } from '../../../service/getApiResources';
 
 import { GoPlay } from 'react-icons/go';
 import { AiFillCloseCircle } from 'react-icons/ai';
@@ -26,19 +26,17 @@ const Trailers = ({activeTrailer, setActiveTrailer}) => {
   const url = `${API_ROOT}/${type}/${id}${API_VIDEOS}${API_KEY}${API_LANGUAGE}${language}`;
 
   useEffect(() => {
-    (async() => {
-      const res = await getApiResources(url);
-
-      if (res) {
-        setTotalTrailers(res.results.length);
+    axios({url:url})
+      .then(data => {
+        setTotalTrailers(data.data.results.length);
         setTrailerNumber(0);
-        setResults(res.results);
-      }
+        setResults(data.data.results);
 
-      if (res.results.length === 0) {
-        setActiveTrailer(0);
-      }
-    })();
+        if (data.data.results.length === 0) {
+          setActiveTrailer(0);
+        }
+      })
+      .catch(error=> console.error(error.message));
   }, [url, language, setActiveTrailer]);
 
   return (

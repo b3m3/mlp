@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useFetching } from '../../hooks/useFetching';
 
-import { getApiResources, getApiItem } from '../../service/getApiResources';
 import { getTitleLang } from '../../utils/functions';
 import { API_ROOT, API_KEY, API_PAGE, API_LANGUAGE, API_QUERY, API_DISCOVER, API_SEARCH } from '../../constants/api';
 
@@ -31,12 +31,9 @@ const discoverTitles = [
 ];
 
 const Category = () => {
-  const [results, setResults] = useState(null);
-  const [errorApi, setErrorApi] = useState(false);
   const [noSearchResults, setNoSearchResults] = useState(false);
-  const [totalPages, setTotalPages] = useState(null);
-
   const language = useSelector(state => state.language.language);
+
   const { type, category, page, id } = useParams();
   const { pathname } = useLocation();
 
@@ -46,41 +43,35 @@ const Category = () => {
   const categoryUrl = API_ROOT+'/'+type+'/'+category+API_KEY+API_LANGUAGE+language+API_PAGE+page;
   const searchUrl = API_ROOT+API_SEARCH+'/'+type+API_KEY+API_LANGUAGE+language+API_QUERY+id+API_PAGE+page;
   const discoverUrl = API_ROOT+API_DISCOVER+'/'+type+API_KEY+API_LANGUAGE+language+id+API_PAGE+page;
-
-  const url = isSearch ? searchUrl : isDiscover ? discoverUrl : categoryUrl;
-
-  const pages = totalPages && totalPages > 500 ? 500 : totalPages;
-
+  
   const translateTitle = useMemo(() => {
     return titles.map(el => el[category] && el[category][0][language]);
   }, [category, language]);
-
+  
   const title = isSearch ? id : isDiscover ? getTitleLang(discoverTitles, language) : translateTitle;
+  const url = isSearch ? searchUrl : isDiscover ? discoverUrl : categoryUrl;
+
+  const { results, setResults, errorApi } = useFetching(url);
+
+  const pages =  useMemo(() => {
+    if (results) {
+      return results.total_pages > 500 ? 500 : results.total_pages;
+    }
+  }, [results]);
 
   useEffect(() => {
     setResults(null);
     setNoSearchResults(false);
     window.scrollTo(0, 0);
-    getApiItem(url, 'total_pages', setTotalPages);
+  }, [language, pathname, isSearch, isDiscover, setResults]);
 
-    (async() => {
-      const res = await getApiResources(url);
-
-      if (res) {
-        setResults(res);
-      } else {
-        setErrorApi(true);
-      }
-
-      if (isSearch && res && res.results.length < 1) {
+  useEffect(() => {
+    if (results) {
+      if ((isSearch || isDiscover) && results.results.length < 1) {
         setNoSearchResults(true);
       }
-
-      if (isDiscover && res && res.results.length < 1) {
-        setNoSearchResults(true);
-      }
-    })();
-  }, [language, pathname, url, isSearch, isDiscover]);
+    }
+  }, [results, isSearch, isDiscover]);
 
   return (
     <section className={style.category}>

@@ -1,17 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
+import { useFetching } from '../../../hooks/useFetching';
 
 import ShimmerPhotos from '../../ui/shimmers/shimmerPhotos/ShimmerPhotos';
 import Backdrop from '../../ui/backdrop/Backdrop';
 import PhotoGallery from '../photoGallery/PhotoGallery';
-import { getApiResources } from '../../../service/getApiResources';
 import { getTypeFromLocation } from '../../../utils/functions';
 import { API_ROOT, API_KEY, API_ACTORS_IMAGES } from '../../../constants/api';
 
 import style from './photos.module.scss';
 
 const Photos = () => {
-  const [results, setResults] = useState(null);
   const [showGallery, setShowGallery] = useState(false);
   const [initialSlide, setInitialSlide] = useState(null);
 
@@ -20,12 +19,7 @@ const Photos = () => {
 
   const url = `${API_ROOT}${getTypeFromLocation(pathname)}/${id}${API_ACTORS_IMAGES}${API_KEY}`;
 
-  useEffect(() => {
-    (async() => {
-      const res = await getApiResources(url);
-      return res ? setResults(res) : null;
-    })();
-  }, [url]);
+  const { results } = useFetching(url);
 
   return (
     <>

@@ -1,19 +1,15 @@
-import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
 import { API_ROOT, API_KEY, IMDB_ROOT, IMDB_ACTOR_ROOT } from '../../../constants/api';
 import { getTypeFromLocation } from '../../../utils/functions';
-import { getApiItem } from '../../../service/getApiResources';
 
 import { FaImdb } from 'react-icons/fa';
 import { RiHomeWifiFill } from 'react-icons/ri';
 
 import style from './link-page.module.scss';
+import { useFetching } from '../../../hooks/useFetching';
 
 const LinkPage = () => {
-  const [homeLink, setHomeLink] = useState(null);
-  const [imdbLink, setImdbLink] = useState(null);
-
   const { pathname } = useLocation();
   const { id } = useParams();
   const type = getTypeFromLocation(pathname);
@@ -22,27 +18,24 @@ const LinkPage = () => {
 
   const url = `${API_ROOT}/${type}/${id}${API_KEY}`;
 
-  useEffect(() => {
-    getApiItem(url, 'homepage', setHomeLink);
-    getApiItem(url, 'imdb_id', setImdbLink);
-  }, [url]);
+  const { results } = useFetching(url);
 
   return (
     <div className={style.wrapp}>
-      {imdbLink &&
+      {results && results.imdb_id &&
         <a 
           className={style.link}
-          href={isPerson ? IMDB_ACTOR_ROOT+imdbLink : IMDB_ROOT+imdbLink}
+          href={isPerson ? IMDB_ACTOR_ROOT+results.imdb_id : IMDB_ROOT+results.imdb_id}
           target={'_blank'}
           rel={'noopener noreferrer'}
         >
           <FaImdb />
         </a>
       }
-      {homeLink && 
-        <a 
+      {results && results.homepage && 
+        <a
           className={style.link}
-          href={homeLink} 
+          href={results.homepage}
           target={'_blank'}
           rel={'noopener noreferrer'}
         >

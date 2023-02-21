@@ -19,11 +19,11 @@ import Loading from '../../components/ui/loading/Loading';
 import Back from '../../components/ui/back/Back';
 
 import { API_ROOT, API_KEY, API_LANGUAGE, API_CREDITS, API_RECOMMEND } from '../../constants/api';
-import { getApiResults } from '../../service/getApiResources';
 import { setDocumentTitle } from '../../utils/functions';
 
 import style from './info-video.module.scss';
 import Votes from '../../components/ui/votes/Votes';
+import { useFetching } from '../../hooks/useFetching';
 
 const castTitles = [
   {en: 'Cast', ru: 'В ролях', uk: 'Акторський склад'}
@@ -34,8 +34,6 @@ const recomendationsTitles = [
 ];
 
 const InfoVideo = forwardRef((props, ref) => {
-  const [results, setResults] = useState(null);
-  const [errorApi, setErrorApi] = useState(false);
   const [activeTrailer, setActiveTrailer] = useState(false);
 
   const language = useSelector(state => state.language.language);
@@ -47,11 +45,12 @@ const InfoVideo = forwardRef((props, ref) => {
   const actorsUrl = `${API_ROOT}/${type}/${id}${API_CREDITS}${API_KEY}${API_LANGUAGE}${language}`;
   const recomendationsUrl = `${API_ROOT}/${type}/${id}${API_RECOMMEND}${API_KEY}${API_LANGUAGE}${language}`;
 
+  const { results, setResults, errorApi } = useFetching(url);
+
   useEffect(() => {
     setResults(null);
-    getApiResults(url, setResults, setErrorApi);
     setActiveTrailer(false);
-  }, [url, id]);
+  }, [setResults, url, id]);
 
   useEffect(() => {
     if (results) {
