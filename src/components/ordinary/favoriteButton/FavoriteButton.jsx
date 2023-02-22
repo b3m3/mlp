@@ -14,16 +14,16 @@ import style from './favorite-button.module.scss';
 
 const styleBtn = {background: 'rgba(243, 46, 46, 0.15)'}
 
-const FavoriteButton = ({ id, poster_path, vote_average, title, name }) => {
+const FavoriteButton = ({ id, poster_path, vote_average, title, name, type }) => {
   const [isActive, setIsActive] = useState(false);
 
   const favoriteList = useSelector(state => state.favorite.favoritesList)
   const dispatch = useDispatch();
 
   const { pathname } = useLocation();
-  const type = getTypeFromLocation(pathname);
+  const currentType = getTypeFromLocation(pathname) !== '/person' ? getTypeFromLocation(pathname) : type;
 
-  const data = {id, poster_path, vote_average, title, name, type};
+  const data = {id, poster_path, vote_average, title, name, type: currentType};
 
   const toggleActive = useCallback(() => {
     return setIsActive(a => !a);
