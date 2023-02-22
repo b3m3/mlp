@@ -102,11 +102,10 @@ const Category = () => {
             }
           </div>}
 
-      {noSearchResults && <SearchError value={id}/>}
-
-      <PageNavigation 
-        totalPages={pages}
-      />
+      {noSearchResults 
+        ? <SearchError value={id}/> 
+        : <PageNavigation totalPages={pages}/>
+      }
     </section>
   );
 }

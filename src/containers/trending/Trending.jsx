@@ -59,8 +59,7 @@ const Trending = ({ item, actors }) => {
       
       {errorApi
         ? <ErrorApi />
-        : 
-          <Swiper
+        : <Swiper
             className={style.swiper}
             style={{width: '100%'}}
             modules={[Navigation, Pagination, Parallax]}
