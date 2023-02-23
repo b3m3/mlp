@@ -7,6 +7,7 @@ import Input from '../input/Input';
 import SectionButtons from '../sectionButtons/SectionButtons';
 import CardsList from '../cardsList/CardsList';
 import GenresList from '../genresList/GenresList';
+import AllResultsButton from '../allResultsButton/AllResultsButton';
 
 import style from './search.module.scss';
 import Sort from '../sort/Sort';
@@ -26,10 +27,13 @@ const Search = () => {
 
   const mediaType = [API_MOVIE, API_TV_SHOWS, API_ACTORS];
   const isActors = mediaType[indexSectionBtn] === API_ACTORS;
+  // const isMovie = mediaType[indexSectionBtn] === API_MOVIE;
+  // const isTvShow = mediaType[indexSectionBtn] === API_TV_SHOWS;
 
   const currentYear = new Date().getFullYear();
 
   const activeBtn = {background:'var(--blue-400)'};
+  const column = {flexDirection: 'column'}
 
   useEffect(() => {
     const handleClick = e => {
@@ -78,7 +82,7 @@ const Search = () => {
           </div>
 
           {results && results.length > 0 &&
-            <div className={`${style.row} ${style.row_column}`}>
+            <div className={style.row} style={column}>
               <CardsList
                 results={results}
                 isActors={isActors}
@@ -90,6 +94,22 @@ const Search = () => {
                 setYears={setYears}
                 setSortBy={setSortBy}
                 setInputFocus={setInputFocus}
+              />
+              <AllResultsButton
+                inputValue={inputValue}
+                sortBy={sortBy}
+                genresSelected={genresSelected}
+                years={years}
+                ratings={ratings}
+                mediaType={mediaType}
+                indexSectionBtn={indexSectionBtn}
+                setResults={setResults}
+                setGenresSelected={setGenresSelected}
+                setRatings={setRatings}
+                setSortBy={setSortBy}
+                setYears={setYears}
+                setInputFocus={setInputFocus}
+                setInputValue={setInputValue}
               />
             </div>
           }

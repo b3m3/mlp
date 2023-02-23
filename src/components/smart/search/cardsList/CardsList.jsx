@@ -8,7 +8,7 @@ const CardsList = ({
   results, isActors, type, setResults, setGenresSelected,
   setRatings, setYears, setSortBy, setInputFocus, setInputValue
 }) => {
-  const clearHandler = useCallback((e) => {
+  const handleClear = useCallback((e) => {
     if (e.target && e.target.tagName.toLowerCase() === 'img') {
       setResults(null);
       setGenresSelected([]);
@@ -23,7 +23,7 @@ const CardsList = ({
   return (
     <ul className={style.wrapp}>
       {results.map(({id, poster_path, profile_path}) => (
-        <li key={id} onClick={e => clearHandler(e)}>
+        <li key={id} onClick={e => handleClear(e)}>
           <Card
             id={id}
             poster_path={isActors ? profile_path : poster_path}

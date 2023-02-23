@@ -1,16 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { getTitleLang } from '../../../../utils/functions';
 import { API_POPULARITY, API_RELEASE_DATE, API_VOTE_AVERAGE, API_DESC, API_ASC } from '../../../../constants/api';
 
 import { MdKeyboardArrowDown } from 'react-icons/md';
+import { BsSortDown } from 'react-icons/bs';
 
 import style from './sort.module.scss';
-
-const titles = [
-  {en: 'Sort by:', uk: 'Сортувати за:', ru: 'Сортировать по:'}
-];
 
 const optionTitles = [
   {en: 'Relevance', uk: 'Релевантністю', ru: 'Релевантности'},
@@ -34,7 +30,6 @@ const Sort = ({ indexSectionBtn, setSortBy }) => {
 
   const listActive = {padding: '.375rem .75rem', height: '11.25rem'};
   const rotate = {transform: 'rotate(180deg)'};
-  const title = getTitleLang(titles, language);
 
   const optionsPath = useMemo(() => [
     {path: ''},
@@ -53,17 +48,14 @@ const Sort = ({ indexSectionBtn, setSortBy }) => {
 
   return (
     <div className={style.wrapp}>
-      <p>{title}</p>
-
       <div className={style.row}>
         <div 
           className={style.title}
           onClick={() => setIsOpen(a => !a)}
         >
+          <BsSortDown />
           <span>{currentTitle}</span>
-          <span style={isOpen ? rotate : null}>
-            <MdKeyboardArrowDown />
-          </span>
+          <MdKeyboardArrowDown style={isOpen ? rotate : null}/>
         </div>
 
         <ul 

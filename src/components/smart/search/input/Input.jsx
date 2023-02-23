@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-// import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import { API_SEARCH, API_DISCOVER, API_WITH_GENRES, API_SORT, API_LTE, API_GTE,
@@ -20,6 +19,7 @@ const Input = ({mediaType, setInputValue, setInputFocus, indexSectionBtn, inputV
   const type = mediaType[indexSectionBtn];
   const isTypeMovie = type === '/movie';
   const isTypePerson = type === '/person';
+
   const isValue = sortBy.length || genresSelected.length || ratings.length ||  years.length || inputValue.length;
   
   const sortUrl = API_SORT+sortBy.slice(1)+API_VOTE_COUNT+API_GTE+15;
@@ -34,18 +34,6 @@ const Input = ({mediaType, setInputValue, setInputFocus, indexSectionBtn, inputV
   const isYears = useMemo(() => (
     years.length ? isTypeMovie ? yearsRealeseUrl : yearsFirstUrl : ''
   ), [years, isTypeMovie, yearsRealeseUrl, yearsFirstUrl]);
-
-  // const searchPath = `/${language}${type}${API_SEARCH}/${inputValue}/1`;
-  // const discoverPath = `/${language}${type}${API_DISCOVER}/${isSort}${isGenres}${isRating}${isYears}/1`;
-
-  // const link = useMemo(() => {
-  //   if (inputValue) return searchPath;
-
-  //   if (isValue) {
-  //     if (isTypePerson) return;
-  //     return discoverPath;
-  //   }
-  // }, [inputValue, isValue, isTypePerson, searchPath, discoverPath]);
 
   const searchUrl = API_ROOT+API_SEARCH+'/'+type+API_KEY+API_LANGUAGE+language+API_QUERY+inputValue;
   const discoverUrl = API_ROOT+API_DISCOVER+'/'+type+API_KEY+API_LANGUAGE+language+'/'+isSort+isGenres+isRating+isYears;
@@ -78,7 +66,7 @@ const Input = ({mediaType, setInputValue, setInputFocus, indexSectionBtn, inputV
         }}
         onClick={() => setInputFocus(true)}
         value={inputValue}
-      /> 
+      />
       <RiSearchLine />
     </div>
   );
