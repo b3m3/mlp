@@ -26,10 +26,6 @@ button, input {
   width: 100%;
 }
 
-html, body, #root {
-  height: 100%;
-}
-
 :root {
   --blue-400: #217ff4;
   --blue-400-01: rgba(33, 128, 244, 0.1);
