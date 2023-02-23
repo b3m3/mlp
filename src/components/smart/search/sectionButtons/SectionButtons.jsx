@@ -1,5 +1,4 @@
 import { useCallback } from 'react';
-import { useSelector } from 'react-redux';
 
 import style from './section-buttons.module.scss';
 
@@ -9,9 +8,7 @@ const buttonsName = [
   {ru: ['Фильмы', 'Сериалы', 'Актеры']}
 ];
 
-const SectionButtons = ({ index, setIndex, activeBtn, setResults, setRatings, setYears, setSortBy, setGenresSelected }) => {
-  const language = useSelector(state => state.language.language);
-
+const SectionButtons = ({ index, setIndex, activeBtn, setResults, setRatings, setYears, setSortBy, setGenresSelected, language }) => {
   const handleClear = useCallback(() => {
     setResults(null);
     setGenresSelected([]);

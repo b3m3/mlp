@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import { API_POPULARITY, API_RELEASE_DATE, API_VOTE_AVERAGE, API_DESC, API_ASC } from '../../../../constants/api';
 
@@ -22,11 +21,9 @@ const defaultTitle = [
   {en: 'Relevance', uk: 'Релевантністю', ru: 'Релевантности'}
 ];
 
-const Sort = ({ indexSectionBtn, setSortBy }) => {
+const Sort = ({ indexSectionBtn, setSortBy, language }) => {
   const [currentTitle, setCurrentTitle] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-
-  const language = useSelector(state => state.language.language);
 
   const listActive = {padding: '.375rem .75rem', height: '11.25rem'};
   const rotate = {transform: 'rotate(180deg)'};

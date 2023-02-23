@@ -1,13 +1,10 @@
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 import Poster from '../../../ui/poster/Poster';
 
 import style from './card.module.scss';
 
-const Card = ({id, poster_path, type}) => {
-  const language = useSelector(state => state.language.language);
-
+const Card = ({id, poster_path, type, language}) => {
   const link = `/${language}${type}/${id}`;
 
   return (

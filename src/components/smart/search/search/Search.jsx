@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
-import { API_MOVIE, API_ACTORS, API_TV_SHOWS } from '../../../../constants/api';
+import { API_MOVIE, API_ACTORS, API_TV_SHOWS, API_WITH_GENRES, API_SORT, API_LTE, API_GTE,
+  API_RELEASE_DATE, API_VOTE_AVERAGE, API_VOTE_COUNT, API_FIRST_AIR_DATE } from '../../../../constants/api';
 
 import Input from '../input/Input';
 import SectionButtons from '../sectionButtons/SectionButtons';
@@ -26,14 +27,14 @@ const Search = () => {
   const language = useSelector(state => state.language.language);
 
   const mediaType = [API_MOVIE, API_TV_SHOWS, API_ACTORS];
+  const type = mediaType[indexSectionBtn];
   const isActors = mediaType[indexSectionBtn] === API_ACTORS;
-  // const isMovie = mediaType[indexSectionBtn] === API_MOVIE;
-  // const isTvShow = mediaType[indexSectionBtn] === API_TV_SHOWS;
+  const isMovie = mediaType[indexSectionBtn] === API_MOVIE;
+  const isValue = sortBy.length || genresSelected.length || ratings.length ||  years.length || inputValue.length;
 
   const currentYear = new Date().getFullYear();
-
   const activeBtn = {background:'var(--blue-400)'};
-  const column = {flexDirection: 'column'}
+  const column = {flexDirection: 'column'};
 
   useEffect(() => {
     const handleClick = e => {
@@ -46,10 +47,37 @@ const Search = () => {
     return() => document.removeEventListener('click', handleClick);
   }, [language]);
 
+  const isSort = useMemo(() => {
+    return sortBy.length ? API_SORT+sortBy.slice(1)+API_VOTE_COUNT+API_GTE+15 : '';
+  }, [sortBy]);
+
+  const isGenres = useMemo(() => {
+    return genresSelected.length ? API_WITH_GENRES+genresSelected.map(({id}) => id) : '';
+  }, [genresSelected]);
+
+  const isRating = useMemo(() => {
+    return ratings.length ? API_VOTE_AVERAGE+API_GTE+ratings[0]+API_VOTE_AVERAGE+API_LTE+ratings[1] : '';
+  }, [ratings]);
+
+  const isYears = useMemo(() => {
+    return years.length ? isMovie 
+      ? API_RELEASE_DATE+API_GTE+years[0]+API_RELEASE_DATE+API_LTE+years[1] 
+      : API_FIRST_AIR_DATE+API_GTE+years[0]+API_FIRST_AIR_DATE+API_LTE+years[1] 
+      : '';
+  }, [years, isMovie]);
+
   return (
     <div className={`${style.wrapp} search`}>
-      <Input 
-        mediaType={mediaType}
+      <Input
+        language={language}
+        type={type}
+        isValue={isValue}
+        isActors={isActors}
+        isMovie={isMovie}
+        isSort={isSort}
+        isGenres={isGenres}
+        isRating={isRating}
+        isYears={isYears}
         indexSectionBtn={indexSectionBtn}
         inputValue={inputValue}
         genresSelected={genresSelected}
@@ -69,7 +97,8 @@ const Search = () => {
       {inputFocus &&
         <div className={style.body}>
           <div className={style.row}>
-            <SectionButtons 
+            <SectionButtons
+              language={language}
               index={indexSectionBtn}
               activeBtn={activeBtn}
               setIndex={setIndexSectionBtn}
@@ -84,9 +113,10 @@ const Search = () => {
           {results && results.length > 0 &&
             <div className={style.row} style={column}>
               <CardsList
+                language={language}
                 results={results}
                 isActors={isActors}
-                type={mediaType[indexSectionBtn]}
+                type={type}
                 setResults={setResults}
                 setGenresSelected={setGenresSelected}
                 setInputValue={setInputValue}
@@ -96,6 +126,15 @@ const Search = () => {
                 setInputFocus={setInputFocus}
               />
               <AllResultsButton
+                language={language}
+                type={type}
+                isValue={isValue}
+                isActors={isActors}
+                isMovie={isMovie}
+                isSort={isSort}
+                isGenres={isGenres}
+                isRating={isRating}
+                isYears={isYears}
                 inputValue={inputValue}
                 sortBy={sortBy}
                 genresSelected={genresSelected}
@@ -118,6 +157,7 @@ const Search = () => {
             <>
               <div className={style.row}>
                 <GenresList
+                  language={language}
                   indexSectionBtn={indexSectionBtn}
                   activeBtn={activeBtn}
                   setGenresSelected={setGenresSelected}
@@ -153,6 +193,7 @@ const Search = () => {
                 <Sort 
                   indexSectionBtn={indexSectionBtn} 
                   setSortBy={setSortBy}
+                  language={language}
                 />
               </div>
             </>

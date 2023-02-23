@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 import { API_ROOT, API_GENRE, API_LIST, API_KEY, API_LANGUAGE } from '../../../../constants/api';
@@ -8,9 +7,8 @@ import GenreButton from '../genreButton/GenreButton';
 
 import style from './genres-list.module.scss';
 
-const GenresList = ({indexSectionBtn, activeBtn, setGenresSelected, genresSelected, isActors, mediaType}) => {
+const GenresList = ({language, indexSectionBtn, activeBtn, setGenresSelected, genresSelected, isActors, mediaType}) => {
   const [results, setResults] = useState(null);
-  const language = useSelector(state => state.language.language);
 
   const url = API_ROOT+API_GENRE+mediaType[indexSectionBtn]+API_LIST+API_KEY+API_LANGUAGE+language;
 

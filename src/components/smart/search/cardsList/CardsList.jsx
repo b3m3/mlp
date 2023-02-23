@@ -5,7 +5,7 @@ import Card from '../card/Card';
 import style from './cards-list.module.scss';
 
 const CardsList = ({
-  results, isActors, type, setResults, setGenresSelected,
+  results, isActors, type, setResults, setGenresSelected, language,
   setRatings, setYears, setSortBy, setInputFocus, setInputValue
 }) => {
   const handleClear = useCallback((e) => {
@@ -28,6 +28,7 @@ const CardsList = ({
             id={id}
             poster_path={isActors ? profile_path : poster_path}
             type={type}
+            language={language}
           />
         </li>
       ))}
