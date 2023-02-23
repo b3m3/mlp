@@ -1,22 +1,22 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import axios from 'axios';
 
-import { API_ROOT, API_GENRE, API_LIST, API_KEY, API_LANGUAGE, API_MOVIE, API_ACTORS, API_TV_SHOWS } from '../../../../constants/api';
+import { API_MOVIE, API_ACTORS, API_TV_SHOWS } from '../../../../constants/api';
 
 import Input from '../input/Input';
 import SectionButtons from '../sectionButtons/SectionButtons';
-import GenreButton from '../genreButton/GenreButton';
+import CardsList from '../cardsList/CardsList';
+import GenresList from '../genresList/GenresList';
 
 import style from './search.module.scss';
 import Sort from '../sort/Sort';
 import MultiRangeSlider from '../multiRangeSlider/MultiRangeSlider';
 
 const Search = () => {
+  const [results, setResults] = useState(null);
+  const [indexSectionBtn, setIndexSectionBtn] = useState(0);
   const [inputFocus, setInputFocus] = useState(false);
   const [inputValue, setInputValue] = useState('');
-  const [indexSectionBtn, setIndexSectionBtn] = useState(0);
-  const [genresList, setGenresList] = useState(null);
   const [genresSelected, setGenresSelected] = useState([]);
   const [sortBy, setSortBy] = useState([]);
   const [ratings, setRatings] = useState([]);
@@ -31,16 +31,6 @@ const Search = () => {
 
   const activeBtn = {background:'var(--blue-400)'};
 
-  const urlGenres = API_ROOT+API_GENRE+mediaType[indexSectionBtn]+API_LIST+API_KEY+API_LANGUAGE+language;
-
-  useEffect(() => {
-    if (!isActors) {
-      axios({url:urlGenres})
-        .then(res => setGenresList(res.data.genres))
-        .catch(() => setGenresList(null));
-    }
-  }, [urlGenres, language, isActors]);
-
   useEffect(() => {
     const handleClick = e => {
       if (!e.target.closest('.search')) {
@@ -53,7 +43,7 @@ const Search = () => {
   }, [language]);
 
   return (
-    <div className={`${style.search} search`}>
+    <div className={`${style.wrapp} search`}>
       <Input 
         mediaType={mediaType}
         indexSectionBtn={indexSectionBtn}
@@ -62,9 +52,14 @@ const Search = () => {
         sortBy={sortBy}
         ratings={ratings}
         years={years}
+        inputFocus={inputFocus}
         setInputValue={setInputValue}
         setInputFocus={setInputFocus}
         setGenresSelected={setGenresSelected}
+        setResults={setResults}
+        setRatings={setRatings}
+        setSortBy={setSortBy}
+        setYears={setYears}
       />
 
       {inputFocus &&
@@ -75,25 +70,41 @@ const Search = () => {
               activeBtn={activeBtn}
               setIndex={setIndexSectionBtn}
               setGenresSelected={setGenresSelected}
+              setResults={setResults}
+              setRatings={setRatings}
+              setYears={setYears}
+              setSortBy={setSortBy}
             />
           </div>
 
-          {genresList && !inputValue && !isActors &&
+          {results && results.length > 0 &&
+            <div className={`${style.row} ${style.row_column}`}>
+              <CardsList
+                results={results}
+                isActors={isActors}
+                type={mediaType[indexSectionBtn]}
+                setResults={setResults}
+                setGenresSelected={setGenresSelected}
+                setInputValue={setInputValue}
+                setRatings={setRatings}
+                setYears={setYears}
+                setSortBy={setSortBy}
+                setInputFocus={setInputFocus}
+              />
+            </div>
+          }
+
+          {!inputValue && !isActors &&
             <>
               <div className={style.row}>
-                <ul className={style.genres_list}>
-                  {genresList.map(({ id, name }) => (
-                    <li key={id}>
-                      <GenreButton
-                        id={id} 
-                        name={name} 
-                        indexSectionBtn={indexSectionBtn}
-                        activeBtn={activeBtn}
-                        setGenresSelected={setGenresSelected}
-                      />
-                    </li>
-                  ))}
-                </ul>
+                <GenresList
+                  indexSectionBtn={indexSectionBtn}
+                  activeBtn={activeBtn}
+                  setGenresSelected={setGenresSelected}
+                  genresSelected={genresSelected}
+                  isActors={isActors}
+                  mediaType={mediaType}
+                />
               </div>
 
               <div className={style.row}>

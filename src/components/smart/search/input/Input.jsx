@@ -1,73 +1,85 @@
+import { useEffect, useMemo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-import { API_SEARCH, API_DISCOVER, API_WITH_GENRES, API_SORT, API_LTE, API_GTE, 
-  API_RELEASE_DATE, API_VOTE_AVERAGE, API_VOTE_COUNT, API_FIRST_AIR_DATE } from '../../../../constants/api';
+import { API_SEARCH, API_DISCOVER, API_WITH_GENRES, API_SORT, API_LTE, API_GTE,
+  API_RELEASE_DATE, API_VOTE_AVERAGE, API_VOTE_COUNT, API_FIRST_AIR_DATE, API_LANGUAGE,
+  API_ROOT, API_KEY, API_QUERY } from '../../../../constants/api';
 
 import { RiSearchLine } from 'react-icons/ri';
+
 import style from './input.module.scss';
 
 const Input = ({mediaType, setInputValue, setInputFocus, indexSectionBtn, inputValue, 
-  setGenresSelected, genresSelected, sortBy, ratings, years}) => {
-
-    const language = useSelector(state => state.language.language);
-
-  const activeBtnStyle = {color: 'var(--gray-50)'}
+  genresSelected, sortBy, ratings, years, setResults, setGenresSelected, setYears, 
+  setSortBy, setRatings
+}) => {
+  const language = useSelector(state => state.language.language);
 
   const type = mediaType[indexSectionBtn];
   const isTypeMovie = type === '/movie';
+  const isTypePerson = type === '/person';
+  const isValue = sortBy.length || genresSelected.length || ratings.length ||  years.length || inputValue.length;
+  
+  const sortUrl = API_SORT+sortBy.slice(1)+API_VOTE_COUNT+API_GTE+15;
+  const genresUrl = API_WITH_GENRES+genresSelected.map(({id}) => id);
+  const yearsRealeseUrl = API_RELEASE_DATE+API_GTE+years[0]+API_RELEASE_DATE+API_LTE+years[1];
+  const yearsFirstUrl = API_FIRST_AIR_DATE+API_GTE+years[0]+API_FIRST_AIR_DATE+API_LTE+years[1];
+  const ratingUrl = API_VOTE_AVERAGE+API_GTE+ratings[0]+API_VOTE_AVERAGE+API_LTE+ratings[1];
 
-  const isSort = 
-    sortBy.length > 0
-      ? API_SORT+sortBy.slice(1)+API_VOTE_COUNT+API_GTE+15
-      : '';
+  const isSort = useMemo(() => sortBy.length ? sortUrl : '', [sortBy, sortUrl]);
+  const isGenres = useMemo(() => genresSelected.length ? genresUrl : '' , [genresSelected, genresUrl]);
+  const isRating = useMemo(() => ratings.length ? ratingUrl : '' , [ratings, ratingUrl]);
+  const isYears = useMemo(() => (
+    years.length ? isTypeMovie ? yearsRealeseUrl : yearsFirstUrl : ''
+  ), [years, isTypeMovie, yearsRealeseUrl, yearsFirstUrl]);
 
-  const isGenres = 
-    genresSelected.length > 0 
-      ? API_WITH_GENRES+genresSelected.map(({id}) => id) 
-      : '';
+  // const searchPath = `/${language}${type}${API_SEARCH}/${inputValue}/1`;
+  // const discoverPath = `/${language}${type}${API_DISCOVER}/${isSort}${isGenres}${isRating}${isYears}/1`;
 
-  const isYears = 
-    years.length > 0 
-      ? isTypeMovie 
-        ? API_RELEASE_DATE+API_GTE+years[0]+API_RELEASE_DATE+API_LTE+years[1]
-        : API_FIRST_AIR_DATE+API_GTE+years[0]+API_FIRST_AIR_DATE+API_LTE+years[1]
-      : '';
+  // const link = useMemo(() => {
+  //   if (inputValue) return searchPath;
 
-  const isRating = 
-    ratings.length > 0 
-      ? API_VOTE_AVERAGE+API_GTE+ratings[0]+API_VOTE_AVERAGE+API_LTE+ratings[1] 
-      : '';
+  //   if (isValue) {
+  //     if (isTypePerson) return;
+  //     return discoverPath;
+  //   }
+  // }, [inputValue, isValue, isTypePerson, searchPath, discoverPath]);
 
-  const isValue = sortBy.length > 0 || genresSelected.length > 0 || 
-    ratings.length > 0 ||  years.length > 0 || inputValue;
+  const searchUrl = API_ROOT+API_SEARCH+'/'+type+API_KEY+API_LANGUAGE+language+API_QUERY+inputValue;
+  const discoverUrl = API_ROOT+API_DISCOVER+'/'+type+API_KEY+API_LANGUAGE+language+'/'+isSort+isGenres+isRating+isYears;
 
-  const link = 
-    inputValue 
-      ? `/${language}${type}${API_SEARCH}/${inputValue}/1`
-      : `/${language}${type}${API_DISCOVER}/${isSort}${isGenres}${isRating}${isYears}/1`;
+  const handleClear = useCallback(() => {
+    setGenresSelected([]);
+    setRatings([]);
+    setSortBy([]);
+    setYears([]);
+  }, [setGenresSelected, setRatings, setSortBy, setYears]);
+
+  useEffect(() => {
+    axios({url: inputValue ? searchUrl : !isTypePerson ? discoverUrl : searchUrl})
+      .then((data) => {
+        if (inputValue || isValue) {
+          return setResults(data.data.results.slice(0, 8))
+        }
+        return setResults(null)
+      })
+  }, [inputValue, setResults, searchUrl, isTypePerson, isValue, discoverUrl]);
 
   return (
     <div className={style.wrapp}>
       <input 
         type="text" 
         placeholder={'Enter your request'}
-        onChange={e => setInputValue(e.target.value)}
+        onChange={e => {
+          setInputValue(e.target.value);
+          handleClear();
+        }}
         onClick={() => setInputFocus(true)}
         value={inputValue}
       /> 
-      <Link
-        to={isValue ? link : null}
-        onClick={() => {
-          setInputValue('');
-          setInputFocus(false);
-          setGenresSelected([]);
-        }}
-      >
-        <RiSearchLine 
-          style={isValue ? activeBtnStyle : null}
-        />
-      </Link>
+      <RiSearchLine />
     </div>
   );
 }

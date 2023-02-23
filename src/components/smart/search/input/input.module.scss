@@ -9,6 +9,7 @@
   backdrop-filter: blur(.625rem);
   background-color: var(--white-005);
   border-radius: var(--b-radius);
+  
 
   & input {
     font-size: 1rem;
@@ -28,7 +29,7 @@
   }
 
   & svg {
-    font-size: 24px;
+    font-size: 22px;
     color: rgba(255, 255, 255, 0.5);
     transition: .3s;
   }

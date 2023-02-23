@@ -1,16 +1,24 @@
-import { useMemo } from 'react';
+import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
 import style from './section-buttons.module.scss';
 
-const SectionButtons = ({ index, setIndex, activeBtn, setGenresSelected }) => {
+const buttonsName = [
+  {en: ['Movies', 'TV Shows', 'Actors']},
+  {uk: ['Фільми', 'Серіали', 'Актори']},
+  {ru: ['Фильмы', 'Сериалы', 'Актеры']}
+];
+
+const SectionButtons = ({ index, setIndex, activeBtn, setResults, setRatings, setYears, setSortBy, setGenresSelected }) => {
   const language = useSelector(state => state.language.language);
 
-  const buttonsName = useMemo(() => [
-    {en: ['Movies', 'TV Shows', 'Actors']},
-    {uk: ['Фільми', 'Серіали', 'Актори']},
-    {ru: ['Фильмы', 'Сериалы', 'Актеры']}
-  ], []);
+  const handleClear = useCallback(() => {
+    setResults(null);
+    setGenresSelected([]);
+    setRatings([]);
+    setYears([]);
+    setSortBy([]);
+  }, [setGenresSelected, setResults, setRatings, setYears, setSortBy]);
 
   return (
     <div className={style.wrapp}>
@@ -20,7 +28,7 @@ const SectionButtons = ({ index, setIndex, activeBtn, setGenresSelected }) => {
             key={i}
             onClick={() => {
               setIndex(i);
-              setGenresSelected([]);
+              handleClear();
             }}
             className={style.btn}
             style={index === i ? activeBtn : null}

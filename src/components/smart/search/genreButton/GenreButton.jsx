@@ -2,12 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 
 import style from './genre-button.module.scss';
 
-const GenreButton = ({ name, id, indexSectionBtn, activeBtn, genresSelected, setGenresSelected }) => {
+const GenreButton = ({ name, id, indexSectionBtn, activeBtn, setGenresSelected }) => {
   const [isActive, setIsActive] = useState(false);
-
-  const activeSelected = useCallback(() => {
-    return genresSelected.filter(genre => genre.id === id && setIsActive(true));
-  }, [genresSelected, id]);
 
   const handleRemove = useCallback(() => {
     return setGenresSelected(a => a.filter(el => el.name !== name));
@@ -19,8 +15,8 @@ const GenreButton = ({ name, id, indexSectionBtn, activeBtn, genresSelected, set
 
   useEffect(() => {
     setIsActive(false);
-    activeSelected();
-  }, [indexSectionBtn, activeSelected]);
+    setGenresSelected([]);
+  }, [indexSectionBtn, setGenresSelected]);
 
   const nameBtn = name[0].toUpperCase() + name.slice(1);
 
