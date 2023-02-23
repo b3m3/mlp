@@ -40,7 +40,7 @@ const Photos = () => {
                         setInitialSlide(i);
                       }}
                     >
-                      <Backdrop path={file_path} actor light />
+                      <Backdrop path={file_path} light />
                     </li>
                   ))}
                 </ul>

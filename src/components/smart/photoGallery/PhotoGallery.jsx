@@ -26,7 +26,7 @@ const PhotoGallery = ({ results, initial, setShowGallery }) => {
       >
         {results && results.profiles.map(({ file_path }, i) => (
           <SwiperSlide key={i}>
-            <Backdrop path={file_path} actor ligth />
+            <Backdrop path={file_path} ligth />
           </SwiperSlide>
         ))}
 
