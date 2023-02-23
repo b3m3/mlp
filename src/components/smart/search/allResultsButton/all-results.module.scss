@@ -1,0 +1,41 @@
+.btn {
+  position: relative;
+  overflow: hidden;
+  padding: 7px 0;
+  margin: .625rem 0 0 0;
+  background: rgba(255, 255, 255, .1);
+  border-radius: 5px;
+  text-align: center;
+  font-weight: 400;
+  font-size: .875rem;
+
+  @media (any-hover: hover) {
+    &:hover {
+      &::before {
+        animation: move .6s linear;
+      }
+    }
+  }
+
+  &::before {
+    position: absolute;
+    content: "";
+    background: var(--gray-gradient);
+    opacity: .4;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
