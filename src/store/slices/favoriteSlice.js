@@ -20,7 +20,7 @@ const favoriteSlice = createSlice({
       state.favoritesList = state.favoritesList.filter(el => el.id !== actions.payload)
     },
     clearFavorite: (state) => {
-      state.favoritesList = state.favoritesList([])
+      state.favoritesList = []
     }
   },
 });

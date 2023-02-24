@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeFavorite } from '../../store/slices/favoriteSlice';
+import { clearFavorite } from '../../store/slices/favoriteSlice';
 
 import VideoCard from '../../components/ordinary/videoCard/VideoCard';
 import EmptyPage from '../../components/ui/errors/emptyPage/EmptyPage';
@@ -19,16 +19,11 @@ const Favorites = () => {
   const language = useSelector(state => state.language.language);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const onClearArr = (e) => {
-      if (!favoriteList.length && e.target) {
-        dispatch(removeFavorite());
-        removeFromLocalStorage(FAVORITE_KEY);
-      }
-    };
-
-    document.addEventListener('click', onClearArr);
-    return() => document.removeEventListener('click', onClearArr);
+  const onClearArr = useCallback((e) => {
+    if (e.target && favoriteList.length === 1) {
+      dispatch(clearFavorite());
+      removeFromLocalStorage(FAVORITE_KEY);
+    }
   }, [favoriteList, dispatch]);
 
   return (
@@ -38,7 +33,7 @@ const Favorites = () => {
       {favoriteList.length > 0
         ? <ul>
             {favoriteList.map(({id, poster_path, vote_average, title, name, type}) => (
-              <li key={id}>
+              <li key={id} onClick={onClearArr}>
                 <VideoCard 
                   id={id}
                   poster_path={poster_path}
