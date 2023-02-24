@@ -48,6 +48,7 @@ export const API_TV_SHOWS = '/tv';
 export const API_ACTORS = '/person';
 export const API_SEARCH = '/search';
 export const API_DISCOVER = '/discover';
+export const API_SEASON = '/season';
 
 export const API_VIDEOS = '/videos';
 export const API_RECOMMEND = '/recommendations';
