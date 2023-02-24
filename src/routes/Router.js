@@ -9,6 +9,7 @@ import Favorites from '../pages/favorites/Favorites';
 import Category from '../containers/category/Category';
 import InfoVideo from '../containers/infoVideo/InfoVideo';
 import InfoActor from '../containers/infoActor/InfoActor';
+import TvSeasons from '../containers/tvSeasons/TvSeasons';
 import NotFound from '../pages/notFound/NotFound';
 
 const Router = () => {
@@ -21,9 +22,10 @@ const Router = () => {
     {path: '/:lang/person', element: <Actors/>},
     {path: '/:lang/favorites', element: <Favorites/>},
     {path: '/:lang/:type/:category/:page', element: <Category/>},
+    {path: '/:lang/:type/:category/:id/:page', element: <Category/>},
     {path: '/:lang/:type/:id', element: <InfoVideo />},
     {path: '/:lang/person/:id', element: <InfoActor />},
-    {path: '/:lang/:type/:category/:id/:page', element: <Category/>},
+    {path: '/:lang/tv/:id/season', element: <TvSeasons />},
     {path: '*', element: <NotFound/>},
     {path: '/', element: <Navigate to={'/'+language} replace/>}
   ]);
