@@ -24,6 +24,8 @@ const Dates = ({ release, first, last, birthday, deathday, status, fullDate }) =
     return date.split('-')[0];
   }, []);
 
+  const isData = release || first || last || birthday || deathday || fullDate;
+
   const body = useMemo(() => {
     return (
       fullDate
@@ -40,11 +42,15 @@ const Dates = ({ release, first, last, birthday, deathday, status, fullDate }) =
     )
   }, [getYear, translate, language, release, first, last, birthday, deathday, status, fullDate]);
 
-  return (    
-    <div className={style.wrapp}>
-      <AiFillCalendar />
-      { body }
-    </div>
+  return (   
+    <>
+      {isData && 
+        <div className={style.wrapp}>
+          <AiFillCalendar />
+          { body }
+        </div>
+      }
+    </> 
   );
 }
 
