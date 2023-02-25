@@ -7,6 +7,7 @@ import { API_ROOT, API_KEY, API_LANGUAGE, API_TV_SHOWS, API_SEASON } from '../..
 import Poster from '../../ui/poster/Poster';
 import Episodes from '../episodes/Episodes';
 import EpisodesButtons from '../episodesButtons/EpisodesButtons';
+import Error from '../../ui/errors/error/Error';
 
 import style from './season-number.module.scss';
 
@@ -29,6 +30,7 @@ const SeasonNumber = ({ id, language, episodeNumber, setEpisodeNumber }) => {
 
   return (
     <div className={style.wrapp}>
+      {errorApi && <Error />}
       {results &&
         <>
           <div className={style.col}>
@@ -49,7 +51,6 @@ const SeasonNumber = ({ id, language, episodeNumber, setEpisodeNumber }) => {
 
           <Episodes 
             results={results.episodes} 
-            errorApi={errorApi}
             episodeNumber={episodeNumber}
           />
         </>
