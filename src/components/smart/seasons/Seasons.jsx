@@ -31,8 +31,8 @@ const Seasons = ({ language, id, setBackground, setEpisodeNumber }) => {
 
   return (
     <div className={style.wrapp}>
+        {errorApi && <Error />}
         <ul>
-          {errorApi && <Error />}
           {results && results.seasons.map(({id, air_date, name, poster_path, season_number}) => (
             <li key={id}>
               <Link 

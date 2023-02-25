@@ -10,7 +10,7 @@ import style from './episodes.module.scss';
 
 const Episodes = ({ results, episodeNumber }) => {
   const item = useMemo(() => {
-    return results && {
+    return results && results.length > 0 && {
       id: results[episodeNumber].id,
       name: results[episodeNumber].name,
       vote_count: results[episodeNumber].vote_count,
