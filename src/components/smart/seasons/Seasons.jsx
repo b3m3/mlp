@@ -3,6 +3,7 @@ import { useFetching } from '../../../hooks/useFetching';
 import { Link, useLocation } from 'react-router-dom';
 
 import { API_ROOT, API_KEY, API_LANGUAGE, API_TV_SHOWS, API_SEASON } from '../../../constants/api';
+import { setDocumentTitle } from '../../../utils/functions';
 import Poster from '../../ui/poster/Poster';
 import Error from '../../ui/errors/error/Error';
 
@@ -25,6 +26,7 @@ const Seasons = ({ language, id, setBackground, setEpisodeNumber }) => {
 
   useEffect(() => {
     if (results) {
+      setDocumentTitle(results.name);
       setBackground(results.backdrop_path);
     }
   }, [results, setBackground]);

@@ -7,5 +7,5 @@ export const getTitleLang = (arr, lang) => {
 };
 
 export const setDocumentTitle = title => {
-  return document.title = `Movies lib | ${title}`;
+  return document.title = `Movies lib | ${title ? title : 'Search movies, tv shows, actors'}`;
 }
