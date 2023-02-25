@@ -1,0 +1,41 @@
+.wrapp {
+  & ul {
+    display: grid;
+    align-items: end;
+    grid-template: auto / repeat(8, 1fr);
+    gap: .625rem;
+
+    @media screen and (max-width: 1024px) {
+      grid-template: auto / repeat(5, 1fr);
+    }
+
+    @media screen and (max-width: 768px) {
+      grid-template: auto / repeat(3, 1fr);
+    }
+
+    @media screen and (max-width: 450px) {
+      grid-template: auto / repeat(2, 1fr);
+    }
+  }
+
+  & li {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow: hidden;
+
+    & p {
+      display: flex;
+      gap: .3125rem;
+      font-size: .7625rem;
+    }
+  }
+}
+
+.poster {
+  position: relative;
+  overflow: hidden;
+  border-radius: .3125rem;
+  padding: 75% 0;
+}
