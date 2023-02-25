@@ -1,0 +1,18 @@
+.wrapp {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4375rem;
+  
+  & button {
+    padding: .3125rem .625rem;
+    background: var(--white-01);
+    border-radius: .3125rem;
+    transition: .3s;
+
+    @media (any-hover: hover) {
+      &:hover {
+        background: #ffffff4d;
+      }
+    }
+  }
+}
