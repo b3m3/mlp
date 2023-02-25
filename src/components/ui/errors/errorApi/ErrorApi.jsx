@@ -11,7 +11,6 @@ const ErrorApi = ({ navigation }) => {
 
       <div className={style.body}>
         <img src={ErrorImg} alt="error" />
-        <h4>Go back or reload the page</h4>
       </div>
     </div>
   );

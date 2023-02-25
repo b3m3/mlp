@@ -1,0 +1,12 @@
+.wrapp {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.img {
+  width: 100%;
+  max-width: 31.25rem;
+  margin: 0 auto;
+  object-fit: contain;
+}
