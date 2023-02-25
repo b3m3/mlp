@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper';
+import { Navigation, FreeMode } from 'swiper';
 import { useFetching } from '../../../hooks/useFetching';
 
 import VideoCard from '../../ordinary/videoCard/VideoCard';
@@ -15,6 +15,7 @@ import { getTitleLang } from '../../../utils/functions';
 import style from './credits.module.scss';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import "swiper/css/free-mode";
 
 const breakPoints = {
   320: {slidesPerView: 2},
@@ -61,12 +62,13 @@ const Credits = ({ url, titles, prevClass, nextClass, resultName, actors, fullCo
           </div>
 
           <Swiper
-            modules={[Navigation]}
+            style={{width: '100%'}}
+            modules={[Navigation, FreeMode]}
             spaceBetween={10}
             loop={results[resultName].length > 5 ? true : false}
             breakpoints={ fullContainer ? breakPointsFull : breakPoints}
             navigation={navigation}
-            style={{width: '100%'}}
+            freeMode={true}
           >
             {results 
               ? results[resultName].map(props => (

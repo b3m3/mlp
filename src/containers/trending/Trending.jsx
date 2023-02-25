@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation, Parallax } from 'swiper';
+import { Pagination, Navigation, Parallax, FreeMode } from 'swiper';
 import { useSelector } from 'react-redux';
 import { useFetching } from '../../hooks/useFetching';
 
@@ -16,6 +16,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-cards';
 import 'swiper/css/effect-coverflow';
+import "swiper/css/free-mode";
 
 const breakPoints = {
   320: {slidesPerView: 1},
@@ -62,16 +63,17 @@ const Trending = ({ item, actors }) => {
         : <Swiper
             className={style.swiper}
             style={{width: '100%'}}
-            modules={[Navigation, Pagination, Parallax]}
+            modules={[Navigation, Pagination, Parallax, FreeMode]}
             speed={800}
-            parallax={true}
-            pagination={!actors && {clickable: true}}
             initialSlide={3}
             spaceBetween={20}
             loop={true}
+            parallax={true}
+            freeMode={actors && true}
+            pagination={!actors && {clickable: true}}
+            centeredSlides={!actors && true}
             navigation={navigation}
             breakpoints={actors ? breakPointsActors : breakPoints}
-            centeredSlides={!actors && true}
           >
             {results
               ? results.results.map(props => (
