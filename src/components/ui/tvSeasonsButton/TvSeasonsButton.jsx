@@ -16,7 +16,7 @@ const TvSeasonsButton = ({id}) => {
   const language = useSelector(state => state.language.language);
   const title = getTitleLang(titles, language);
 
-  const link = '/'+language+API_TV_SHOWS+'/'+id+API_SEASON;
+  const link = '/'+language+API_TV_SHOWS+'/'+id+API_SEASON+'/'+1;
 
   return (
     <Link 

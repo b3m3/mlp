@@ -21,6 +21,7 @@ import ErrorApi from '../../components/ui/errors/errorApi/ErrorApi';
 import Loading from '../../components/ui/loading/Loading';
 import Votes from '../../components/ordinary/votes/Votes';
 import Back from '../../components/ui/back/Back';
+import TvSeasonsButton from '../../components/ui/tvSeasonsButton/TvSeasonsButton';
 
 import { API_ROOT, API_KEY, API_LANGUAGE, API_CREDITS, API_RECOMMEND } from '../../constants/api';
 import { setDocumentTitle } from '../../utils/functions';
@@ -58,13 +59,13 @@ const InfoVideo = () => {
 
   useEffect(() => {
     if (results) {
-      setDocumentTitle(results.title ? results.title : results.name)
+      setDocumentTitle(results.title ? results.title : results.name);
     }
   }, [results]);
 
   useEffect(() => {
     dispatch(onActiveInfo());
-  }, [dispatch, infoState, id])
+  }, [dispatch, infoState]);
 
   return (
     <section>
@@ -108,14 +109,20 @@ const InfoVideo = () => {
                       </div>
 
                       <div className={style.col}>
-                        <Poster path={results.poster_path}/>
-                        <FavoriteButton 
-                          id={parseInt(id)}
-                          poster_path={results.poster_path}
-                          title={results.title}
-                          name={results.name}
-                          vote_average={results.vote_average}
-                        />
+                        <figure>
+                          <Poster path={results.poster_path}/>
+                          <FavoriteButton 
+                            id={parseInt(id)}
+                            poster_path={results.poster_path}
+                            title={results.title}
+                            name={results.name}
+                            vote_average={results.vote_average}
+                          />
+                        </figure>
+
+                        {results.seasons && results.first_air_date &&
+                          <TvSeasonsButton id={id} />
+                        }
                       </div>
                     </div>
 
