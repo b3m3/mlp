@@ -37,6 +37,23 @@
   flex-direction: column;
   gap: 20px;
 
+  &__title {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.25rem;
+
+    & button {
+      max-width: 6.25rem;
+    }
+
+    & span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: rotate(90deg);
+    }
+  }
+
   & h2 {
     line-height: 1;
   }
