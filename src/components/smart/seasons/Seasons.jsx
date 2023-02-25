@@ -1,6 +1,6 @@
 import { useCallback, useEffect, forwardRef } from 'react';
 import { useFetching } from '../../../hooks/useFetching';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 
 import { API_ROOT, API_KEY, API_LANGUAGE, API_TV_SHOWS, API_SEASON } from '../../../constants/api';
 import { setDocumentTitle } from '../../../utils/functions';
@@ -14,6 +14,9 @@ const Seasons = forwardRef(({ language, id, setBackground, setEpisodeNumber }, r
 
   const { results, errorApi } = useFetching(url);
   const { pathname } = useLocation();
+  const { number } = useParams();
+
+  const activeCardStyle = {borderBottom: '4px solid var(--blue-400)'}
 
   const link = useCallback((num) => {
     const index = pathname.indexOf(API_SEASON)
@@ -35,12 +38,13 @@ const Seasons = forwardRef(({ language, id, setBackground, setEpisodeNumber }, r
     <div className={style.wrapp} ref={ref}>
         {errorApi && <Error />}
         <ul>
-          {results && results.seasons.map(({id, air_date, name, poster_path, season_number}) => (
+          {results && results.seasons.map(({id, air_date, name, poster_path, season_number}, i) => (
             <li key={id}>
               <Link 
                 className={style.poster} 
                 onClick={() => setEpisodeNumber(0)}
                 to={link(season_number)}
+                style={+number === i +1 ? activeCardStyle : null}
               >
                 <Poster path={poster_path} />
               </Link>
