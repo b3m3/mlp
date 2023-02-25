@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { onActiveInfo } from '../../store/slices/infoSlice';
+import { API_TV_SHOWS } from '../../constants/api';
 
 import Back from '../../components/ui/back/Back';
 import Seasons from '../../components/smart/seasons/Seasons';
@@ -28,7 +29,7 @@ const InfoSeasons = () => {
   return (
     <section className={style.wrapp}>
       <Background path={background} />
-      <Back path={-1} />
+      <Back path={`/${language}${API_TV_SHOWS}/${id}`} />
 
       <div className={style.body}>
         <div className={style.col}>
