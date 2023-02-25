@@ -20,8 +20,6 @@ const SeasonNumber = ({ id, language, episodeNumber, setEpisodeNumber }) => {
   const { results, errorApi } = useFetching(url);
   
   useEffect(() => {
-    window.scrollTo(0, 0);
-    
     if (results) {
       setNumberButtons(results.episodes.length)
     }

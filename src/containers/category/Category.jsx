@@ -62,7 +62,6 @@ const Category = () => {
   useEffect(() => {
     setResults(null);
     setNoSearchResults(false);
-    window.scrollTo(0, 0);
   }, [language, pathname, isSearch, isDiscover, setResults]);
 
   useEffect(() => {
