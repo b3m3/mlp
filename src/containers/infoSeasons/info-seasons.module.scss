@@ -1,0 +1,13 @@
+.wrapp {
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+}
+
+.body {
+  padding: 1.875rem;
+  border-radius: var(--b-radius);
+  background: var(--blue-400-01);
+  -webkit-backdrop-filter: blur(.9375rem);
+  backdrop-filter: blur(.9375rem);
+}
