@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -21,6 +21,7 @@ const InfoSeasons = () => {
   const dispatch = useDispatch();
 
   const { id } = useParams();
+  const refSeasons = useRef(null);
 
   useEffect(() => {
     dispatch(onActiveInfo());
@@ -33,19 +34,21 @@ const InfoSeasons = () => {
 
       <div className={style.body}>
         <div className={style.col}>
-          <SeasonNumber 
+          <SeasonNumber
             id={id}
             language={language}
             episodeNumber={episodeNumber}
             setEpisodeNumber={setEpisodeNumber}
+            refSeasons={refSeasons}
           />
         </div>
         <div className={style.col}>
-          <Seasons 
+          <Seasons
             id={id}
             language={language}
             setBackground={setBackground}
             setEpisodeNumber={setEpisodeNumber}
+            ref={refSeasons}
           />
         </div>
       </div>

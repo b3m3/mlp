@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, forwardRef } from 'react';
 import { useFetching } from '../../../hooks/useFetching';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ import Error from '../../ui/errors/error/Error';
 
 import style from './seasons.module.scss';
 
-const Seasons = ({ language, id, setBackground, setEpisodeNumber }) => {
+const Seasons = forwardRef(({ language, id, setBackground, setEpisodeNumber }, ref) => {
   const url = `${API_ROOT}${API_TV_SHOWS}/${id}${API_KEY}${API_LANGUAGE}${language}`;
 
   const { results, errorApi } = useFetching(url);
@@ -32,7 +32,7 @@ const Seasons = ({ language, id, setBackground, setEpisodeNumber }) => {
   }, [results, setBackground]);
 
   return (
-    <div className={style.wrapp}>
+    <div className={style.wrapp} ref={ref}>
         {errorApi && <Error />}
         <ul>
           {results && results.seasons.map(({id, air_date, name, poster_path, season_number}) => (
@@ -53,6 +53,6 @@ const Seasons = ({ language, id, setBackground, setEpisodeNumber }) => {
         </ul>
     </div>
   );
-}
+})
 
 export default Seasons;
