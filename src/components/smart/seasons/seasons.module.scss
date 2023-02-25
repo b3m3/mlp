@@ -1,20 +1,19 @@
 .wrapp {
   & ul {
     display: grid;
-    align-items: end;
-    grid-template: auto / repeat(8, 1fr);
+    grid-template: 1fr / repeat(8, 1fr);
     gap: .625rem;
 
     @media screen and (max-width: 1024px) {
-      grid-template: auto / repeat(5, 1fr);
+      grid-template: 1fr / repeat(5, 1fr);
     }
 
     @media screen and (max-width: 768px) {
-      grid-template: auto / repeat(3, 1fr);
+      grid-template: 1fr / repeat(3, 1fr);
     }
 
     @media screen and (max-width: 450px) {
-      grid-template: auto / repeat(2, 1fr);
+      grid-template: 1fr / repeat(2, 1fr);
     }
   }
 
@@ -22,7 +21,7 @@
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: .3125rem;
     overflow: hidden;
 
     & p {
