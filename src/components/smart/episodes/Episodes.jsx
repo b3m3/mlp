@@ -48,8 +48,8 @@ const Episodes = ({ results, episodeNumber }) => {
           </div>
           {guest_stars && guest_stars.length > 0 &&
             <ul className={style.actors}>
-              {guest_stars.map(props => (
-                <li key={props.id}>
+              {guest_stars.map((props, i) => (
+                <li key={props.id + i}>
                   <ActorCard {...props} />
                 </li>
               ))}
