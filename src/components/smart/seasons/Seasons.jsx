@@ -38,13 +38,13 @@ const Seasons = forwardRef(({ language, id, setBackground, setEpisodeNumber }, r
     <div className={style.wrapp} ref={ref}>
         {errorApi && <Error />}
         <ul>
-          {results && results.seasons.map(({id, air_date, name, poster_path, season_number}, i) => (
+          {results && results.seasons.map(({id, air_date, name, poster_path, season_number}) => (
             <li key={id}>
               <Link 
                 className={style.poster} 
                 onClick={() => setEpisodeNumber(0)}
                 to={link(season_number)}
-                style={+number === i ? activeCardStyle : null}
+                style={+season_number === +number ? activeCardStyle : null}
               >
                 <Poster path={poster_path} />
               </Link>
