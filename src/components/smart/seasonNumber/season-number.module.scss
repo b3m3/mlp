@@ -1,21 +1,10 @@
 .col {
   position: relative;
   display: flex;
-  gap: 30px;
-  margin-bottom: 3.125rem;
+  gap: 1.875rem;
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
-  }
-
-  &::before {
-    position: absolute;
-    content: '';
-    bottom: -25px;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: var(--white-01);
   }
 }
 
@@ -41,6 +30,10 @@
     display: inline-flex;
     align-items: center;
     gap: 1.25rem;
+
+    @media screen and (max-width: 768px) {
+      justify-content: center;
+    }
 
     & button {
       max-width: 6.25rem;
