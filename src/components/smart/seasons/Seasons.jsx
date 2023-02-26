@@ -44,7 +44,7 @@ const Seasons = forwardRef(({ language, id, setBackground, setEpisodeNumber }, r
                 className={style.poster} 
                 onClick={() => setEpisodeNumber(0)}
                 to={link(season_number)}
-                style={+number === i +1 ? activeCardStyle : null}
+                style={+number === i ? activeCardStyle : null}
               >
                 <Poster path={poster_path} />
               </Link>
