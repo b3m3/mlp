@@ -6,8 +6,9 @@ import LogoTmdb from '../../components/ui/logoTmdb/LogoTmdb';
 import style from './footer.module.scss';
 
 const links = [
-  {link: 'https://www.themoviedb.org/', name: 'TMDb'},
-  {link: 'https://twitter.com/themoviedb', name: 'TMDb Twitter'}
+  {link: 'https://www.themoviedb.org/', name: 'TMDB'},
+  {link: 'https://www.themoviedb.org/signup', name: 'Join TMDB'},
+  {link: 'https://twitter.com/themoviedb', name: 'Twitter TMDB'}
 ];
 
 const Footer = () => {
