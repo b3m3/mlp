@@ -3,13 +3,15 @@ import menuSlice from './slices/menuSlice';
 import favoriteSlice from './slices/favoriteSlice';
 import languageSlice from './slices/languageSlice';
 import infoSlice from './slices/infoSlice';
+import authModalSlice from './slices/authModalSlice';
 
 const store = configureStore({
   reducer: {
     menu: menuSlice,
     favorite: favoriteSlice,
     language: languageSlice,
-    info: infoSlice
+    info: infoSlice,
+    modal: authModalSlice
   }
 })
 
