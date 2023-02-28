@@ -50,6 +50,12 @@ export const API_SEARCH = '/search';
 export const API_DISCOVER = '/discover';
 export const API_SEASON = '/season';
 
+export const API_AUTHENTICATION = '/authentication';
+export const API_TOKEN = '/token';
+export const API_SESSION = '/session';
+export const API_VALIDATE = '/validate_with_login';
+export const API_NEW = '/new';
+
 export const API_VIDEOS = '/videos';
 export const API_RECOMMEND = '/recommendations';
 export const API_REVIEWS = '/reviews';
@@ -60,7 +66,7 @@ export const API_DAY = '/day';
 export const API_WEEK = '/week';
 export const API_ACTORS_MOVIE_CREDITS = '/movie_credits';
 export const API_ACTORS_TV_CREDITS = '/tv_credits';
-export const API_ACTORS_IMAGES = '/images'
+export const API_ACTORS_IMAGES = '/images';
 
 // CATEGORY GENERAL
 export const API_POPULAR = '/popular';
