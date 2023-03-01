@@ -18,10 +18,11 @@
 .box {
   display: grid;
   justify-content: end;
-  grid-template: 2.375rem / repeat(2, 2.375rem);
+  grid-auto-flow: column;
+  grid-template: 2.375rem / auto;
   gap: .625rem;
 
   @media screen and (max-width: 1024px) {
-    grid-template: 2.375rem / repeat(3, 2.375rem);
+    grid-template: 2.375rem / auto;
   }
 }
