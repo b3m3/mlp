@@ -1,0 +1,13 @@
+.wrapp {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.poster {
+  position: relative;
+  height: 100%;
+  min-width: 2.375rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
