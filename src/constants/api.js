@@ -21,6 +21,7 @@ export const API_IMAGE_ORIGINAL = 'https://image.tmdb.org/t/p/original';
 export const API_LANGUAGE = '&language=';
 export const API_PAGE = '&page=';
 export const API_QUERY = '&query=';
+export const API_QUERY_SESSION = '&session_id=';
 
 // FOR DISCOVER
 export const API_POPULARITY = '&popularity';
@@ -44,7 +45,9 @@ export const API_UK = 'uk';
 
 // MAIN CATEGORY
 export const API_MOVIE = '/movie';
+export const API_MOVIES = '/movies';
 export const API_TV_SHOWS = '/tv';
+export const API_FAVORITE = '/favorite';
 export const API_ACTORS = '/person';
 export const API_SEARCH = '/search';
 export const API_DISCOVER = '/discover';
@@ -55,6 +58,8 @@ export const API_TOKEN = '/token';
 export const API_SESSION = '/session';
 export const API_VALIDATE = '/validate_with_login';
 export const API_NEW = '/new';
+
+export const API_ACCOUNT = '/account';
 
 export const API_VIDEOS = '/videos';
 export const API_RECOMMEND = '/recommendations';
@@ -96,3 +101,11 @@ export const TV_SHOWS_ON_THE_AIR = API_ROOT+API_TV_SHOWS+API_ON_THE_AIR+API_KEY;
 
 // ACTORS
 export const ACTORS_POPULAR = API_ROOT+API_ACTORS+API_POPULAR+API_KEY;
+
+// AUTH
+export const TOKEN = API_ROOT+API_AUTHENTICATION+API_TOKEN+API_NEW+API_KEY;
+export const VALIDATE = API_ROOT+API_AUTHENTICATION+API_TOKEN+API_VALIDATE+API_KEY;
+export const SESSION = API_ROOT+API_AUTHENTICATION+API_SESSION+API_NEW+API_KEY;
+
+// ACCOUNT
+export const ACCOUNT = API_ROOT+API_ACCOUNT+API_KEY+API_QUERY_SESSION;
