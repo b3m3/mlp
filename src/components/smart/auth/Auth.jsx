@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import { handleAuth } from '../../../store/slices/authSlice';
 import { openModal } from '../../../store/slices/authModalSlice';
+import { setUserId } from '../../../store/slices/userSlice';
 
 import AuthModal from '../../ordinary/authModal/AuthModal';
 import LogoutButton from '../../ui/logoutButton/LogoutButton';
@@ -52,13 +53,13 @@ const Auth = () => {
 
       axios.get(ACCOUNT+session_id)
         .then(data => {
-          console.log(data.data);
+          dispatch(setUserId(data.data.id));
           setUsername(data.data.username);
           setAvatarPath(data.data.avatar.tmdb.avatar_path);
         })
         .finally(() => setLoading(false));
     }
-  }, [session_id]);
+  }, [session_id, dispatch]);
 
   return (
     <div className={style.wrapp}>

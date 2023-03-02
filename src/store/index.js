@@ -5,6 +5,7 @@ import languageSlice from './slices/languageSlice';
 import infoSlice from './slices/infoSlice';
 import authModalSlice from './slices/authModalSlice';
 import authSlice from './slices/authSlice';
+import userSlice from './slices/userSlice';
 
 const store = configureStore({
   reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
     language: languageSlice,
     info: infoSlice,
     modal: authModalSlice,
-    auth: authSlice
+    auth: authSlice,
+    user: userSlice
   }
 })
 
