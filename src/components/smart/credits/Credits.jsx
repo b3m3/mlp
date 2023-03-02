@@ -71,7 +71,7 @@ const Credits = ({ url, titles, prevClass, nextClass, resultName, actors, fullCo
             freeMode={true}
           >
             {results 
-              ? results[resultName].map(props => (
+              ? results[resultName].map(props => props.adult !== true && (
                   <SwiperSlide key={props.credit_id ? props.credit_id : props.id}>
                     {actors 
                       ? <ActorCard {...props} /> 
