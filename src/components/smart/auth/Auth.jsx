@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import secureLocalStorage from "react-secure-storage";
 import axios from 'axios';
 
-import { handleUser } from '../../../store/slices/userSlice';
+import { handleAuth } from '../../../store/slices/authSlice';
 import { openModal } from '../../../store/slices/authModalSlice';
 
 import AuthModal from '../../ordinary/authModal/AuthModal';
@@ -23,14 +23,14 @@ const Auth = () => {
   const [username, setUsername] = useState(null);
 
   const modal = useSelector(state => state.modal.modal);
-  const user = useSelector(state => state.user.user);
+  const auth = useSelector(state => state.auth.auth);
   const dispatch = useDispatch();
 
   const session_id = secureLocalStorage.getItem(SESSION_ID_KEY);
 
   const handleLogout = useCallback(() => {
     secureLocalStorage.removeItem(SESSION_ID_KEY);
-    dispatch(handleUser(false));
+    dispatch(handleAuth(false));
   }, [dispatch]);
 
   const handModal = useCallback(() => {
@@ -38,13 +38,13 @@ const Auth = () => {
   }, [dispatch]);
 
   const getAuthState = useCallback(() => {
-    if (session_id) return dispatch(handleUser(true));
-    return dispatch(handleUser(false));
+    if (session_id) return dispatch(handleAuth(true));
+    return dispatch(handleAuth(false));
   }, [dispatch, session_id]);
 
   useEffect(() => {
     getAuthState();
-  }, [getAuthState, user]);
+  }, [getAuthState, auth]);
 
   useEffect(() => {
     if (session_id && session_id !== null) {
@@ -52,6 +52,7 @@ const Auth = () => {
 
       axios.get(ACCOUNT+session_id)
         .then(data => {
+          console.log(data.data);
           setUsername(data.data.username);
           setAvatarPath(data.data.avatar.tmdb.avatar_path);
         })
