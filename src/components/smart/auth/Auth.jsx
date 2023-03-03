@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import secureLocalStorage from "react-secure-storage";
 import axios from 'axios';
 
 import { handleAuth } from '../../../store/slices/authSlice';
@@ -27,10 +26,10 @@ const Auth = () => {
   const auth = useSelector(state => state.auth.auth);
   const dispatch = useDispatch();
 
-  const session_id = secureLocalStorage.getItem(SESSION_ID_KEY);
+  const session_id = localStorage.getItem(SESSION_ID_KEY);
 
   const handleLogout = useCallback(() => {
-    secureLocalStorage.removeItem(SESSION_ID_KEY);
+   localStorage.removeItem(SESSION_ID_KEY);
     dispatch(handleAuth(false));
   }, [dispatch]);
 

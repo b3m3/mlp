@@ -1,6 +1,5 @@
 import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import  secureLocalStorage  from  "react-secure-storage";
 import axios from 'axios';
 
 import { closeModal } from '../../../store/slices/authModalSlice';
@@ -112,7 +111,7 @@ const AuthModal = () => {
 
       postSession()
         .then(data => {
-          secureLocalStorage.setItem(SESSION_ID_KEY, data);
+          localStorage.setItem(SESSION_ID_KEY, data);
         })
         .catch(error => console.error(error));
         
@@ -120,11 +119,6 @@ const AuthModal = () => {
       setErrorInputValidate(true);
     }
   }, [userName, userPass, handleClose]);
-
-  // const onSubmit = (e) => {
-  //   e.preventDefault();
-  //   return secureLocalStorage.setItem(SESSION_ID_KEY, 'data');
-  // }
 
   return (
     <div className={style.wrapp}>
