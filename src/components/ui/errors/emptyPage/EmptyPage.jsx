@@ -7,7 +7,7 @@ import Empty from './img/Empty.webp';
 import style from './empty-page.module.scss';
 
 const titles = [
-  {en: 'Favorites list is empty', uk: 'Список обраного порожній', ru: 'Список избранного пуст'}
+  {en: 'List is empty', uk: 'Список порожній', ru: 'Список пуст'}
 ];
 
 const EmptyPage = () => {
