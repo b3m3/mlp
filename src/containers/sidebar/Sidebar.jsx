@@ -1,60 +1,72 @@
 import { useLocation } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 
-import { onCloseInfo } from '../../store/slices/infoSlice';
 import { setFavoriteMovies, setFavoriteTv } from '../../store/slices/favoriteSlice';
+import { onCloseInfo } from '../../store/slices/infoSlice';
 
-import style from './sidebar.module.scss';
 import Navbar from '../../components/ordinary/navbar/Navbar';
 import { API_ACCOUNT, API_FAVORITE, API_KEY, API_MOVIES, API_QUERY_SESSION, API_ROOT, API_TV_SHOWS } from '../../constants/api';
 import { SESSION_ID_KEY } from '../../constants/localStorage';
-import axios from 'axios';
+
+import style from './sidebar.module.scss';
 
 const Sidebar = () => {
   const [isActive, setIsActive] = useState(false);
+  const [pageMovie, setPageMovie] = useState(1);
+  const [pageTv, setPageTv] = useState(1);
 
-  const dispatch = useDispatch();
   const menuState = useSelector(state => state.menu.menuState);
   const infoState = useSelector(state => state.info.infoState);
   const userId = useSelector(state => state.user.userId);
-  const favoriteMovies = useSelector(state => state.favorite.favoriteMovies);
-  const favoriteTv = useSelector(state => state.favorite.favoriteTv);
-  const session_id = localStorage.getItem(SESSION_ID_KEY);
-
-  // console.log('favoriteMovies', favoriteMovies);
-  // console.log('favoriteTv', favoriteTv);
-
+  const dispatch = useDispatch();
+  
   const { pathname } = useLocation();
+  const session_id = localStorage.getItem(SESSION_ID_KEY);
   const className = `${style.wrapp} ${menuState && style.active} ${isActive && style.hidden}`;
 
   const url = useCallback((type) => {
     return API_ROOT+API_ACCOUNT+'/'+userId+API_FAVORITE+type+API_KEY+API_QUERY_SESSION+session_id;
   }, [userId, session_id])
 
-  const getFavorites = useCallback(async (url, slice) => {
-    await axios
-      .get(url)
+  const getData = useCallback(async (url, setState) => {
+    return await axios.get(url)
       .then(data => {
-        dispatch(slice(data.data.results))
-        return;
+        setState(data.data.total_pages)
+        return data.data
       })
-      .catch(err => console.log(err))
-  }, [dispatch]);
+      .catch(err => console.error(err))
+  }, [])
 
+  const getFavorites = useCallback(async (url, page, setState, slice) => {
+    const list = [];
+
+    for (let i = 1; i < page + 2; i++) {
+      await getData(`${url}&page=${i}`, setState)
+        .then(data => list.push(...data.results))
+        .catch(err => console.error(err))
+    }
+
+    return dispatch(slice(list))
+  }, [getData, dispatch]);
 
   useEffect(() => {
-    getFavorites(url(API_MOVIES), setFavoriteMovies);
-    getFavorites(url(API_TV_SHOWS), setFavoriteTv);
-    
-    document.addEventListener('click', e => {
+    getFavorites(url(API_MOVIES), pageMovie, setPageMovie, setFavoriteMovies);
+    getFavorites(url(API_TV_SHOWS), pageTv, setPageTv, setFavoriteTv);
+
+    const handleClick = (e) => {
       if (e.target.closest('.fav')) {
-        getFavorites(url(API_MOVIES), setFavoriteMovies);
-        getFavorites(url(API_TV_SHOWS), setFavoriteTv);
-        return;
+        getFavorites(url(API_MOVIES), pageMovie, setPageMovie, setFavoriteMovies);
+        getFavorites(url(API_TV_SHOWS), pageTv, setPageTv, setFavoriteTv);
       } 
-    }) 
-  }, [getFavorites, url]);
+    }
+
+    document.addEventListener('click', handleClick);
+    setTimeout(() => {
+      return() => document.removeEventListener('click', handleClick);
+    }, 3000);
+  }, [getFavorites, url, pageMovie, pageTv]);
 
   useEffect(() => {
     dispatch(onCloseInfo());
