@@ -1,5 +1,6 @@
 import VideoCard from '../videoCard/VideoCard';
 import EmptyPage from '../../ui/errors/emptyPage/EmptyPage';
+import Loading from '../../ui/loading/Loading';
 
 import style from './favorite-list.module.scss';
 
@@ -18,6 +19,8 @@ const FavoriteList = ({ title, results, type }) => {
           </ul>
         : <EmptyPage />
       }
+      
+      {!results && <Loading />}
     </div>
   );
 }

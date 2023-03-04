@@ -12,8 +12,12 @@ import style from './navbar.module.scss';
 
 const Navbar = ({ sidebar }) => {
   const menuState = useSelector(state => state.menu.menuState);
-  const favoriteList = useSelector(state => state.favorite.favoritesList);
   const language = useSelector(state => state.language.language);
+  const favoriteMovies = useSelector(state => state.favorite.favoriteMovies);
+  const favoriteTv = useSelector(state => state.favorite.favoriteTv);
+
+  const isFavorite = favoriteMovies && favoriteTv && (favoriteMovies.length > 0 || favoriteTv.length > 0);
+  const favoriteCount = isFavorite && favoriteMovies.length + favoriteTv.length;
 
   const links = useMemo(() => [
     {
@@ -54,9 +58,10 @@ const Navbar = ({ sidebar }) => {
               <span>{sidebar ? name[language] : name['en']}</span>
             </NavLink>
 
-            {sidebar && links.length -1 === i && favoriteList && favoriteList.length > 0 &&
+            {/* sidebar counter */}
+            {sidebar && links.length -1 === i && isFavorite &&
               <i className={menuState ? style.open : ''}>
-                {favoriteList.length}
+                {favoriteCount}
               </i>
             }
           </li>

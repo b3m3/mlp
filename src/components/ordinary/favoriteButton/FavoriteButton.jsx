@@ -18,13 +18,15 @@ const FavoriteButton = ({ id, type }) => {
   const userId = useSelector(state => state.user.userId);
   const favoriteMovies = useSelector(state => state.favorite.favoriteMovies);
   const favoriteTv = useSelector(state => state.favorite.favoriteTv);
-  const session_id = localStorage.getItem(SESSION_ID_KEY)
+  const session_id = localStorage.getItem(SESSION_ID_KEY);
 
   const { pathname } = useLocation();
 
   const currentType = useMemo(() => {
     const path = getTypeFromLocation(pathname);
-    if (path !== '/person' && path !== '/favorites') return path;
+    if (path !== '/person' && path !== '/favorites') {
+      return path;
+    }
     return type;
   }, [pathname, type]);
 
@@ -42,9 +44,11 @@ const FavoriteButton = ({ id, type }) => {
   }, [currentType, id, url]);
 
   useEffect(() => {
-    if (favoriteMovies && favoriteTv) {
-      setIsActive(false);
+    setIsActive(false);
+    if (favoriteMovies) {
       favoriteMovies.map(el => el.id === id && setIsActive(true));
+    }
+    if (favoriteTv) {
       favoriteTv.map(el => el.id === id && setIsActive(true));
     }
   }, [favoriteMovies, favoriteTv, id])
