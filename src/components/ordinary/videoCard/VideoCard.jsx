@@ -9,7 +9,7 @@ import { getTypeFromLocation } from '../../../utils/functions';
 
 import style from './video-card.module.scss';
 
-const VideoCard = ({id, poster_path, title, name, type, vote_average, small}) => {
+const VideoCard = ({id, poster_path, title, name, type, vote_average, like}) => {
   const { pathname } = useLocation();
   const language = useSelector(state => state.language.language);
 
@@ -17,7 +17,7 @@ const VideoCard = ({id, poster_path, title, name, type, vote_average, small}) =>
   const isPerson = currentType === '/person';
   const isFavorites = currentType === '/favorites';
 
-  const favoriteBtnProps = {id, poster_path, title, name, vote_average}
+  const favoriteBtnProps = {id, type}
 
   const link = `/${language}${isPerson || isFavorites ? type : currentType}/${id}`;
 
@@ -29,14 +29,10 @@ const VideoCard = ({id, poster_path, title, name, type, vote_average, small}) =>
         </Link>
       </div>
 
-      <FavoriteButton {...favoriteBtnProps} type={type} />
+      {!like && <FavoriteButton {...favoriteBtnProps} />}
 
-      {!small &&
-        <>
-          <h5>{title ? title : name}</h5>
-          <Rating rating={vote_average} />
-        </>
-      }
+      <h5>{title ? title : name}</h5>
+      <Rating rating={vote_average} />
     </div>
   );
 }

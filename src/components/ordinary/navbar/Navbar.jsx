@@ -50,7 +50,7 @@ const Navbar = ({ sidebar }) => {
 
   return (
     <nav className={style.wrapp}>
-      <ul>
+      <ul className={sidebar ? style.list : null}>
         {links.map(({name, path, icon, end}, i) => (
           <li key={i}>
             <NavLink to={path} end={end && end}>

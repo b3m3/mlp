@@ -75,7 +75,7 @@ const Credits = ({ url, titles, prevClass, nextClass, resultName, actors, fullCo
                   <SwiperSlide key={props.credit_id ? props.credit_id : props.id}>
                     {actors 
                       ? <ActorCard {...props} /> 
-                      : <VideoCard {...props} type={type} small />
+                      : <VideoCard {...props} type={type} like />
                     }
                   </SwiperSlide>
                 ))
