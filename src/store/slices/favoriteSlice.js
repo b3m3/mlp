@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  favoriteMovies: null,
-  favoriteTv: null,
+  favoriteMovies: [],
+  favoriteTv: [],
 };
 
 const favoriteSlice = createSlice({
