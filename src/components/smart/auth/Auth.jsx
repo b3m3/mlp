@@ -29,6 +29,7 @@ const Auth = () => {
   const handleLogout = useCallback(() => {
     localStorage.removeItem(SESSION_ID_KEY);
     dispatch(handleAuth(false));
+    window.location.reload(true);
   }, [dispatch]);
 
   const handlOpenModal = useCallback(() => {
