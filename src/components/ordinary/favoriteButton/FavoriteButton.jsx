@@ -1,6 +1,8 @@
 import { useState, useCallback, useEffect, useMemo, memo } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
+
+import { openModal } from '../../../store/slices/authModalSlice';
 
 import { getTypeFromLocation } from '../../../utils/functions';
 import { API_ACCOUNT, API_FAVORITE, API_KEY, API_QUERY_SESSION, API_ROOT } from '../../../constants/api';
@@ -15,10 +17,13 @@ const styleBtn = {background: 'rgba(243, 46, 46, 0.15)'}
 const FavoriteButton = ({ id, type }) => {
   const [isActive, setIsActive] = useState(false);
 
+  const auth = useSelector(state => state.auth.auth);
   const userId = useSelector(state => state.user.userId);
   const favoriteMovies = useSelector(state => state.favorite.favoriteMovies);
   const favoriteTv = useSelector(state => state.favorite.favoriteTv);
   const session_id = localStorage.getItem(SESSION_ID_KEY);
+
+  const dispatch = useDispatch();
 
   const currentType = useMemo(() => {
     const path = getTypeFromLocation(window.location.pathname);
@@ -31,27 +36,35 @@ const FavoriteButton = ({ id, type }) => {
   }, [type]);
 
   const url = useMemo(() => {
-    return API_ROOT+API_ACCOUNT+'/'+userId+API_FAVORITE+API_KEY+API_QUERY_SESSION+session_id;
-  }, [userId, session_id]);
+    if (auth) {
+      return API_ROOT+API_ACCOUNT+'/'+userId+API_FAVORITE+API_KEY+API_QUERY_SESSION+session_id;
+    }
+  }, [userId, session_id, auth]);
 
   const handleFavorite = useCallback(() => {
-    axios.post(url, {
-      "media_type": currentType.split('/').pop(),
-      "media_id": id,
-      "favorite": !isActive
-    })
-    .catch(err => console.error(err))
-  }, [isActive, currentType, id, url]);
+    if (auth) {
+      axios.post(url, {
+        "media_type": currentType.split('/').pop(),
+        "media_id": id,
+        "favorite": !isActive
+      })
+      .catch(err => console.error(err))
+    } else {
+      dispatch(openModal());
+    }
+  }, [isActive, currentType, id, url, auth, dispatch]);
 
   const checkFavorite = useCallback((arr) => {
     arr.map(el => el.id === id && setIsActive(true));
   }, [id]);
 
   useEffect(() => {
-    setIsActive(false);
-    checkFavorite(favoriteMovies);
-    checkFavorite(favoriteTv);
-  }, [checkFavorite, favoriteTv, favoriteMovies]);
+    if (auth) {
+      setIsActive(false);
+      checkFavorite(favoriteMovies);
+      checkFavorite(favoriteTv);
+    }
+  }, [checkFavorite, favoriteTv, favoriteMovies, auth]);
   
   return (
     <div 
