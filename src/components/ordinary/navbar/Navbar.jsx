@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, memo } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
@@ -71,4 +71,4 @@ const Navbar = ({ sidebar }) => {
   );
 }
 
-export default Navbar;
+export default memo(Navbar);

@@ -39,7 +39,10 @@ const Sidebar = () => {
         setState(data.data.total_pages)
         return data.data
       })
-      .catch(err => console.error(err))
+      .catch(err => {
+        console.error(err);
+        return;
+      })
   }, [])
 
   const getFavorites = useCallback(async (url, page, setState, slice) => {
@@ -48,7 +51,10 @@ const Sidebar = () => {
     for (let i = 1; i < page + 2; i++) {
       await getData(`${url}&page=${i}`, setState)
         .then(data => list.push(...data.results))
-        .catch(err => console.error(err))
+        .catch(err => {
+          console.error(err);
+          return;
+        })
     }
 
     return dispatch(slice(list))
