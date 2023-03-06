@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 
+import EmptyPage from '../../components/ui/errors/emptyPage/EmptyPage';
 import FavoriteList from '../../components/ordinary/favoriteList/FavoriteList';
 import { getTitleLang } from '../../utils/functions';
 
@@ -18,22 +19,30 @@ const Favorites = () => {
   const favoriteMovies = useSelector(state => state.favorite.favoriteMovies);
   const favoriteTv = useSelector(state => state.favorite.favoriteTv);
 
-  const titleMovie = getTitleLang(titlesMovie, language)
-  const titleTv = getTitleLang(titlesTv, language)
+  const titleMovie = getTitleLang(titlesMovie, language);
+  const titleTv = getTitleLang(titlesTv, language);
+
+  const isFavoriteMovies = favoriteMovies && favoriteMovies.length === 0;
+  const isFavoriteTv = favoriteTv && favoriteTv.length === 0;
 
   return (
     <section className={style.wrapp}>
-      <FavoriteList 
-        results={favoriteMovies} 
-        type={'/movie'}
-        title={titleMovie}
-      />
+      {isFavoriteMovies && isFavoriteTv 
+        ? <EmptyPage />
+        : <>
+            <FavoriteList 
+              results={favoriteMovies} 
+              type={'/movie'}
+              title={titleMovie}
+            />
 
-      <FavoriteList 
-        results={favoriteTv}
-        type={'/tv'}
-        title={titleTv}
-      />
+            <FavoriteList 
+              results={favoriteTv}
+              type={'/tv'}
+              title={titleTv}
+            />
+          </>
+      }
     </section>
   );
 }
