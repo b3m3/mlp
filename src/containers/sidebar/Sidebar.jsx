@@ -20,6 +20,7 @@ const Sidebar = () => {
   const menuState = useSelector(state => state.menu.menuState);
   const infoState = useSelector(state => state.info.infoState);
   const userId = useSelector(state => state.user.userId);
+  const auth = useSelector(state => state.auth.auth);
   const dispatch = useDispatch();
   
   const { pathname } = useLocation();
@@ -27,8 +28,10 @@ const Sidebar = () => {
   const className = `${style.wrapp} ${menuState && style.active} ${isActive && style.hidden}`;
 
   const url = useCallback((type) => {
-    return API_ROOT+API_ACCOUNT+'/'+userId+API_FAVORITE+type+API_KEY+API_QUERY_SESSION+session_id;
-  }, [userId, session_id])
+    if (auth) {
+      return API_ROOT+API_ACCOUNT+'/'+userId+API_FAVORITE+type+API_KEY+API_QUERY_SESSION+session_id;
+    }
+  }, [userId, session_id, auth])
 
   const getData = useCallback(async (url, setState) => {
     return await axios.get(url)
@@ -52,21 +55,23 @@ const Sidebar = () => {
   }, [getData, dispatch]);
 
   useEffect(() => {
-    getFavorites(url(API_MOVIES), pageMovie, setPageMovie, setFavoriteMovies);
-    getFavorites(url(API_TV_SHOWS), pageTv, setPageTv, setFavoriteTv);
-
-    const handleClick = (e) => {
-      if (e.target.closest('.fav')) {
-        getFavorites(url(API_MOVIES), pageMovie, setPageMovie, setFavoriteMovies);
-        getFavorites(url(API_TV_SHOWS), pageTv, setPageTv, setFavoriteTv);
-      } 
+    if (auth) {
+      getFavorites(url(API_MOVIES), pageMovie, setPageMovie, setFavoriteMovies);
+      getFavorites(url(API_TV_SHOWS), pageTv, setPageTv, setFavoriteTv);
+  
+      const handleClick = (e) => {
+        if (e.target.closest('.fav')) {
+          getFavorites(url(API_MOVIES), pageMovie, setPageMovie, setFavoriteMovies);
+          getFavorites(url(API_TV_SHOWS), pageTv, setPageTv, setFavoriteTv);
+        } 
+      }
+  
+      document.addEventListener('click', handleClick);
+      setTimeout(() => {
+        return() => document.removeEventListener('click', handleClick);
+      }, 3000);
     }
-
-    document.addEventListener('click', handleClick);
-    setTimeout(() => {
-      return() => document.removeEventListener('click', handleClick);
-    }, 3000);
-  }, [getFavorites, url, pageMovie, pageTv]);
+  }, [getFavorites, url, pageMovie, pageTv, auth]);
 
   useEffect(() => {
     dispatch(onCloseInfo());

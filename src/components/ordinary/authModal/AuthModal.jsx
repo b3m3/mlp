@@ -7,7 +7,7 @@ import { closeModal } from '../../../store/slices/authModalSlice';
 import { TOKEN, VALIDATE, SESSION } from '../../../constants/api';
 import { SESSION_ID_KEY } from '../../../constants/localStorage';
 
-import Loading from '../../ui/loading/Loading';
+import LoadingWave from '../../ui/loadingWave/LoadingWave';
 
 import { IoCloseCircleSharp } from 'react-icons/io5';
 import { AiFillCheckCircle } from 'react-icons/ai';
@@ -28,7 +28,7 @@ const AuthModal = () => {
     return dispatch(closeModal());
   }, [dispatch]);
 
-  const handleChange = useCallback((e, setState) => {
+  const onInputChange = useCallback((e, setState) => {
     setErrorInputValidate(false);
     setState(e.target.value)
   }, []);
@@ -36,13 +36,15 @@ const AuthModal = () => {
   const inputBackground = errorInputValidate ? {background: 'rgba(237, 45, 45, .4)'} : null;
   const buttonBunStyle = loading ? {pointerEvents: 'all', opacity: '.3'}  : null;
 
-  const onSubmit = useCallback((e) => {
-    e.preventDefault();
+  const authUser = useCallback(() => {
+    seLoading(true);
 
-    const getToken = async () => {
+    const token = async () => {
       const result = await axios.get(TOKEN)
         .then(data => {
-          if (data.data.success) return data.data.request_token;
+          if (data && data.data.success) {
+            return data.data.request_token;
+          }
           return;
         })
         .catch(error => {
@@ -54,8 +56,8 @@ const AuthModal = () => {
       return result;
     };
 
-    const postValidate = async () => {
-      const request = await getToken();
+    const validate = async () => {
+      const request = await token();
 
       if (request) {
         const result = await axios
@@ -65,7 +67,9 @@ const AuthModal = () => {
             "request_token": request
           })
           .then(data => {
-            if (data.data.success) return data.data.request_token;
+            if (data && data.data.success) {
+              return data.data.request_token;
+            }
             return;
           })
           .catch(() => {
@@ -78,8 +82,8 @@ const AuthModal = () => {
       }
     };
 
-    const postSession = async () => {
-      const request = await postValidate();
+    const session = async () => {
+      const request = await validate();
 
       if (request) {
         const result = await axios
@@ -88,7 +92,9 @@ const AuthModal = () => {
           })
           .then(data => {
             setErrorApi(null);
-            if (data.data.success) return(data.data.session_id);
+            if (data && data.data.success) {
+              return data.data.session_id;
+            }
             return;
           })
           .catch(error => {
@@ -105,20 +111,33 @@ const AuthModal = () => {
       }
     };
 
+    const getSession = async () => {
+      return await session()
+        .then(data => {
+          if (data && data !== 'undefined') {
+            localStorage.setItem(SESSION_ID_KEY, data);
+            return;
+          }
+        })
+        .catch(error => {
+          setErrorApi(error.message);
+          return;
+        });
+    }
+
+    getSession();
+  }, [handleClose, userName, userPass]);
+
+  const onSubmit = useCallback((e) => {
+    e.preventDefault();
+
     if (userName.length && userPass.length >= 4) {
       setErrorInputValidate(false);
-      seLoading(true);
-
-      postSession()
-        .then(data => {
-          localStorage.setItem(SESSION_ID_KEY, data);
-        })
-        .catch(error => console.error(error));
-        
+      authUser();
     } else {
       setErrorInputValidate(true);
     }
-  }, [userName, userPass, handleClose]);
+  }, [userName, userPass, authUser]);
 
   return (
     <div className={style.wrapp}>
@@ -132,14 +151,14 @@ const AuthModal = () => {
 
         <input 
           type="text"
-          onChange={e => handleChange(e, setUserName)}
+          onChange={e => onInputChange(e, setUserName)}
           placeholder={'Username'}
           value={userName}
           style={inputBackground}
         />
         <input 
           type="password" 
-          onChange={e => handleChange(e, setUserPass)}
+          onChange={e => onInputChange(e, setUserPass)}
           placeholder={'Password'}
           value={userPass}
           style={inputBackground}
@@ -165,7 +184,7 @@ const AuthModal = () => {
           Login
         </button>
 
-        {loading && <Loading />}
+        {loading && <LoadingWave />}
         {isOk && <AiFillCheckCircle className={style.check}/>}
       </form>
     </div>
