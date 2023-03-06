@@ -8,7 +8,6 @@ export const useFetching = (url) => {
   useEffect(() => {
     axios({url: url})
       .then(res => {
-        window.scrollTo(0, 0);
         setResults(res.data);
         setErrorApi(false);
       })

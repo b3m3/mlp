@@ -24,6 +24,10 @@ const InfoSeasons = () => {
   const refSeasons = useRef(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+
+  useEffect(() => {
     dispatch(onActiveInfo());
   }, [dispatch, infoState]);
 

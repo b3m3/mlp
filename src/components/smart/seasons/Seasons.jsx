@@ -28,6 +28,10 @@ const Seasons = forwardRef(({ language, id, setBackground, setEpisodeNumber }, r
   }, []);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [number]);
+
+  useEffect(() => {
     if (results) {
       setDocumentTitle(results.name);
       setBackground(results.backdrop_path);

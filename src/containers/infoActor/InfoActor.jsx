@@ -42,6 +42,8 @@ const InfoActor = () => {
   const { results, errorApi } = useFetching(url);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+    
     if (results) {
       setDocumentTitle(results.name && results.name)
     }

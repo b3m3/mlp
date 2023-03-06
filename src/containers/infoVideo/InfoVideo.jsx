@@ -58,6 +58,8 @@ const InfoVideo = () => {
   }, [setResults, url, id]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+    
     if (results) {
       setDocumentTitle(results.title ? results.title : results.name);
     }
