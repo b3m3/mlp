@@ -29,52 +29,55 @@ const Auth = () => {
   const session_id = localStorage.getItem(SESSION_ID_KEY);
 
   const handleLogout = useCallback(() => {
-   localStorage.removeItem(SESSION_ID_KEY);
+    localStorage.removeItem(SESSION_ID_KEY);
     dispatch(handleAuth(false));
   }, [dispatch]);
 
-  const handModal = useCallback(() => {
+  const handlOpenModal = useCallback(() => {
     return dispatch(openModal());
   }, [dispatch]);
 
-  const getAuthState = useCallback(() => {
-    if (session_id) return dispatch(handleAuth(true));
-    return dispatch(handleAuth(false));
-  }, [dispatch, session_id]);
+  useEffect(() => {
+    setLoading(true);
+  }, [])
 
   useEffect(() => {
-    getAuthState();
-  }, [getAuthState, auth]);
+    const isSession = session_id && session_id !== null && session_id !== 'undefined';
 
-  useEffect(() => {
-    if (session_id && session_id !== null) {
-      setLoading(true);
-
-      axios.get(ACCOUNT+session_id)
+    if (isSession) {
+      axios
+        .get(ACCOUNT+session_id)
         .then(data => {
-          dispatch(setUserId(data.data.id));
-          setUsername(data.data.username);
-          setAvatarPath(data.data.avatar.tmdb.avatar_path);
+          if (data) {
+            dispatch(setUserId(data.data.id));
+            setUsername(data.data.username);
+            setAvatarPath(data.data.avatar.tmdb.avatar_path);
+            dispatch(handleAuth(true));
+          }
         })
+        .catch(() => dispatch(handleAuth(false)))
         .finally(() => setLoading(false));
+    } else {
+      dispatch(handleAuth(false));
     }
-  }, [session_id, dispatch]);
+  }, [dispatch, session_id]);
 
   return (
     <div className={style.wrapp}>
-      {session_id
-        ? <>
-          {loading
-            ? <Spinner/>
-            : <>            
-                <div className={style.poster}>
-                  <Poster path={avatarPath} />
-                </div>
-                <LogoutButton handleLogout={handleLogout} username={username} />
-              </>
-          }
+      {loading
+        ? <Spinner />
+        : <>
+            {auth
+              ? <>            
+                  <div className={style.poster}>
+                    <Poster path={avatarPath} />
+                  </div>
+                  <LogoutButton handleLogout={handleLogout} username={username} />
+                </>
+              : <LoginButton handlOpenModal={handlOpenModal} />
+            }
           </>
-        : <LoginButton handModal={handModal} />}
+      }
 
       {modal && <AuthModal />}
     </div>
