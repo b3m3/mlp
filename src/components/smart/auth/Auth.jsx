@@ -57,6 +57,7 @@ const Auth = () => {
         .finally(() => setLoading(false));
     } else {
       dispatch(handleAuth(false));
+      setLoading(false);
     }
   }, [dispatch, session_id]);
 
