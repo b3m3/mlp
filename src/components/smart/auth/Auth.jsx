@@ -6,7 +6,6 @@ import { handleAuth } from '../../../store/slices/authSlice';
 import { openModal } from '../../../store/slices/authModalSlice';
 import { setUserId } from '../../../store/slices/userSlice';
 
-import AuthModal from '../../ordinary/authModal/AuthModal';
 import LogoutButton from '../../ui/logoutButton/LogoutButton';
 import LoginButton from '../../ui/loginButton/LoginButton';
 import Poster from '../../ui/poster/Poster';
@@ -22,7 +21,6 @@ const Auth = () => {
   const [avatarPath, setAvatarPath] = useState(null);
   const [username, setUsername] = useState(null);
 
-  const modal = useSelector(state => state.modal.modal);
   const auth = useSelector(state => state.auth.auth);
   const dispatch = useDispatch();
 
@@ -78,8 +76,6 @@ const Auth = () => {
             }
           </>
       }
-
-      {modal && <AuthModal />}
     </div>
   );
 }
