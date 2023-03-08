@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Scrollbar, FreeMode } from 'swiper';
+import { FreeMode } from 'swiper';
 import { useFetching } from '../../hooks/useFetching';
 
 import VideoCard from '../../components/ordinary/videoCard/VideoCard';
@@ -12,15 +12,7 @@ import ShimmerActorCard from '../../components/ui/shimmers/shimmerActorCard/Shim
 
 import style from './preview.module.scss';
 import 'swiper/css';
-import 'swiper/css/scrollbar';
 import "swiper/css/free-mode";
-
-const breakPoints = {
-  320: {slidesPerView: 2, slidesPerGroup: 2},
-  475: {slidesPerView: 3, slidesPerGroup: 3},
-  768: {slidesPerView: 4, slidesPerGroup: 4},
-  1024: {slidesPerView: 6, slidesPerGroup: 6}
-};
 
 const Preview = ({ item, actors }) => {
   const language = useSelector(state => state.language.language);
@@ -41,10 +33,8 @@ const Preview = ({ item, actors }) => {
             className={style.swiper}
             modules={[FreeMode]}
             spaceBetween={12}
-            // scrollbar={{draggable: true}}
             speed={800}
             freeMode={true}
-            // breakpoints={breakpoints}
             slidesPerView={'auto'}
           >
             {results
