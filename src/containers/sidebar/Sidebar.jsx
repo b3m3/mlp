@@ -69,20 +69,8 @@ const Sidebar = () => {
     if (auth) {
       getFavorites(url(API_MOVIES), pageMovie, setPageMovie, setFavoriteMovies);
       getFavorites(url(API_TV_SHOWS), pageTv, setPageTv, setFavoriteTv);
-  
-      const handleClick = (e) => {
-        if (e.target.closest('.fav')) {
-          getFavorites(url(API_MOVIES), pageMovie, setPageMovie, setFavoriteMovies);
-          getFavorites(url(API_TV_SHOWS), pageTv, setPageTv, setFavoriteTv);
-        } 
-      }
-  
-      document.addEventListener('click', handleClick);
-      setTimeout(() => {
-        return() => document.removeEventListener('click', handleClick);
-      }, 3000);
     }
-  }, [getFavorites, url, pageMovie, pageTv, auth]);
+  }, [pathname, getFavorites, url, pageMovie, pageTv, auth]);
 
   useEffect(() => {
     dispatch(onCloseInfo());

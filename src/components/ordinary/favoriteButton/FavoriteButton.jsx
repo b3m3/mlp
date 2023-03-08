@@ -44,9 +44,10 @@ const FavoriteButton = ({ id, type }) => {
     }
   }, [userId, session_id, auth]);
 
-  const handleFavorite = useCallback(async () => {
+  const handleFavorite = useCallback(() => {
     if (auth) {
-      await axios.post(url, {
+      setIsActive(a => !a);
+      axios.post(url, {
         "media_type": currentType.split('/').pop(),
         "media_id": id,
         "favorite": !isActive
@@ -57,21 +58,16 @@ const FavoriteButton = ({ id, type }) => {
     }
   }, [isActive, currentType, id, url, auth, dispatch]);
 
-  const checkFavorite = useCallback((arr) => {
-    arr.map(el => el.id === id && setIsActive(true));
-  }, [id]);
-
   useEffect(() => {
     if (auth) {
-      setIsActive(false);
-      checkFavorite(favoriteMovies);
-      checkFavorite(favoriteTv);
+      favoriteMovies.map(el => el.id === id && setIsActive(true));
+      favoriteTv.map(el => el.id === id && setIsActive(true));
     }
-  }, [checkFavorite, favoriteTv, favoriteMovies, auth]);
+  }, [favoriteTv, favoriteMovies, id, auth]);
   
   return (
     <div 
-      className={`${style.btn} fav`}
+      className={style.btn}
       style={isActive ? styleBtn : null}
       onClick={handleFavorite}
     >
