@@ -65,7 +65,6 @@ const Credits = ({ url, titles, prevClass, nextClass, resultName, actors, fullCo
             style={{width: '100%'}}
             modules={[Navigation, FreeMode]}
             spaceBetween={10}
-            loop={results[resultName].length > 5 ? true : false}
             breakpoints={ fullContainer ? breakPointsFull : breakPoints}
             navigation={navigation}
             freeMode={true}
