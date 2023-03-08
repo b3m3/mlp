@@ -20,6 +20,7 @@ import "swiper/css/free-mode";
 
 const breakPoints = {
   320: {slidesPerView: 1},
+  768: {slidesPerView: 1.5},
   1025: {slidesPerView: 2}
 };
 
@@ -27,7 +28,8 @@ const breakPointsActors = {
   320: {slidesPerView: 1},
   376: {slidesPerView: 2},
   601: {slidesPerView: 3},
-  1025: {slidesPerView: 5}
+  1025: {slidesPerView: 4},
+  1251: {slidesPerView: 5}
 };
 
 const Trending = ({ item, actors }) => {
@@ -70,14 +72,14 @@ const Trending = ({ item, actors }) => {
             loop={true}
             parallax={true}
             freeMode={actors && true}
-            pagination={!actors && {clickable: true}}
+            // pagination={!actors && {clickable: true}}
             centeredSlides={!actors && true}
             navigation={navigation}
             breakpoints={actors ? breakPointsActors : breakPoints}
           >
             {results
-              ? results.results.map(props => (
-                  <SwiperSlide key={props.id}>
+              ? results.results.slice(0, 10).map(props => (
+                  <SwiperSlide key={props.id} >
                     {actors
                       ? <TrendingActorCard type={item.type} {...props}/>
                       : <TrendingVideoCard type={item.type} {...props} />

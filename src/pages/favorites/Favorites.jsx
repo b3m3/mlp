@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import EmptyPage from '../../components/ui/errors/emptyPage/EmptyPage';
 import FavoriteList from '../../components/ordinary/favoriteList/FavoriteList';
