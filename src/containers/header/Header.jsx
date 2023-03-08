@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import Search from '../../components/smart/search/search/Search';
+import Search from '../../components/smart/search/Search';
 import Logo from '../../components/ui/logo/Logo';
 import Language from '../../components/smart/language/Language';
 import MenuHamburger from '../../components/ordinary/menuHamburger/MenuHamburger';

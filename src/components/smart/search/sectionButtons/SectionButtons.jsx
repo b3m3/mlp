@@ -8,7 +8,9 @@ const buttonsName = [
   {ru: ['Фильмы', 'Сериалы', 'Актеры']}
 ];
 
-const SectionButtons = ({ index, setIndex, activeBtn, setResults, setRatings, setYears, setSortBy, setGenresSelected, language }) => {
+const SectionButtons = ({indexSectionBtn, setIndexSectionBtn, activeBtn, setResults, setRatings, 
+  setYears, setSortBy, setGenresSelected, language}) => {
+    
   const handleClear = useCallback(() => {
     setResults(null);
     setGenresSelected([]);
@@ -24,11 +26,11 @@ const SectionButtons = ({ index, setIndex, activeBtn, setResults, setRatings, se
           <button 
             key={i}
             onClick={() => {
-              setIndex(i);
+              setIndexSectionBtn(i);
               handleClear();
             }}
             className={style.btn}
-            style={index === i ? activeBtn : null}
+            style={indexSectionBtn === i ? activeBtn : null}
           >
             {btn}
           </button>
