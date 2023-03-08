@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Scrollbar } from 'swiper';
+import { Scrollbar, FreeMode } from 'swiper';
 import { useFetching } from '../../hooks/useFetching';
 
 import VideoCard from '../../components/ordinary/videoCard/VideoCard';
@@ -13,6 +13,7 @@ import ShimmerActorCard from '../../components/ui/shimmers/shimmerActorCard/Shim
 import style from './preview.module.scss';
 import 'swiper/css';
 import 'swiper/css/scrollbar';
+import "swiper/css/free-mode";
 
 const breakPoints = {
   320: {slidesPerView: 2, slidesPerGroup: 2},
@@ -28,7 +29,7 @@ const Preview = ({ item, actors }) => {
   const title = item[language];
 
   return (
-    <div className={style.preview}>
+    <div className={style.wrapp}>
       <div className={style.top}>
         <h2>{title}</h2>
         <SeeAllButton category={item.en}/>
@@ -38,21 +39,23 @@ const Preview = ({ item, actors }) => {
         ? <ErrorApi />
         : <Swiper
             className={style.swiper}
-            modules={[Scrollbar]}
+            modules={[FreeMode]}
             spaceBetween={12}
-            scrollbar={{draggable: true}}
+            // scrollbar={{draggable: true}}
             speed={800}
-            breakpoints={breakPoints}
+            freeMode={true}
+            // breakpoints={breakpoints}
+            slidesPerView={'auto'}
           >
             {results
-              ? results.results.slice(0, 12).map(props => (
-                  <SwiperSlide key={props.id}>
+              ? results.results.slice(0, 10).map(props => (
+                  <SwiperSlide key={props.id} className={style.slide}>
                     {actors ? <ActorCard {...props}/> : <VideoCard {...props}/>}
                   </SwiperSlide>
                 ))
               : <>
                   {[...Array(7)].map((_, i) =>
-                    <SwiperSlide key={i}>
+                    <SwiperSlide key={i} className={style.slide}>
                       {actors ? <ShimmerActorCard /> : <ShimmerVideoCard />}
                     </SwiperSlide>
                   )}

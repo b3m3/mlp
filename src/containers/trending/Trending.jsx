@@ -65,14 +65,14 @@ const Trending = ({ item, actors }) => {
         : <Swiper
             className={style.swiper}
             style={{width: '100%'}}
-            modules={[Navigation, Pagination, Parallax, FreeMode]}
+            modules={[Pagination, Navigation, Parallax, FreeMode]}
             speed={800}
             initialSlide={3}
             spaceBetween={20}
             loop={true}
             parallax={true}
             freeMode={actors && true}
-            // pagination={!actors && {clickable: true}}
+            pagination={!actors && {clickable: true}}
             centeredSlides={!actors && true}
             navigation={navigation}
             breakpoints={actors ? breakPointsActors : breakPoints}

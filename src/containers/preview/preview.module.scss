@@ -1,13 +1,17 @@
-.preview {
+.wrapp {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 20px;
   min-width: 0;
 }
 
 .swiper {
   width: 100%;
-  padding-bottom: 40px !important;
+  padding-bottom: 1.875rem;
+}
+
+.slide {
+  width: 12.5rem;
 }
 
 .top {
@@ -15,3 +19,4 @@
   align-items: center;
   justify-content: space-between;
 }
+
