@@ -18,20 +18,6 @@ import 'swiper/css/effect-cards';
 import 'swiper/css/effect-coverflow';
 import "swiper/css/free-mode";
 
-const breakPoints = {
-  320: {slidesPerView: 1},
-  768: {slidesPerView: 1.5},
-  1025: {slidesPerView: 2}
-};
-
-const breakPointsActors = {
-  320: {slidesPerView: 1},
-  376: {slidesPerView: 2},
-  601: {slidesPerView: 3},
-  1025: {slidesPerView: 4},
-  1251: {slidesPerView: 5}
-};
-
 const Trending = ({ item, actors }) => {
   const { results, errorApi } = useFetching(item.url);
 
@@ -39,6 +25,8 @@ const Trending = ({ item, actors }) => {
 
   const prevClass = `${item.en.split(' ')[1].toLowerCase()}-tre-prev`;
   const nextClass = `${item.en.split(' ')[1].toLowerCase()}-tre-next`;
+
+  const slideStyle = {maxWidth: actors ? "193px" : "500px"}
 
   const title = item[language];
 
@@ -67,19 +55,18 @@ const Trending = ({ item, actors }) => {
             style={{width: '100%'}}
             modules={[Pagination, Navigation, Parallax, FreeMode]}
             speed={800}
-            initialSlide={3}
             spaceBetween={20}
             loop={true}
-            parallax={true}
+            parallax={!actors && true}
             freeMode={actors && true}
-            pagination={!actors && {clickable: true}}
+            pagination={{clickable: true}}
             centeredSlides={!actors && true}
             navigation={navigation}
-            breakpoints={actors ? breakPointsActors : breakPoints}
+            slidesPerView={'auto'}
           >
             {results
               ? results.results.slice(0, 10).map(props => (
-                  <SwiperSlide key={props.id} >
+                  <SwiperSlide key={props.id} style={slideStyle}>
                     {actors
                       ? <TrendingActorCard type={item.type} {...props}/>
                       : <TrendingVideoCard type={item.type} {...props} />
@@ -88,7 +75,7 @@ const Trending = ({ item, actors }) => {
                 ))
               : <>
                   {[...Array(3)].map((_, i) => (
-                    <SwiperSlide key={i}>
+                    <SwiperSlide key={i} style={slideStyle}>
                       <ShimmerSolidBlock />
                     </SwiperSlide>
                   ))}
