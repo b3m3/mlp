@@ -54,6 +54,8 @@ const Category = () => {
   const { results, setResults, errorApi } = useFetching(url);
 
   const pages =  useMemo(() => {
+    window.scrollTo(0, 0);
+    
     if (results) {
       return results.total_pages > 500 ? 500 : results.total_pages;
     }
