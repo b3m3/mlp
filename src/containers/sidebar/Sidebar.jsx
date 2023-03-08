@@ -8,7 +8,7 @@ import { setFavoriteMovies, setFavoriteTv } from '../../store/slices/favoriteSli
 import { onCloseInfo } from '../../store/slices/infoSlice';
 
 import Navbar from '../../components/ordinary/navbar/Navbar';
-import { API_ACCOUNT, API_FAVORITE, API_KEY, API_MOVIES, API_QUERY_SESSION, API_ROOT, API_TV_SHOWS } from '../../constants/api';
+import { API_ACCOUNT, API_FAVORITE, API_KEY, API_MOVIES, API_QUERY_SESSION, API_ROOT, API_TV_SHOWS, API_LANGUAGE } from '../../constants/api';
 import { SESSION_ID_KEY } from '../../constants/localStorage';
 
 import style from './sidebar.module.scss';
@@ -18,6 +18,7 @@ const Sidebar = () => {
   const [pageMovie, setPageMovie] = useState(1);
   const [pageTv, setPageTv] = useState(1);
 
+  const language = useSelector(state => state.language.language);
   const menuState = useSelector(state => state.menu.menuState);
   const infoState = useSelector(state => state.info.infoState);
   const userId = useSelector(state => state.user.userId);
@@ -33,9 +34,9 @@ const Sidebar = () => {
     const isSession = session_id && session_id !== null && session_id !== 'undefined';
 
     if (auth && isSession) {
-      return API_ROOT+API_ACCOUNT+'/'+userId+API_FAVORITE+type+API_KEY+API_QUERY_SESSION+session_id;
+      return API_ROOT+API_ACCOUNT+'/'+userId+API_FAVORITE+type+API_KEY+API_QUERY_SESSION+session_id+API_LANGUAGE+language;
     }
-  }, [userId, session_id, auth])
+  }, [userId, session_id, auth, language])
 
   const getData = useCallback(async (url, setState) => {
     return await axios.get(url)
