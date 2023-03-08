@@ -71,10 +71,7 @@ const Auth = () => {
             {auth
               ? <>            
                   <div className={style.poster}>
-                    {avatarPath
-                      ? <Poster path={avatarPath} />
-                      : <span>{username[0].toUpperCase()}</span>
-                    }
+                    <Poster path={avatarPath} />
                   </div>
                   <LogoutButton handleLogout={handleLogout} username={username} />
                 </>
