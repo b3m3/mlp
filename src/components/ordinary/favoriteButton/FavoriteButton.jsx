@@ -44,9 +44,9 @@ const FavoriteButton = ({ id, type }) => {
     }
   }, [userId, session_id, auth]);
 
-  const handleFavorite = useCallback(() => {
+  const handleFavorite = useCallback(async () => {
     if (auth) {
-      axios.post(url, {
+      await axios.post(url, {
         "media_type": currentType.split('/').pop(),
         "media_id": id,
         "favorite": !isActive
