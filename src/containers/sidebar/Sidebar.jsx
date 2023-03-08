@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import secureLocalStorage from 'react-secure-storage';
 import axios from 'axios';
 
 import { setFavoriteMovies, setFavoriteTv } from '../../store/slices/favoriteSlice';
@@ -24,11 +25,14 @@ const Sidebar = () => {
   const dispatch = useDispatch();
   
   const { pathname } = useLocation();
-  const session_id = localStorage.getItem(SESSION_ID_KEY);
+  const session_id = secureLocalStorage.getItem(SESSION_ID_KEY);
+
   const className = `${style.wrapp} ${menuState && style.active} ${isActive && style.hidden}`;
 
   const url = useCallback((type) => {
-    if (auth) {
+    const isSession = session_id && session_id !== null && session_id !== 'undefined';
+
+    if (auth && isSession) {
       return API_ROOT+API_ACCOUNT+'/'+userId+API_FAVORITE+type+API_KEY+API_QUERY_SESSION+session_id;
     }
   }, [userId, session_id, auth])

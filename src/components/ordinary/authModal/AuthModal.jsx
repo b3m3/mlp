@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import secureLocalStorage from 'react-secure-storage';
 import axios from 'axios';
 
 import { closeModal } from '../../../store/slices/authModalSlice';
@@ -115,7 +116,7 @@ const AuthModal = () => {
       return await session()
         .then(data => {
           if (data && data !== 'undefined') {
-            localStorage.setItem(SESSION_ID_KEY, data);
+            secureLocalStorage.setItem(SESSION_ID_KEY, data);
             return;
           }
         })

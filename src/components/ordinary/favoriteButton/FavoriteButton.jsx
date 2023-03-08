@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useMemo, memo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import secureLocalStorage from 'react-secure-storage';
 import axios from 'axios';
 
 import { openModal } from '../../../store/slices/authModalSlice';
@@ -21,7 +22,7 @@ const FavoriteButton = ({ id, type }) => {
   const userId = useSelector(state => state.user.userId);
   const favoriteMovies = useSelector(state => state.favorite.favoriteMovies);
   const favoriteTv = useSelector(state => state.favorite.favoriteTv);
-  const session_id = localStorage.getItem(SESSION_ID_KEY);
+  const session_id = secureLocalStorage.getItem(SESSION_ID_KEY);
 
   const dispatch = useDispatch();
 
@@ -36,7 +37,9 @@ const FavoriteButton = ({ id, type }) => {
   }, [type]);
 
   const url = useMemo(() => {
-    if (auth) {
+    const isSession = session_id && session_id !== null && session_id !== 'undefined';
+
+    if (auth && isSession) {
       return API_ROOT+API_ACCOUNT+'/'+userId+API_FAVORITE+API_KEY+API_QUERY_SESSION+session_id;
     }
   }, [userId, session_id, auth]);
