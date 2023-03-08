@@ -51,15 +51,14 @@ const Credits = ({ url, titles, prevClass, nextClass, resultName, actors, fullCo
     <>
       {results && results[resultName].length > 0 &&
         <div className={style.wrapp}>
-          <div className={style.top}>
-            <h2>{title}</h2>
-            {results[resultName].length > 5 &&
-              <SliderNavigation
-                prevClass={prevClass}
-                nextClass={nextClass}
-              />
-            }
-          </div>
+          <h2>{title}</h2>
+
+          {results[resultName].length > 5 &&
+            <SliderNavigation
+              prevClass={prevClass}
+              nextClass={nextClass}
+            />
+          }
 
           <Swiper
             style={{width: '100%'}}

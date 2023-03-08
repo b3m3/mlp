@@ -5,8 +5,8 @@ import style from './navigation.module.scss';
 const SliderNavigation = ({ prevClass, nextClass }) => {
   return (
     <div className={style.wrapp}>
-      <button className={prevClass}><IoIosArrowBack/></button>
-      <button className={nextClass}><IoIosArrowForward/></button>
+      <span className={prevClass}><IoIosArrowBack/></span>
+      <span className={nextClass}><IoIosArrowForward/></span>
     </div>
   );
 }

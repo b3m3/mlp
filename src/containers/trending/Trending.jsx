@@ -39,14 +39,12 @@ const Trending = ({ item, actors }) => {
 
   return (
     <div className={style.wrapp}>
-      <div className={style.top}>
-        <h2>{title}</h2>
+      <h2>{title}</h2>
 
-        <SliderNavigation 
-          prevClass={prevClass}
-          nextClass={nextClass}
-        />
-      </div>
+      <SliderNavigation 
+        prevClass={prevClass}
+        nextClass={nextClass}
+      />
       
       {errorApi
         ? <ErrorApi />
